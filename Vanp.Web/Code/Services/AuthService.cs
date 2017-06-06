@@ -18,7 +18,7 @@ namespace Vanp.Web
         public static bool IsExisted(string userNameOrEmail, string passWord)
         {
             var passWordHash = Sercurity.CreateHashMD5(passWord);
-            return IsExistedWithPassWordHash(userNameOrEmail, userNameOrEmail);
+            return IsExistedWithPassWordHash(userNameOrEmail, passWordHash);
         }
         public static bool IsExistedWithPassWordHash(string userNameOrEmail, string passWordHash)
         {

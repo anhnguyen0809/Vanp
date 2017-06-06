@@ -34,7 +34,7 @@ namespace Vanp.Web.Controllers
         {
             if (loginModel != null)
             {
-                if (AuthService.IsExistedWithPassWordHash(loginModel.UserName, loginModel.PassWord))
+                if (AuthService.IsExisted(loginModel.UserName, loginModel.PassWord))
                 {
                     var user = _unitOfWork.UserRepository.GetByUserNameOrEmail(loginModel.UserName);
                     if (!(user.Enable ?? false))
@@ -78,7 +78,7 @@ namespace Vanp.Web.Controllers
                 {
                     User user = new User();
                     user.UserName = registerModel.UserName.ToLower();
-                    user.UserPassword = registerModel.PassWord;
+                    user.UserPassword = Sercurity.CreateHashMD5(registerModel.PassWord);
                     user.Email = registerModel.Email.ToLower();
                     user.FullName = registerModel.FullName;
                     user.UserAddress = registerModel.Address;
