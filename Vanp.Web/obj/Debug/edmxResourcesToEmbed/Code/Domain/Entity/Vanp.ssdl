@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vanp_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="70" />
+    <Property Name="CategoryParentId" Type="int" />
+    <Property Name="CategoryLevel" Type="int" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuTitle" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuAlias" Type="nvarchar" MaxLength="70" />
+    <Property Name="MenuAliasPath" Type="nvarchar" MaxLength="450" />
+    <Property Name="MenuLevel" Type="int" />
+    <Property Name="MenuUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="MenuParentId" Type="int" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="450" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="UserPhone" Type="nvarchar" MaxLength="100" />
+    <Property Name="AvartarPath" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="LastLogon" Type="datetime" />
+    <Property Name="IsCustomer" Type="bit" />
+    <Property Name="IsAllowAccept" Type="bit" />
+    <Property Name="Vote" Type="int" />
+    <Property Name="Coin" Type="float" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="ApprovedBy" Type="int" />
+  </EntityType>
+  <Association Name="FK_Category_CategoryParent">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="CategoryParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vanp_dbModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Category_CategoryParent" Association="Self.FK_Category_CategoryParent">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

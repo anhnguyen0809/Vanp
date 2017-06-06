@@ -1,0 +1,60 @@
+﻿@using Vanp.Web.Models
+@model LoginModel
+@{
+    ViewBag.Title = "Đăng Nhập";
+}
+<style>
+    #login-form .alert{
+        margin: -10px 0 0;
+    }
+</style>
+<div style="display: block;" class="popup1">
+    <div class="newsletter-sign-box login-box">
+        <div class="login-form">
+            <a href="/"><img src="~/images/f-box-close-icon (1).png" alt="close" class="x" id="x"></a>
+            <form id="login-form" action="@Url.Action("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })"
+                method="post"  name="popup-newsletter" class="email-form login-form">
+                <div class="div-left"> <img alt="newsletter" src="~/images/newsletter.jpg"></div>
+                <div class="div-right">
+                    <h3 style="margin-bottom: 20px;">Đăng nhập</h3>
+                    <div class="alert alert-danger" style="display:none">
+                        <button class="close" data-close="alert"></button>
+                        <span> Vui lòng nhập tài khoản và mật khẩu.  </span>
+                    </div>
+                    <div class="login-form">
+                        <div class="input-box">
+                            <input name="username" id="username" placeholder="Tài khoản / Email" class="input-text required-entry validate-email" type="text">
+                            <input name="password" id="password" placeholder="Mật khẩu" class="input-text required-entry" type="password">
+                            <button type="submit" name="submit" title="Đăng nhập" class="button subscribe btn-login" data-style="zoom-in"><span>Đăng nhập</span></button>
+                        </div>
+                        <hr />
+                        <div class="login-with">
+                            Hoặc dùng
+                            <div class="social" style="padding-top: 0;">
+                                <ul>
+                                    <li class="fb pull-left"><a href="#"></a></li>
+                                    <li class="tw pull-left"><a href="#" target="_blank"></a></li>
+                                    <li class="googleplus pull-left"><a href="#" target="_blank"></a></li>
+                                    <li class="rss pull-left"><a href="#" target="_blank"></a></li>
+                                    <li class="pintrest pull-left"><a href="#" target="_blank"></a></li>
+                                    <li class="linkedin pull-left"><a href="#" target="_blank"></a></li>
+                                    <li class="youtube pull-left"><a href="#" target="_blank"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--input-box-->
+                    </div>
+                    <!--Login-form-->
+                </div>
+            </form>
+        </div>
+
+        <!--Login-->
+
+    </div>
+    <!--Login-box-->
+    <div id="overlay" style="display: block;"></div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/login.js"></script>
+}

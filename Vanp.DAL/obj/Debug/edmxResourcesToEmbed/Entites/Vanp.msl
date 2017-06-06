@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vanp_dbModel1StoreContainer" CdmEntityContainer="Vanp_Entities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryParentId" ColumnName="CategoryParentId" />
+          <ScalarProperty Name="CategoryLevel" ColumnName="CategoryLevel" />
+          <ScalarProperty Name="Show" ColumnName="Show" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+          <ScalarProperty Name="MenuAlias" ColumnName="MenuAlias" />
+          <ScalarProperty Name="MenuAliasPath" ColumnName="MenuAliasPath" />
+          <ScalarProperty Name="MenuLevel" ColumnName="MenuLevel" />
+          <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+          <ScalarProperty Name="MenuParentId" ColumnName="MenuParentId" />
+          <ScalarProperty Name="Show" ColumnName="Show" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="vanp_dbModel1.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
+          <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
+          <ScalarProperty Name="Authorized" ColumnName="Authorized" />
+          <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="AvartarPath" ColumnName="AvartarPath" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="LastLogon" ColumnName="LastLogon" />
+          <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
+          <ScalarProperty Name="Vote" ColumnName="Vote" />
+          <ScalarProperty Name="Coin" ColumnName="Coin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="vanp_dbModel1.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="MessageName" ColumnName="MessageName" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailContents">
+      <EntityTypeMapping TypeName="vanp_dbModel1.MailContent">
+        <MappingFragment StoreEntitySet="MailContent">
+          <ScalarProperty Name="MailTypeId" ColumnName="MailTypeId" />
+          <ScalarProperty Name="MailSubject" ColumnName="MailSubject" />
+          <ScalarProperty Name="MailContentHTML" ColumnName="MailContentHTML" />
+          <ScalarProperty Name="MailContent1" ColumnName="MailContent" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailTypes">
+      <EntityTypeMapping TypeName="vanp_dbModel1.MailType">
+        <MappingFragment StoreEntitySet="MailType">
+          <ScalarProperty Name="MailTypeName" ColumnName="MailTypeName" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageTypes">
+      <EntityTypeMapping TypeName="vanp_dbModel1.MessageType">
+        <MappingFragment StoreEntitySet="MessageType">
+          <ScalarProperty Name="MessageTypeName" ColumnName="MessageTypeName" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BidHistories">
+      <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
+        <MappingFragment StoreEntitySet="BidHistory">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
+          <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="IsExtended" ColumnName="IsExtended" />
+          <ScalarProperty Name="IsBid" ColumnName="IsBid" />
+          <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BidCurrentBy" ColumnName="BidCurrentBy" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="PriceStep" ColumnName="PriceStep" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
+          <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
+          <ScalarProperty Name="PriceDefault" ColumnName="PriceDefault" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductText" ColumnName="ProductText" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductKickeds">
+      <EntityTypeMapping TypeName="vanp_dbModel1.ProductKicked">
+        <MappingFragment StoreEntitySet="ProductKicked">
+          <ScalarProperty Name="UserKickedId" ColumnName="UserKickedId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Votes">
+      <EntityTypeMapping TypeName="vanp_dbModel1.Vote">
+        <MappingFragment StoreEntitySet="Vote">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Vote1" ColumnName="Vote" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vanp_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="CategoryName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryParentId" Type="Int32" />
+    <Property Name="CategoryLevel" Type="Int32" />
+    <Property Name="Show" Type="Boolean" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Category_CategoryParent" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Self.FK_Category_CategoryParent" FromRole="Category1" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="MenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MenuTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MenuAlias" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="MenuAliasPath" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="MenuLevel" Type="Int32" />
+    <Property Name="MenuUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="MenuParentId" Type="Int32" />
+    <Property Name="Show" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AvartarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="LastLogon" Type="DateTime" Precision="3" />
+    <Property Name="IsCustomer" Type="Boolean" />
+    <Property Name="IsAllowAccept" Type="Boolean" />
+    <Property Name="Vote" Type="Int32" />
+    <Property Name="Coin" Type="Double" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Category_CategoryParent">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="CategoryParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VanpEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <AssociationSet Name="FK_Category_CategoryParent" Association="Self.FK_Category_CategoryParent">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

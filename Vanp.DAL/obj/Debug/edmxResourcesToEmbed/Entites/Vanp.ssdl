@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vanp_dbModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BidHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="BidPrice" Type="float" />
+    <Property Name="PriceCurrent" Type="float" />
+    <Property Name="PriceMax" Type="float" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="70" />
+    <Property Name="CategoryParentId" Type="int" />
+    <Property Name="CategoryLevel" Type="int" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <EntityType Name="MailContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MailContent" Type="nvarchar(max)" />
+    <Property Name="MailContentHTML" Type="nvarchar(max)" />
+    <Property Name="MailSubject" Type="nvarchar" MaxLength="150" />
+    <Property Name="MailTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="MailType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MailTypeName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuTitle" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuAlias" Type="nvarchar" MaxLength="70" />
+    <Property Name="MenuAliasPath" Type="nvarchar" MaxLength="450" />
+    <Property Name="MenuLevel" Type="int" />
+    <Property Name="MenuUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="MenuParentId" Type="int" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MessageName" Type="nvarchar" MaxLength="200" />
+    <Property Name="MessageTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="MessageType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="MessageTypeName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProductText" Type="nvarchar(max)" />
+    <Property Name="ProductImagePath" Type="nvarchar(max)" />
+    <Property Name="PriceDefault" Type="float" />
+    <Property Name="PriceCurrent" Type="float" />
+    <Property Name="PriceMax" Type="float" />
+    <Property Name="Price" Type="float" />
+    <Property Name="PriceStep" Type="float" />
+    <Property Name="DateFrom" Type="datetime" />
+    <Property Name="DateTo" Type="datetime" />
+    <Property Name="BidCurrentBy" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="BidCount" Type="int" />
+    <Property Name="IsBid" Type="bit" />
+    <Property Name="IsExtended" Type="bit" />
+    <Property Name="ApprovedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductKicked">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="UserKickedId" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="450" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="UserPhone" Type="nvarchar" MaxLength="100" />
+    <Property Name="AvartarPath" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="LastLogon" Type="datetime" />
+    <Property Name="IsCustomer" Type="bit" />
+    <Property Name="Vote" Type="int" />
+    <Property Name="Coin" Type="float" />
+    <Property Name="VerificationCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Authorized" Type="bit" />
+    <Property Name="VoteUp" Type="int" />
+    <Property Name="VoteDown" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="ApprovedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Vote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="Vote" Type="tinyint" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="UserVotedId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <Association Name="FK_BidHistory_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="BidHistory" Type="Self.BidHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BidHistory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BidHistory_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="BidHistory" Type="Self.BidHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BidHistory">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_CategoryParent">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="CategoryParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MailContent_MailType">
+    <End Role="MailType" Type="Self.MailType" Multiplicity="0..1" />
+    <End Role="MailContent" Type="Self.MailContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MailType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MailContent">
+        <PropertyRef Name="MailTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_MessageType">
+    <End Role="MessageType" Type="Self.MessageType" Multiplicity="0..1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessageType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="MessageTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_User_Approved">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ApprovedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_User_BidCurrent">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BidCurrentBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_User_Modified">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductKicked_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductKicked" Type="Self.ProductKicked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductKicked">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductKicked_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ProductKicked" Type="Self.ProductKicked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductKicked">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductKicked_User_Kicked">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ProductKicked" Type="Self.ProductKicked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductKicked">
+        <PropertyRef Name="UserKickedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vote_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vote_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vote_User_Vote">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="UserVotedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vanp_dbModel1StoreContainer">
+    <EntitySet Name="BidHistory" EntityType="Self.BidHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MailContent" EntityType="Self.MailContent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MailType" EntityType="Self.MailType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductKicked" EntityType="Self.ProductKicked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BidHistory_Product" Association="Self.FK_BidHistory_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="BidHistory" EntitySet="BidHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BidHistory_User" Association="Self.FK_BidHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="BidHistory" EntitySet="BidHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_CategoryParent" Association="Self.FK_Category_CategoryParent">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MailContent_MailType" Association="Self.FK_MailContent_MailType">
+      <End Role="MailType" EntitySet="MailType" />
+      <End Role="MailContent" EntitySet="MailContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_MessageType" Association="Self.FK_Message_MessageType">
+      <End Role="MessageType" EntitySet="MessageType" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_User_Approved" Association="Self.FK_Product_User_Approved">
+      <End Role="User" EntitySet="User" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_User_BidCurrent" Association="Self.FK_Product_User_BidCurrent">
+      <End Role="User" EntitySet="User" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_User_Modified" Association="Self.FK_Product_User_Modified">
+      <End Role="User" EntitySet="User" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductKicked_Product" Association="Self.FK_ProductKicked_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductKicked" EntitySet="ProductKicked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductKicked_User" Association="Self.FK_ProductKicked_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProductKicked" EntitySet="ProductKicked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductKicked_User_Kicked" Association="Self.FK_ProductKicked_User_Kicked">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProductKicked" EntitySet="ProductKicked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vote_Product" Association="Self.FK_Vote_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vote_User" Association="Self.FK_Vote_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vote_User_Vote" Association="Self.FK_Vote_User_Vote">
+      <End Role="User" EntitySet="User" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

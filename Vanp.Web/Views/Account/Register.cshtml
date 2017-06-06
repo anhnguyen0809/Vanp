@@ -1,0 +1,108 @@
+﻿
+@using BotDetect.Web.Mvc;
+
+@{
+    ViewBag.Title = "Đăng Ký";
+}
+
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet" type="text/css" />
+<style>
+    .page-title h2 {
+        text-align: center;
+    }
+</style>
+@{
+    var registrationCaptcha = CaptchaHelper.GetRegistrationCaptcha();
+    // registrationCaptcha.Reset();
+}
+
+<div class="main-container col2-right-layout">
+    <div class="main container">
+        <div class="row">
+            <section class="col-md-5 col-hidden-sm"></section>
+            <section class="col-md-7 wow bounceInUp animated">
+                <div class="col-main">
+                    <div class="page-title">
+                        <h2>Đăng ký</h2>
+                    </div>
+                    <div class="static-contain">
+                        <form class="comment-form register-form" action="@Url.Action("Register", "Account")" method="post">
+                            <div class="alert alert-danger" style="display:none">
+                                <button class="close" data-close="alert"></button>
+                                <span></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tài khoản <span>*</span></p>
+                                    <p class="comment-form-author"><input id="username" name="username" placeholder="Vanp" value="" size="30" type="text"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Email <span>*</span></p>
+                                    <p class="comment-form-email"><input id="email" name="email" placeholder="vanp@gmail.com" value="" size="30" type="text"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <p>Mật khẩu <span>*</span></p>
+                                    <p class="comment-form-email"><input id="password" name="password" value="" size="50" type="password"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Xác nhận mật khẩu <span>*</span></p>
+                                    <p class="comment-form-email"><input id="repassword" name="repassword" value="" size="50" type="password"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Họ Tên <span>*</span></p>
+                                    <p class="comment-form-email"><input id="fullname" name="fullname" placeholder="Vanp Website" value="" size="100" type="text"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Ngày sinh <span>*</span></p>
+                                    <p class="comment-form-email">
+                                        <input id="dateofbirth" name="dateofbirth" value="" placeholder="dd/MM/yyyy" size="30" type="text">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Số điện thoại <span>*</span></p>
+                                    <p class="comment-form-email"><input id="phone" name="phone" placeholder="+84 966 005 780" value="" type="text"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Địa chỉ</p>
+                                    <p class="comment-form-email"><input id="address" name="address" value="" placeholder="Quận 1, Hồ Chí Minh" type="text"></p>
+                                </div>
+                            </div>
+                            @if (!registrationCaptcha.IsSolved)
+                            {
+                                <p>Captcha <span>*</span></p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.Captcha(registrationCaptcha)
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="comment-form-email">
+                                            <input id="CaptchaCode" name="CaptchaCode" value="" type="text" class="captchaVal">
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-12">
+                                <p class="form-submit text-center">
+                                    <input name="btnSubmit" class="btn btn-secondary mt-ladda-btn" value="Đăng ký" type="submit">
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/apps/login.js"></script>
+    <script src="~/Scripts/jquery.validate/captcha.validate.js"></script>
+}

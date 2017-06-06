@@ -1,0 +1,713 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANP - @ViewBag.Title</title>
+    <link href="~/Scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/blog.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/customer.css" media="all">
+
+    <link href="~/Scripts/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="page">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                @*<div class="header-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="header-text"> Buy furniture online - Get Flat 60% Off On Online Furniture Store </div>
+                                <div class="social">
+                                    <ul>
+                                        <li class="fb pull-left"><a href="#"></a></li>
+                                        <li class="tw pull-left"><a href="#" target="_blank"></a></li>
+                                        <li class="googleplus pull-left"><a href="#" target="_blank"></a></li>
+                                        <li class="rss pull-left"><a href="#" target="_blank"></a></li>
+                                        <li class="pintrest pull-left"><a href="#" target="_blank"></a></li>
+                                        <li class="linkedin pull-left"><a href="#" target="_blank"></a></li>
+                                        <li class="youtube pull-left"><a href="#" target="_blank"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 logo-block">
+
+                            <!-- Header Logo -->
+                            <div class="logo"> <a title="Magento Commerce" href="/"><img alt="Magento Commerce" src="~/images/logo.png"> </a> </div>
+                            <!-- End Header Logo -->
+                        </div>
+                        <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 thm-top-cart">
+                            <div class="cart-account">
+                                @Html.Partial("_LoginPartial")
+                            </div>
+                            <div class="care tmservicecms">
+                                <div class="text1">customer care</div>
+                                <div class="text2">call us:- +191-234-567-8900</div>
+                            </div>
+                            <div class="chat tmservicecms">
+                                <div class="text1">chat online</div>
+                                <div class="text2">need help with auto parts?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+        <!-- Navigation -->
+        <nav class="">
+            <div class="container">
+                <div class="mm-toggle-wrap">
+                    <div class="mm-toggle"><i class="fa fa-bars"></i><span class="mm-label">Menu</span> </div>
+                </div>
+                <div class="nav-inner">
+                    <!-- BEGIN NAV -->
+                    <ul id="nav" class="hidden-xs">
+                        <li class="level0 parent drop-menu active" id="nav-home"><a href="../index.html" class="level-top"><span>Home</span></a> </li>
+                        <li class="level0 nav-6 level-top drop-menu">
+                            <a class="level-top" href="#"> <span>Pages</span> </a>
+                            <ul class="level1">
+                                <li class="level2 first"><a href="../left_bar.html"><span>Left Sidebar</span></a> </li>
+                                <li class="level2 first"><a href="../right_bar.html"><span>Right Sidebar</span></a> </li>
+                                <li class="level2 first"><a href="../full_width_bar.html"><span>Full Width</span></a> </li>
+                                <li class="level2 nav-10-2"> <a href="../list.html"> <span>List</span> </a> </li>
+                                <li class="level2 nav-10-3"> <a href="../product_detail.html"> <span>Product Detail</span> </a> </li>
+                                <li class="level2 nav-10-4"> <a href="../shopping_cart.html"> <span>Shopping Cart</span> </a> </li>
+                                <li class="level2 parent"><a href="../checkout.html"><span>Checkout</span></a> </li>
+                                <li class="level1 nav-10-4"> <a href="../wishlist.html"> <span>Wishlist</span> </a> </li>
+                                <li class="level1"> <a href="../dashboard.html"> <span>Dashboard</span> </a> </li>
+                                <li class="level1"> <a href="../multiple_addresses.html"> <span>Multiple Addresses</span> </a> </li>
+                                <li class="level1"><a href="../quick_view.html"><span>Quick view</span></a> </li>
+                                <li class="level1"><a href="../newsletter.html"><span>Newsletter</span></a> </li>
+                                <li class="level1"><a href="../404error.html"><span>404 Error Page</span></a> </li>
+                                <li class="level1"><a href="../about_us.html"><span>About us</span></a> </li>
+                                <li class="level1"><a href="../blog.html"><span>Blog</span></a> </li>
+                                <li class="level1"><a href="../blog_single_post.html"><span>Blog Detail</span></a> </li>
+                                <li class="level1"><a href="../contact_us.html"><span>Contact us</span></a> </li>
+                            </ul>
+                        </li>
+                        <li class="mega-menu">
+                            <a class="level-top" href="../left_bar.html"><span>Living Room</span></a>
+                            <div class="level0-wrapper dropdown-6col" style="display: none; left: 0px;">
+                                <div class="container">
+                                    <div class="level0-wrapper2">
+                                        <div class="nav-block nav-block-center">
+                                            <div class="col-1">
+                                                <ul class="level0">
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Racks</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Display Units</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Shoe Racks</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Magazine Racks</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Trunks &amp; Boxes</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Sofas</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Sofa Beds</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Sofa Suites</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Corner Sofas</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Leather Sofas</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Chairs</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Recliner</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Arm Chairs</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Folding Chairs</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Metal Chairs</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Tables</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Side Tables</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Console Tables</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Set Of Tables</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Coffee Tables</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Bean Bags</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Round</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Square</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Novelty</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Elongated</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Stools</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Folding</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Iron</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Designer</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Wood</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Textiles</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Curtain Rods</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Cushions</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Fabrics</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Benches</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level1 nav-6-1 parent item">
+                                                        <a href="../left_bar.html"><span>Storage</span></a>
+                                                        <ul class="level1">
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Buffets</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Cabinets</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Sideboards</span></a></li>
+                                                            <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Bookcases</span></a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- level -->
+                                            <!-- Right Menu images -->
+                                            <div class="col-2">
+                                                <div class="menu_image1"> <a title="" href="#"><img alt="menu_image" src="~/images/menu-img.jpg"></a> </div>
+                                            </div>
+                                        </div>
+                                        <!--nav-block nav-block-center-->
+                                    </div>
+                                    <!-- level0-wrapper2 -->
+                                </div>
+                                <!-- container -->
+                            </div>
+                            <!--level0-wrapper dropdown-6col-->
+                            <!--mega menu-->
+                            <!--mega menu-->
+                        <li class="mega-menu">
+                            <a class="level-top" href="../left_bar.html"><span>Dinning Room</span></a>
+                            <div class="level0-wrapper dropdown-6col">
+                                <div class="container">
+                                    <div class="level0-wrapper2">
+                                        <!---   <div class="nav-add"> <a href="#"><img src="images/menu-banner.jpg" alt="download"> </a> </div> -->
+                                        <div class="nav-block nav-block-center">
+                                            <!--mega menu-->
+                                            <ul class="level0">
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Dinning Sets</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Eight Seater</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Four Seater</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Six Seater</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Two Seater</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Sixteen Seater</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img1.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Dinning Tables</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Colonial</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Contemporary</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Eclectic</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Modern</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Old</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img2.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Dinning Chairs</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Colonial</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Contemporary</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Eclectic</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Modern</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Old</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img3.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Sideboards</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Cabinets</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Drawers</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Glass</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Metal</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Modern</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img4.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Bar Stools</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Adjustable</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Bar Height</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Counter Height</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Swivel</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Short</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img5.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="level3 nav-6-1 parent item">
+                                                    <a href="../left_bar.html"><span>Serving Carts</span></a>
+                                                    <ul class="level1">
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Glass</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Steel</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"> <a href="../left_bar.html"><span>Traditional</span></a> </li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Wooden</span></a></li>
+                                                        <li class="level2 nav-6-1-1"><a href="../left_bar.html"><span>Modern</span></a></li>
+                                                        <li class="menu-img-block"><img alt="menu_image" src="~/images/menu-img6.jpg"></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <!--level0-->
+                                        </div>
+
+                                        <!--nav-block nav-block-center-->
+
+                                    </div>
+                                    <!--level0-wrapper2-->
+                                    <!--container-->
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="level0 nav-6 level-top drop-menu">
+                            <a class="level-top" href="#"> <span>BedRoom</span> </a>
+                            <ul class="level1">
+                                <li class="level2 first"><a href="../left_bar.html"><span>Beds</span></a> </li>
+                                <li class="level2 nav-10-2"> <a href="../left_bar.html"> <span>Dressing Tables</span> </a> </li>
+                                <li class="level2 nav-10-3"> <a href="../left_bar.html"> <span>Wardrobes</span> </a> </li>
+                                <li class="level2 nav-10-4"> <a href="../left_bar.html"> <span>Mattresses</span> </a> </li>
+                                <li class="level2 nav-10-3"> <a href="../left_bar.html"> <span>Bedside Tables</span> </a> </li>
+                                <li class="level2 nav-10-4"> <a href="../left_bar.html"> <span>Nightstands</span> </a> </li>
+                            </ul>
+                        </li>
+                        <li class="mega-menu"> <a class="level-top" href="../left_bar.html"><span>Kitchen</span></a> </li>
+                        <li class="mega-menu"> <a class="level-top" href="../blog.html"><span>Blog</span></a> </li>
+                        <!--nav-->
+
+                    </ul>
+                    <!--nav-->
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs search-block">
+                        <div class="search-box">
+                            <form action="../cat" method="POST" id="search_mini_form" name="Categories">
+                                <input type="text" placeholder="Search entire store here..." value="search our catalog " maxlength="70" name="search" id="search">
+                                <button type="button" class="search-btn-bg"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        @Html.Partial("_Alert")
+        <!-- end nav -->
+        @RenderBody()
+    </div>
+
+
+    <!-- end Brand Logo -->
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                        <div class="block-contact">
+                            <ul id="block-contact_list">
+                                <li class="block_1"> <i class="fa fa-map-marker"></i> <span class="contactdiv">789 Main rd, Anytown, CA 12345 USA</span> </li>
+                                <li class="block_2"> <i class="fa fa-phone"></i> <span>012-345-6789 / 90 / 91</span> </li>
+                                <li class="block_3"> <i class="fa fa-envelope"></i> <span>sales@yourcompany.com</span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                        <div class="block_newsletter links">
+                            <div class="newsletter_bg">
+                                <h2 class="h1 newsletter">Newsletter</h2>
+                                <div class="collapse">
+                                    <div class="title-text"> To receive latest offers and discounts from the shop. </div>
+                                    <form id="subscribe-form" method="post" action="#">
+                                        <div class="subscribe-content">
+                                            <input type="text" name="subscribe-input" id="subscribe-input" value="" placeholder="Enter Your Email Address" class="form-control input-text required-entry validate-email">
+                                            <button class="button" type="submit"><span>Subscribe</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 links wrapper">
+                                <h3> <a href="#" rel="nofollow"> Your account </a> </h3>
+                                <ul class="account-list collapse" id="footer_account_list">
+                                    <li> <a href="#" title="Addresses" rel="nofollow"> Addresses </a> </li>
+                                    <li> <a href="#" title="Credit slips" rel="nofollow"> Credit slips </a> </li>
+                                    <li> <a href="#" title="Orders" rel="nofollow"> Orders </a> </li>
+                                    <li> <a href="#" title="Personal info" rel="nofollow"> Personal info </a> </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 links block links">
+                                <h3>Products</h3>
+                                <ul class="collapse block_content">
+                                    <li> <a id="link-cms-page-1-1" class="cms-page-link" href="#" title="Our terms and conditions of delivery"> Delivery </a> </li>
+                                    <li> <a id="link-cms-page-2-1" class="cms-page-link" href="#" title="Legal notice"> Legal Notice </a> </li>
+                                    <li> <a id="link-cms-page-4-1" class="cms-page-link" href="#" title="Learn more about us"> About us </a> </li>
+                                    <li> <a id="link-product-page-prices-drop-1" class="cms-page-link" href="#" title="Our special products"> Prices drop </a> </li>
+                                    <li> <a id="link-product-page-new-products-1" class="cms-page-link" href="#" title="Our new products"> New products </a> </li>
+                                    <li> <a id="link-product-page-best-sales-1" class="cms-page-link" href="#" title="Our best sales"> Best sales </a> </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 links block links">
+                                <h3>Our company</h3>
+                                <ul class="collapse block_content">
+                                    <li> <a id="link-cms-page-1-2" class="cms-page-link" href="#" title="Our terms and conditions of delivery"> Delivery </a> </li>
+                                    <li> <a id="link-cms-page-2-2" class="cms-page-link" href="#" title="Legal notice"> Legal Notice </a> </li>
+                                    <li> <a id="link-cms-page-4-2" class="cms-page-link" href="#" title="Learn more about us"> About us </a> </li>
+                                    <li> <a id="link-cms-page-5-2" class="cms-page-link" href="#" title="Our secure payment method"> Secure payment </a> </li>
+                                    <li> <a id="link-static-page-contact-2" class="cms-page-link" href="#" title="Use our form to contact us"> Contact us </a> </li>
+                                    <li> <a id="link-static-page-sitemap-2" class="cms-page-link" href="#" title="Lost ? Find what your are looking for"> Sitemap </a> </li>
+                                    <li> <a id="link-static-page-stores-2" class="cms-page-link" href="#" title=""> Stores </a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <!-- Block links module -->
+                        <div id="links_block_left" class="block col-md-4 links">
+                            <ul id="tm_blocklink" class="block_content collapse">
+                                <li> <a href="#" title="about us">About Us</a></li>
+                                <li> <a href="#" title="business">Business</a></li>
+                                <li> <a href="#" title="featured products">Featured Products</a></li>
+                                <li> <a href="#" title="new products">New Products</a></li>
+                                <li> <a href="#" title="decorative lighting">Decorative Lighting</a></li>
+                                <li> <a href="#" title="storage and covers">Storage and Covers</a></li>
+                            </ul>
+                        </div>
+                        <!-- /Block links module -->
+                    </div>
+                </div>
+                <div class="copyright"> <a class="_blank" href="#" target="_blank"> &copy; 2017 ThemesMart. All Rights Reserved. </a> </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- End Footer -->
+    <!-- mobile menu -->
+    <div id="mobile-menu">
+        <ul>
+            <li>
+                <div class="mm-search">
+                    <form id="search1" name="search">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> </button>
+                            </div>
+                            <input type="text" class="form-control simple" placeholder="Search ..." name="srch-term" id="srch-term">
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li><a href="../index.html">Home</a> </li>
+            <li>
+                <a href="#">Pages</a>
+                <ul>
+                    <li><a href="../left_bar.html">Left Sidebar</a> </li>
+                    <li><a href="../right_bar.html">Right Sidebar</a> </li>
+                    <li><a href="../full_width_bar.html">Full Width</a> </li>
+                    <li> <a href="../list.html">List</a> </li>
+                    <li> <a href="../product_detail.html">Product Detail</a> </li>
+                    <li> <a href="../shopping_cart.html">Shopping Cart</a> </li>
+                    <li><a href="../checkout.html">Checkout</a> </li>
+                    <li> <a href="../wishlist.html">Wishlist</a> </li>
+                    <li> <a href="../dashboard.html">Dashboard</a> </li>
+                    <li> <a href="../multiple_addresses.html">Multiple Addresses</a> </li>
+                    <li> <a href="../about_us.html">About us</a> </li>
+                    <li>
+                        <a href="../blog.html">Blog</a>
+                        <ul>
+                            <li><a href="../blog_single_post.html">Blog Detail</a> </li>
+                        </ul>
+                    </li>
+                    <li><a href="../contact_us.html">Contact us</a> </li>
+                    <li><a href="../404error.html">404 Error Page</a> </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Living Room</a>
+                <ul>
+                    <li>
+                        <a href="#" class="">Bean Bags</a>
+                        <ul>
+                            <li> <a href="../left_bar.html" class="">Elongated</a> </li>
+                            <li> <a href="../left_bar.html" class="">Novelty</a> </li>
+                            <li> <a href="../left_bar.html" class="">Round</a> </li>
+                            <li> <a href="../left_bar.html" class="">Square</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Chairs</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Arm Chairs</a> </li>
+                            <li> <a href="../left_bar.html">Folding Chairs</a> </li>
+                            <li> <a href="../left_bar.html">Metal Chairs</a> </li>
+                            <li> <a href="../left_bar.html">Recliner</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Racks</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Diaplay Unit</a> </li>
+                            <li> <a href="../left_bar.html">Magazine Rack</a> </li>
+                            <li> <a href="../left_bar.html">Shoe Rack</a> </li>
+                            <li> <a href="../left_bar.html">Trunks & Boxes</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Sofas</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Corner Sofas</a> </li>
+                            <li> <a href="../left_bar.html">Leather Sofas</a> </li>
+                            <li> <a href="../left_bar.html">Sofa Beds</a> </li>
+                            <li> <a href="../left_bar.html">Sofa Suites</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Stools</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Designer</a> </li>
+                            <li> <a href="../left_bar.html">Folding</a> </li>
+                            <li> <a href="../left_bar.html">Iron</a> </li>
+                            <li> <a href="../left_bar.html">Wood</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Tables</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Coffee Tables</a> </li>
+                            <li> <a href="../left_bar.html">Console Tables</a> </li>
+                            <li> <a href="../left_bar.html">Set of Tables</a> </li>
+                            <li> <a href="../left_bar.html">Side Tables</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Textiles</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Curtain Rods</a> </li>
+                            <li> <a href="../left_bar.html">Cushions</a> </li>
+                            <li> <a href="../left_bar.html">Fabrics</a> </li>
+                            <li> <a href="../left_bar.html">Benches</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Storage</a>
+                        <ul>
+                            <li> <a href="../left_bar.html">Buffets</a> </li>
+                            <li> <a href="../left_bar.html">Cabinets</a> </li>
+                            <li> <a href="../left_bar.html">Sideboards</a> </li>
+                            <li> <a href="../left_bar.html">Bookcases</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="../left_bar.html">Dinning Room</a>
+                <ul>
+                    <li>
+                        <a href="../left_bar.html" class="">Dinning Sets </a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="../left_bar.html">Eight Seater</a> </li>
+                            <li class="level2 nav-6-1-1"><a href="../left_bar.html">Four Seater</a> </li>
+                            <li class="level2 nav-6-1-1"><a href="../left_bar.html">Six Seater</a> </li>
+                            <li class="level2 nav-6-1-1"><a href="../left_bar.html">Two Seater</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Dinning Tables</a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Colonial</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Contemporary</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Eclectic</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Modern</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Dinning Chairs</a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Colonial</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Contemporary</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Eclectic</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Modern</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#.html">Sideboards</a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Cabinets</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Drawers</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Glass</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Modern</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Bar Stools</a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Adjustable</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Bar Height</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Counter Height</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Swivel</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../left_bar.html">Serving Carts</a>
+                        <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Glass</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Steel</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Traditional</a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="../left_bar.html">Modern</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="../left_bar.html">BedRoom</a>
+                <ul>
+                    <li> <a href="../left_bar.html">Beds</a> </li>
+                    <li> <a href="../left_bar.html">Dressing Tables</a> </li>
+                    <li> <a href="../left_bar.html">Wardrobes</a> </li>
+                    <li> <a href="../left_bar.html">Mattresses</a> </li>
+                    <li> <a href="../left_bar.html">Bedside Tables</a> </li>
+                    <li> <a href="../left_bar.html">Nightstands</a> </li>
+                </ul>
+            </li>
+            <li><a href="../left_bar.html">Kitchen</a> </li>
+            <li><a href="../Blog.html">Blog</a> </li>
+            <li><a href="../contact-us.html">Custom</a> </li>
+        </ul>
+        <div class="top-links">
+            <ul class="links">
+                <li><a title="My Account" href="../login.html">My Account</a> </li>
+                <li><a title="Wishlist" href="../wishlist.html">Wishlist</a> </li>
+                <li><a title="Checkout" href="../checkout.html">Checkout</a> </li>
+                <li><a title="Blog" href="../blog.html">Blog</a> </li>
+                <li class="last"><a title="Login" href="../login.html">Login</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/moment/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap/dist/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/revslider.js"></script>
+    <script type="text/javascript" src="~/Scripts/common.js"></script>
+    <script type="text/javascript" src="~/Scripts/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.mobile-menu.min.js"></script>
+
+    <script src="~/Scripts/jquery.blockUI.js"></script>
+    <script src="~/Scripts/ladda/spin.min.js"></script>
+    <script src="~/Scripts/ladda/ladda.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/countdown.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/jquery.validate/jquery.validate.js"></script>
+    <script src="~/Scripts/vanp.js"></script>
+    <script type='text/javascript'>
+        jQuery(document).ready(function () {
+            jQuery('#rev_slider_4').show().revolution({
+                dottedOverlay: 'none',
+                delay: 5000,
+                startwidth: 1170,
+                startheight: 684,
+                hideThumbs: 200,
+                thumbWidth: 200,
+                thumbHeight: 50,
+                thumbAmount: 2,
+                navigationType: 'thumb',
+                navigationArrows: 'solo',
+                navigationStyle: 'round',
+                touchenabled: 'on',
+                onHoverStop: 'on',
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+                spinner: 'spinner0',
+                keyboardNavigation: 'off',
+                navigationHAlign: 'center',
+                navigationVAlign: 'bottom',
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+                soloArrowLeftHalign: 'left',
+                soloArrowLeftValign: 'center',
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+                soloArrowRightHalign: 'right',
+                soloArrowRightValign: 'center',
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+                shadow: 0,
+                fullWidth: 'on',
+                fullScreen: 'off',
+                stopLoop: 'off',
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: 'off',
+                autoHeight: 'off',
+                forceFullWidth: 'on',
+                fullScreenAlignForce: 'on',
+                minFullScreenHeight: 0,
+                hideNavDelayOnMobile: 1500,
+                hideThumbsOnMobile: 'off',
+                hideBulletsOnMobile: 'off',
+                hideArrowsOnMobile: 'off',
+                hideThumbsUnderResolution: 0,
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                fullScreenOffsetContainer: ''
+            });
+        });
+    </script>
+    <!-- Hot Deals Timer 1-->
+    <script type="text/javascript">
+        var dthen1 = new Date("12/25/17 11:59:00 PM");
+        start = "05/09/15 03:02:11 AM";
+        start_date = Date.parse(start);
+        var dnow1 = new Date(start_date);
+        if (CountStepper > 0)
+            ddiff = new Date((dnow1) - (dthen1));
+        else
+            ddiff = new Date((dthen1) - (dnow1));
+        gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+
+        var iid1 = "countbox_1";
+        CountBack_slider(gsecs1, "countbox_1", 1);
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
