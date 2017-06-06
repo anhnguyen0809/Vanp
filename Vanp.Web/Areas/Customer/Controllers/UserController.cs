@@ -8,8 +8,7 @@ using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
-    [Authorize]
-    public class UserController : BaseController
+    public class UserController : AuthController
     {
         // GET: Customer/User
         public ActionResult Index()
@@ -18,8 +17,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
             AccountModel model = new AccountModel(user);
             return View(model);
         }
+        public ActionResult UserProfile()
+        {
+            var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
+            AccountModel model = new AccountModel(user);
+            return View(model);
+        }
         [HttpPost]
-        public ActionResult ChangeAccount(AccountModel accountModel)
+        public ActionResult UserProfile(AccountModel accountModel)
         {
             if (accountModel != null)
             {
@@ -50,28 +55,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return JsonError("Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ");
         }
-        #region SendCode
-        public ActionResult SendCode()
-        {
-            try
-            {
-                var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
-                user.VerificationCode = RandomHelper.RandomCode(10);
-                user.ModifiedBy = user.Id;
-                user.ModifiedWhen = DateTime.Now;
-                _unitOfWork.UserRepository.Update(user);
-                _unitOfWork.Save();
-                string urlVerifyCode = Url.Action("VerifyCode", "user", new { userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
-                Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
-                Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
-            }
-            catch (Exception ex)
-            {
-                Failure = "Đã xảy ra lỗi trong quá trình gửi mã xác thực.";
-            }
-            return View();
-        }
-        #endregion
+ 
         public ActionResult VerifyCode(string userName, string code)
         {
             if (!string.IsNullOrEmpty(code))
@@ -82,7 +66,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                     if (result)
                     {
                         Success = "Tài khoản đã được xác thực.";
-                        RedirectToAction("Index", "User");
+                        return RedirectToAction("UserProfile", "User");
                     };
                 }
                 else

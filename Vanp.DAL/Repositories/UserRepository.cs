@@ -58,16 +58,16 @@ namespace Vanp.DAL
             }
             return false;
         }
-        public bool ResetPassWord(string userNameOrEmail)
+        public string ResetPassWord(string userNameOrEmail)
         {
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
             if (user != null)
             {
                     user.UserPassword = RandomHelper.RandomString(10, true);
                     this.SaveChanges();
-                    return true;
+                    return user.UserPassword;
             }
-            return false;
+            return string.Empty;
         }
         public bool SendCode(int userId)
         {

@@ -24,7 +24,7 @@ namespace Vanp.Web
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail, passWordHash);
         }
-        public static bool ResetPassWord(string userNameOrEmail)
+        public static string ResetPassWord(string userNameOrEmail)
         {
             return _unitOfWork.UserRepository.ResetPassWord(userNameOrEmail);
         }

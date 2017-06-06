@@ -99,20 +99,48 @@ namespace Vanp.Web.Controllers
                 return View(registerModel);
 
         }
+        public ActionResult ResetPassWord()
+        {
+            return View();
+        }
         [AllowAnonymous]
-        public JsonResult ResetPassWord(AccountModel accountModel)
+        public ActionResult ResetPassWord(AccountModel accountModel)
         {
             if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
             {
                 var result = AuthService.ResetPassWord(CurrentUser.UserName);
                 if (result)
                 {
-
-                    return JsonSuccess(message: "Mật khẩu mới đã được gửi vào mail của bạn.");
+                    Success = "Mật khẩu mới đã được gửi vào mail của bạn.";
+                    return View();
                 }
             }
-            return JsonError("Reset mật khẩu thất bại");
+            Failure = "Reset mật khẩu thất bại";
+            return View();
         }
+        #region SendCode
+        [Authorize]
+        public ActionResult SendCode()
+        {
+            try
+            {
+                var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
+                user.VerificationCode = RandomHelper.RandomCode(10);
+                user.ModifiedBy = user.Id;
+                user.ModifiedWhen = DateTime.Now;
+                _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.Save();
+                string urlVerifyCode = Url.Action("VerifyCode", "user", new { userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
+                Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
+                Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
+            }
+            catch (Exception ex)
+            {
+                Failure = "Đã xảy ra lỗi trong quá trình gửi mã xác thực.";
+            }
+            return View();
+        }
+        #endregion
         public ActionResult Logout()
         {
             AuthService.Logout();

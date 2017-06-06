@@ -15,7 +15,7 @@ namespace Vanp.DAL
         bool IsAuthorized(string userNameOrEmail);
         bool VerifyCode(string userNameOrEmail, string code);
         bool VerifyCode(int userId, string code);
-        bool ResetPassWord(string userNameOrEmail);
+        string ResetPassWord(string userNameOrEmail);
         bool ChangePassWord(string userNameOrEmail, string passWordOld, string passWordNew);
         bool SendCode(int userId);
         User GetByUserName(string userName);
