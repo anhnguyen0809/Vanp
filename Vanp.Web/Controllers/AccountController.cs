@@ -19,7 +19,7 @@ namespace Vanp.Web.Controllers
     public class AccountController : BaseController
     {
         [HttpPost]
-        public JsonResult IsNotExisted(string userName)
+        public JsonResult IsNotExisted(string userName, bool current = false)
         {
             return Json(!_unitOfWork.UserRepository.IsExisted(userName));
         }

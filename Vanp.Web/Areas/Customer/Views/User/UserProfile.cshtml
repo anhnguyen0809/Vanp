@@ -8,14 +8,14 @@
             <span class="caption-subject text-uppercase ">Thông tin tài khoản</span>
         </div>
         <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="/account/profile" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
+            <li class="@(ViewBag.Tab == "" ? "active" : ""  )">
+                <a href="/account/profile">Thông Tin Cá Nhân</a>
             </li>
-            <li class="">
-                <a href="/account/profile?tab=avartar" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
+            <li class="@(ViewBag.Tab == "avartar" ? "active" : ""  )">
+                <a href="/account/profile?tab=avartar">Đổi Ảnh Đại Diện</a>
             </li>
-            <li class="">
-                <a href="/account/profile?tab=password" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
+            <li class=" @(ViewBag.Tab == "password" ? "active" : ""  )">
+                <a href="/account/profile?tab=password">Đổi Mật Khẩu</a>
             </li>
         </ul>
     </div>
@@ -68,7 +68,7 @@
             </div>
             <!-- END PERSONAL INFO TAB -->
             <!-- CHANGE AVATAR TAB -->
-            <div class="tab-pane @(ViewBag.Tab == "avartar" ? "active" : ""  )" id="tab_1_2">
+            <div class="tab-pane @(ViewBag.Tab == "avartar" ? "active" : ""  )" avartar" id="tab_1_2">
                 <form action="#">
                     <div class="form-group">
                         <label class="control-label">Current Password</label>
@@ -90,7 +90,7 @@
             </div>
             <!-- END CHANGE AVATAR TAB -->
             <!-- CHANGE PASSWORD TAB -->
-            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "")" id="tab_1_3">
+            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "") password" id="tab_1_3">
                 <form class="comment-form change-password-form" action="/account/profile?tab=password">
                     <div class="alert alert-danger" style="display:none">
                         <button class="close" data-close="alert"></button>
