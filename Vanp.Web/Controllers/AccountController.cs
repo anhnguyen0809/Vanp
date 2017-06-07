@@ -99,25 +99,46 @@ namespace Vanp.Web.Controllers
                 return View(registerModel);
 
         }
-        public ActionResult ResetPassWord()
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
         {
             return View();
         }
+        #region ForgotPassword
+        [HttpPost]
         [AllowAnonymous]
-        public ActionResult ResetPassWord(AccountModel accountModel)
+        public ActionResult ForgotPassword(string email)
         {
-            if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
+            if (!string.IsNullOrEmpty(email))
             {
-                var result = AuthService.ResetPassWord(CurrentUser.UserName);
-                if (result)
+                var user = _unitOfWork.UserRepository.GetByEmail(email);
+                if (user != null)
                 {
-                    Success = "Mật khẩu mới đã được gửi vào mail của bạn.";
-                    return View();
+                    var result = _unitOfWork.UserRepository.ResetPassWord(user.Email);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        AuthService.Logout();
+                        Mail.SendMail(result, new string[] { user.Email }, "Reset Mật Khẩu");
+                        return RedirectToAction("ForgotPasswordConfirmation");
+                    }
+                    else
+                    {
+                        Failure = "Đã xảy ra lỗi trong quá trình reset mật khẩu";
+                    }
+                }
+                else
+                {
+                    Failure = "Không tìm thấy email!";
                 }
             }
-            Failure = "Reset mật khẩu thất bại";
+            else Failure = "Không tìm thấy email";
             return View();
         }
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+        #endregion
         #region SendCode
         [Authorize]
         public ActionResult SendCode()
@@ -130,7 +151,7 @@ namespace Vanp.Web.Controllers
                 user.ModifiedWhen = DateTime.Now;
                 _unitOfWork.UserRepository.Update(user);
                 _unitOfWork.Save();
-                string urlVerifyCode = Url.Action("VerifyCode", "user", new { userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
+                string urlVerifyCode = Url.Action("VerifyCode", "user", new { area = "Customer", userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
                 Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
                 Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
             }

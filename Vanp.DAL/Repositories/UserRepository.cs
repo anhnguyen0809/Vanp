@@ -21,9 +21,9 @@ namespace Vanp.DAL
         }
         public bool IsExisted(string userNameOrEmail, string passWord)
         {
-            return _dbSet.Any(o => ( o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
+            return _dbSet.Any(o => ( (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
                                 || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())) 
-                                && o.UserPassword.ToUpper().Equals(passWord.ToUpper()));
+                                && o.UserPassword.Equals(passWord)));
         }
         public bool VerifyCode(string userNameOrEmail,string code)
         {
@@ -63,9 +63,10 @@ namespace Vanp.DAL
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
             if (user != null)
             {
-                    user.UserPassword = RandomHelper.RandomString(10, true);
-                    this.SaveChanges();
-                    return user.UserPassword;
+                var passwordNew = RandomHelper.RandomString(10, true);
+                user.UserPassword = Sercurity.CreateHashMD5(passwordNew);
+                this.SaveChanges();
+                return passwordNew;
             }
             return string.Empty;
         }

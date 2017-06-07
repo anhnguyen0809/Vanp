@@ -38,6 +38,11 @@ namespace Vanp.Web
               defaults: new { controller = "Acccount", action = "SendCode" }
             );
             routes.MapRoute(
+              name: "ForgotPassword",
+              url: "forgotpassword",
+              defaults: new { controller = "Acccount", action = "ForgotPassword" }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

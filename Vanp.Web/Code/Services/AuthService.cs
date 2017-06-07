@@ -10,7 +10,7 @@ namespace Vanp.Web
 {
     public static class AuthService
     {
-        private static readonly UnitOfWork _unitOfWork = new UnitOfWork();
+        public static UnitOfWork _unitOfWork = new UnitOfWork();
         public static bool IsExisted(string userNameOrEmail)
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail);
@@ -23,10 +23,6 @@ namespace Vanp.Web
         public static bool IsExistedWithPassWordHash(string userNameOrEmail, string passWordHash)
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail, passWordHash);
-        }
-        public static string ResetPassWord(string userNameOrEmail)
-        {
-            return _unitOfWork.UserRepository.ResetPassWord(userNameOrEmail);
         }
         public static bool ChangePassWord(string userNameOrEmail, string passWordOld, string passWordNew)
         {
