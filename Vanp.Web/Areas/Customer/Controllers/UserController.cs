@@ -80,6 +80,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
-
+        public ActionResult SendRequest()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SendRequest()
+        {
+            return View();
+        }
     }
 }
