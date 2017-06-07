@@ -17,8 +17,9 @@ namespace Vanp.Web.Areas.Customer.Controllers
             AccountModel model = new AccountModel(user);
             return View(model);
         }
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(string tab)
         {
+            ViewBag.Tab = tab.ToLower();
             var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
             AccountModel model = new AccountModel(user);
             return View(model);
@@ -29,14 +30,22 @@ namespace Vanp.Web.Areas.Customer.Controllers
             if (accountModel != null)
             {
                 var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
-                user.FullName = accountModel.FullName;
-                user.UserAddress = accountModel.Address;
-                user.UserPhone = accountModel.Phone;
-                user.IsCustomer = true;
-                user.DateOfBirth = accountModel.DateOfBirth;
-                user.Enable = true;
-                user.ModifiedWhen = DateTime.Now;
-                user.ModifiedBy = user.Id;
+                switch(tab.ToLower())
+                {
+                    case "profile":
+                }
+                if (string.IsNullOrEmpty(tab))
+                {
+                    user.FullName = accountModel.FullName;
+                    user.UserAddress = accountModel.Address;
+                    user.UserPhone = accountModel.Phone;
+                    user.IsCustomer = true;
+                    user.DateOfBirth = accountModel.DateOfBirth;
+                    user.Enable = true;
+                    user.ModifiedWhen = DateTime.Now;
+                    user.ModifiedBy = user.Id;
+                }
+                 
                 _unitOfWork.UserRepository.Update(user);
                 _unitOfWork.Save();
                 return View(accountModel);
@@ -85,7 +94,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SendRequest()
+        public ActionResult SendRequest(string content)
         {
             return View();
         }

@@ -9,20 +9,20 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab_1_1" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
+                <a href="/account/profile" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
             </li>
             <li class="">
-                <a href="#tab_1_2" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
+                <a href="/account/profile?tab=avartar" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
             </li>
             <li class="">
-                <a href="#tab_1_3" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
+                <a href="/account/profile?tab=password" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
             </li>
         </ul>
     </div>
     <div class="portlet-body">
         <div class="tab-content">
             <!-- PERSONAL INFO TAB -->
-            <div class="tab-pane active" id="tab_1_1">
+            <div class="tab-pane @(ViewBag.Tab == "" ? "active" : ""  ) " id="tab_1_1">
                 <form class="comment-form change-form" method="post" action="/account/profile">
                     <div class="alert alert-danger" style="display:none">
                         <button class="close" data-close="alert"></button>
@@ -68,7 +68,7 @@
             </div>
             <!-- END PERSONAL INFO TAB -->
             <!-- CHANGE AVATAR TAB -->
-            <div class="tab-pane" id="tab_1_2">
+            <div class="tab-pane @(ViewBag.Tab == "avartar" ? "active" : ""  )" id="tab_1_2">
                 <form action="#">
                     <div class="form-group">
                         <label class="control-label">Current Password</label>
@@ -90,9 +90,8 @@
             </div>
             <!-- END CHANGE AVATAR TAB -->
             <!-- CHANGE PASSWORD TAB -->
-            <div class="tab-pane" id="tab_1_3">
-
-                <form class="comment-form change-password-form" action="@Url.Action("ChangePassWord", "User")">
+            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "")" id="tab_1_3">
+                <form class="comment-form change-password-form" action="/account/profile?tab=password">
                     <div class="alert alert-danger" style="display:none">
                         <button class="close" data-close="alert"></button>
                         <span></span>

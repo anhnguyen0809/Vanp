@@ -213,7 +213,8 @@
     <Compile Include="Code\Controllers\BaseController.cs" />
     <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\Services\Service.cs" />
-    <Compile Include="Models\Authorize\AccountModel.cs" />
+    <Compile Include="Models\User\SendRequestModel.cs" />
+    <Compile Include="Models\User\AccountModel.cs" />
     <Compile Include="Models\Authorize\RegisterModel.cs" />
     <Compile Include="Models\Authorize\LoginModel.cs" />
     <Compile Include="Code\Services\AuthService.cs" />
@@ -359,7 +360,7 @@
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\User\VerifyCode.cshtml" />
     <Content Include="Areas\Customer\Views\User\UserProfile.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\_UserProfileLayout.cshtml" />
+    <Content Include="Areas\Customer\Views\Shared\_ProfileLayout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
@@ -452,7 +453,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
-    <Folder Include="Models\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

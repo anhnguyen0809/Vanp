@@ -75,6 +75,12 @@
     <Compile Include="Entites\ProductKicked.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entites\Request.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\RequestType.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entites\Vote.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
