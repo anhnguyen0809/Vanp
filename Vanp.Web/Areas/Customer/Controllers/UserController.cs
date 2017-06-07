@@ -24,7 +24,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult UserProfile(AccountModel accountModel)
+        public ActionResult UserProfile(AccountModel accountModel, string tab)
         {
             if (accountModel != null)
             {
