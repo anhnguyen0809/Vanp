@@ -38,5 +38,7 @@ namespace Vanp.DAL.Entites
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductKicked> ProductKickeds { get; set; }
         public virtual DbSet<Vote> Votes { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<RequestType> RequestTypes { get; set; }
     }
 }

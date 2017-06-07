@@ -12,12 +12,12 @@ namespace Vanp.DAL.Entites
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Request
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public Request()
         {
-            this.UserRoles = new HashSet<UserRole>();
+            this.Users = new HashSet<User>();
         }
     
         public int Id { get; set; }
@@ -27,10 +27,12 @@ namespace Vanp.DAL.Entites
         public Nullable<System.DateTime> ModifiedWhen { get; set; }
         public Nullable<int> Order { get; set; }
         public Nullable<bool> Enable { get; set; }
-        public string RoleName { get; set; }
-        public string RoleDisplayName { get; set; }
+        public string RequestContent { get; set; }
+        public Nullable<bool> Approved { get; set; }
+        public Nullable<int> ApprovedBy { get; set; }
+        public Nullable<int> RequestTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

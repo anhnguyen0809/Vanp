@@ -36,6 +36,9 @@
         <AssociationConnector Association="vanp_dbModel1.FK_ProductKicked_User_Kicked" />
         <AssociationConnector Association="vanp_dbModel1.FK_Vote_User" />
         <AssociationConnector Association="vanp_dbModel1.FK_Vote_User_Vote" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Request" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="vanp_dbModel1.RequestType" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="vanp_dbModel1.FK_User_Request" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
