@@ -19,7 +19,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult UserProfile(string tab)
         {
-            ViewBag.Tab = tab.ToLower();
+            ViewBag.Tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
             var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
             AccountModel model = new AccountModel(user);
             return View(model);
@@ -30,22 +30,32 @@ namespace Vanp.Web.Areas.Customer.Controllers
             if (accountModel != null)
             {
                 var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
-                switch(tab.ToLower())
+                tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
+                switch (tab)
                 {
-                    case "profile":
+                    case "password":
+                        if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
+                        {
+                            var result = _unitOfWork.UserRepository.ChangePassWord(CurrentUser.UserName, accountModel.PassWordOld, accountModel.PassWordNew);
+                            if (result) Success = "Đổi mật khẩu thành công.";
+                        }
+                        Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
+                        break;
+                    case "avartar":
+                        Success = "Thay đổi ảnh đại diện thành công";
+                        break;
+                    default:
+                        user.FullName = accountModel.FullName;
+                        user.UserAddress = accountModel.Address;
+                        user.UserPhone = accountModel.Phone;
+                        user.IsCustomer = true;
+                        user.DateOfBirth = accountModel.DateOfBirth;
+                        user.Enable = true;
+                        user.ModifiedWhen = DateTime.Now;
+                        user.ModifiedBy = user.Id;
+                        Success = "Thay đổi thông tin thành công.";
+                        break;
                 }
-                if (string.IsNullOrEmpty(tab))
-                {
-                    user.FullName = accountModel.FullName;
-                    user.UserAddress = accountModel.Address;
-                    user.UserPhone = accountModel.Phone;
-                    user.IsCustomer = true;
-                    user.DateOfBirth = accountModel.DateOfBirth;
-                    user.Enable = true;
-                    user.ModifiedWhen = DateTime.Now;
-                    user.ModifiedBy = user.Id;
-                }
-                 
                 _unitOfWork.UserRepository.Update(user);
                 _unitOfWork.Save();
                 return View(accountModel);
@@ -64,7 +74,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return JsonError("Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ");
         }
- 
+
         public ActionResult VerifyCode(string userName, string code)
         {
             if (!string.IsNullOrEmpty(code))
