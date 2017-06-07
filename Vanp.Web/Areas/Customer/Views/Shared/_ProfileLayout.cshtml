@@ -1,6 +1,7 @@
-﻿@model Vanp.Web.Models.AccountModel
+﻿
 @{
-    ViewBag.Title = "Thông tin tài khoản";
+    ViewBag.Title = "_UserProfileLayout";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
 }
 <div class="portlet light ">
     <div class="portlet-title tabbable-line">
@@ -9,13 +10,13 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab_1_1" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
+                <a href="/account/profile" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
             </li>
             <li class="">
-                <a href="#tab_1_2" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
+                <a href="/account/avartar" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
             </li>
             <li class="">
-                <a href="#tab_1_3" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
+                <a href="/accout/changepassword" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
             </li>
         </ul>
     </div>
@@ -113,5 +114,5 @@
     </div>
 </div>
 @section Scripts {
-    <script src="~/Scripts/apps/login.js"></script>
+    <script src="~/Scripts/apps/user.profile.js"></script>
 }
