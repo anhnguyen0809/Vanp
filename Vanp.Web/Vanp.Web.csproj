@@ -500,6 +500,7 @@
     <Content Include="images\portlet-reload-icon.png" />
     <Content Include="images\portlet-remove-icon-white.png" />
     <Content Include="images\portlet-remove-icon.png" />
+    <Content Include="images\products\anh-dep-ve-hoa-hung-duong021.jpg" />
     <Content Include="images\products\product1.jpg" />
     <Content Include="images\products\product10.jpg" />
     <Content Include="images\products\product11.jpg" />
@@ -660,6 +661,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\Product\ViewListProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
