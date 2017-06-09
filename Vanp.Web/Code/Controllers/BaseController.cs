@@ -20,7 +20,7 @@ namespace Vanp.Web
         {
             if (TempData["Success"] != null) ViewData["Success"] = TempData["Success"];
             if (TempData["Failure"] != null) ViewData["Failure"] = TempData["Failure"];
-
+            AuthService._unitOfWork = _unitOfWork;
             base.OnActionExecuting(filterContext);
         }
         public JsonResult JsonError(string message = "", JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)

@@ -98,7 +98,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                     {
                         Success = "Tài khoản đã được xác thực.";
                         return RedirectToAction("UserProfile", "User");
-                    };
+                    }
                 }
                 else
                 {

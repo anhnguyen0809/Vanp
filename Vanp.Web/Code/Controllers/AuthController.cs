@@ -16,7 +16,10 @@ namespace Vanp.Web
         {
             if (!CurrentUser.IsAuthenticated)
             {
-                Response.Redirect("/account/sendcode");
+                if (!Request.Url.AbsolutePath.ToLower().Contains("/account/verifycode"))
+                {
+                    Response.Redirect("/account/sendcode");
+                }
             }
             base.OnActionExecuting(filterContext);
         }

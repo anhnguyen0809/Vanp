@@ -7,3 +7,4 @@ D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.pdb
+D:\MonHoc\School\2.4\LTW2\Project Final\vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache
