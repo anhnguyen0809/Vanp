@@ -15,7 +15,6 @@ using Vanp.DAL.Utils;
 
 namespace Vanp.Web.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : BaseController
     {
         [HttpPost]
