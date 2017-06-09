@@ -174,7 +174,6 @@
                             username: function () {
                                 return $("#email").val();
                             }
-
                         }
                     }
                 },
@@ -333,8 +332,7 @@
                         data: {
                             username: function () {
                                 return $("#email").val();
-                            },
-                            current: true
+                            }
                         }
                     }
                 },
@@ -413,8 +411,8 @@
                     required: true,
                     minlength: 6
                 },
-                repassword: {
-                    equalTo: "#passwordnew"
+                repasswordnew: {
+                    equalTo: "#password-new"
                 }
             },
 

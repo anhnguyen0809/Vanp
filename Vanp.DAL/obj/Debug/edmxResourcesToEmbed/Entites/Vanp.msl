@@ -42,7 +42,6 @@
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="vanp_dbModel1.Role">
         <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="RoleDisplayName" ColumnName="RoleDisplayName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
@@ -57,7 +56,6 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="vanp_dbModel1.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
           <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
           <ScalarProperty Name="Authorized" ColumnName="Authorized" />
@@ -230,37 +228,6 @@
           <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Vote1" ColumnName="Vote" />
-          <ScalarProperty Name="Enable" ColumnName="Enable" />
-          <ScalarProperty Name="Order" ColumnName="Order" />
-          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Requests">
-      <EntityTypeMapping TypeName="vanp_dbModel1.Request">
-        <MappingFragment StoreEntitySet="Request">
-          <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
-          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-          <ScalarProperty Name="Approved" ColumnName="Approved" />
-          <ScalarProperty Name="RequestContent" ColumnName="RequestContent" />
-          <ScalarProperty Name="Enable" ColumnName="Enable" />
-          <ScalarProperty Name="Order" ColumnName="Order" />
-          <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RequestTypes">
-      <EntityTypeMapping TypeName="vanp_dbModel1.RequestType">
-        <MappingFragment StoreEntitySet="RequestType">
-          <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
           <ScalarProperty Name="Enable" ColumnName="Enable" />
           <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />

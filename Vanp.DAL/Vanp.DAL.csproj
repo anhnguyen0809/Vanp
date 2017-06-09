@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,16 +76,12 @@
     <Compile Include="Entites\ProductKicked.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entites\Request.cs">
-      <DependentUpon>Vanp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entites\RequestType.cs">
-      <DependentUpon>Vanp.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entites\Vote.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Interface\IProductRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRoleRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRoleRepository.cs" />
     <Compile Include="Repositories\Interface\ICategoryRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />

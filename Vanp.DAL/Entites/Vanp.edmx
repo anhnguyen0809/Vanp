@@ -157,35 +157,6 @@
           <Property Name="ProductId" Type="int" />
           <Property Name="UserKickedId" Type="int" />
         </EntityType>
-        <EntityType Name="Request">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" />
-          <Property Name="CreatedWhen" Type="datetime" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedWhen" Type="datetime" />
-          <Property Name="Order" Type="int" />
-          <Property Name="Enable" Type="bit" />
-          <Property Name="RequestContent" Type="nvarchar" MaxLength="200" />
-          <Property Name="Approved" Type="bit" />
-          <Property Name="ApprovedBy" Type="int" />
-          <Property Name="RequestTypeId" Type="int" />
-        </EntityType>
-        <EntityType Name="RequestType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" />
-          <Property Name="CreatedWhen" Type="datetime" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedWhen" Type="datetime" />
-          <Property Name="Order" Type="int" />
-          <Property Name="Enable" Type="bit" />
-          <Property Name="RequestTypeName" Type="nvarchar" MaxLength="200" />
-        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -198,7 +169,6 @@
           <Property Name="Order" Type="int" />
           <Property Name="Enable" Type="bit" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
-          <Property Name="RoleDisplayName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -227,7 +197,6 @@
           <Property Name="Authorized" Type="bit" />
           <Property Name="VoteUp" Type="int" />
           <Property Name="VoteDown" Type="int" />
-          <Property Name="RequestId" Type="int" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -416,18 +385,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Request">
-          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RequestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserRole_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -498,8 +455,6 @@
           <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductKicked" EntityType="Self.ProductKicked" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
@@ -555,10 +510,6 @@
           <AssociationSet Name="FK_ProductKicked_User_Kicked" Association="Self.FK_ProductKicked_User_Kicked">
             <End Role="User" EntitySet="User" />
             <End Role="ProductKicked" EntitySet="ProductKicked" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Request" Association="Self.FK_User_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
             <End Role="Role" EntitySet="Role" />
@@ -637,7 +588,6 @@
           <Property Name="Enable" Type="Boolean" />
           <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
-          <Property Name="RoleDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -676,8 +626,6 @@
           <NavigationProperty Name="ProductKickeds1" Relationship="vanp_dbModel1.FK_ProductKicked_User_Kicked" FromRole="User" ToRole="ProductKicked" />
           <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="User" ToRole="Vote" />
           <NavigationProperty Name="Votes1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="User" ToRole="Vote" />
-          <Property Name="RequestId" Type="Int32" />
-          <NavigationProperty Name="Request" Relationship="vanp_dbModel1.FK_User_Request" FromRole="User" ToRole="Request" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -817,12 +765,6 @@
           <AssociationSet Name="FK_Vote_User_Vote" Association="vanp_dbModel1.FK_Vote_User_Vote">
             <End Role="User" EntitySet="Users" />
             <End Role="Vote" EntitySet="Votes" />
-          </AssociationSet>
-          <EntitySet Name="Requests" EntityType="vanp_dbModel1.Request" />
-          <EntitySet Name="RequestTypes" EntityType="vanp_dbModel1.RequestType" />
-          <AssociationSet Name="FK_User_Request" Association="vanp_dbModel1.FK_User_Request">
-            <End Role="Request" EntitySet="Requests" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Message">
@@ -1157,48 +1099,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Request">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="RequestContent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Approved" Type="Boolean" />
-          <Property Name="ApprovedBy" Type="Int32" />
-          <Property Name="RequestTypeId" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
-        </EntityType>
-        <EntityType Name="RequestType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="RequestTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_User_Request">
-          <End Type="vanp_dbModel1.Request" Role="Request" Multiplicity="0..1" />
-          <End Type="vanp_dbModel1.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RequestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1246,7 +1146,6 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="vanp_dbModel1.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="RoleDisplayName" ColumnName="RoleDisplayName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
@@ -1261,7 +1160,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="vanp_dbModel1.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
                 <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
                 <ScalarProperty Name="Authorized" ColumnName="Authorized" />
@@ -1434,37 +1332,6 @@
                 <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Vote1" ColumnName="Vote" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="vanp_dbModel1.Request">
-              <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="RequestContent" ColumnName="RequestContent" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RequestTypes">
-            <EntityTypeMapping TypeName="vanp_dbModel1.RequestType">
-              <MappingFragment StoreEntitySet="RequestType">
-                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />

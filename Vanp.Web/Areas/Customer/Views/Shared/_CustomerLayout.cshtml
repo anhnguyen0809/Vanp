@@ -20,14 +20,14 @@
                 <div class="sidebar-user">
                     <img src="~/images/users/admin.jpg" class="avartar img-circle" />
                     <div class="username">
-                        @CurrentUser.FullName
+                        ADMIN
                     </div>
                     <div class="role">
-                        @CurrentUser.Roles
+                        Admin
                     </div>
                     <div class="">
                         <a class="nav-link" href="/"><i class="icon-home"></i></a> <span style="margin : 0 7px">\</span>
-                        <a class="nav-link" href="/logout"><i class="icon-logout"></i></a>
+                        <a class="nav-link" href="@Url.Action("Logout","Account")"><i class="icon-logout"></i></a>
                     </div>
                 </div>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
@@ -44,7 +44,7 @@
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-refresh"></i>
-                    <span class="title">Gửi Yêu Cầu Đăng Sản Phẩm</span>
+                    <span class="title">Chuyển Đổi Loại Tài Khoản</span>
                 </a>
             </li>
             <li class="heading">

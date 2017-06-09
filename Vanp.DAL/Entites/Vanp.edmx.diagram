@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ac060ffa016a46c08526fe743e467449" Name="Diagram1" ZoomLevel="13">
+      <Diagram DiagramId="ac060ffa016a46c08526fe743e467449" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="vanp_dbModel1.Category" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vanp_dbModel1.Menu" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vanp_dbModel1.Role" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
@@ -36,9 +36,6 @@
         <AssociationConnector Association="vanp_dbModel1.FK_ProductKicked_User_Kicked" />
         <AssociationConnector Association="vanp_dbModel1.FK_Vote_User" />
         <AssociationConnector Association="vanp_dbModel1.FK_Vote_User_Vote" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Request" Width="1.5" PointX="0.75" PointY="17.75" />
-        <EntityTypeShape EntityType="vanp_dbModel1.RequestType" Width="1.5" PointX="8.375" PointY="0.75" />
-        <AssociationConnector Association="vanp_dbModel1.FK_User_Request" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

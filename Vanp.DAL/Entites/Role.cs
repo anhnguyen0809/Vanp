@@ -28,7 +28,6 @@ namespace Vanp.DAL.Entites
         public Nullable<int> Order { get; set; }
         public Nullable<bool> Enable { get; set; }
         public string RoleName { get; set; }
-        public string RoleDisplayName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }

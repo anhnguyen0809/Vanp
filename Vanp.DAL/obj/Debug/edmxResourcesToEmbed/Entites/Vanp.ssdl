@@ -152,35 +152,6 @@
     <Property Name="ProductId" Type="int" />
     <Property Name="UserKickedId" Type="int" />
   </EntityType>
-  <EntityType Name="Request">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreatedBy" Type="int" />
-    <Property Name="CreatedWhen" Type="datetime" />
-    <Property Name="ModifiedBy" Type="int" />
-    <Property Name="ModifiedWhen" Type="datetime" />
-    <Property Name="Order" Type="int" />
-    <Property Name="Enable" Type="bit" />
-    <Property Name="RequestContent" Type="nvarchar" MaxLength="200" />
-    <Property Name="Approved" Type="bit" />
-    <Property Name="ApprovedBy" Type="int" />
-    <Property Name="RequestTypeId" Type="int" />
-  </EntityType>
-  <EntityType Name="RequestType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreatedBy" Type="int" />
-    <Property Name="CreatedWhen" Type="datetime" />
-    <Property Name="ModifiedBy" Type="int" />
-    <Property Name="ModifiedWhen" Type="datetime" />
-    <Property Name="Order" Type="int" />
-    <Property Name="Enable" Type="bit" />
-    <Property Name="RequestTypeName" Type="nvarchar" MaxLength="200" />
-  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -193,7 +164,6 @@
     <Property Name="Order" Type="int" />
     <Property Name="Enable" Type="bit" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
-    <Property Name="RoleDisplayName" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -222,7 +192,6 @@
     <Property Name="Authorized" Type="bit" />
     <Property Name="VoteUp" Type="int" />
     <Property Name="VoteDown" Type="int" />
-    <Property Name="RequestId" Type="int" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -411,18 +380,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_Request">
-    <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Request">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="RequestId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserRole_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -493,8 +450,6 @@
     <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductKicked" EntityType="Self.ProductKicked" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
@@ -550,10 +505,6 @@
     <AssociationSet Name="FK_ProductKicked_User_Kicked" Association="Self.FK_ProductKicked_User_Kicked">
       <End Role="User" EntitySet="User" />
       <End Role="ProductKicked" EntitySet="ProductKicked" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_Request" Association="Self.FK_User_Request">
-      <End Role="Request" EntitySet="Request" />
-      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
       <End Role="Role" EntitySet="Role" />
