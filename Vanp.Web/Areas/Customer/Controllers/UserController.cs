@@ -27,6 +27,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         [HttpPost]
         public ActionResult UserProfile(AccountModel accountModel, string tab)
         {
+            ViewBag.Tab = tab;
             if (accountModel != null)
             {
                 var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
@@ -39,7 +40,10 @@ namespace Vanp.Web.Areas.Customer.Controllers
                             var result = _unitOfWork.UserRepository.ChangePassWord(CurrentUser.UserName, accountModel.PassWordOld, accountModel.PassWordNew);
                             if (result) Success = "Đổi mật khẩu thành công.";
                         }
-                        Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
+                        else
+                        {
+                            Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
+                        }
                         break;
                     case "avartar":
                         Success = "Thay đổi ảnh đại diện thành công";
@@ -53,6 +57,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
                         user.Enable = true;
                         user.ModifiedWhen = DateTime.Now;
                         user.ModifiedBy = user.Id;
+                        if (!user.Email.Equals(accountModel.Email.ToLower()))
+                        {
+                            user.Email = accountModel.Email.ToLower();
+                            user.Authorized = false;
+                            _unitOfWork.UserRepository.Update(user);
+                            _unitOfWork.Save();
+                            return Redirect("/sendcode");
+                        }
                         Success = "Thay đổi thông tin thành công.";
                         break;
                 }

@@ -51,7 +51,6 @@
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-md-12">
                             <p>Địa chỉ</p>
                             <p class="comment-form-email"><input id="address" name="address" value="@Model.Address" placeholder="Quận 1, Hồ Chí Minh" type="text"></p>
@@ -90,20 +89,16 @@
             </div>
             <!-- END CHANGE AVATAR TAB -->
             <!-- CHANGE PASSWORD TAB -->
-            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "") password" id="tab_1_3">
-                <form class="comment-form change-password-form" action="/account/profile?tab=password">
-                    <div class="alert alert-danger" style="display:none">
-                        <button class="close" data-close="alert"></button>
-                        <span></span>
-                    </div>
+            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "") password" id="tab_1_3" >
+                <form class="comment-form change-password-form" action="/account/profile?tab=password" method="post">
                     <p>Mật khẩu Cũ <span>*</span></p>
-                    <p class="comment-form-email"><input id="password-old" name="passwordold" value="" size="50" type="password"></p>
+                    <p class="comment-form-email"><input id="passwordold" name="passwordold" value="" size="50" type="password"></p>
 
                     <p>Mật khẩu Mới <span>*</span></p>
-                    <p class="comment-form-email"><input id="password-new" name="passwordnew" value="" size="50" type="password"></p>
+                    <p class="comment-form-email"><input id="passwordnew" name="passwordnew" value="" size="50" type="password"></p>
 
                     <p>Xác nhận mật khẩu <span>*</span></p>
-                    <p class="comment-form-email"><input id="repassword-new" name="repassword" value="" size="50" type="password"></p>
+                    <p class="comment-form-email"><input id="repassword" name="repassword" value="" size="50" type="password"></p>
                     <p class="form-submit"><input name="btnSubmit" id="submit" class="btn btn-secondary mt-ladda-btn" value="Cập nhập" type="submit">  </p>
                 </form>
             </div>

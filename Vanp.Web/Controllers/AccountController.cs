@@ -21,7 +21,7 @@ namespace Vanp.Web.Controllers
         [HttpPost]
         public JsonResult IsNotExisted(string userName, bool current = false)
         {
-            return Json(!_unitOfWork.UserRepository.IsExisted(userName));
+            return Json(!_unitOfWork.UserRepository.IsExisted(userName, current ? (CurrentUser.Id ?? 0) : 0));
         }
 
         public ActionResult Login(string returnUrl)

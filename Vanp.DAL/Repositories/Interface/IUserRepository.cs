@@ -10,7 +10,7 @@ namespace Vanp.DAL
     public interface IUserRepository : IGeneralRepository<User>
     {
         //Kiểm tra User tồn tại
-        bool IsExisted(string userNameOrEmail);
+        bool IsExisted(string userNameOrEmail, int userId = 0);
         bool IsExisted(string userNameOrEmail, string passWord);
         bool IsAuthorized(string userNameOrEmail);
         bool VerifyCode(string userNameOrEmail, string code);

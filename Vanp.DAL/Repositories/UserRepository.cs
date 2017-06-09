@@ -14,7 +14,7 @@ namespace Vanp.DAL
         public UserRepository(Vanp_Entities context) : base(context)
         {
         }
-        public bool IsExisted(string userNameOrEmail , int userId)
+        public bool IsExisted(string userNameOrEmail , int userId = 0)
         {
             return _dbSet.Any( o => userId != o.Id 
                                 && (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
