@@ -9,8 +9,7 @@ namespace Vanp.DAL
 {
     public interface IProductRepository: IGeneralRepository<Product>
     {
-        IEnumerable<Product> GetListbyProducts();
-        Product GetById(int productId);
+        IEnumerable<Product> GetListByProduct();
         bool isExisted(string productcode);
     }
 }
