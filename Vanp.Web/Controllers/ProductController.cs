@@ -45,7 +45,8 @@ namespace Vanp.Web.Controllers
         }
         public ActionResult DetailProduct(int proID)
         {
-            return View(_unitOfWork.ProductRepository.DetailProducts(proID));
+            var model=_unitOfWork.ProductRepository.DetailProducts(proID).FirstOrDefault();
+            return View(model);
         }
     }
 }
