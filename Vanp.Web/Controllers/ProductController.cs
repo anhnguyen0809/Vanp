@@ -22,7 +22,6 @@ namespace Vanp.Web.Controllers
         public ActionResult Add(Product pro,HttpPostedFileBase productimage)
         {
             var fileName = Path.GetFileName(productimage.FileName);
-            var duongdan = _context.Products.Select(p => p.Id).FirstOrDefault();
             var path = Path.Combine(Server.MapPath("~/images/products/"), fileName);
             if (System.IO.File.Exists(path))
                 ViewBag.ThongBao = "Hình ảnh đã tồn tại";
