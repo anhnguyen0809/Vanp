@@ -12,13 +12,9 @@ namespace Vanp.DAL
         public ProductRepository(Vanp_Entities context) : base(context)
         {
         }
-        public IEnumerable<Product> GetListbyProducts()
+        public IEnumerable<Product> GetListByProduct()
         {
             return _dbSet.ToList();
-        }
-        public IEnumerable<Product> DetailProducts(int productID)
-        {
-            return _dbSet.Where(p => p.Id == productID);
         }
         public bool isExisted(string productcode)
         {

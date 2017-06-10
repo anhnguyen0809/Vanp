@@ -52,6 +52,7 @@
     <Property Name="Enable" Type="Boolean" />
     <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+    <Property Name="RoleDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -90,6 +91,8 @@
     <NavigationProperty Name="ProductKickeds1" Relationship="vanp_dbModel1.FK_ProductKicked_User_Kicked" FromRole="User" ToRole="ProductKicked" />
     <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="User" ToRole="Vote" />
     <NavigationProperty Name="Votes1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="User" ToRole="Vote" />
+    <Property Name="RequestId" Type="Int32" />
+    <NavigationProperty Name="Request" Relationship="vanp_dbModel1.FK_User_Request" FromRole="User" ToRole="Request" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -229,6 +232,12 @@
     <AssociationSet Name="FK_Vote_User_Vote" Association="vanp_dbModel1.FK_Vote_User_Vote">
       <End Role="User" EntitySet="Users" />
       <End Role="Vote" EntitySet="Votes" />
+    </AssociationSet>
+    <EntitySet Name="Requests" EntityType="vanp_dbModel1.Request" />
+    <EntitySet Name="RequestTypes" EntityType="vanp_dbModel1.RequestType" />
+    <AssociationSet Name="FK_User_Request" Association="vanp_dbModel1.FK_User_Request">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Message">
@@ -560,6 +569,48 @@
       </Principal>
       <Dependent Role="Vote">
         <PropertyRef Name="UserVotedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="RequestContent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Approved" Type="Boolean" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="RequestTypeId" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="RequestTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_User_Request">
+    <End Type="vanp_dbModel1.Request" Role="Request" Multiplicity="0..1" />
+    <End Type="vanp_dbModel1.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RequestId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

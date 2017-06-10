@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using Vanp.DAL;
-using Vanp.DAL.Entites;
 using Vanp.DAL.Utils;
 using Vanp.Web.Models;
 
@@ -12,7 +10,7 @@ namespace Vanp.Web
 {
     public static class AuthService
     {
-        private static readonly UnitOfWork _unitOfWork = new UnitOfWork();
+        public static UnitOfWork _unitOfWork = new UnitOfWork();
         public static bool IsExisted(string userNameOrEmail)
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail);
@@ -20,15 +18,11 @@ namespace Vanp.Web
         public static bool IsExisted(string userNameOrEmail, string passWord)
         {
             var passWordHash = Sercurity.CreateHashMD5(passWord);
-            return IsExistedWithPassWordHash(userNameOrEmail, userNameOrEmail);
+            return IsExistedWithPassWordHash(userNameOrEmail, passWordHash);
         }
         public static bool IsExistedWithPassWordHash(string userNameOrEmail, string passWordHash)
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail, passWordHash);
-        }
-        public static bool ResetPassWord(string userNameOrEmail)
-        {
-            return _unitOfWork.UserRepository.ResetPassWord(userNameOrEmail);
         }
         public static bool ChangePassWord(string userNameOrEmail, string passWordOld, string passWordNew)
         {

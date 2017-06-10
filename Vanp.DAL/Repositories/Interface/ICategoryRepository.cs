@@ -10,6 +10,5 @@ namespace Vanp.DAL
     public interface ICategoryRepository : IGeneralRepository<Category>
     {
         IEnumerable<Category> GetListByParent(int categoryId);
-        IEnumerable<Category> GetListCat();
     }
 }

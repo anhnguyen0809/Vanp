@@ -8,7 +8,6 @@ namespace Vanp.Web
 {
     public static class CaptchaHelper
     {
-
         public static MvcCaptcha GetRegistrationCaptcha()
         {
             // create the control instance
