@@ -52,6 +52,7 @@ namespace Vanp.DAL.Entites
         public Nullable<bool> Authorized { get; set; }
         public Nullable<int> VoteUp { get; set; }
         public Nullable<int> VoteDown { get; set; }
+        public Nullable<int> RequestId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }
@@ -73,5 +74,6 @@ namespace Vanp.DAL.Entites
         public virtual ICollection<Vote> Votes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vote> Votes1 { get; set; }
+        public virtual Request Request { get; set; }
     }
 }

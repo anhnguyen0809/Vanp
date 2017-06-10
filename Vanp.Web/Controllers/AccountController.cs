@@ -15,14 +15,12 @@ using Vanp.DAL.Utils;
 
 namespace Vanp.Web.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : BaseController
     {
         [HttpPost]
-        public JsonResult IsNotExisted(string userName)
+        public JsonResult IsNotExisted(string userName, bool current = false)
         {
-            return Json(!_unitOfWork.UserRepository.IsExisted(userName));
-            
+            return Json(!_unitOfWork.UserRepository.IsExisted(userName, current ? (CurrentUser.Id ?? 0) : 0));
         }
 
         public ActionResult Login(string returnUrl)
@@ -35,7 +33,7 @@ namespace Vanp.Web.Controllers
         {
             if (loginModel != null)
             {
-                if (AuthService.IsExistedWithPassWordHash(loginModel.UserName, loginModel.PassWord))
+                if (AuthService.IsExisted(loginModel.UserName, loginModel.PassWord))
                 {
                     var user = _unitOfWork.UserRepository.GetByUserNameOrEmail(loginModel.UserName);
                     if (!(user.Enable ?? false))
@@ -79,7 +77,7 @@ namespace Vanp.Web.Controllers
                 {
                     User user = new User();
                     user.UserName = registerModel.UserName.ToLower();
-                    user.UserPassword = registerModel.PassWord;
+                    user.UserPassword = Sercurity.CreateHashMD5(registerModel.PassWord);
                     user.Email = registerModel.Email.ToLower();
                     user.FullName = registerModel.FullName;
                     user.UserAddress = registerModel.Address;
@@ -101,19 +99,68 @@ namespace Vanp.Web.Controllers
 
         }
         [AllowAnonymous]
-        public JsonResult ResetPassWord(AccountModel accountModel)
+        public ActionResult ForgotPassword()
         {
-            if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
+            return View();
+        }
+        #region ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
             {
-                var result = AuthService.ResetPassWord(CurrentUser.UserName);
-                if (result)
+                var user = _unitOfWork.UserRepository.GetByEmail(email);
+                if (user != null)
                 {
-
-                    return JsonSuccess(message: "Mật khẩu mới đã được gửi vào mail của bạn.");
+                    var result = _unitOfWork.UserRepository.ResetPassWord(user.Email);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        AuthService.Logout();
+                        Mail.SendMail(result, new string[] { user.Email }, "Reset Mật Khẩu");
+                        return RedirectToAction("ForgotPasswordConfirmation");
+                    }
+                    else
+                    {
+                        Failure = "Đã xảy ra lỗi trong quá trình reset mật khẩu";
+                    }
+                }
+                else
+                {
+                    Failure = "Không tìm thấy email!";
                 }
             }
-            return JsonError("Reset mật khẩu thất bại");
+            else Failure = "Không tìm thấy email";
+            return View();
         }
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+        #endregion
+        #region SendCode
+        [Authorize]
+        public ActionResult SendCode()
+        {
+            try
+            {
+                var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
+                user.VerificationCode = RandomHelper.RandomCode(10);
+                user.ModifiedBy = user.Id;
+                user.ModifiedWhen = DateTime.Now;
+                _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.Save();
+                string urlVerifyCode = Url.Action("VerifyCode", "user", new { area = "Customer", userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
+                Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
+                Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
+            }
+            catch (Exception ex)
+            {
+                Failure = "Đã xảy ra lỗi trong quá trình gửi mã xác thực.";
+            }
+            return View();
+        }
+        #endregion
         public ActionResult Logout()
         {
             AuthService.Logout();

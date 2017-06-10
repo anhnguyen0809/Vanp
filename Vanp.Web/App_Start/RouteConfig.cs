@@ -32,7 +32,16 @@ namespace Vanp.Web
               url: "logout",
               defaults: new { controller = "Account", action = "Logout" }
           );
-
+            routes.MapRoute(
+              name: "SendCode",
+              url: "account/sendcode",
+              defaults: new { controller = "Account", action = "SendCode" }
+            );
+            routes.MapRoute(
+              name: "ForgotPassword",
+              url: "forgotpassword",
+              defaults: new { controller = "Account", action = "ForgotPassword" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

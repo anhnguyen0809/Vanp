@@ -14,16 +14,17 @@ namespace Vanp.DAL
         public UserRepository(Vanp_Entities context) : base(context)
         {
         }
-        public bool IsExisted(string userNameOrEmail)
+        public bool IsExisted(string userNameOrEmail , int userId = 0)
         {
-            return _dbSet.Any(o => o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
-                                || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper()));
+            return _dbSet.Any( o => userId != o.Id 
+                                && (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
+                                || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())));
         }
         public bool IsExisted(string userNameOrEmail, string passWord)
         {
-            return _dbSet.Any(o => ( o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
+            return _dbSet.Any(o => ( (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
                                 || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())) 
-                                && o.UserPassword.ToUpper().Equals(passWord.ToUpper()));
+                                && o.UserPassword.Equals(passWord)));
         }
         public bool VerifyCode(string userNameOrEmail,string code)
         {
@@ -58,16 +59,17 @@ namespace Vanp.DAL
             }
             return false;
         }
-        public bool ResetPassWord(string userNameOrEmail)
+        public string ResetPassWord(string userNameOrEmail)
         {
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
             if (user != null)
             {
-                    user.UserPassword = RandomHelper.RandomString(10, true);
-                    this.SaveChanges();
-                    return true;
+                var passwordNew = RandomHelper.RandomString(10, true);
+                user.UserPassword = Sercurity.CreateHashMD5(passwordNew);
+                this.SaveChanges();
+                return passwordNew;
             }
-            return false;
+            return string.Empty;
         }
         public bool SendCode(int userId)
         {
