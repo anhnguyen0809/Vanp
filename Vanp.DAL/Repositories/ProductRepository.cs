@@ -16,9 +16,9 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
-        public bool isExisted(string productcode)
+        public bool isExisted(string code)
         {
-            return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(productcode.ToLower()));
+            return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(code.ToLower()));
         }
     }
 }

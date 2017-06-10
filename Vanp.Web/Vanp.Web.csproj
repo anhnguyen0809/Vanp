@@ -209,10 +209,12 @@
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Code\CaptchaHelper.cs" />
+    <Compile Include="Code\CatHelper.cs" />
     <Compile Include="Code\Controllers\AuthController.cs" />
     <Compile Include="Code\Controllers\BaseController.cs" />
     <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\Services\Service.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Models\User\SendRequestModel.cs" />
     <Compile Include="Models\User\AccountModel.cs" />
     <Compile Include="Models\Authorize\RegisterModel.cs" />
@@ -445,6 +447,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\Product\DetailProduct.cshtml" />
+    <Content Include="Views\Product\ViewListProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -453,6 +458,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
+    <Folder Include="Views\ShowProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
