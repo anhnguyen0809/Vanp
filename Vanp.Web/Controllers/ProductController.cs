@@ -41,11 +41,11 @@ namespace Vanp.Web.Controllers
         }
         public ActionResult ViewListProduct()
         {
-            return View(_unitOfWork.ProductRepository.GetListbyProducts());
+            return View(_unitOfWork.ProductRepository.GetListByProduct());
         }
         public ActionResult DetailProduct(int proID)
         {
-            return View(_unitOfWork.ProductRepository.DetailProducts(proID));
+            return View(_unitOfWork.ProductRepository.GetById(proID));
         }
     }
 }
