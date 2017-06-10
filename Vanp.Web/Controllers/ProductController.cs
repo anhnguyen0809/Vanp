@@ -41,8 +41,7 @@ namespace Vanp.Web.Controllers
         }
         public ActionResult ViewListProduct()
         {
-            _unitOfWork.ProductRepository.GetListbyProducts();
-            return View();
+            return View(_unitOfWork.ProductRepository.GetListbyProducts());
         }
     }
 }

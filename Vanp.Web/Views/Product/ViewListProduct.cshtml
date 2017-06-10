@@ -1,4 +1,4 @@
-﻿
+﻿@using Vanp.DAL.Entites
 @{
     ViewBag.Title = "Sản phẩm đấu giá";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -96,39 +96,42 @@
                                 </div>
                                 <div class="category-products">
                                     <ul class="products-grid">
-                                        <li class="item col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <div class="item-inner">
-                                                <div class="productborder">
-                                                    <div class="item-img">
-                                                        <div class="item-img-info">
-                                                            <a class="product_image image-wrapper" href="assets/product_detail.html"> <img class="front_image" alt="Pro Image" src="~/images/products/product1.jpg"> </a>
-                                                            <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
-                                                            <div class="box-hover">
-                                                                <ul class="add-to-links">
-                                                                    <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
-                                                                    <li><a class="link-wishlist" href="assets/wishlist.html"></a> </li>
-                                                                    <li><a class="link-compare" href="assets/compare.html"></a> </li>
-                                                                    <li><a class="add-to-cart" href="assets/shopping_cart.html"></a> </li>
-                                                                </ul>
+                                        @foreach (var item in Model)
+                                        {
+                                            <li class="item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="item-inner">
+                                                    <div class="productborder">
+                                                        <div class="item-img">
+                                                            <div class="item-img-info">
+                                                                <a class="product_image image-wrapper" href="assets/product_detail.html"> <img class="front_image" alt="Pro Image" src="~/images/products/product1.jpg"> </a>
+                                                                <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
+                                                                <div class="box-hover">
+                                                                    <ul class="add-to-links">
+                                                                        <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
+                                                                        <li><a class="link-wishlist" href="assets/wishlist.html"></a> </li>
+                                                                        <li><a class="link-compare" href="assets/compare.html"></a> </li>
+                                                                        <li><a class="add-to-cart" href="assets/shopping_cart.html"></a> </li>
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="right-block">
-                                                        <div class="item-info">
-                                                            <div class="info-inner">
-                                                                <div class="item-title"> <a title="Bluetooth Smart Watch" href="assets/product_detail.html">Wing Chair</a> </div>
-                                                                <div class="item-content">
-                                                                    <p class="product-manufacturer">Hugo</p>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    <div class="price-box"> <span class="regular-price"> <span class="price">$225.00</span> </span> </div>
+                                                        <div class="right-block">
+                                                            <div class="item-info">
+                                                                <div class="info-inner">
+                                                                    <div class="item-title"> <a title="Bluetooth Smart Watch" href="assets/product_detail.html">Wing Chair</a> </div>
+                                                                    <div class="item-content">
+                                                                        <p class="product-manufacturer">Hugo</p>
+                                                                    </div>
+                                                                    <div class="item-price">
+                                                                        <div class="price-box"> <span class="regular-price"> <span class="price">$225.00</span> </span> </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                             </article>

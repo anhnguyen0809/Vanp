@@ -19,7 +19,6 @@
             required: true,
         },
     },
-
     messages: {
         ProductName: "Tên sản phẩm không được bỏ trống.",
         ProductCode: {
