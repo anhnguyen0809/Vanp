@@ -16,6 +16,10 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
+        public IEnumerable<Product> DetailProducts(int productID)
+        {
+            return _dbSet.Where(p => p.Id == productID);
+        }
         public bool isExisted(string productcode)
         {
             return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(productcode.ToLower()));

@@ -43,5 +43,9 @@ namespace Vanp.Web.Controllers
         {
             return View(_unitOfWork.ProductRepository.GetListbyProducts());
         }
+        public ActionResult DetailProduct(int proID)
+        {
+            return View(_unitOfWork.ProductRepository.DetailProducts(proID));
+        }
     }
 }

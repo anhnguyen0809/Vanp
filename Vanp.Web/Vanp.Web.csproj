@@ -663,6 +663,7 @@
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\ViewListProduct.cshtml" />
+    <Content Include="Views\Product\DetailProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -104,8 +104,8 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product_image image-wrapper" href="assets/product_detail.html"> <img class="front_image" alt="Pro Image" src="~/images/products/@item.ProductImagePath"> </a>
-                                                                <div class="quickview top-right"> <a class="link-quickview" href=""> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
+                                                                <a class="product_image image-wrapper" href="@Url.Action("DetailProduct", "Product", new { proID = item.Id })"> <img class="front_image" alt="Pro Image" src="~/images/products/@item.ProductImagePath" width="264" height="230"> </a>
+                                                                <div class="quickview top-right"> <a class="link-quickview" href="@Url.Action("DetailProduct","Product", new { proID = item.Id })"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     @*<ul class="add-to-links">
                                                                             <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
