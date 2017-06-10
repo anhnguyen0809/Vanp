@@ -12,7 +12,7 @@ namespace Vanp.Web.Controllers
     [AllowAnonymous]
     public class ProductController : BaseController
     {
-
+        [AllowAnonymous]
         // GET: Product
         public ActionResult Add()
         {
@@ -25,17 +25,15 @@ namespace Vanp.Web.Controllers
             var duongdan = _context.Products.Select(p => p.Id).FirstOrDefault();
             var path = Path.Combine(Server.MapPath("~/images/products/"), fileName);
             if (System.IO.File.Exists(path))
-            {
                 ViewBag.ThongBao = "Hình ảnh đã tồn tại";
-            }
             else
-            {
                 productimage.SaveAs(path);
-            }
             pro.ModifiedWhen = DateTime.Now;
             pro.CreatedWhen = DateTime.Now;
             pro.CreatedBy = CurrentUser.Id;
             pro.ModifiedBy = CurrentUser.Id;
+            pro.DateFrom = DateTime.Now;
+            pro.DateTo = DateTime.Now.AddDays(7);
             pro.ProductImagePath = productimage.FileName;
             _unitOfWork.ProductRepository.Insert(pro);
             _unitOfWork.Save();

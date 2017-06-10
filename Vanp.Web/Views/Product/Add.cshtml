@@ -12,6 +12,9 @@
         .title-text {
             color: blue;
         }
+        .help-block{
+            color:red;
+        }
     </style>
 }
 
@@ -22,7 +25,7 @@
             <section class="col-md-12 wow bounceInUp animated">
                 <div class="col-main">
                     <div class="static-contain">
-                        <form class="comment-form register-form" action="@Url.Action("Add", "Product")" method="post"enctype="multipart/form-data">
+                        <form class="comment-form register-form" action="@Url.Action("Add", "Product")" method="post" enctype="multipart/form-data">
                             <div class="alert alert-danger" style="display:none">
                                 <button class="close" data-close="alert"></button>
                                 <span></span>
@@ -31,13 +34,13 @@
                                 <div class="col-md-4">
                                     <p class="title-text">Tên sản phẩm <span>*</span></p>
                                     <p class="comments-form-wrapper">
-                                        <input name="productname" placeholder="Điền tên sản phẩm" value="" size="30" type="text">
+                                        <input name="ProductName" placeholder="Điền tên sản phẩm" value="" size="30" type="text">
                                     </p>
                                 </div>
                                 <div class="col-md-4">
                                     <p class="title-text">Mã sản phẩm <span>*</span></p>
                                     <p class="comment-form-email">
-                                        <input id="txtCode" name="productcode" placeholder="Điền mã sản phẩm" value="" size="30" type="text">
+                                        <input id="txtCode" name="ProductCode" placeholder="Điền mã sản phẩm" value="" size="30" type="text">
                                     </p>
                                 </div>
                             </div>
@@ -45,13 +48,13 @@
                                 <div class="col-md-4">
                                     <p class="title-text">Giá sản phẩm<span>*</span></p>
                                     <p class="comment-form-email">
-                                        <input class="touchspin" name="price" placeholder="Điền giá mà bạn muốn bán?" value="" size="50" type="text">
+                                        <input class="touchspin" name="PriceDefault" placeholder="Điền giá mà bạn muốn bán?" value="" size="50" type="text">
                                     </p>
                                 </div>
                                 <div class="col-md-4">
                                     <p class="title-text">Giá bán ngay<span>*</span></p>
                                     <p class="comment-form-email">
-                                        <input class="touchspin" name="pricedefault" placeholder="Điền giá nếu bạn muốn bán ngay?" value="" size="50" type="text">
+                                        <input class="touchspin" name="Price" placeholder="Điền giá nếu bạn muốn bán ngay?" value="" size="50" type="text">
                                     </p>
                                 </div>
                             </div>
@@ -59,7 +62,7 @@
                                 <div class="col-md-8">
                                     <p class="title-text">Danh mục<span>*</span></p>
                                     <p class="comment-form-email">
-                                        @Html.DropDownList("categoryid", Html.GetNameCat(), new { @class = "col-md-4 selectpicker", @name= "categoryid" })
+                                        @Html.DropDownList("CategoryId", Html.GetNameCat(), new { @class = "col-md-4 selectpicker", @name = "CategoryId" })
                                     </p>
                                 </div>
                             </div>
@@ -67,7 +70,7 @@
                                 <div class="col-md-4">
                                     <p class="title-text">Mô tả ngắn <span>*</span></p>
                                     <p class="comments-form-wrapper">
-                                        <input id="txtDes" name="productdescrption" value="" placeholder="Điền mô tả ngắn gọn" size="30" type="text">
+                                        <input id="txtDes" name="ProductDescription" value="" placeholder="Điền mô tả ngắn gọn" size="30" type="text">
                                     </p>
                                 </div>
                             </div>
@@ -97,7 +100,7 @@
                                 <div class="col-md-8">
                                     <p class="title-text">Mô tả chi tiết <span>*</span></p>
                                     <p class="comment-form-email">
-                                        <textarea id="txttext" name="producttext" type="text"></textarea>
+                                        <textarea id="txttext" name="ProductText" type="text"></textarea>
                                     </p>
                                 </div>
                             </div>
@@ -119,34 +122,5 @@
     <script src="~/Content/bootstrap-select/js/bootstrap-select.min.js"></script>
     <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
     <script src="~/Content/tinymce/tinymce.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.upload').fileinput({
-                showUpload: false,
-            });
-        });
-        $("input[class='touchspin']").TouchSpin({
-            verticalbuttons: true,
-            max: 1000000000,
-            step: 100000
-        });
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-        });
-        tinymce.init({
-            selector: 'textarea',
-            height: 250,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table contextmenu paste code'
-            ],
-            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            content_css: [
-              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-              '//www.tinymce.com/css/codepen.min.css'],
-            encoding:"xml",
-        });
-    </script>
+    <script src="~/Scripts/apps/validate-addpro.js"></script>
 }
