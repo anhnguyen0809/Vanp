@@ -147,8 +147,8 @@
 
     var handleRegister = function () {
 
-        if ($().datetimepicker && $("#dateofbirth").size() > 0) {
-            $("#dateofbirth").datetimepicker({
+        if ($().datetimepicker && $(".register-form #dateofbirth").size() > 0) {
+            $(".register-form #dateofbirth").datetimepicker({
                 format: 'DD/MM/YYYY',
                 maxDate: moment()//Date.now()
             })
@@ -256,7 +256,7 @@
             },
 
             submitHandler: function (form) {
-                console.log(form);
+                //console.log(form);
                 form.submit();
                 //var registerModel = {
                 //    userName: $(form.username).val(),
@@ -307,11 +307,11 @@
     }
     var handleChange = function () {
 
-        if ($().datetimepicker && $("#dateofbirth").size() > 0) {
-            $("#dateofbirth").datetimepicker({
-                format: 'DD/MM/YYYY',
-                maxDate: moment()//Date.now()
+        if ($().datetimepicker && $(".change-form #dateofbirth").size() > 0) {
+            var datetimepicker = $(".change-form #dateofbirth").datetimepicker({
+                format: 'DD/MM/YYYY'
             })
+            datetimepicker.data("DateTimePicker").maxDate(moment());
         }
 
         $('.change-form').validate({
@@ -423,7 +423,7 @@
                     required: "Mật khẩu cũ không được bỏ trống.",
                     minlength: "Mật khẩu cũ chứa ít nhất 6 ký tự."
                 },
-                password: {
+                passwordnew: {
                     required: "Mật khẩu mới không được bỏ trống.",
                     minlength: "Mật khẩu mới chứa ít nhất 6 ký tự."
                 },

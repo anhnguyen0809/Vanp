@@ -13,8 +13,8 @@ namespace Vanp.Web
     {
         public Vanp_Entities _context = new Vanp_Entities();
         public UnitOfWork _unitOfWork = new UnitOfWork();
-        public string Success { set { ViewData["Success"] = value; } }
-        public string Failure { set { ViewData["Failure"] = value; } }
+        public string Success { set { TempData["Success"] = ViewData["Success"] = value; } }
+        public string Failure { set { TempData["Failure"] = ViewData["Failure"] = value; } }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

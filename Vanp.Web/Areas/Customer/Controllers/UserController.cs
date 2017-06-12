@@ -17,6 +17,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             AccountModel model = new AccountModel(user);
             return View(model);
         }
+        [Authorize(Roles ="Admin")]
         public ActionResult UserProfile(string tab)
         {
             ViewBag.Tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
@@ -38,7 +39,9 @@ namespace Vanp.Web.Areas.Customer.Controllers
                         if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
                         {
                             var result = _unitOfWork.UserRepository.ChangePassWord(CurrentUser.UserName, accountModel.PassWordOld, accountModel.PassWordNew);
-                            if (result) Success = "Đổi mật khẩu thành công.";
+                            if (result)
+                                Success = "Đổi mật khẩu thành công.";
+                            else Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
                         }
                         else
                         {

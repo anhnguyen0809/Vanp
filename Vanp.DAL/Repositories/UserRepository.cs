@@ -48,11 +48,13 @@ namespace Vanp.DAL
         public bool ChangePassWord(string userNameOrEmail, string passWordOld , string passWordNew)
         {
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
+            var passWordOldHash = Sercurity.CreateHashMD5(passWordOld);
+            var passWordNewHash = Sercurity.CreateHashMD5(passWordNew);
             if (user != null)
             {
-                if (user.UserPassword.Equals(passWordOld))
+                if (user.UserPassword.Equals(passWordOldHash))
                 {
-                    user.UserPassword = passWordNew;
+                    user.UserPassword = passWordNewHash;
                     this.SaveChanges();
                     return true;
                 }

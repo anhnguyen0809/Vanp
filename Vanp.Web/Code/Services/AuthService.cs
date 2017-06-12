@@ -26,9 +26,7 @@ namespace Vanp.Web
         }
         public static bool ChangePassWord(string userNameOrEmail, string passWordOld, string passWordNew)
         {
-            var passWordOldHash = Sercurity.CreateHashMD5(passWordOld);
-            var passWordNewHash = Sercurity.CreateHashMD5(passWordNew);
-            return _unitOfWork.UserRepository.ChangePassWord(userNameOrEmail, passWordOldHash, passWordNewHash);
+            return _unitOfWork.UserRepository.ChangePassWord(userNameOrEmail, passWordOld, passWordNew);
         }
         public static bool VerifyCode(string userNameOrEmail, string code)
         {
