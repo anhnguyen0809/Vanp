@@ -15,8 +15,8 @@ namespace Vanp.Web.Controllers
         // GET: Product
         public ActionResult GetList()
         {
-            var categories = _unitOfWork.CategoryRepository.GetList().ToList();
-            return PartialView(categories);
+            var categories = _unitOfWork.CategoryRepository.GetListParent().ToList();
+            return PartialView( "_CategoriesLeft", categories);
         }
     }
 }

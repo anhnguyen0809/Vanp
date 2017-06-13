@@ -2,22 +2,23 @@
 
 @model IEnumerable<Category>
 
-@helper ShowTree(IEnumerable<Category> categories, int i = 0)
+@helper ShowTree(IEnumerable<Category> categories, int i = -1)
 {
-    @foreach (var category in categories)
+    foreach (var category in categories)
     {
         <li>
-            <a class="active" href="/product/cat/@category.Id">@category.CategoryName </a>  
+            <a href="/product/cat/@category.Id">@category.CategoryName </a>
             @if (category.Category1.Any())
             {
-                <span class="subDropdown minus"></span>
-                <ul class="level0_@category.Id" style="display:block">
-                    @ShowTree(category.Category1)
+                i++;
+                var classLevel = "level" + (i == 0 ? (i + "_" + category.Id) : i.ToString());
+                <span class="subDropdown plus"></span>
+                <ul class="@classLevel" style="display:none" )>
+                    @ShowTree(category.Category1, i)
                 </ul>
             }
         </li>
     }
-
 }
 
 <ul>
