@@ -6,12 +6,10 @@ using System.Web.Mvc;
 
 namespace Vanp.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            //var top5New = _unitOfWork.ProductRepository.GetTopNNew(5);
-          
             return View();
         }
 
@@ -27,7 +25,5 @@ namespace Vanp.Web.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
-
     }
-
 }

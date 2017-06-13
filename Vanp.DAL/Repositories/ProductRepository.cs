@@ -12,7 +12,7 @@ namespace Vanp.DAL
         public ProductRepository(Vanp_Entities context) : base(context)
         {
         }
-        public IEnumerable<Product> GetListbyProducts()
+        public IEnumerable<Product> GetListByProduct()
         {
             return _dbSet.ToList();
         }
@@ -20,9 +20,6 @@ namespace Vanp.DAL
         {
             return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(code.ToLower()));
         }
-        public IEnumerable<Product> GetTopNNew(int n)              //Lấy n cái đầu tiên dựa vào id giảm dần
-        {
-            return _dbSet.OrderByDescending(o => o.Id).Take(n);
-        }
+        
     }
 }

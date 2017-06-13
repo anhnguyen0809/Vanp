@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,9 +75,20 @@
     <Compile Include="Entites\ProductKicked.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entites\Request.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entites\RequestType.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entites\Vote.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entites\Wishlist.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\Interface\IRequestRepository.cs" />
+    <Compile Include="Repositories\RequestRepository.cs" />
     <Compile Include="Repositories\Interface\IProductRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRoleRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
@@ -118,6 +128,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vanp.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Enum\RequestType.cs" />
     <Compile Include="Utils\Enum\StatusSystem.cs" />
     <Compile Include="Utils\Extentions\Extention.cs" />
     <Compile Include="Utils\Mail\SendMail.cs" />

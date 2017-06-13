@@ -157,6 +157,37 @@
           <Property Name="ProductId" Type="int" />
           <Property Name="UserKickedId" Type="int" />
         </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedWhen" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedWhen" Type="datetime" />
+          <Property Name="Order" Type="int" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="RequestContent" Type="nvarchar" MaxLength="200" />
+          <Property Name="Approved" Type="bit" />
+          <Property Name="ApprovedBy" Type="int" />
+          <Property Name="RequestTypeId" Type="int" />
+          <Property Name="DateFrom" Type="datetime" />
+          <Property Name="DateTo" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedWhen" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedWhen" Type="datetime" />
+          <Property Name="Order" Type="int" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="RequestTypeName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -169,6 +200,7 @@
           <Property Name="Order" Type="int" />
           <Property Name="Enable" Type="bit" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+          <Property Name="RoleDisplayName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -197,6 +229,7 @@
           <Property Name="Authorized" Type="bit" />
           <Property Name="VoteUp" Type="int" />
           <Property Name="VoteDown" Type="int" />
+          <Property Name="RequestId" Type="int" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -227,6 +260,20 @@
           <Property Name="Vote" Type="tinyint" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="UserVotedId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedWhen" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedWhen" Type="datetime" />
+          <Property Name="Order" Type="int" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="UserId" Type="int" />
           <Property Name="ProductId" Type="int" />
         </EntityType>
         <Association Name="FK_BidHistory_Product">
@@ -385,6 +432,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRole_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -445,6 +504,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Wishlist_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="vanp_dbModel1StoreContainer">
           <EntitySet Name="BidHistory" EntityType="Self.BidHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -455,10 +538,13 @@
           <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductKicked" EntityType="Self.ProductKicked" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BidHistory_Product" Association="Self.FK_BidHistory_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="BidHistory" EntitySet="BidHistory" />
@@ -511,6 +597,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="ProductKicked" EntitySet="ProductKicked" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Request" Association="Self.FK_User_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="UserRole" EntitySet="UserRole" />
@@ -531,189 +621,36 @@
             <End Role="User" EntitySet="User" />
             <End Role="Vote" EntitySet="Vote" />
           </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Product" Association="Self.FK_Wishlist_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_User" Association="Self.FK_Wishlist_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vanp_dbModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="CategoryName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryParentId" Type="Int32" />
-          <Property Name="CategoryLevel" Type="Int32" />
-          <Property Name="Show" Type="Boolean" />
-          <NavigationProperty Name="Category1" Relationship="Self.FK_Category_CategoryParent" FromRole="Category" ToRole="Category1" />
-          <NavigationProperty Name="Category2" Relationship="Self.FK_Category_CategoryParent" FromRole="Category1" ToRole="Category" />
-          <NavigationProperty Name="Products" Relationship="vanp_dbModel1.FK_Product_Category" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Menu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="MenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MenuTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MenuAlias" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="MenuAliasPath" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="MenuLevel" Type="Int32" />
-          <Property Name="MenuUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="MenuParentId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AvartarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="LastLogon" Type="DateTime" Precision="3" />
-          <Property Name="IsCustomer" Type="Boolean" />
-          <Property Name="Vote" Type="Int32" />
-          <Property Name="Coin" Type="Double" />
-          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
-          <Property Name="VerificationCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Authorized" Type="Boolean" />
-          <Property Name="VoteUp" Type="Int32" />
-          <Property Name="VoteDown" Type="Int32" />
-          <NavigationProperty Name="BidHistories" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="User" ToRole="BidHistory" />
-          <NavigationProperty Name="Products" Relationship="vanp_dbModel1.FK_Product_User" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Products1" Relationship="vanp_dbModel1.FK_Product_User_Approved" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Products2" Relationship="vanp_dbModel1.FK_Product_User_BidCurrent" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Products3" Relationship="vanp_dbModel1.FK_Product_User_Modified" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_User" FromRole="User" ToRole="ProductKicked" />
-          <NavigationProperty Name="ProductKickeds1" Relationship="vanp_dbModel1.FK_ProductKicked_User_Kicked" FromRole="User" ToRole="ProductKicked" />
-          <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="User" ToRole="Vote" />
-          <NavigationProperty Name="Votes1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="User" ToRole="Vote" />
-        </EntityType>
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="RoleId" Type="Int32" />
-          <Property Name="ApprovedBy" Type="Int32" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_Category_CategoryParent">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Category1">
-              <PropertyRef Name="CategoryParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserRole_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserRole_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Vanp_Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Menus" EntityType="Self.Menu" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-          <AssociationSet Name="FK_Category_CategoryParent" Association="Self.FK_Category_CategoryParent">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Category1" EntitySet="Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="UserRole" EntitySet="UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserRole" EntitySet="UserRoles" />
-          </AssociationSet>
-          <EntitySet Name="Messages" EntityType="vanp_dbModel1.Message" />
+          <EntitySet Name="BidHistories" EntityType="vanp_dbModel1.BidHistory" />
+          <EntitySet Name="Categories" EntityType="vanp_dbModel1.Category" />
           <EntitySet Name="MailContents" EntityType="vanp_dbModel1.MailContent" />
           <EntitySet Name="MailTypes" EntityType="vanp_dbModel1.MailType" />
+          <EntitySet Name="Menus" EntityType="vanp_dbModel1.Menu" />
+          <EntitySet Name="Messages" EntityType="vanp_dbModel1.Message" />
           <EntitySet Name="MessageTypes" EntityType="vanp_dbModel1.MessageType" />
-          <AssociationSet Name="FK_MailContent_MailType" Association="vanp_dbModel1.FK_MailContent_MailType">
-            <End Role="MailType" EntitySet="MailTypes" />
-            <End Role="MailContent" EntitySet="MailContents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Message_MessageType" Association="vanp_dbModel1.FK_Message_MessageType">
-            <End Role="MessageType" EntitySet="MessageTypes" />
-            <End Role="Message" EntitySet="Messages" />
-          </AssociationSet>
-          <EntitySet Name="BidHistories" EntityType="vanp_dbModel1.BidHistory" />
           <EntitySet Name="Products" EntityType="vanp_dbModel1.Product" />
           <EntitySet Name="ProductKickeds" EntityType="vanp_dbModel1.ProductKicked" />
+          <EntitySet Name="Requests" EntityType="vanp_dbModel1.Request" />
+          <EntitySet Name="RequestTypes" EntityType="vanp_dbModel1.RequestType" />
+          <EntitySet Name="Roles" EntityType="vanp_dbModel1.Role" />
+          <EntitySet Name="Users" EntityType="vanp_dbModel1.User" />
+          <EntitySet Name="UserRoles" EntityType="vanp_dbModel1.UserRole" />
           <EntitySet Name="Votes" EntityType="vanp_dbModel1.Vote" />
+          <EntitySet Name="Wishlists" EntityType="vanp_dbModel1.Wishlist" />
           <AssociationSet Name="FK_BidHistory_Product" Association="vanp_dbModel1.FK_BidHistory_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="BidHistory" EntitySet="BidHistories" />
@@ -722,9 +659,21 @@
             <End Role="User" EntitySet="Users" />
             <End Role="BidHistory" EntitySet="BidHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Category_CategoryParent" Association="vanp_dbModel1.FK_Category_CategoryParent">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category1" EntitySet="Categories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="vanp_dbModel1.FK_Product_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailContent_MailType" Association="vanp_dbModel1.FK_MailContent_MailType">
+            <End Role="MailType" EntitySet="MailTypes" />
+            <End Role="MailContent" EntitySet="MailContents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_MessageType" Association="vanp_dbModel1.FK_Message_MessageType">
+            <End Role="MessageType" EntitySet="MessageTypes" />
+            <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="vanp_dbModel1.FK_Product_User">
             <End Role="User" EntitySet="Users" />
@@ -750,6 +699,10 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Vote" EntitySet="Votes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Product" Association="vanp_dbModel1.FK_Wishlist_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductKicked_User" Association="vanp_dbModel1.FK_ProductKicked_User">
             <End Role="User" EntitySet="Users" />
             <End Role="ProductKicked" EntitySet="ProductKickeds" />
@@ -757,6 +710,18 @@
           <AssociationSet Name="FK_ProductKicked_User_Kicked" Association="vanp_dbModel1.FK_ProductKicked_User_Kicked">
             <End Role="User" EntitySet="Users" />
             <End Role="ProductKicked" EntitySet="ProductKickeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Request" Association="vanp_dbModel1.FK_User_Request">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="vanp_dbModel1.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="vanp_dbModel1.FK_UserRole_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_Vote_User" Association="vanp_dbModel1.FK_Vote_User">
             <End Role="User" EntitySet="Users" />
@@ -766,8 +731,12 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Vote" EntitySet="Votes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_User" Association="vanp_dbModel1.FK_Wishlist_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Message">
+        <EntityType Name="BidHistory">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -776,11 +745,33 @@
           <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="MessageName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Order" Type="Int32" />
           <Property Name="Enable" Type="Boolean" />
-          <Property Name="MessageTypeId" Type="Int32" />
-          <NavigationProperty Name="MessageType1" Relationship="vanp_dbModel1.FK_Message_MessageType" FromRole="Message" ToRole="MessageType" />
+          <Property Name="BidPrice" Type="Double" />
+          <Property Name="PriceCurrent" Type="Double" />
+          <Property Name="PriceMax" Type="Double" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="BidHistory" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="BidHistory" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="CategoryName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryParentId" Type="Int32" />
+          <Property Name="CategoryLevel" Type="Int32" />
+          <Property Name="Show" Type="Boolean" />
+          <NavigationProperty Name="Category1" Relationship="vanp_dbModel1.FK_Category_CategoryParent" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="vanp_dbModel1.FK_Category_CategoryParent" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Products" Relationship="vanp_dbModel1.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="MailContent">
           <Key>
@@ -813,6 +804,41 @@
           <Property Name="MailTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MailContents" Relationship="vanp_dbModel1.FK_MailContent_MailType" FromRole="MailType" ToRole="MailContent" />
         </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="MenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuAlias" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="MenuAliasPath" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="MenuLevel" Type="Int32" />
+          <Property Name="MenuUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="MenuParentId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="MessageName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MessageTypeId" Type="Int32" />
+          <NavigationProperty Name="MessageType" Relationship="vanp_dbModel1.FK_Message_MessageType" FromRole="Message" ToRole="MessageType" />
+        </EntityType>
         <EntityType Name="MessageType">
           <Key>
             <PropertyRef Name="Id" />
@@ -826,48 +852,6 @@
           <Property Name="Enable" Type="Boolean" />
           <Property Name="MessageTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Messages" Relationship="vanp_dbModel1.FK_Message_MessageType" FromRole="MessageType" ToRole="Message" />
-        </EntityType>
-        <Association Name="FK_MailContent_MailType">
-          <End Type="vanp_dbModel1.MailType" Role="MailType" Multiplicity="0..1" />
-          <End Type="vanp_dbModel1.MailContent" Role="MailContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MailType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MailContent">
-              <PropertyRef Name="MailTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Message_MessageType">
-          <End Type="vanp_dbModel1.MessageType" Role="MessageType" Multiplicity="0..1" />
-          <End Type="vanp_dbModel1.Message" Role="Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MessageType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="MessageTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="BidHistory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="Enable" Type="Boolean" />
-          <Property Name="BidPrice" Type="Double" />
-          <Property Name="PriceCurrent" Type="Double" />
-          <Property Name="PriceMax" Type="Double" />
-          <Property Name="ProductId" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="BidHistory" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="BidHistory" ToRole="User" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -906,6 +890,7 @@
           <NavigationProperty Name="User3" Relationship="vanp_dbModel1.FK_Product_User_Modified" FromRole="Product" ToRole="User" />
           <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="Product" ToRole="ProductKicked" />
           <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
+          <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
         </EntityType>
         <EntityType Name="ProductKicked">
           <Key>
@@ -923,6 +908,111 @@
           <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="ProductKicked" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_ProductKicked_User" FromRole="ProductKicked" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="vanp_dbModel1.FK_ProductKicked_User_Kicked" FromRole="ProductKicked" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="RequestContent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" />
+          <Property Name="ApprovedBy" Type="Int32" />
+          <Property Name="RequestTypeId" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
+          <Property Name="DateFrom" Type="DateTime" Precision="3" />
+          <Property Name="DateTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="RequestTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRoles" Relationship="vanp_dbModel1.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AvartarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="LastLogon" Type="DateTime" Precision="3" />
+          <Property Name="IsCustomer" Type="Boolean" />
+          <Property Name="Vote" Type="Int32" />
+          <Property Name="Coin" Type="Double" />
+          <Property Name="VerificationCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Authorized" Type="Boolean" />
+          <Property Name="VoteUp" Type="Int32" />
+          <Property Name="VoteDown" Type="Int32" />
+          <Property Name="RequestId" Type="Int32" />
+          <NavigationProperty Name="BidHistories" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="User" ToRole="BidHistory" />
+          <NavigationProperty Name="Products" Relationship="vanp_dbModel1.FK_Product_User" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Products1" Relationship="vanp_dbModel1.FK_Product_User_Approved" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Products2" Relationship="vanp_dbModel1.FK_Product_User_BidCurrent" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Products3" Relationship="vanp_dbModel1.FK_Product_User_Modified" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_User" FromRole="User" ToRole="ProductKicked" />
+          <NavigationProperty Name="ProductKickeds1" Relationship="vanp_dbModel1.FK_ProductKicked_User_Kicked" FromRole="User" ToRole="ProductKicked" />
+          <NavigationProperty Name="Request" Relationship="vanp_dbModel1.FK_User_Request" FromRole="User" ToRole="Request" />
+          <NavigationProperty Name="UserRoles" Relationship="vanp_dbModel1.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="User" ToRole="Vote" />
+          <NavigationProperty Name="Votes1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="User" ToRole="Vote" />
+          <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_User" FromRole="User" ToRole="Wishlist" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="ApprovedBy" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="vanp_dbModel1.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
         </EntityType>
         <EntityType Name="Vote">
           <Key>
@@ -942,6 +1032,22 @@
           <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Vote" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="Vote" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="Vote" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Wishlist" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Wishlist_User" FromRole="Wishlist" ToRole="User" />
         </EntityType>
         <Association Name="FK_BidHistory_Product">
           <End Type="vanp_dbModel1.Product" Role="Product" Multiplicity="0..1" />
@@ -967,6 +1073,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Category_CategoryParent">
+          <End Type="vanp_dbModel1.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.Category" Role="Category1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="CategoryParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Category">
           <End Type="vanp_dbModel1.Category" Role="Category" Multiplicity="0..1" />
           <End Type="vanp_dbModel1.Product" Role="Product" Multiplicity="*" />
@@ -976,6 +1094,30 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailContent_MailType">
+          <End Type="vanp_dbModel1.MailType" Role="MailType" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.MailContent" Role="MailContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MailContent">
+              <PropertyRef Name="MailTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_MessageType">
+          <End Type="vanp_dbModel1.MessageType" Role="MessageType" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="MessageTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1051,6 +1193,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Wishlist_Product">
+          <End Type="vanp_dbModel1.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductKicked_User">
           <End Type="vanp_dbModel1.User" Role="User" Multiplicity="0..1" />
           <End Type="vanp_dbModel1.ProductKicked" Role="ProductKicked" Multiplicity="*" />
@@ -1072,6 +1226,42 @@
             </Principal>
             <Dependent Role="ProductKicked">
               <PropertyRef Name="UserKickedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Request">
+          <End Type="vanp_dbModel1.Request" Role="Request" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Type="vanp_dbModel1.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Type="vanp_dbModel1.User" Role="User" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1099,116 +1289,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Wishlist_User">
+          <End Type="vanp_dbModel1.User" Role="User" Multiplicity="0..1" />
+          <End Type="vanp_dbModel1.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="vanp_dbModel1StoreContainer" CdmEntityContainer="Vanp_Entities">
+          <EntitySetMapping Name="BidHistories">
+            <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
+              <MappingFragment StoreEntitySet="BidHistory">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
+                <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="vanp_dbModel1.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryParentId" ColumnName="CategoryParentId" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="CategoryLevel" ColumnName="CategoryLevel" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Menus">
-            <EntityTypeMapping TypeName="vanp_dbModel1.Menu">
-              <MappingFragment StoreEntitySet="Menu">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
-                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
-                <ScalarProperty Name="MenuAlias" ColumnName="MenuAlias" />
-                <ScalarProperty Name="MenuAliasPath" ColumnName="MenuAliasPath" />
-                <ScalarProperty Name="MenuLevel" ColumnName="MenuLevel" />
-                <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
-                <ScalarProperty Name="MenuParentId" ColumnName="MenuParentId" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="vanp_dbModel1.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="vanp_dbModel1.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
-                <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
-                <ScalarProperty Name="Authorized" ColumnName="Authorized" />
-                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
-                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
-                <ScalarProperty Name="AvartarPath" ColumnName="AvartarPath" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="LastLogon" ColumnName="LastLogon" />
-                <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
-                <ScalarProperty Name="Vote" ColumnName="Vote" />
-                <ScalarProperty Name="Coin" ColumnName="Coin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="vanp_dbModel1.UserRole">
-              <MappingFragment StoreEntitySet="UserRole">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="vanp_dbModel1.Message">
-              <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="CategoryParentId" ColumnName="CategoryParentId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="MessageName" ColumnName="MessageName" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
@@ -1248,10 +1372,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MessageTypes">
-            <EntityTypeMapping TypeName="vanp_dbModel1.MessageType">
-              <MappingFragment StoreEntitySet="MessageType">
-                <ScalarProperty Name="MessageTypeName" ColumnName="MessageTypeName" />
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="vanp_dbModel1.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="MenuParentId" ColumnName="MenuParentId" />
+                <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+                <ScalarProperty Name="MenuLevel" ColumnName="MenuLevel" />
+                <ScalarProperty Name="MenuAliasPath" ColumnName="MenuAliasPath" />
+                <ScalarProperty Name="MenuAlias" ColumnName="MenuAlias" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
@@ -1262,13 +1393,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BidHistories">
-            <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
-              <MappingFragment StoreEntitySet="BidHistory">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
-                <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
-                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="vanp_dbModel1.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageName" ColumnName="MessageName" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageTypes">
+            <EntityTypeMapping TypeName="vanp_dbModel1.MessageType">
+              <MappingFragment StoreEntitySet="MessageType">
+                <ScalarProperty Name="MessageTypeName" ColumnName="MessageTypeName" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
@@ -1325,6 +1468,100 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="vanp_dbModel1.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="RequestContent" ColumnName="RequestContent" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTypes">
+            <EntityTypeMapping TypeName="vanp_dbModel1.RequestType">
+              <MappingFragment StoreEntitySet="RequestType">
+                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="vanp_dbModel1.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleDisplayName" ColumnName="RoleDisplayName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="vanp_dbModel1.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
+                <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
+                <ScalarProperty Name="Authorized" ColumnName="Authorized" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="Coin" ColumnName="Coin" />
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
+                <ScalarProperty Name="LastLogon" ColumnName="LastLogon" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="AvartarPath" ColumnName="AvartarPath" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="vanp_dbModel1.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Votes">
             <EntityTypeMapping TypeName="vanp_dbModel1.Vote">
               <MappingFragment StoreEntitySet="Vote">
@@ -1332,6 +1569,21 @@
                 <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Vote1" ColumnName="Vote" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedWhen" ColumnName="CreatedWhen" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wishlists">
+            <EntityTypeMapping TypeName="vanp_dbModel1.Wishlist">
+              <MappingFragment StoreEntitySet="Wishlist">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />

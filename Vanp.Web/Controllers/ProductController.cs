@@ -22,7 +22,6 @@ namespace Vanp.Web.Controllers
         public ActionResult Add(Product pro,HttpPostedFileBase productimage)
         {
             var fileName = Path.GetFileName(productimage.FileName);
-            var duongdan = _context.Products.Select(p => p.Id).FirstOrDefault();
             var path = Path.Combine(Server.MapPath("~/images/products/"), fileName);
             if (System.IO.File.Exists(path))
                 ViewBag.ThongBao = "Hình ảnh đã tồn tại";
@@ -41,12 +40,11 @@ namespace Vanp.Web.Controllers
         }
         public ActionResult ViewListProduct()
         {
-            return View(_unitOfWork.ProductRepository.GetListbyProducts());
+            return View(_unitOfWork.ProductRepository.GetListByProduct());
         }
         public ActionResult DetailProduct(int proID)
         {
-            var model=_unitOfWork.ProductRepository.DetailProducts(proID).FirstOrDefault();
-            return View(model);
+            return View(_unitOfWork.ProductRepository.GetById(proID));
         }
     }
 }

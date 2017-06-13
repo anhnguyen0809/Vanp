@@ -7,9 +7,8 @@ using Vanp.DAL.Entites;
 
 namespace Vanp.DAL
 {
-    public interface IProductRepository: IGeneralRepository<Product>
+    public interface IRequestRepository : IGeneralRepository<Request>
     {
-        IEnumerable<Product> GetListByProduct();
-        bool isExisted(string code);
+        bool Approved(int requestId, int approvedBy);
     }
 }

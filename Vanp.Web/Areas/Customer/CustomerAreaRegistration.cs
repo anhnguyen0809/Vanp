@@ -15,25 +15,30 @@ namespace Vanp.Web.Areas.Customer
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-               "ChangeAccount",
+               "Profile",
                "account/profile",
-               new { action = "Index", controller = "User", area = "Customer" }
+               new { action = "UserProfile", controller = "User", area = "Customer" }
            );
             context.MapRoute(
-              "AccountInfo",
+              "Doashboard",
               "account",
               new { action = "Index", controller = "User", area = "Customer" }
           );
-            context.MapRoute(
-                 name: "SendCode",
-                 url: "account/sendcode",
-                 defaults: new { controller = "User", action = "SendCode", area = "Customer" }
-             );
             context.MapRoute(
             name: "VerifyCode",
             url: "account/verifycode",
             defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
             );
+            context.MapRoute(
+      name: "SendRequest",
+      url: "account/sendrequest",
+      defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
+      );
+            context.MapRoute(
+         name: "InsertProduct",
+         url: "product/insert",
+         defaults: new { controller = "Product", action = "Insert", area = "Customer" }
+         );
             context.MapRoute(
                 "Customer_default",
                 "Customer/{controller}/{action}/{id}",

@@ -15,7 +15,7 @@ namespace Vanp.DAL.Entites
 using System;
     using System.Collections.Generic;
     
-public partial class RequestType
+public partial class Wishlist
 {
 
     public int Id { get; set; }
@@ -32,7 +32,15 @@ public partial class RequestType
 
     public Nullable<bool> Enable { get; set; }
 
-    public string RequestTypeName { get; set; }
+    public Nullable<int> UserId { get; set; }
+
+    public Nullable<int> ProductId { get; set; }
+
+
+
+    public virtual Product Product { get; set; }
+
+    public virtual User User { get; set; }
 
 }
 

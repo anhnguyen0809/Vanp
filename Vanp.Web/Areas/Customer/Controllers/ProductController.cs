@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : AuthController
     {
         // GET: Customer/Product
-        public ActionResult Index()
+        public ActionResult Insert()
         {
             return View();
         }
