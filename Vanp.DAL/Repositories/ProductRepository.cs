@@ -55,7 +55,7 @@ namespace Vanp.DAL
         /// <param name="productId">id sản phẩm</param>
         /// <param name="priceBid">giá đặt ra</param>
         /// <returns></returns>
-        public bool ValidpriceBid(int productId, double priceBid)
+        public bool ValidPriceBid(int productId, double priceBid)
         {
             var product = this.GetById(productId);
             if (product != null && priceBid > product.PriceCurrent)
@@ -73,13 +73,7 @@ namespace Vanp.DAL
             }
             return 0;
         }
-        /// <summary>
-        /// Kiểm tra giá của người dùng đặt ra có hợp lệ hay không
-        /// </summary>
-        /// <param name="userId">id người đăt giá</param>
-        /// <param name="productId">id sản phẩm</param>
-        /// <param name="priceBid">giá đặt ra</param>
-        /// <returns></returns>
+
         public bool Bid(int userId, int productId, double priceBid)
         {
             var product = this.GetById(productId);
@@ -89,19 +83,17 @@ namespace Vanp.DAL
                 var priceCurrent = product.PriceCurrent ?? 0;
                 var priceMax = product.PriceMax ?? 0;
                 var bidCurrentBefore = product.BidCurrentBy;
+                bool currentChanged = false;
                 if (priceBid > product.PriceMax)
                 {
                     product.PriceMax = priceBid;
                     product.PriceCurrent = priceCurrent + (product.PriceStep ?? 0);
                     product.BidCurrentBy = userId;
-                    #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
-                    Utils.VanpMail.ProductBidSuccess(productId, product.CreatedBy ?? 0, userId, bidCurrentBefore);
-                    #endregion
+                    currentChanged = true;
                 }
                 else
                 {
                     product.PriceCurrent = priceBid + (product.PriceStep ?? 0);
-
                 }
                 if (!(product.PriceCurrent < product.PriceMax))
                 {
@@ -123,10 +115,23 @@ namespace Vanp.DAL
                 bidHistory.PriceBid = priceBid;
                 _context.BidHistories.Add(bidHistory);
                 #endregion
-           
+
+
+                #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
+                if (bidCurrentBefore.Value != userId && currentChanged)
+                {
+                    Utils.VanpMail.ProductBidSuccess(productId, product.CreatedBy ?? 0, userId, bidCurrentBefore);
+                }
+                else
+                {
+                    Utils.VanpMail.ProductBidSuccess(productId, product.CreatedBy ?? 0, userId);
+                }
+                #endregion
+
                 this.SaveChanges();
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }
