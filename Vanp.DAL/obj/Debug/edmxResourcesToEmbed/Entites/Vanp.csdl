@@ -93,6 +93,7 @@
     <NavigationProperty Name="Votes1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="User" ToRole="Vote" />
     <Property Name="RequestId" Type="Int32" />
     <NavigationProperty Name="Request" Relationship="vanp_dbModel1.FK_User_Request" FromRole="User" ToRole="Request" />
+    <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_User" FromRole="User" ToRole="Wishlist" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -240,6 +241,15 @@
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <EntitySet Name="sysdiagrams" EntityType="vanp_dbModel1.sysdiagram" />
+    <EntitySet Name="Wishlists" EntityType="vanp_dbModel1.Wishlist" />
+    <AssociationSet Name="FK_Wishlist_Product" Association="vanp_dbModel1.FK_Wishlist_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Wishlist" EntitySet="Wishlists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wishlist_User" Association="vanp_dbModel1.FK_Wishlist_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Wishlist" EntitySet="Wishlists" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Message">
     <Key>
@@ -380,6 +390,7 @@
     <NavigationProperty Name="User3" Relationship="vanp_dbModel1.FK_Product_User_Modified" FromRole="Product" ToRole="User" />
     <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="Product" ToRole="ProductKicked" />
     <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
+    <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
   </EntityType>
   <EntityType Name="ProductKicked">
     <Key>
@@ -625,4 +636,44 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedWhen" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
+    <Property Name="Order" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Wishlist" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Wishlist_User" FromRole="Wishlist" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Wishlist_Product">
+    <End Type="vanp_dbModel1.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="vanp_dbModel1.Wishlist" Role="Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wishlist_User">
+    <End Type="vanp_dbModel1.User" Role="User" Multiplicity="0..1" />
+    <End Type="vanp_dbModel1.Wishlist" Role="Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
