@@ -10,7 +10,7 @@ namespace Vanp.Web.Controllers
     {
         public ActionResult Index()
         {
-            var top5New = _unitOfWork.ProductRepository.GetTopNNew(5);
+            //var top5New = _unitOfWork.ProductRepository.GetTopNNew(5);
           
             return View();
         }
