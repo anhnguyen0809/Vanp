@@ -22,8 +22,6 @@ public partial class User
     public User()
     {
 
-        this.UserRoles = new HashSet<UserRole>();
-
         this.BidHistories = new HashSet<BidHistory>();
 
         this.Products = new HashSet<Product>();
@@ -37,6 +35,8 @@ public partial class User
         this.ProductKickeds = new HashSet<ProductKicked>();
 
         this.ProductKickeds1 = new HashSet<ProductKicked>();
+
+        this.UserRoles = new HashSet<UserRole>();
 
         this.Votes = new HashSet<Vote>();
 
@@ -99,10 +99,6 @@ public partial class User
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<UserRole> UserRoles { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
     public virtual ICollection<BidHistory> BidHistories { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -129,6 +125,12 @@ public partial class User
 
     public virtual ICollection<ProductKicked> ProductKickeds1 { get; set; }
 
+    public virtual Request Request { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<UserRole> UserRoles { get; set; }
+
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Vote> Votes { get; set; }
@@ -136,8 +138,6 @@ public partial class User
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Vote> Votes1 { get; set; }
-
-    public virtual Request Request { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

@@ -49,6 +49,10 @@ public partial class Request
 
     public Nullable<int> RequestTypeId { get; set; }
 
+    public Nullable<System.DateTime> DateFrom { get; set; }
+
+    public Nullable<System.DateTime> DateTo { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

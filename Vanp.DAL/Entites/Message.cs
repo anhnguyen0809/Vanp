@@ -28,17 +28,17 @@ public partial class Message
 
     public Nullable<System.DateTime> ModifiedWhen { get; set; }
 
-    public string MessageName { get; set; }
-
     public Nullable<int> Order { get; set; }
 
     public Nullable<bool> Enable { get; set; }
+
+    public string MessageName { get; set; }
 
     public Nullable<int> MessageTypeId { get; set; }
 
 
 
-    public virtual MessageType MessageType1 { get; set; }
+    public virtual MessageType MessageType { get; set; }
 
 }
 
