@@ -9,6 +9,6 @@ namespace Vanp.DAL
 {
     public interface IRequestRepository : IGeneralRepository<Request>
     {
-
+        bool Approved(int requestId, int approvedBy);
     }
 }

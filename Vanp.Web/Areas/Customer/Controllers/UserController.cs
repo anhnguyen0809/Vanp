@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vanp.DAL.Entites;
 using Vanp.DAL.Utils;
 using Vanp.Web.Models;
 
@@ -114,8 +115,16 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
-        public ActionResult SendRequest()
+        public ActionResult SendRequest(RequestModel requestModel)
         {
+            if (requestModel != null)
+            {
+                var request = new Request();
+                request.CreatedBy = request.ModifiedBy = CurrentUser.Id;
+                request.CreatedWhen = request.ModifiedWhen = request.DateFrom = DateTime.Now;
+                request.RequestTypeId = 1;
+                request.RequestContent = requestModel.RequestContent;
+            }
             return View();
         }
         [HttpPost]

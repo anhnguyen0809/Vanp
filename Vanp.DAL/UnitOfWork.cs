@@ -17,12 +17,14 @@ namespace Vanp.DAL
             CategoryRepository = new CategoryRepository(_context);
             UserRoleRepository = new UserRoleRepository(_context);
             ProductRepository = new ProductRepository(_context);
+            RequestRepository = new RequestRepository(_context);
         }
         #region Properties
         public readonly IUserRepository UserRepository;
         public readonly ICategoryRepository CategoryRepository;
         public readonly IUserRoleRepository UserRoleRepository;
         public readonly IProductRepository ProductRepository;
+        public readonly IRequestRepository RequestRepository;
         #endregion
 
         public void Save()
