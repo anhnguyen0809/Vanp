@@ -22,7 +22,8 @@ namespace Vanp.Web.Areas.Customer.Controllers
             if (!_unitOfWork.ProductRepository.CheckBidPermisstion(CurrentUser.Id ?? 0, id))
             {
                 Failure = "Bạn không có thể đấu giá cho sản phẩm này. Do điểm đánh giá (+/+-) nhỏ hơn 80% hoặc do người đăng sản phẩm này đã kích bạn ra khỏi sản phẩm này.";
-            }else if (!_unitOfWork.ProductRepository.ValidPriceBid(id , priceBid))
+            }
+            else if (!_unitOfWork.ProductRepository.ValidPriceBid(id , priceBid))
             {
                 Failure = "Giá bạn đặt ra không hợp lệ. Nó phải lớn hơn giá hiện tại của sản phẩm.";
             }

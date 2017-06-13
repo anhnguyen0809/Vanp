@@ -107,7 +107,34 @@ namespace Vanp.DAL
         {
             return _dbSet.FirstOrDefault(o => o.Email.ToUpper().Equals(email.ToUpper()));
         }
-    
+
+        public bool HasPermissionSeller(int userId)
+        {
+            var user = this.GetById(userId);
+            if (user != null)
+            {
+                if (user.RequestId.HasValue)
+                {
+                    if (user.Request.Approved.HasValue && user.Request.Approved.Value)
+                    {
+                        if (user.Request.DateTo.HasValue && user.Request.DateTo.Value.Date > DateTime.Now.Date)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            var userRole = user.UserRoles.FirstOrDefault(o => o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
+                            if (userRole != null)
+                            {
+                                userRole.Enable = false;
+                                this.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
     }
 }
