@@ -35,7 +35,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 pro.CreatedBy = CurrentUser.Id;
                 pro.ModifiedBy = CurrentUser.Id;
                 pro.DateFrom = DateTime.Now;
-                pro.PriceDefault = pro.PriceCurrent;
                 pro.DateTo = DateTime.Now.AddDays(7);
                 _unitOfWork.ProductRepository.Insert(pro);
                 _unitOfWork.Save();

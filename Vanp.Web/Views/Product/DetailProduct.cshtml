@@ -1,4 +1,5 @@
-﻿
+﻿@using Vanp.DAL.Entites
+@model Product
 @{
     ViewBag.Title = "Trang chi tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,16 +33,14 @@
                                         <div class="product-img-box col-lg-5 col-sm-6 col-xs-12">
                                             <div class="new-label new-top-left"> New </div>
                                             <div class="product-image">
-                                                <div class="product-full"> <img id="product-zoom" src="assets/images/products/product7.jpg" data-zoom-image="assets/images/products/product7.jpg" alt="product-image" /> </div>
+                                                <div class="product-full"> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" data-zoom-image="~/images/products/@Model.Id/img1.jpg" alt="product-image" /> </div>
                                                 <div class="more-views">
                                                     <div class="slider-items-products">
                                                         <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                                                             <div class="slider-items slider-width-col4 block-content">
-                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product7.jpg" data-zoom-image="assets/images/products/product7.jpg"> <img id="product-zoom" src="assets/images/products/product7.jpg" alt="product-image" /> </a></div>
-                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product3.jpg" data-zoom-image="assets/images/products/product3.jpg"> <img id="product-zoom" src="assets/images/products/product3.jpg" alt="product-image" /> </a></div>
-                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product4.jpg" data-zoom-image="assets/images/products/product4.jpg"> <img id="product-zoom" src="assets/images/products/product4.jpg" alt="product-image" /> </a></div>
-                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product5.jpg" data-zoom-image="assets/images/products/product5.jpg"> <img id="product-zoom" src="assets/images/products/product5.jpg" alt="product-image" /> </a> </div>
-                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product6.jpg" data-zoom-image="assets/images/products/product6.jpg"> <img id="product-zoom" src="assets/images/products/product6.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img2.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img3.jpg" alt="product-image" /> </a></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -52,7 +51,7 @@
                                         <div class="product-shop col-lg-7 col-sm-6 col-xs-12">
                                             <div class="product-next-prev"> <a class="product-next" href="#"><span></span></a> <a class="product-prev" href="#"><span></span></a> </div>
                                             <div class="product-name">
-                                                <h1>Chaise Lounge</h1>
+                                                <h1>@Model.ProductName</h1>
                                             </div>
                                             <div class="ratings">
                                                 <div class="rating-box">
@@ -60,22 +59,25 @@
                                                         <div class="rating-box"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
                                                     </div>
                                                 </div>
-                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
+                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="">@Model.Category.CategoryName</a></p>
                                             </div>
                                             <div class="price-block">
                                                 <div class="price-box col-md-12">
                                                     <div class="col-md-6">
-                                                        <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
+                                                        <p class="special-price"> <span class="price-label">Khá khởi điểm</span> <span id="product-price-48" class="price"> @string.Format("{0:0,0 đ}",Model.PriceDefault)</span> </p>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> $315.99 </span> </p>
-                                                        @*<p class="availability in-stock pull-right"><span>In Stock</span></p>*@
-                                                    </div>
+                                                    @if (Model.Price!=0)
+                                                    {
+                                                        <div class="col-md-6">
+                                                            <p> <span class="price-label">Giá mua ngay:</span> <span class="price"> @string.Format("{0:0,0 đ}", Model.Price) </span> </p>
+                                                            @*<p class="availability in-stock pull-right"><span>In Stock</span></p>*@
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                             <div class="short-description">
-                                                <h2>Quick Overview</h2>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                                <h2>Mô tả</h2>
+                                                <p>@Model.ProductDescription</p>
                                             </div>
                                             <div class="add-to-box">
                                                 <div class="add-to-cart">
@@ -329,7 +331,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product10.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product10.jpg"> </a>
                                                                 <div class="new-label new-top-right">new</div>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
@@ -364,7 +366,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product11.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product11.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -398,7 +400,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product12.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product12.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -432,7 +434,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Omega J8004 Juicer" href="product_detail.html"> <img alt="sample" src="assets/images/products/product8.jpg"> </a>
+                                                                <a class="product-image" title="Omega J8004 Juicer" href="product_detail.html"> <img alt="sample" src="~/images/products/product8.jpg"> </a>
                                                                 <div class="new-label new-top-right">new</div>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
@@ -467,7 +469,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="HI114 Dry Iron" href="product_detail.html"> <img alt="HI114 Dry Iron" src="assets/images/products/product9.jpg"> </a>
+                                                                <a class="product-image" title="HI114 Dry Iron" href="product_detail.html"> <img alt="HI114 Dry Iron" src="~/images/products/product9.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -500,7 +502,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample product" href="product_detail.html"> <img alt="Sample product" src="assets/images/products/product16.jpg"> </a>
+                                                                <a class="product-image" title="Sample product" href="product_detail.html"> <img alt="Sample product" src="~/images/products/product16.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"><i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -533,7 +535,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="sample" href="product_detail.html"> <img alt="sample" src="assets/images/products/product10.jpg"> </a>
+                                                                <a class="product-image" title="sample" href="product_detail.html"> <img alt="sample" src="~/images/products/product10.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
