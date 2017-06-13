@@ -34,7 +34,11 @@ namespace Vanp.Web.Areas.Customer
                 "Customer/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
-
+            context.MapRoute(
+            name:"InsertProduct",
+            url:"product/insertproduct",
+            defaults:new {controller="Product",action= "Insert", area="Customer"}
+            );
         }
     }
 }

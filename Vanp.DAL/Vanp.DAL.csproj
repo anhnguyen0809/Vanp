@@ -81,6 +81,9 @@
     <Compile Include="Entites\RequestType.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entites\sysdiagram.cs">
+      <DependentUpon>Vanp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entites\Vote.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
