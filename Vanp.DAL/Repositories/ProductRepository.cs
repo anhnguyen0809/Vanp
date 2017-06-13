@@ -12,7 +12,7 @@ namespace Vanp.DAL
         public ProductRepository(Vanp_Entities context) : base(context)
         {
         }
-        public IEnumerable<Product> GetListByProduct()
+        public IEnumerable<Product> GetListbyProducts()
         {
             return _dbSet.ToList();
         }
