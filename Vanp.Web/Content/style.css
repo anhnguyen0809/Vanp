@@ -9492,11 +9492,11 @@ ol#compare-items li.last {
 	padding: 0;
 }
 .product-view .product-shop .old-price .price {
-	font-size: 24px;
+	font-size: 21px;
 	font-weight: 300
 }
 .product-view .product-shop .price {
-	font-size: 28px;
+	font-size: 21px;
 	color: #e33b3f;
 	font-weight: bold;
 }
