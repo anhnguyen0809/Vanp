@@ -17,7 +17,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             AccountModel model = new AccountModel(user);
             return View(model);
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize]
         public ActionResult UserProfile(string tab)
         {
             ViewBag.Tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
