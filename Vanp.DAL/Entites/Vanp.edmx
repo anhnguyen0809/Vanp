@@ -142,6 +142,7 @@
           <Property Name="IsBid" Type="bit" />
           <Property Name="IsExtended" Type="bit" />
           <Property Name="ApprovedBy" Type="int" />
+          <Property Name="BidDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ProductKicked">
           <Key>
@@ -891,6 +892,7 @@
           <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="Product" ToRole="ProductKicked" />
           <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
           <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
+          <Property Name="BidDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ProductKicked">
           <Key>
@@ -1425,6 +1427,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="vanp_dbModel1.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="BidDate" ColumnName="BidDate" />
                 <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
                 <ScalarProperty Name="IsExtended" ColumnName="IsExtended" />
                 <ScalarProperty Name="IsBid" ColumnName="IsBid" />

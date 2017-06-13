@@ -103,7 +103,7 @@ namespace Vanp.DAL
                 {
                     product.PriceCurrent = product.PriceMax;
                 }
-                product.ModifiedWhen = DateTime.Now;
+                product.BidCount = (product.BidCount ?? 0) + 1;
                 #region Lưu lịch sử đấu giá
                 //Lưu lịch sử đấu giá
                 BidHistory bidHistory = new BidHistory();
