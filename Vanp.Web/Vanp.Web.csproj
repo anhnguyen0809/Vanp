@@ -215,8 +215,12 @@
     <Compile Include="Code\Controllers\BaseController.cs" />
     <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\Services\Service.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Category\CategoryModel.cs" />
+    <Compile Include="Models\Product\ProductsModel.cs" />
+    <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Request\RequestModel.cs" />
     <Compile Include="Models\User\SendRequestModel.cs" />
     <Compile Include="Models\User\AccountModel.cs" />
@@ -460,6 +464,7 @@
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Product\_Products.cshtml" />
+    <Content Include="Views\Category\_CategoriesLeft.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -468,7 +473,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\ShowProduct\" />
   </ItemGroup>
   <ItemGroup>
