@@ -14,19 +14,19 @@ namespace Vanp.DAL
         public UserRepository(Vanp_Entities context) : base(context)
         {
         }
-        public bool IsExisted(string userNameOrEmail , int userId = 0)
+        public bool IsExisted(string userNameOrEmail, int userId = 0)
         {
-            return _dbSet.Any( o => userId != o.Id 
-                                && (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
-                                || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())));
+            return _dbSet.Any(o => userId != o.Id
+                               && (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper())
+                               || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())));
         }
         public bool IsExisted(string userNameOrEmail, string passWord)
         {
-            return _dbSet.Any(o => ( (o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper()) 
-                                || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper())) 
+            return _dbSet.Any(o => ((o.UserName.ToUpper().Equals(userNameOrEmail.ToUpper())
+                                || o.Email.ToUpper().Equals(userNameOrEmail.ToUpper()))
                                 && o.UserPassword.Equals(passWord)));
         }
-        public bool VerifyCode(string userNameOrEmail,string code)
+        public bool VerifyCode(string userNameOrEmail, string code)
         {
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
             return VerifyCode(user.Id, code);
@@ -45,7 +45,7 @@ namespace Vanp.DAL
             }
             return false;
         }
-        public bool ChangePassWord(string userNameOrEmail, string passWordOld , string passWordNew)
+        public bool ChangePassWord(string userNameOrEmail, string passWordOld, string passWordNew)
         {
             var user = this.GetByUserNameOrEmail(userNameOrEmail);
             var passWordOldHash = Sercurity.CreateHashMD5(passWordOld);
@@ -107,5 +107,34 @@ namespace Vanp.DAL
         {
             return _dbSet.FirstOrDefault(o => o.Email.ToUpper().Equals(email.ToUpper()));
         }
+        /// <summary>
+        /// Kiểm tra người dùng được phép đầu giá sản phẩm 
+        /// </summary>
+        /// <param name="userId">id người dùng</param>
+        /// <param name="productId">id sản phẩm</param>
+        /// <returns></returns>
+        public bool CheckPermisstionBid(int userId, int productId)
+        {
+            var user = this.GetById(userId);
+            if (user != null)
+            {
+                var voteUp = (user.VoteUp ?? 0) + 1;
+                var voteDown = (user.VoteDown ?? 0) + 1;
+                var percentVote = voteUp / voteDown;
+                //Kiểm tra tỉ lệ điểm đánh giá (+/+-) hơn 80% thì mới cho phép ra giá
+                if (percentVote >= 0.8)
+                {
+                    //Kiểm tra user này có bị kích khỏi sản phẩm bởi người đăng hay không
+                    var bProductKicked = _context.ProductKickeds.Any(o => o.ProductId == productId && o.UserKickedId == userId);
+                    if (!bProductKicked)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+
     }
 }

@@ -20,5 +20,6 @@ namespace Vanp.DAL
         {
             return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(code.ToLower()));
         }
+        
     }
 }

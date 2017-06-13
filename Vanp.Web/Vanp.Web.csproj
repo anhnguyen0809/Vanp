@@ -369,6 +369,7 @@
     <Content Include="Areas\Customer\Views\User\UserProfile.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_ProfileLayout.cshtml" />
     <Content Include="Areas\Customer\Views\User\SendRequest.cshtml" />
+    <Content Include="Areas\Customer\Views\Product\Insert.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
