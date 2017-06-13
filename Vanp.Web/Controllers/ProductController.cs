@@ -46,5 +46,10 @@ namespace Vanp.Web.Controllers
         {
             return View(_unitOfWork.ProductRepository.GetById(proID));
         }
+
+        public ActionResult Products()
+        {
+            return View();
+        }
     }
 }

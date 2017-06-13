@@ -42,12 +42,18 @@ namespace Vanp.Web
               url: "forgotpassword",
               defaults: new { controller = "Account", action = "ForgotPassword" }
             );
+
+            #endregion
+            routes.MapRoute(
+               name: "Products",
+               url: "Products",
+               defaults: new { controller = "Product", action = "Products" }
+             );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            #endregion
         }
     }
 }

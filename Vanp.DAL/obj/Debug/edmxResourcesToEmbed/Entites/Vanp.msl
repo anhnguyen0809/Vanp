@@ -4,10 +4,10 @@
     <EntitySetMapping Name="BidHistories">
       <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
         <MappingFragment StoreEntitySet="BidHistory">
+          <ScalarProperty Name="PriceBid" ColumnName="PriceBid" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
           <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
-          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
           <ScalarProperty Name="Enable" ColumnName="Enable" />
           <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
@@ -119,6 +119,8 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="vanp_dbModel1.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="PriceBid" ColumnName="PriceBid" />
+          <ScalarProperty Name="BidDate" ColumnName="BidDate" />
           <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
           <ScalarProperty Name="IsExtended" ColumnName="IsExtended" />
           <ScalarProperty Name="IsBid" ColumnName="IsBid" />

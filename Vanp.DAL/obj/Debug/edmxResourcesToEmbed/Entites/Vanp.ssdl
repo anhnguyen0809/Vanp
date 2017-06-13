@@ -11,10 +11,10 @@
     <Property Name="ModifiedWhen" Type="datetime" />
     <Property Name="Order" Type="int" />
     <Property Name="Enable" Type="bit" />
-    <Property Name="BidPrice" Type="float" />
     <Property Name="PriceCurrent" Type="float" />
     <Property Name="PriceMax" Type="float" />
     <Property Name="ProductId" Type="int" />
+    <Property Name="PriceBid" Type="float" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -137,6 +137,8 @@
     <Property Name="IsBid" Type="bit" />
     <Property Name="IsExtended" Type="bit" />
     <Property Name="ApprovedBy" Type="int" />
+    <Property Name="BidDate" Type="datetime" />
+    <Property Name="PriceBid" Type="float" />
   </EntityType>
   <EntityType Name="ProductKicked">
     <Key>
