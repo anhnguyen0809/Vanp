@@ -122,10 +122,17 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 var request = new Request();
                 request.CreatedBy = request.ModifiedBy = CurrentUser.Id;
                 request.CreatedWhen = request.ModifiedWhen = request.DateFrom = DateTime.Now;
-                request.RequestTypeId = 1;
+                request.RequestTypeId = (int)DAL.Utils.RequestType.RequestSell;
                 request.RequestContent = requestModel.RequestContent;
+                request.Enable = true;
+                request.DateTo = request.DateFrom.Value.AddDays(7);
+                _unitOfWork.RequestRepository.Insert(request);
+                _unitOfWork.Save();
+                Success = "Gửi yêu cầu thành công! Cám ơn bạn đã gửi yêu cầu cho chúng tôi.";
+                return View();
             }
-            return View();
+            Failure = "Gửi yêu cầu không thành công! Vui lòng kiểm tra lại thông tin.";
+            return View(requestModel);
         }
         [HttpPost]
         public ActionResult SendRequest(string content)

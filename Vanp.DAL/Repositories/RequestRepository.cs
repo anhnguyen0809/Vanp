@@ -31,7 +31,7 @@ namespace Vanp.DAL
                 {
                     user.RequestId = request.Id;
                     //Thêm Role Saller cho khách hàng  nếu requesttype = 1
-                    if (request.RequestTypeId == 1)
+                    if (request.RequestTypeId == (int)DAL.Utils.RequestType.RequestSell)
                     {
                         //Kiểm tra đã có user này có role Seller chưa? RollId = 2 
                         //Y: set Enable = 1; 
