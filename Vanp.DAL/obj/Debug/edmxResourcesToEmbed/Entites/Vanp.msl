@@ -165,6 +165,8 @@
     <EntitySetMapping Name="Requests">
       <EntityTypeMapping TypeName="vanp_dbModel1.Request">
         <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
           <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
           <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
           <ScalarProperty Name="Approved" ColumnName="Approved" />

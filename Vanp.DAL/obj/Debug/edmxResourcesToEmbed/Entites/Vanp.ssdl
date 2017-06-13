@@ -167,6 +167,8 @@
     <Property Name="Approved" Type="bit" />
     <Property Name="ApprovedBy" Type="int" />
     <Property Name="RequestTypeId" Type="int" />
+    <Property Name="DateFrom" Type="datetime" />
+    <Property Name="DateTo" Type="datetime" />
   </EntityType>
   <EntityType Name="RequestType">
     <Key>

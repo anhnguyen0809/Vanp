@@ -291,6 +291,8 @@
     <Property Name="ApprovedBy" Type="Int32" />
     <Property Name="RequestTypeId" Type="Int32" />
     <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
+    <Property Name="DateFrom" Type="DateTime" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="RequestType">
     <Key>

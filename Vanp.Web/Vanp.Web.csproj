@@ -216,6 +216,8 @@
     <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\Services\Service.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Request\RequestModel.cs" />
     <Compile Include="Models\User\SendRequestModel.cs" />
     <Compile Include="Models\User\AccountModel.cs" />
     <Compile Include="Models\Authorize\RegisterModel.cs" />
@@ -328,7 +330,9 @@
     <Content Include="images\syncfusion-icons.png" />
     <Content Include="images\to-top-arrow.png" />
     <Content Include="images\top-bg.gif" />
+    <Content Include="Scripts\apps\request.js" />
     <Content Include="Scripts\apps\login.js" />
+    <Content Include="Scripts\apps\validate-addpro.js" />
     <Content Include="Scripts\bootstrap-datetimepicker\css\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Scripts\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
@@ -364,7 +368,7 @@
     <Content Include="Areas\Customer\Views\User\VerifyCode.cshtml" />
     <Content Include="Areas\Customer\Views\User\UserProfile.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_ProfileLayout.cshtml" />
-    <Content Include="Areas\Customer\Views\Product\Insert.cshtml" />
+    <Content Include="Areas\Customer\Views\User\SendRequest.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
