@@ -25,29 +25,30 @@ namespace Vanp.Web.Areas.Customer
               new { action = "Index", controller = "User", area = "Customer" }
           );
             context.MapRoute(
-            name: "VerifyCode",
-            url: "account/verifycode",
-            defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
+                name: "VerifyCode",
+                url: "account/verifycode",
+                defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
             );
             context.MapRoute(
-      name: "SendRequest",
-      url: "account/sendrequest",
-      defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
-      );
+                  name: "SendRequest",
+                  url: "account/sendrequest",
+                  defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
+              );
             context.MapRoute(
-         name: "InsertProduct",
-         url: "product/insert",
-         defaults: new { controller = "Product", action = "Insert", area = "Customer" }
-         );
+                 name: "InsertProduct",
+                 url: "product/insert",
+                 defaults: new { controller = "Product", action = "Insert", area = "Customer" }
+             );
             context.MapRoute(
-            name: "BidProduct",
-            url: "product/bid",
-            defaults: new { controller = "Product", action = "Bid", area = "Customer" }
+                name: "BidProduct",
+                url: "product/bid",
+                defaults: new { controller = "Product", action = "Bid", area = "Customer" }
             );
             context.MapRoute(
                 "Customer_default",
                 "Customer/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new [] { "Vanp.Web.Areas.Customer.Controllers" }
             );
 
         }
