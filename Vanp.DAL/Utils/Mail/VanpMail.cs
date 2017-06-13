@@ -19,7 +19,10 @@ namespace Vanp.DAL.Utils
         /// <returns></returns>
         public static bool  ProductBidSuccess(int productId, int userSellerId, int userCurrentId , int? userBeforeId = null)
         {
-            
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var userSeller = unitOfWork.UserRepository.GetById(userSellerId);
+            var userCurrent = unitOfWork.UserRepository.GetById(userCurrentId);
+            var userBefore = unitOfWork.UserRepository.GetById(userBeforeId);
             return true;
         }   
     }

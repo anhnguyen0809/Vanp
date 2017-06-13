@@ -86,13 +86,14 @@ namespace Vanp.DAL
            
             if (product != null)
             {
+                var priceCurrent = product.PriceCurrent ?? 0;
+                var priceMax = product.PriceMax ?? 0;
                 var bidCurrentBefore = product.BidCurrentBy;
                 if (priceBid > product.PriceMax)
                 {
                     product.PriceMax = priceBid;
-                    product.PriceCurrent = (product.PriceCurrent ?? 0) +(product.PriceStep ?? 0);
+                    product.PriceCurrent = priceCurrent + (product.PriceStep ?? 0);
                     product.BidCurrentBy = userId;
-                    //Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
                 }
                 else
                 {
@@ -102,17 +103,22 @@ namespace Vanp.DAL
                 {
                     product.PriceCurrent = product.PriceMax;
                 }
-
+                product.ModifiedWhen = DateTime.Now;
+                #region Lưu lịch sử đấu giá
                 //Lưu lịch sử đấu giá
                 BidHistory bidHistory = new BidHistory();
                 bidHistory.ModifiedBy = bidHistory.CreatedBy = userId;
                 bidHistory.ModifiedWhen = bidHistory.CreatedWhen = DateTime.Now;
                 bidHistory.Enable = true;
                 bidHistory.ProductId = productId;
-                bidHistory.PriceCurrent =
-                bidHistory.PriceMax =
-                bidHistory.BidPrice = priceBid;
+                bidHistory.PriceCurrent = priceCurrent;
+                bidHistory.PriceMax = priceMax;
+                bidHistory.PriceBid = priceBid;
+                _context.BidHistories.Add(bidHistory);
+                #endregion
+                #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
 
+                #endregion
                 this.SaveChanges();
             }
             return true;
