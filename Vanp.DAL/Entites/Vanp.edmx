@@ -16,10 +16,10 @@
           <Property Name="ModifiedWhen" Type="datetime" />
           <Property Name="Order" Type="int" />
           <Property Name="Enable" Type="bit" />
-          <Property Name="BidPrice" Type="float" />
           <Property Name="PriceCurrent" Type="float" />
           <Property Name="PriceMax" Type="float" />
           <Property Name="ProductId" Type="int" />
+          <Property Name="PriceBid" Type="float" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -747,10 +747,10 @@
           <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
           <Property Name="Order" Type="Int32" />
           <Property Name="Enable" Type="Boolean" />
-          <Property Name="BidPrice" Type="Double" />
           <Property Name="PriceCurrent" Type="Double" />
           <Property Name="PriceMax" Type="Double" />
           <Property Name="ProductId" Type="Int32" />
+          <Property Name="PriceBid" Type="Double" />
           <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="BidHistory" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="BidHistory" ToRole="User" />
         </EntityType>
@@ -924,9 +924,9 @@
           <Property Name="Approved" Type="Boolean" />
           <Property Name="ApprovedBy" Type="Int32" />
           <Property Name="RequestTypeId" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
           <Property Name="DateFrom" Type="DateTime" Precision="3" />
           <Property Name="DateTo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
@@ -1310,10 +1310,10 @@
           <EntitySetMapping Name="BidHistories">
             <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
               <MappingFragment StoreEntitySet="BidHistory">
+                <ScalarProperty Name="PriceBid" ColumnName="PriceBid" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
                 <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
-                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
