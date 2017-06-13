@@ -27,6 +27,9 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             else
             {
+                pro.Enable = true;
+                pro.BidCount = 0;
+                pro.Order = 1;
                 pro.ModifiedWhen = DateTime.Now;
                 pro.CreatedWhen = DateTime.Now;
                 pro.CreatedBy = CurrentUser.Id;
