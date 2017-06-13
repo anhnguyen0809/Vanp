@@ -40,6 +40,9 @@
         <EntityTypeShape EntityType="vanp_dbModel1.RequestType" Width="1.5" PointX="8.375" PointY="0.75" />
         <AssociationConnector Association="vanp_dbModel1.FK_User_Request" />
         <EntityTypeShape EntityType="vanp_dbModel1.sysdiagram" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Wishlist" Width="1.5" PointX="14.25" PointY="13" />
+        <AssociationConnector Association="vanp_dbModel1.FK_Wishlist_Product" />
+        <AssociationConnector Association="vanp_dbModel1.FK_Wishlist_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
