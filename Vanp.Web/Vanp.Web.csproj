@@ -206,6 +206,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Code\CaptchaHelper.cs" />
@@ -363,6 +364,7 @@
     <Content Include="Areas\Customer\Views\User\VerifyCode.cshtml" />
     <Content Include="Areas\Customer\Views\User\UserProfile.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_ProfileLayout.cshtml" />
+    <Content Include="Areas\Customer\Views\Product\Insert.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />

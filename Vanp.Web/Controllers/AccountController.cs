@@ -117,7 +117,7 @@ namespace Vanp.Web.Controllers
                     if (!string.IsNullOrEmpty(result))
                     {
                         AuthService.Logout();
-                        Mail.SendMail(result, new string[] { user.Email }, "Reset Mật Khẩu");
+                        Mail.SendMail("Mật khẩu mới của bạn: " + result, new string[] { user.Email }, "Reset Mật Khẩu");
                         return RedirectToAction("ForgotPasswordConfirmation");
                     }
                     else
