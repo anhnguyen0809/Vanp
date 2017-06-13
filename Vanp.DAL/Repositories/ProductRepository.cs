@@ -107,6 +107,7 @@ namespace Vanp.DAL
                 {
                     product.PriceCurrent = product.PriceMax;
                 }
+                product.PriceBid = priceBid;
                 product.BidCount = (product.BidCount ?? 0) + 1;
                 product.BidDate = DateTime.Now;
 
