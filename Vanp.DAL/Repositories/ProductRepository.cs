@@ -94,16 +94,22 @@ namespace Vanp.DAL
                     product.PriceMax = priceBid;
                     product.PriceCurrent = priceCurrent + (product.PriceStep ?? 0);
                     product.BidCurrentBy = userId;
+                    #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
+                    Utils.VanpMail.ProductBidSuccess(productId, product.CreatedBy ?? 0, userId, bidCurrentBefore);
+                    #endregion
                 }
                 else
                 {
                     product.PriceCurrent = priceBid + (product.PriceStep ?? 0);
+
                 }
                 if (!(product.PriceCurrent < product.PriceMax))
                 {
                     product.PriceCurrent = product.PriceMax;
                 }
                 product.BidCount = (product.BidCount ?? 0) + 1;
+                product.BidDate = DateTime.Now;
+
                 #region Lưu lịch sử đấu giá
                 //Lưu lịch sử đấu giá
                 BidHistory bidHistory = new BidHistory();
@@ -116,9 +122,7 @@ namespace Vanp.DAL
                 bidHistory.PriceBid = priceBid;
                 _context.BidHistories.Add(bidHistory);
                 #endregion
-                #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
-
-                #endregion
+           
                 this.SaveChanges();
             }
             return true;

@@ -131,6 +131,7 @@
     <Compile Include="Utils\Enum\RequestType.cs" />
     <Compile Include="Utils\Enum\StatusSystem.cs" />
     <Compile Include="Utils\Extentions\Extention.cs" />
+    <Compile Include="Utils\Mail\VanpMail.cs" />
     <Compile Include="Utils\Mail\SendMail.cs" />
     <Compile Include="Utils\Random\RandomHelper.cs" />
     <Compile Include="Utils\Sercurity\Sercurity.cs" />
