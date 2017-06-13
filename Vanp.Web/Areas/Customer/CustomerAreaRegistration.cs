@@ -30,15 +30,21 @@ namespace Vanp.Web.Areas.Customer
             defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
             );
             context.MapRoute(
+      name: "SendRequest",
+      url: "account/sendrequest",
+      defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
+      );
+            context.MapRoute(
+         name: "InsertProduct",
+         url: "product/insert",
+         defaults: new { controller = "Product", action = "Insert", area = "Customer" }
+         );
+            context.MapRoute(
                 "Customer_default",
                 "Customer/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
-            context.MapRoute(
-            name:"InsertProduct",
-            url:"product/insertproduct",
-            defaults:new {controller="Product",action= "Insert", area="Customer"}
-            );
+
         }
     }
 }
