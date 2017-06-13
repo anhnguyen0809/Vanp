@@ -66,74 +66,10 @@
                                         </ul>
                                         <a class="button-asc left" href="#" title="Set Descending Direction"><span class="top_arrow"></span></a>
                                     </div>
-                                    <div class="pager">
-                                        <div id="limiter">
-                                            <label>View: </label>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">15<span class="right-arrow"></span></a>
-                                                    <ul>
-                                                        <li><a href="#">20</a></li>
-                                                        <li><a href="#">30</a></li>
-                                                        <li><a href="#">35</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="pages">
-                                            <label>Page:</label>
-                                            <ul class="pagination">
-                                                <li><a href="#">«</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li><a href="#">»</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                     
                                 </div>
                                 <div class="category-products">
-                                    <ul class="products-grid">
-                                        @foreach (var item in Model)
-                                        {
-                                            <li class="item col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                <div class="item-inner">
-                                                    <div class="productborder">
-                                                        <div class="item-img">
-                                                            <div class="item-img-info">
-                                                                <a class="product_image image-wrapper" href="@Url.Action("DetailProduct", "Product", new { proID = item.Id })"> <img class="front_image" alt="Pro Image" src="~/images/products/@item.ProductImagePath" width="264" height="230"> </a>
-                                                                <div class="quickview top-right"> <a class="link-quickview" href="@Url.Action("DetailProduct","Product", new { proID = item.Id })"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
-                                                                <div class="box-hover">
-                                                                    @*<ul class="add-to-links">
-                                                                            <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
-                                                                            <li><a class="link-wishlist" href="assets/wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="assets/compare.html"></a> </li>
-                                                                            <li><a class="add-to-cart" href="assets/shopping_cart.html"></a> </li>
-                                                                        </ul>
-                                                                    *@
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="right-block">
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Bluetooth Smart Watch" href="assets/product_detail.html">@item.ProductName</a> </div>
-                                                                    <div class="item-content">
-                                                                        <p class="product-manufacturer">@item.Category.CategoryName</p>
-                                                                    </div>
-                                                                    <div class="item-price">
-                                                                        <div class="price-box"> <span class="regular-price"> <span class="price">@item.PriceDefault</span></span> </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
+
                                 </div>
                             </article>
                             <!--	///*///======    End article  ========= //*/// -->
@@ -155,7 +91,7 @@
                                                             <li> <a href="left_bar.html"> Display Units </a> </li>
                                                             <li> <a href="left_bar.html"> Shoe Racks </a> </li>
                                                             <li> <a href="left_bar.html"> Magazine Racks </a> </li>
-                                                            <li> <a href="left_bar.html"> Trunk & Boxes </a> </li>
+                                                            <li> <a href="left_bar.html"> Trunk &amp; Boxes </a> </li>
                                                             <!--end for-each -->
                                                         </ul>
                                                         <!--level1-->
@@ -166,15 +102,87 @@
                                                         <ul class="level1" style="display:none">
                                                             <li> <a href="left_bar.html"> Sofa Beds </a> </li>
                                                             <li> <a href="left_bar.html"> Sofa Suites </a> </li>
+                                                            <li> <a href="left_bar.html"> Corner Sofas </a> </li>
+                                                            <li> <a href="left_bar.html"> Leather Sofas </a> </li>
                                                             <!--end for-each -->
                                                         </ul>
                                                         <!--level1-->
                                                     </li>
                                                     <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Chairs </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Recliner </a> </li>
+                                                            <li> <a href="left_bar.html"> Arm Chairs </a> </li>
+                                                            <li> <a href="left_bar.html"> Folding Chairs </a> </li>
+                                                            <li> <a href="left_bar.html"> Metal Chairs </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Tables </a><span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Side Tables </a> </li>
+                                                            <li> <a href="left_bar.html"> Console Tables </a> </li>
+                                                            <li> <a href="left_bar.html"> Set of Tables </a> </li>
+                                                            <li> <a href="left_bar.html"> Coffee Tables </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Bean Bag </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Round </a> </li>
+                                                            <li> <a href="left_bar.html"> Square </a> </li>
+                                                            <li> <a href="left_bar.html"> Novelty </a> </li>
+                                                            <li> <a href="left_bar.html"> Elongated </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Stools </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Folding </a> </li>
+                                                            <li> <a href="left_bar.html"> Iron </a> </li>
+                                                            <li> <a href="left_bar.html"> Designer </a> </li>
+                                                            <li> <a href="left_bar.html"> Wood </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                        <!--level1-->
+                                                    </li>
+                                                    <li>
+                                                        <a href="left_bar.html"> Textiles </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Curtain Rods </a> </li>
+                                                            <li> <a href="left_bar.html"> Cushions </a> </li>
+                                                            <li> <a href="left_bar.html"> Fabrics </a> </li>
+                                                            <li> <a href="left_bar.html"> Benches </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                        <!--level1-->
+                                                    </li>
+                                                    <li>
+                                                        <a href="left_bar.html"> Storage </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:none">
+                                                            <li> <a href="left_bar.html"> Buffets </a> </li>
+                                                            <li> <a href="left_bar.html"> Cabinets </a> </li>
+                                                            <li> <a href="left_bar.html"> Sideboards </a> </li>
+                                                            <li> <a href="left_bar.html"> Bookcases </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
                                                 </ul>
                                                 <!--level0-->
                                             </li>
-
                                             <!--level 0-->
                                             <li>
                                                 <a href="left_bar.html">Dinning Room</a> <span class="subDropdown plus"></span>
@@ -184,6 +192,69 @@
                                                         <ul class="level1" style="display:block">
                                                             <li> <a href="left_bar.html"> Eight Seater </a> </li>
                                                             <li> <a href="left_bar.html"> Four Seater </a> </li>
+                                                            <li> <a href="left_bar.html"> Six Seater </a> </li>
+                                                            <li> <a href="left_bar.html"> Two Seater </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Dinning Tables </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:block">
+                                                            <li> <a href="left_bar.html"> Colonial </a> </li>
+                                                            <li> <a href="left_bar.html"> Contemporary </a> </li>
+                                                            <li> <a href="left_bar.html"> Eclectic </a> </li>
+                                                            <li> <a href="left_bar.html"> Modern </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Dinning Chairs </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:block">
+                                                            <li> <a href="left_bar.html"> Colonial </a> </li>
+                                                            <li> <a href="left_bar.html"> Contemporary </a> </li>
+                                                            <li> <a href="left_bar.html"> Eclectic </a> </li>
+                                                            <li> <a href="left_bar.html"> Modern </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Sideboards </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:block">
+                                                            <li> <a href="left_bar.html"> Cabinets </a> </li>
+                                                            <li> <a href="left_bar.html"> Drawers </a> </li>
+                                                            <li> <a href="left_bar.html"> Glass </a> </li>
+                                                            <li> <a href="left_bar.html"> Modern </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Bar Stools </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:block">
+                                                            <li> <a href="left_bar.html"> Adjustable </a> </li>
+                                                            <li> <a href="left_bar.html"> Bar Height </a> </li>
+                                                            <li> <a href="left_bar.html"> Counter Height </a> </li>
+                                                            <li> <a href="left_bar.html"> Swivel </a> </li>
+                                                            <!--end for-each -->
+                                                        </ul>
+                                                        <!--level1-->
+                                                    </li>
+                                                    <!--level1-->
+                                                    <!--level1-->
+                                                    <li>
+                                                        <a href="left_bar.html"> Serving Carts </a> <span class="subDropdown plus"></span>
+                                                        <ul class="level1" style="display:block">
+                                                            <li> <a href="left_bar.html"> Glass </a> </li>
+                                                            <li> <a href="left_bar.html"> Steel </a> </li>
+                                                            <li> <a href="left_bar.html"> Traditional </a> </li>
+                                                            <li> <a href="left_bar.html"> Modern </a> </li>
                                                             <!--end for-each -->
                                                         </ul>
                                                         <!--level1-->
@@ -199,20 +270,87 @@
                                                     <li> <a href="left_bar.html"> Beds </a> <span class="subDropdown minus"></span> </li>
                                                     <!--level1-->
                                                     <li> <a href="left_bar.html"> Dressing Tables </a> <span class="subDropdown minus"></span> </li>
+                                                    <!--level1-->
+                                                    <li> <a href="left_bar.html"> Wardrobes </a> <span class="subDropdown minus"></span> </li>
+                                                    <!--level1-->
+                                                    <li> <a href="left_bar.html"> Mattresses </a> <span class="subDropdown minus"></span> </li>
+                                                    <!--level1-->
+                                                    <li> <a href="left_bar.html"> Bedside Tables </a> <span class="subDropdown minus"></span> </li>
+                                                    <!--level1-->
+                                                    <li> <a href="left_bar.html"> NightStands </a> <span class="subDropdown minus"></span> </li>
+                                                    <!--level1-->
                                                 </ul>
                                                 <!--level0-->
                                             </li>
                                             <!--level 0-->
                                             <li> <a href="left_bar.html">Kitchen</a> </li>
                                             <!--level 0-->
-                                            <li class="last"> <a href="assets/blog.html">Blog</a> </li>
+                                            <li class="last"> <a href="blog.html">Blog</a> </li>
                                             <!--level 0-->
                                         </ul>
                                     </div>
                                     <!--box-content box-category-->
                                 </div>
                                 <div class="side-banner">
-                                    <img alt="sidebanner" src="~/images/sidebanner.jpg">
+                                    <img src="images/sidebanner.jpg">
+                                </div>
+                                <div class="block block-layered-nav">
+                                    <div class="block-title"> Filter By</div>
+                                    <div class="block-content">
+                                        <p class="btn-tertiary"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Clear all</p>
+                                        <dl id="narrow-by-list">
+                                            <dt class="odd">Categories</dt>
+                                            <dd class="odd">
+                                                <ol>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span><a href="#">Sofas</a> (6)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span><a href="#"> Chairs</a> (5)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span><a href="#"> Tables</a> (7)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span><a href="#">Racks</a> (5)
+                                                    </li>
+                                                </ol>
+                                            </dd>
+                                            <dt class="odd">Price</dt>
+                                            <dd class="odd">
+                                                <ol>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span> <a href="#"><span class="price">$4.00</span> - <span class="price">$5.00</span></a> (1)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span><a href="#"><span class="price">$16.00</span> - <span class="price">$20.00</span></a> (2)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span> <a href="#"><span class="price">$25.00</span> - <span class="price">$37.00</span></a> (4)
+                                                    </li>
+                                                    <li>
+                                                        <span class="custom-checkbox">
+                                                            <input data-search-url="#" type="checkbox">
+                                                        </span> <a href="#"><span class="price">$33.00</span> - <span class="price">$125.00</span></a> (9)
+                                                    </li>
+                                                </ol>
+                                            </dd>
+                                        </dl>
+                                    </div>
                                 </div>
                             </aside>
                         </div>

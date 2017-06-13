@@ -48,8 +48,14 @@ namespace Vanp.Web
                name: "Products",
                url: "products",
                defaults: new { controller = "Product", action = "Products" },
-               namespaces: new[] { "Vanp.Web.Controllers.ProductController" }
+               namespaces: new[] { "Vanp.Web.Controllers" }
              );
+            routes.MapRoute(
+             name: "Product",
+             url: "products/{id}",
+             defaults: new { controller = "Product", action = "Product" , id = UrlParameter.Optional },
+             namespaces: new[] { "Vanp.Web.Controllers" }
+           );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

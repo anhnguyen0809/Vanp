@@ -17,5 +17,10 @@ namespace Vanp.DAL
         {
             return _dbSet.Where(o => o.CategoryParentId == categoryId);
         }
+        public IEnumerable<Category> GetList()
+        {
+            var parent = _dbSet.Where(o => !o.CategoryParentId.HasValue);
+            
+        }
     }
 }
