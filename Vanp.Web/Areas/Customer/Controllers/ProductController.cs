@@ -14,7 +14,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
             return View();
         }
 
-
         #region Bid
         [HttpPost]
         public ActionResult Bid(int id , double priceBid)
