@@ -6,11 +6,16 @@ using System.Web.Mvc;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
-    public class ProductController : AuthController
+    [Authorize]
+    public class CProductController : AuthController
     {
         // GET: Customer/Product
         public ActionResult Insert()
         {
+            if (CurrentUser.Roles!="Seller")
+            {
+                return Redirect("/account/sendrequest");
+            }
             return View();
         }
     }

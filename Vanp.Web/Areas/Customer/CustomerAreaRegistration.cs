@@ -37,7 +37,7 @@ namespace Vanp.Web.Areas.Customer
             context.MapRoute(
          name: "InsertProduct",
          url: "product/insert",
-         defaults: new { controller = "Product", action = "Insert", area = "Customer" }
+         defaults: new { controller = "CProduct", action = "Insert", area = "Customer" }
          );
             context.MapRoute(
                 "Customer_default",
