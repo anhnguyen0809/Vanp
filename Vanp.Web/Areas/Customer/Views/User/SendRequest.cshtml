@@ -1,0 +1,19 @@
+﻿@model Vanp.Web.Models.AccountModel
+
+@model Vanp.Web.Models.RegisterModel
+@{
+    ViewBag.Title = "Gửi yêu cầu đăng sản phẩm";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Gửi yêu cầu</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <textarea name="requestContent" id="requestContext" maxlength="200" placeholder="Tối thiểu 20 ký tự"></textarea>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/request.js"></script>
+}

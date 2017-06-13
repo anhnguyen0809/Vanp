@@ -115,6 +115,11 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
+        public ActionResult SendRequest()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult SendRequest(RequestModel requestModel)
         {
             if (requestModel != null)
@@ -133,11 +138,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             Failure = "Gửi yêu cầu không thành công! Vui lòng kiểm tra lại thông tin.";
             return View(requestModel);
-        }
-        [HttpPost]
-        public ActionResult SendRequest(string content)
-        {
-            return View();
         }
     }
 }
