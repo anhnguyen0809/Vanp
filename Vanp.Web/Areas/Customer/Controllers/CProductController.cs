@@ -14,10 +14,12 @@ namespace Vanp.Web.Areas.Customer.Controllers
         // GET: Customer/Product
         public ActionResult Insert()
         {
+            ViewBag.listCat = _unitOfWork.CategoryRepository.GetListCat();
             return View();
         }
         [HttpPost]
-        public ActionResult Insert(Product pro, HttpPostedFileBase productimage)
+        [ValidateInput(false)]
+        public ActionResult Insert(Product pro, HttpPostedFileBase image1, HttpPostedFileBase image2, HttpPostedFileBase image3)
         {
             if (CurrentUser.Roles!="Seller")
             {
@@ -30,13 +32,22 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 pro.CreatedBy = CurrentUser.Id;
                 pro.ModifiedBy = CurrentUser.Id;
                 pro.DateFrom = DateTime.Now;
+                pro.PriceDefault = pro.PriceCurrent;
                 pro.DateTo = DateTime.Now.AddDays(7);
-                pro.ProductImagePath = productimage.FileName;
                 _unitOfWork.ProductRepository.Insert(pro);
                 _unitOfWork.Save();
-                ViewBag.listCat = _unitOfWork.CategoryRepository.GetListCat();
-                var fileName = Path.GetFileName(productimage.FileName);
-                var path = Path.Combine(Server.MapPath("~/images/products/"), fileName);
+                var spDirPath = Server.MapPath("~/images/products");
+                var targetDirPath = Path.Combine(spDirPath,pro.Id.ToString());
+                Directory.CreateDirectory(targetDirPath);
+
+                var img1Name = Path.Combine(targetDirPath,"img1.jpg");
+                image1.SaveAs(img1Name);
+
+                var img2Name = Path.Combine(targetDirPath, "img2.jpg");
+                image2.SaveAs(img2Name);
+
+                var img3Name = Path.Combine(targetDirPath, "img3.jpg");
+                image3.SaveAs(img3Name);
             }
             return View();
         }

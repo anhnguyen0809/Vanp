@@ -7,7 +7,6 @@
             required: true,
         },
         Price: {
-            required: true,
             number: true
         },
         PriceDefault: {
@@ -42,11 +41,7 @@
         ProductDescription: {
             required: "Mô tả không được để trống!!!"
         },
-        ProductText: {
-            required: "Mô tả không được để trống!!!",
-        },
         Price: {
-            required: "Giá mua ngay không được để trống!!!",
             number: "Giá không hợp lệ!!!"
         },
         image2: {

@@ -1,4 +1,5 @@
-﻿
+﻿@using BotDetect.Web.Mvc
+@using Vanp.Web.Code
 @{
     ViewBag.Title = "Insert";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
@@ -10,7 +11,7 @@
         }
     </style>
 }
-<form method="post" action="" class="insert-form" enctype="multipart/form-data">
+<form method="post" action="/product/insert" class="insert-form" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm <span class="lie">*</span></label>
@@ -34,12 +35,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
-            <select class="form-control" name="CategoryId">
-                @foreach (var c in ViewBag.listCat)
-                {
-                    <option value="@c.Id">@c.CategoryName</option>
-                }
-            </select>
+            @Html.DropDownList("CategoryId", Html.GetNameCat(), new { @class = "col-md-4 form-control", @name = "CategoryId" })
         </div>
     </div>
     <div class="row">
@@ -64,10 +60,10 @@
 </form>
 @section scripts{
     <script src="~/Content/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<script src="~/Content/boostrap-file-input/js/fileinput.min.js"></script>
-<script src="~/Content/bootstrap-select/js/bootstrap-select.min.js"></script>
-<script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
-<script src="~/Content/tinymce/tinymce.min.js"></script>
-<script src="~/Scripts/apps/validate-addpro.js"></script>
+    <script src="~/Content/boostrap-file-input/js/fileinput.min.js"></script>
+    <script src="~/Content/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/apps/validate-addpro.js"></script>
 
 }
