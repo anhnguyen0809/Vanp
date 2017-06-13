@@ -3,12 +3,14 @@
     ViewBag.Title = "Insert";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
 }
-<style>
-    .lie {
+@section css{
+    <style type="text/css">
+        .lie {
         color: red;
     }
-</style>
-<form>
+    </style>
+}
+<form method="post" action="" class="insert-form" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm <span class="lie">*</span></label>
@@ -22,7 +24,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="pricedefault">Giá sản phẩm <span class="lie">*</span></label>
-            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" placeholder="2000000">
+            <input type="text" name="PriceDefault" class="form-control touchspin" id="pricedefault" placeholder="2000000">
         </div>
         <div class="form-group col-md-4">
             <label for="price">Giá mua ngay <span class="lie">*</span></label>
@@ -30,31 +32,61 @@
         </div>
     </div>
     <div class="row">
-        <div class="dropdown col-md-4">
+        <div class="form-group col-md-4">
+            <label for="categoryid">Danh mục</label>
             <select class="form-control" name="CategoryId">
-                @foreach(var c in ViewBag.listCat)
-               <option></option>
+                @foreach (var c in ViewBag.listCat)
+                {
+                    <option value="@c.Id">@c.CategoryName</option>
+                }
             </select>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
-            <label for="exampleInputFile">Hình ảnh 1</label>
-            <input type="file" id="exampleInputFile">
+            <label for="image1">Hình ảnh 1 <span class="lie">*</span></label>
+            <input type="file" id="image1" accept="image/*">
         </div>
         <div class="form-group col-md-4">
-            <label for="exampleInputFile">Hình ảnh 2</label>
-            <input type="file" id="exampleInputFile">
+            <label for="imag2">Hình ảnh 2 <span class="lie">*</span></label>
+            <input type="file" id="imag2" accept="image/*">
         </div>
         <div class="form-group col-md-4">
-            <label for="exampleInputFile">Hình ảnh 3</label>
-            <input type="file" id="exampleInputFile">
+            <label for="image3">Hình ảnh 3 <span class="lie">*</span></label>
+            <input type="file" id="image3" accept="image/*">
         </div>
     </div>
     <div class="form-group">
         <label for="producttext">Mô tả chi tiết:</label>
         <textarea name="ProductText"></textarea>
     </div>
-
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">Đăng bán</button>
 </form>
+@section scripts{
+    <script src="~/Content/boostrap-file-input/js/fileinput.min.js"></script>
+    <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/apps/validate-addpro.js"></script>
+    <script>
+        $("input[class='touchspin']").TouchSpin({
+            verticalbuttons: true,
+            max: 1000000000,
+            step: 100000
+        });
+        tinymce.init({
+            selector: 'textarea',
+            height: 250,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            content_css: [
+              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+              '//www.tinymce.com/css/codepen.min.css'],
+            encoding: "xml",
+        });
+    </script>
+}
