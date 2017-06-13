@@ -12,9 +12,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
         // GET: Customer/Product
         public ActionResult Insert()
         {
+            
             if (CurrentUser.Roles!="Seller")
             {
                 return Redirect("/account/sendrequest");
+            }
+            else
+            {
+                ViewBag.listCat = _unitOfWork.CategoryRepository.GetListCat();
             }
             return View();
         }
