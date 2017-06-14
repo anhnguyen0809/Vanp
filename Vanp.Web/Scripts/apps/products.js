@@ -13,7 +13,7 @@
 
     }
     var getProducts = function () {
-        $.when(Vanp.handleAjaxGet("/Product/ProductsByCategory")).done(
+        $.when(Vanp.handleAjaxGet("/Product/GetProducts")).done(
             function (data) {
                 if (data) {
                     if (data.error !== 1) {

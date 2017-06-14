@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL;
 using Vanp.DAL.Entites;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Controllers
 {
@@ -21,10 +22,11 @@ namespace Vanp.Web.Controllers
             var products = _unitOfWork.ProductRepository.GetListByCategory(id);
             return View("Products",products);
         }
-        public JsonResult ProductsByCategory(int pageNo = 1 , int pageSize = 10, string orderBy = "dateto" , bool asc =true , int? category = null)
+        public JsonResult GetProducts(int pageNo = 1 , int pageSize = 10, string orderBy = "dateto" , bool asc =true , int? category = null)
         {
             var products = _unitOfWork.ProductRepository.GetListByCategory( pageNo, pageSize, orderBy, asc, category);
-            return JsonSuccess(products);
+
+            return JsonSuccess(products.Select(p => new ProductModel(p)));
         }
         public ActionResult Product(int id)
         {

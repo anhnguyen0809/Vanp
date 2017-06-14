@@ -25,22 +25,32 @@ namespace Vanp.DAL
         {
             return _dbSet.Where(o => o.CategoryId == categoryId);
         }
-        public IEnumerable<Product> GetListByCategory( int pageNo, int pageSize = 10, string orderBy = "", bool asc = true , int? category = null)
+        public IEnumerable<Product> GetListByCategory(int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category = null)
         {
-            var query = this.GetList(orderBy, asc);
-            if (query != null)
+            var query = _dbSet.AsQueryable();
+            if (category.HasValue)
             {
-                if (category.HasValue)
-                {
-                    query = query.Where(o => o.CategoryId == category);
-                }
-                query = query
-                     .Take(pageSize)
-                     .Skip(pageNo * (pageSize - 1));
+                query = query.Where(o => o.CategoryId == category);
             }
+            if (orderBy.ToLower() == "dateto")
+            {
+                query = asc ? query.OrderBy(o => o.DateTo) : query.OrderByDescending(o => o.DateTo);
+            }
+            else if (orderBy.ToLower() == "pricecurrent")
+            {
+                query = asc ? query.OrderBy(o => o.PriceCurrent) : query.OrderByDescending(o => o.PriceCurrent);
+            }
+            else
+            {
+                query = asc ? query.OrderBy(o => o.Id) : query.OrderByDescending(o => o.Id);
+            }
+            query = query
+                 .Take(pageSize)
+                 .Skip((pageNo - 1) * pageSize);
+
             return query.ToList();
         }
-      
+
         #region Đấu giá
         public bool CheckBidPermisstion(int userId, int productId)
         {
@@ -88,14 +98,14 @@ namespace Vanp.DAL
         public bool Bid(int userId, int productId, double priceBid)
         {
             var product = this.GetById(productId);
-           
+
             if (product != null && _context.Users.Any(o => o.Id == userId))
             {
                 var priceCurrent = product.PriceCurrent ?? 0;
                 var priceMax = product.PriceMax ?? 0;
                 var bidCurrentBefore = product.BidCurrentBy;
                 bool currentChanged = false;
-                if (priceBid > product.PriceMax )
+                if (priceBid > product.PriceMax)
                 {
                     product.PriceMax = priceBid;
                     product.PriceCurrent = priceMax + (product.PriceStep ?? 0);
@@ -140,7 +150,7 @@ namespace Vanp.DAL
                 }
                 #endregion
 
-        
+
                 return true;
             }
             return false;
