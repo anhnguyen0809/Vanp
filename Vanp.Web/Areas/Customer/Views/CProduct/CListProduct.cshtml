@@ -1,0 +1,52 @@
+﻿@using Vanp.DAL.Entites
+@model List<Product>
+@{
+    ViewBag.Title = "CListProduct";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+<div class="category-products">
+    <ul class="products-grid">
+        @foreach (var item in Model)
+        {
+            <li class="item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="item-inner">
+                    <div class="productborder">
+                        <div class="item-img">
+                            <div class="item-img-info">
+                                <a class="product_image image-wrapper" href="">
+                                    <img class="front_image" alt="Pro Image" src="~/images/products/@item.Id/img1.jpg" width="264" height="230">
+                                </a>
+                                <div class="quickview top-right"> <a class="link-quickview" href="@Url.Action("DetailProduct","Product", new { proID = item.Id })"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
+                                <div class="box-hover">
+                                    @*<ul class="add-to-links">
+                                            <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
+                                            <li><a class="link-wishlist" href="assets/wishlist.html"></a> </li>
+                                            <li><a class="link-compare" href="assets/compare.html"></a> </li>
+                                            <li><a class="add-to-cart" href="assets/shopping_cart.html"></a> </li>
+                                        </ul>
+                                    *@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-block">
+                            <div class="item-info">
+                                <div class="info-inner">
+                                    <div class="item-title"> <a title="Bluetooth Smart Watch" href="assets/product_detail.html">@item.ProductName</a> </div>
+                                    <div class="item-content">
+                                        <p class="product-manufacturer">@item.Category.CategoryName</p>
+                                    </div>
+                                    <div class="item-price">
+                                        <div class="price-box"> <span class="regular-price"> <span class="price">@item.PriceDefault</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+
