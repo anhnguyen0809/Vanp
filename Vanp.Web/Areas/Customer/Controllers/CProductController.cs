@@ -58,7 +58,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             int id = Convert.ToInt32(CurrentUser.Id);
             return View(_unitOfWork.ProductRepository.GetListByCProduct(id));
         }
-        public ActionResult Edit(int proId)
+        public ActionResult Update(int proId)
         {
             return View(_unitOfWork.ProductRepository.GetById(proId));
         }
