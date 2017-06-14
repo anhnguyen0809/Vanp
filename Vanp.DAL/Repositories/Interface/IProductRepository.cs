@@ -11,7 +11,7 @@ namespace Vanp.DAL
     {
         IEnumerable<Product> GetListByProduct();
         bool isExisted(string code);
-
+        IEnumerable<Product> GetListByCategory(int categoryId);
         /// <summary>
         /// Kiểm tra người dùng được phép đầu giá sản phẩm 
         /// </summary>

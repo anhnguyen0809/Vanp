@@ -20,12 +20,11 @@ namespace Vanp.DAL
         {
             return _dbSet.Any(p => p.ProductCode.ToLower().Equals(code.ToLower()));
         }
-        /// <summary>
-        /// Kiểm tra người dùng được phép đầu giá sản phẩm 
-        /// </summary>
-        /// <param name="userId">id người dùng</param>
-        /// <param name="productId">id sản phẩm</param>
-        /// <returns></returns>
+
+        public IEnumerable<Product> GetListByCategory(int categoryId)
+        {
+            return _dbSet.Where(o => o.CategoryId == categoryId);
+        }
         public bool CheckBidPermisstion(int userId, int productId)
         {
             var userRepository = new UserRepository(_context);
