@@ -16,7 +16,7 @@
                                 <a class="product_image image-wrapper" href="">
                                     <img class="front_image" alt="Pro Image" src="~/images/products/@item.Id/img1.jpg" width="264" height="230">
                                 </a>
-                                <div class="quickview top-right"> <a class="link-quickview" href="@Url.Action("DetailProduct","Product", new { proID = item.Id })"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
+                                <div class="quickview top-right"> <a class="link-quickview" href=""> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                 <div class="box-hover">
                                     @*<ul class="add-to-links">
                                             <!-- <li><a class="link-quickview" href="quick_view.html"></a> </li>-->
@@ -33,10 +33,15 @@
                                 <div class="info-inner">
                                     <div class="item-title"> <a title="Bluetooth Smart Watch" href="assets/product_detail.html">@item.ProductName</a> </div>
                                     <div class="item-content">
-                                        <p class="product-manufacturer">@item.Category.CategoryName</p>
+                                        <p class="product-manufacturer">@item.ProductDescription</p>
                                     </div>
                                     <div class="item-price">
-                                        <div class="price-box"> <span class="regular-price"> <span class="price">@item.PriceDefault</span></span> </div>
+                                        <div class="price-box">
+                                            <span class="regular-price">
+                                                <span class="price">@item.Category.CategoryName</span><br />
+                                                <span class="price">@item.PriceDefault</span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
