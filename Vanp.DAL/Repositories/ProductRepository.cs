@@ -25,6 +25,23 @@ namespace Vanp.DAL
         {
             return _dbSet.Where(o => o.CategoryId == categoryId);
         }
+        public IEnumerable<Product> GetListByCategory( int pageNo, int pageSize = 10, string orderBy = "", bool asc = true , int? category = null)
+        {
+            var query = this.GetList(orderBy, asc);
+            if (query != null)
+            {
+                if (category.HasValue)
+                {
+                    query = query.Where(o => o.CategoryId == category);
+                }
+                query = query
+                     .Take(pageSize)
+                     .Skip(pageNo * (pageSize - 1));
+            }
+            return query.ToList();
+        }
+      
+        #region Đấu giá
         public bool CheckBidPermisstion(int userId, int productId)
         {
             var userRepository = new UserRepository(_context);
@@ -48,12 +65,7 @@ namespace Vanp.DAL
             }
             return false;
         }
-        /// <summary>
-        /// Kiểm tra giá của người dùng đặt ra có hợp lệ hay không
-        /// </summary>
-        /// <param name="productId">id sản phẩm</param>
-        /// <param name="priceBid">giá đặt ra</param>
-        /// <returns></returns>
+
         public bool ValidPriceBid(int productId, double priceBid)
         {
             var product = this.GetById(productId);
@@ -77,7 +89,7 @@ namespace Vanp.DAL
         {
             var product = this.GetById(productId);
            
-            if (product != null)
+            if (product != null && _context.Users.Any(o => o.Id == userId))
             {
                 var priceCurrent = product.PriceCurrent ?? 0;
                 var priceMax = product.PriceMax ?? 0;
@@ -133,6 +145,41 @@ namespace Vanp.DAL
             }
             return false;
         }
+        public bool BuyNow(int userId, int productId, double priceBuy)
+        {
+            var product = this.GetById(productId);
 
+            if (product != null && _context.Users.Any(o => o.Id == userId))
+            {
+                if (product.Price <= priceBuy)
+                {
+                    #region Lưu lịch sử đấu giá
+                    //Lưu lịch sử đấu giá
+                    BidHistory bidHistory = new BidHistory();
+                    bidHistory.ModifiedBy = bidHistory.CreatedBy = userId;
+                    bidHistory.ModifiedWhen = bidHistory.CreatedWhen = DateTime.Now;
+                    bidHistory.Enable = true;
+                    bidHistory.ProductId = productId;
+                    bidHistory.PriceCurrent = product.PriceCurrent;
+                    bidHistory.PriceMax = product.PriceMax;
+                    bidHistory.PriceBid = priceBuy;
+                    _context.BidHistories.Add(bidHistory);
+                    #endregion
+
+                    product.IsBid = true;
+                    product.BidDate = DateTime.Now;
+                    product.PriceMax = priceBuy;
+                    product.PriceBid = priceBuy;
+                    product.BidCount = (product.BidCount ?? 0) + 1;
+                    product.BidCurrentBy = userId;
+                    this.SaveChanges();
+                    //Send Mail Giao Dịch Thành công
+
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
     }
 }

@@ -21,6 +21,11 @@ namespace Vanp.Web.Controllers
             var products = _unitOfWork.ProductRepository.GetListByCategory(id);
             return View("Products",products);
         }
+        public JsonResult ProductsByCategory(int pageNo = 1 , int pageSize = 10, string orderBy = "dateto" , bool asc =true , int? category = null)
+        {
+            var products = _unitOfWork.ProductRepository.GetListByCategory( pageNo, pageSize, orderBy, asc, category);
+            return JsonSuccess(products);
+        }
         public ActionResult Product(int id)
         {
             return View();

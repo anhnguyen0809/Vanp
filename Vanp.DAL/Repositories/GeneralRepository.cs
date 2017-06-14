@@ -64,6 +64,28 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
+
+        public virtual IQueryable<TEntity> GetList(string orderBy, bool asc)
+        {
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                var propertyInfo = typeof(TEntity).GetProperty(orderBy);
+                if (propertyInfo != null)
+                {
+                    IOrderedQueryable<TEntity> order = null;
+                    if (asc)
+                    {
+                        order = _dbSet.OrderBy(o => propertyInfo.GetValue(o, null));
+                    }
+                    else
+                    {
+                        order = _dbSet.OrderByDescending(o => propertyInfo.GetValue(o, null));
+                    }
+                    return order;
+                }
+            }
+            return _dbSet;
+        }
         #endregion
 
         #region Dispose
