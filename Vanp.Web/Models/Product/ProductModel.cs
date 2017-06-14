@@ -54,6 +54,8 @@ namespace Vanp.Web.Models
             this.PriceDefault = product.PriceDefault ?? 0;
             this.CreatedByName = product.User.UserName;
             this.BidCurrentByName = product.User2.UserName;
+            this.IsBid = product.IsBid ?? false;
+            this.IsExtended = product.IsExtended ?? false;
         }
     }
 }

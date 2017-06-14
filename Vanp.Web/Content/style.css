@@ -27830,7 +27830,8 @@ ol#compare-items li.last {
 	margin-left: 5px;
 	text-align: center;
 	width: 35px;
-	border: 1px #ddd solid
+	border: 1px #ddd solid;
+	color: #222222;
 }
 #sort-by .button-asc:hover {
 	background: #ed6663;
@@ -27839,6 +27840,11 @@ ol#compare-items li.last {
 }
 .top_arrow:before {
 	content: '\f106';
+	font-family: FontAwesome;
+	font-size: 16px;
+}
+.bottom_arrow:before {
+	content: '\f107';
 	font-family: FontAwesome;
 	font-size: 16px;
 }

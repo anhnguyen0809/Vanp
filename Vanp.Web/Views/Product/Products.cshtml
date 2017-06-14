@@ -56,19 +56,112 @@
                                         <label class="left">Sort By: </label>
                                         <ul>
                                             <li>
-                                                <a href="#"><span class="sort-by-name" style="margin-right:10px">Thời gian kết thúc</span> <span class="right-arrow"></span></a>
-                                                <ul>
-                                                    <li><a href="#" data-sort-by-name="dateto">Thời gian kết thúc</a></li>
-                                                    <li><a href="#" data-sort-by-name="price">Giá</a></li>
+                                                <a><span class="sort-by-name" style="margin-right:10px" data-sort-by-name="dateto">Thời gian kết thúc</span> <span class="right-arrow"></span></a>
+                                                <ul class="sort-by-list">
+                                                    <li class="sort-by-item"><a  data-sort-by-name="pricecurrent">Giá</a></li>
+                                                    <li class="sort-by-item"><a data-sort-by-name="dateto">Thời gian kết thúc</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
-                                        <a class="button-asc left" href="#" title="Set Descending Direction"><span class="top_arrow"></span></a>
+                                        <a class="button-asc left" data-asc="false" title="Set Descending Direction"><span class="bottom_arrow"></span></a>
                                     </div>
                      
                                 </div>
                                 <div class="category-products">
+                                    <ol class="products-list" id="products-list">
+                                        <li class="item first">
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="products-images/product1.jpg" alt="product lapen casen"> </a> </div>
+                                            <div class="product-shop">
+                                                <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+                                                    </div>
+                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                                                </div>
+                                                <div class="desc std">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
+                                                </div>
+                                                <div class="price-box">
+                                                    <p class="old-price"> <span class="price-label"></span> <span class="price"> $442.99 </span> </p>
+                                                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $222.99 </span> </p>
+                                                </div>
+                                                <div class="actions">
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item even">
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="products-images/product2.jpg" alt="product lapen casen"> </a> </div>
+                                            <div class="product-shop">
+                                                <h2 class="product-name"><a href="product_detail.html" title="product lapen casen">Club Chair</a></h2>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+                                                    </div>
+                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                                                </div>
+                                                <div class="desc std">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
+                                                </div>
+                                                <div class="price-box"> <span class="regular-price"> <span class="price">$99.99</span> </span> </div>
+                                                <div class="actions">
+                                                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
+                                                    <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
 
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item odd">
+                                            <div class="product-image"> <a href="product_detail.html" title="30&quot; Flat-Panel HD Monitor"> <img class="small-image" src="products-images/product3.jpg" alt="30&quot; Flat-Panel HD Monitor"> </a> </div>
+                                            <div class="product-shop">
+                                                <h2 class="product-name"><a href="product_detail.html" title="30&quot; Flat-Panel HD Monitor">Chaise Lounge</a></h2>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+                                                    </div>
+                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                                                </div>
+                                                <div class="desc std">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
+                                                </div>
+                                                <div class="price-box"> <span class="regular-price"> <span class="price">$699.99</span> </span> </div>
+                                                <div class="actions">
+                                                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
+                                                    <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item last even">
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="products-images/product10.jpg" alt="product lapen casen"> </a> </div>
+                                            <div class="product-shop">
+                                                <h2 class="product-name"><a href="product_detail.html" title="product lapen casen">Wooden Tank</a></h2>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div style="width:80%" class="rating"><span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span></div>
+                                                    </div>
+                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="##review-form">Add Your Review</a> </p>
+                                                </div>
+                                                <div class="desc std">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
+                                                </div>
+                                                <div class="price-box"> <span class="regular-price"> <span class="price">$239.99</span> </span> </div>
+                                                <div class="actions">
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <div class="text-center">
+                                        <button type="button" class="button btn btn-primary btn-load-more margin-15" >Xem thêm</button>
+                                    </div>
                                 </div>
                             </article>
                             <!--	///*///======    End article  ========= //*/// -->
