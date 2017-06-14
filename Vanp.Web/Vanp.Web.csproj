@@ -663,7 +663,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\DetailProduct.cshtml" />
     <Content Include="Views\Product\ViewListProduct.cshtml" />
   </ItemGroup>

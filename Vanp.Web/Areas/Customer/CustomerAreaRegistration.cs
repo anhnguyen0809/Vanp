@@ -11,7 +11,7 @@ namespace Vanp.Web.Areas.Customer
                 return "Customer";
             }
         }
-
+        
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
@@ -39,6 +39,11 @@ namespace Vanp.Web.Areas.Customer
          url: "product/insert",
          defaults: new { controller = "CProduct", action = "Insert", area = "Customer" }
          );
+            context.MapRoute(
+      name: "InsertProduct",
+      url: "customer/listproduct",
+      defaults: new { controller = "CProduct", action = "CListProduct", area = "Customer" }
+      );
             context.MapRoute(
                 "Customer_default",
                 "Customer/{controller}/{action}/{id}",

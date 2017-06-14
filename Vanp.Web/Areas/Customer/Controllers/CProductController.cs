@@ -53,5 +53,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
+        public ActionResult CListProduct()
+        {
+            int id = Convert.ToInt32(CurrentUser.Id);
+            return View(_unitOfWork.ProductRepository.GetListByCProduct(id));
+        }
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ac060ffa016a46c08526fe743e467449" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="vanp_dbModel1.BidHistory" Width="1.5" PointX="10.5" PointY="10.125" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Category" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Category" Width="1.5" PointX="1.125" PointY="3" />
         <EntityTypeShape EntityType="vanp_dbModel1.MailContent" Width="1.5" PointX="15" PointY="5" />
         <EntityTypeShape EntityType="vanp_dbModel1.MailType" Width="1.5" PointX="12.75" PointY="5.25" />
         <EntityTypeShape EntityType="vanp_dbModel1.Menu" Width="1.5" PointX="12.75" PointY="9.75" />

@@ -16,10 +16,14 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
+        public IEnumerable<Product> GetListByCProduct(int userId)
+        {
+            return _dbSet.Where(p=>p.CreatedBy==userId).ToList();
+        }
         public bool isExisted(string code)
         {
-            return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(code.ToLower()));
+            return _dbSet.Any(p => p.ProductCode.ToLower().Equals(code.ToLower()));
         }
-        
+
     }
 }
