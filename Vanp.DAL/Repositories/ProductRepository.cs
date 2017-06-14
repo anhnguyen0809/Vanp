@@ -83,10 +83,10 @@ namespace Vanp.DAL
                 var priceMax = product.PriceMax ?? 0;
                 var bidCurrentBefore = product.BidCurrentBy;
                 bool currentChanged = false;
-                if (priceBid > product.PriceMax)
+                if (priceBid > product.PriceMax )
                 {
                     product.PriceMax = priceBid;
-                    product.PriceCurrent = priceCurrent + (product.PriceStep ?? 0);
+                    product.PriceCurrent = priceMax + (product.PriceStep ?? 0);
                     product.BidCurrentBy = userId;
                     currentChanged = true;
                 }
@@ -115,9 +115,10 @@ namespace Vanp.DAL
                 _context.BidHistories.Add(bidHistory);
                 #endregion
 
+                this.SaveChanges();
 
                 #region Send Mail : Người bán , người ra giá thành công, người giữ giá trước đó
-                if (bidCurrentBefore.Value != userId && currentChanged)
+                if (bidCurrentBefore.HasValue && bidCurrentBefore.Value != userId && currentChanged)
                 {
                     Utils.VanpMail.ProductBidSuccess(productId, product.CreatedBy ?? 0, userId, bidCurrentBefore);
                 }
@@ -127,7 +128,7 @@ namespace Vanp.DAL
                 }
                 #endregion
 
-                this.SaveChanges();
+        
                 return true;
             }
             return false;

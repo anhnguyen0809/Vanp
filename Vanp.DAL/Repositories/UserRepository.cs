@@ -123,7 +123,7 @@ namespace Vanp.DAL
                         }
                         else
                         {
-                            var userRole = _context.UserRoles.FirstOrDefault(o => o.UserId == userId && o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
+                            var userRole = user.UserRoles.FirstOrDefault(o => o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
                             if (userRole != null)
                             {
                                 userRole.ModifiedWhen = DateTime.Now;

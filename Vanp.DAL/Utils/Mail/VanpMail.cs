@@ -18,7 +18,7 @@ namespace Vanp.DAL.Utils
             return @"
                     <!DOCTYPE html> <html> <head><title></title></head>
                     <body>"
-                    + _MAIL_HEADER + "<div id=content>" + htmlContent + "/div>" + _MAIL_FOOTER + @"
+                    + _MAIL_HEADER + "<div id=content>" + htmlContent + "</div>" + _MAIL_FOOTER + @"
                     </body>
                     </html>";
         }
@@ -39,8 +39,8 @@ namespace Vanp.DAL.Utils
             var userSeller = unitOfWork.UserRepository.GetById(userSellerId);
             var userCurrent = unitOfWork.UserRepository.GetById(userCurrentId);
             
-            var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} <</p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
-                                + $"< p><b>Giá hiện tại: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>";
+            var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} </p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
+                                + $"<p><b>Giá hiện tại: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>";
 
             if (userSeller != null && Validation.IsEmail(userSeller.Email))
             {
@@ -52,7 +52,7 @@ namespace Vanp.DAL.Utils
             {
                 string htmlCurrent = @"<h3>Chúc mừng bạn đã đặt giá thành công.</h3>"
                                      + htmlProductInfo
-                                     + $"<p><b>Ngày ra giá: </b>{string.Format("{0:dd/MM/yyyy}",product.BidDate)}</p>"
+                                     + $"<p><b>Ngày ra giá: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}",product.BidDate)}</p>"
                                      + $"<p><b>Mức giá: </b>{string.Format("{0:n0}" ,product.PriceBid)}</p>";
                 Mail.SendMail(GetMailTemplate(htmlCurrent), new string[] { userCurrent.Email }, subject);
 
