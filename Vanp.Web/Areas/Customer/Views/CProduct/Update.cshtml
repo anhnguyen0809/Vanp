@@ -1,8 +1,73 @@
-﻿
+﻿@using Vanp.DAL.Entites
+@model Product
 @{
     ViewBag.Title = "Update";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h2>Update</h2>
+@section css{
+    <style type="text/css">
+        .lie {
+            color: red;
+        }
+    </style>
+}
+<form method="post" action="/product/insert" class="insert-form" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="productname">Tên sản phẩm <span class="lie">*</span></label>
+            <input type="text" name="ProductName" class="form-control" id="productname" placeholder="Canon">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="desription">Mô tả <span class="lie">*</span></label>
+            <input type="text" name="ProductDescription" class="form-control" id="desription" placeholder="Nhỏ gọn....">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="pricedefault">Giá sản phẩm <span class="lie">*</span></label>
+            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" placeholder="2000000">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="price">Giá mua ngay <span class="lie">*</span></label>
+            <input type="text" name="Price" class="form-control" id="price" placeholder="3000000">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="categoryid">Danh mục</label>
+            <select>
+                <option></option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="image1">Hình ảnh 1 <span class="lie">*</span></label>
+            <input type="file" id="image1" name="image1" accept="image/*">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="image2">Hình ảnh 2 <span class="lie">*</span></label>
+            <input type="file" id="image2" name="image2" accept="image/*">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="image3">Hình ảnh 3 <span class="lie">*</span></label>
+            <input type="file" id="image3" name="image3" accept="image/*">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="producttext">Mô tả chi tiết:</label>
+        <textarea name="ProductText"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Đăng bán</button>
+</form>
+@section scripts{
+    <script src="~/Content/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/Content/boostrap-file-input/js/fileinput.min.js"></script>
+    <script src="~/Content/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/apps/validate-addpro.js"></script>
+
+}
 
