@@ -7,6 +7,7 @@ namespace Vanp.Web.Areas.Customer.Models
 {
     public class ProductModel
     {
-        
+        public string ProductDescription { get; set; }
+        public string ProductText { get; set; }
     }
 }
