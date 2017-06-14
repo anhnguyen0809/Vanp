@@ -83,6 +83,10 @@ public partial class Product
 
     public Nullable<int> ApprovedBy { get; set; }
 
+    public Nullable<System.DateTime> BidDate { get; set; }
+
+    public Nullable<double> PriceBid { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

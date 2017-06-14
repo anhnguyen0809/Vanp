@@ -40,6 +40,8 @@ public partial class BidHistory
 
     public Nullable<int> ProductId { get; set; }
 
+    public Nullable<double> PriceBid { get; set; }
+
 
 
     public virtual Product Product { get; set; }

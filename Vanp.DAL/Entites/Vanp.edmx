@@ -16,10 +16,10 @@
           <Property Name="ModifiedWhen" Type="datetime" />
           <Property Name="Order" Type="int" />
           <Property Name="Enable" Type="bit" />
-          <Property Name="BidPrice" Type="float" />
           <Property Name="PriceCurrent" Type="float" />
           <Property Name="PriceMax" Type="float" />
           <Property Name="ProductId" Type="int" />
+          <Property Name="PriceBid" Type="float" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -142,6 +142,8 @@
           <Property Name="IsBid" Type="bit" />
           <Property Name="IsExtended" Type="bit" />
           <Property Name="ApprovedBy" Type="int" />
+          <Property Name="BidDate" Type="datetime" />
+          <Property Name="PriceBid" Type="float" />
         </EntityType>
         <EntityType Name="ProductKicked">
           <Key>
@@ -753,6 +755,7 @@
           <Property Name="ProductId" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="BidHistory" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="BidHistory" ToRole="User" />
+          <Property Name="PriceBid" Type="Double" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -891,6 +894,8 @@
           <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="Product" ToRole="ProductKicked" />
           <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
           <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
+          <Property Name="BidDate" Type="DateTime" Precision="3" />
+          <Property Name="PriceBid" Type="Double" />
         </EntityType>
         <EntityType Name="ProductKicked">
           <Key>
@@ -1310,10 +1315,10 @@
           <EntitySetMapping Name="BidHistories">
             <EntityTypeMapping TypeName="vanp_dbModel1.BidHistory">
               <MappingFragment StoreEntitySet="BidHistory">
+                <ScalarProperty Name="PriceBid" ColumnName="PriceBid" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PriceMax" ColumnName="PriceMax" />
                 <ScalarProperty Name="PriceCurrent" ColumnName="PriceCurrent" />
-                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="ModifiedWhen" ColumnName="ModifiedWhen" />
@@ -1425,6 +1430,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="vanp_dbModel1.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="PriceBid" ColumnName="PriceBid" />
+                <ScalarProperty Name="BidDate" ColumnName="BidDate" />
                 <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
                 <ScalarProperty Name="IsExtended" ColumnName="IsExtended" />
                 <ScalarProperty Name="IsBid" ColumnName="IsBid" />
