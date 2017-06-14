@@ -15,49 +15,49 @@
 <form method="post" action="/product/insert" class="insert-form" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-md-4">
-            <label for="productname">Tên sản phẩm <span class="lie">*</span></label>
-            <input type="text" name="ProductName" class="form-control" id="productname" placeholder="Canon">
+            <label for="productname">Tên sản phẩm</label>
+            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" placeholder="Canon" readonly>
         </div>
         <div class="form-group col-md-4">
-            <label for="desription">Mô tả <span class="lie">*</span></label>
-            <input type="text" name="ProductDescription" class="form-control" id="desription" placeholder="Nhỏ gọn....">
+            <label for="desription">Mô tả</label>
+            <input type="text" name="ProductDescription" class="form-control" id="desription" value="@Model.ProductDescription" placeholder="Nhỏ gọn...." >
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
-            <label for="pricedefault">Giá sản phẩm <span class="lie">*</span></label>
-            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" placeholder="2000000">
+            <label for="pricedefault">Giá sản phẩm</label>
+            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" value="@Model.PriceDefault" placeholder="2000000" readonly>
         </div>
         <div class="form-group col-md-4">
-            <label for="price">Giá mua ngay <span class="lie">*</span></label>
-            <input type="text" name="Price" class="form-control" id="price" placeholder="3000000">
+            <label for="price">Giá mua ngay</label>
+            <input type="text" name="Price" class="form-control" id="price" value="@Model.Price" placeholder="3000000" readonly>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
             <select>
-                <option></option>
+                <option>@Model.Category.CategoryName</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
-            <label for="image1">Hình ảnh 1 <span class="lie">*</span></label>
-            <input type="file" id="image1" name="image1" accept="image/*">
+            <label for="image1">Hình ảnh 1</label>
+            <img src="~/images/products/@Model.Id/img1.jpg" width="250" height="250"/>
         </div>
         <div class="form-group col-md-4">
-            <label for="image2">Hình ảnh 2 <span class="lie">*</span></label>
-            <input type="file" id="image2" name="image2" accept="image/*">
+            <label for="image2">Hình ảnh 2</label>
+            <img src="~/images/products/@Model.Id/img2.jpg" width="250" height="250" />
         </div>
         <div class="form-group col-md-4">
-            <label for="image3">Hình ảnh 3 <span class="lie">*</span></label>
-            <input type="file" id="image3" name="image3" accept="image/*">
+            <label for="image3">Hình ảnh 3</label>
+            <img src="~/images/products/@Model.Id/img3.jpg" width="250" height="250" />
         </div>
     </div>
     <div class="form-group">
         <label for="producttext">Mô tả chi tiết:</label>
-        <textarea name="ProductText"></textarea>
+        <textarea name="ProductText">@Model.ProductText</textarea>
     </div>
     <button type="submit" class="btn btn-default">Sửa</button>
 </form>
