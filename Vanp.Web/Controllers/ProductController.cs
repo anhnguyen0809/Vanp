@@ -16,10 +16,10 @@ namespace Vanp.Web.Controllers
         {
             return View();
         }
-        public ActionResult Products(int id)
+        public ActionResult ProductsByCategory(int id)
         {
             var products = _unitOfWork.ProductRepository.GetListByCategory(id);
-            return View(products);
+            return View("Products",products);
         }
         public ActionResult Product(int id)
         {

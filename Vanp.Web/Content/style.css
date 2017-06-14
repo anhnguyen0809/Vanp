@@ -8746,13 +8746,13 @@ ol#compare-items li.last {
 	outline: medium none;
 	padding: 5px 15px;
 	position: relative;
-	width: 100px;
+	/* width: 100px; */
 	float: left;
 	color: #333;
 	border: 1px solid #ddd;
 }
 #sort-by li li {
-	width: 100px;
+	width: 100%;
 	margin-top: 0px;
 	border-top: none;
 	border-right: none;
@@ -27873,13 +27873,13 @@ ol#compare-items li.last {
 	outline: medium none;
 	padding: 5px 15px;
 	position: relative;
-	width: 100px;
+	/* width: 100px; */
 	float: left;
 	color: #333;
 	border: 1px solid #ddd;
 }
 #sort-by li li {
-	width: 100px;
+	/* width: 100px; */
 	margin-top: 0px;
 	border-top: none;
 	border-right: none;

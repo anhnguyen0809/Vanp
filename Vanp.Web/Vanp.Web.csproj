@@ -463,7 +463,6 @@
     <Content Include="Views\Product\ViewListProduct.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
-    <Content Include="Views\Product\_Products.cshtml" />
     <Content Include="Views\Category\_CategoriesLeft.cshtml" />
   </ItemGroup>
   <ItemGroup>

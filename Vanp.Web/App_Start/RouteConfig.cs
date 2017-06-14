@@ -52,8 +52,8 @@ namespace Vanp.Web
              );
             routes.MapRoute(
              name: "Product",
-             url: "products/{id}",
-             defaults: new { controller = "Product", action = "Product" , id = UrlParameter.Optional },
+             url: "products/category/{id}",
+             defaults: new { controller = "Product", action = "ProductsByCategory", id = UrlParameter.Optional },
              namespaces: new[] { "Vanp.Web.Controllers" }
            );
             routes.MapRoute(
