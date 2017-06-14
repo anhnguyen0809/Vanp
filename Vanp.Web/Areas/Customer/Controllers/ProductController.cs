@@ -15,8 +15,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
         {
             if (!_unitOfWork.UserRepository.IsPermissionSeller(CurrentUser.Id ?? 0))
             {
-                _unitOfWork.RequestRepository.Approved(4, 2);
-                _unitOfWork.ProductRepository.Bid(17, 1, 11600000);
                 Failure = "Bạn chưa đăng ký hoặc dã hết hạn đăng sản phẩm. Vui lòng gửi yêu cầu cho chúng tôi.";
                 return Redirect("/account/sendrequest");
             }
