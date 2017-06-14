@@ -248,6 +248,8 @@
     <Property Name="IsBid" Type="Boolean" />
     <Property Name="IsExtended" Type="Boolean" />
     <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="BidDate" Type="DateTime" Precision="3" />
+    <Property Name="PriceBid" Type="Double" />
     <NavigationProperty Name="BidHistories" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="Product" ToRole="BidHistory" />
     <NavigationProperty Name="Category" Relationship="vanp_dbModel1.FK_Product_Category" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Product_User" FromRole="Product" ToRole="User" />
@@ -257,8 +259,6 @@
     <NavigationProperty Name="ProductKickeds" Relationship="vanp_dbModel1.FK_ProductKicked_Product" FromRole="Product" ToRole="ProductKicked" />
     <NavigationProperty Name="Votes" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Product" ToRole="Vote" />
     <NavigationProperty Name="Wishlists" Relationship="vanp_dbModel1.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
-    <Property Name="BidDate" Type="DateTime" Precision="3" />
-    <Property Name="PriceBid" Type="Double" />
   </EntityType>
   <EntityType Name="ProductKicked">
     <Key>

@@ -21,5 +21,6 @@ namespace Vanp.DAL
         User GetByUserName(string userName);
         User GetByEmail(string email);
         User GetByUserNameOrEmail(string userNameOrEmail);
+        bool IsPermissionSeller(int userId);
     }
 }

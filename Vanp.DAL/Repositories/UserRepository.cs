@@ -108,7 +108,7 @@ namespace Vanp.DAL
             return _dbSet.FirstOrDefault(o => o.Email.ToUpper().Equals(email.ToUpper()));
         }
 
-        public bool HasPermissionSeller(int userId)
+        public bool IsPermissionSeller(int userId)
         {
             var user = this.GetById(userId);
             if (user != null)
@@ -123,9 +123,10 @@ namespace Vanp.DAL
                         }
                         else
                         {
-                            var userRole = user.UserRoles.FirstOrDefault(o => o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
+                            var userRole = _context.UserRoles.FirstOrDefault(o => o.UserId == userId && o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
                             if (userRole != null)
                             {
+                                userRole.ModifiedWhen = DateTime.Now;
                                 userRole.Enable = false;
                                 this.SaveChanges();
                             }

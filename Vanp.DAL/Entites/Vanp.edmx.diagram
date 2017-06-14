@@ -6,20 +6,20 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ac060ffa016a46c08526fe743e467449" Name="Diagram1" ZoomLevel="13">
         <EntityTypeShape EntityType="vanp_dbModel1.BidHistory" Width="1.5" PointX="10.5" PointY="10.125" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Category" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Category" Width="1.5" PointX="6" PointY="5" />
         <EntityTypeShape EntityType="vanp_dbModel1.MailContent" Width="1.5" PointX="15" PointY="1" />
         <EntityTypeShape EntityType="vanp_dbModel1.MailType" Width="1.5" PointX="12.75" PointY="1.25" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Menu" Width="1.5" PointX="12.75" PointY="5.75" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Menu" Width="1.5" PointX="12.75" PointY="14.75" />
         <EntityTypeShape EntityType="vanp_dbModel1.Message" Width="1.5" PointX="8" PointY="1" />
         <EntityTypeShape EntityType="vanp_dbModel1.MessageType" Width="1.5" PointX="5.75" PointY="1.125" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Product" Width="1.5" PointX="5.25" PointY="8" />
-        <EntityTypeShape EntityType="vanp_dbModel1.ProductKicked" Width="1.5" PointX="7.5" PointY="15.125" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Product" Width="1.5" PointX="8.25" PointY="7.875" />
+        <EntityTypeShape EntityType="vanp_dbModel1.ProductKicked" Width="1.5" PointX="10.5" PointY="15.125" />
         <EntityTypeShape EntityType="vanp_dbModel1.Request" Width="1.5" PointX="0.75" PointY="10" />
-        <EntityTypeShape EntityType="vanp_dbModel1.RequestType" Width="1.5" PointX="12.75" PointY="10.75" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Role" Width="1.5" PointX="6" PointY="19.375" />
+        <EntityTypeShape EntityType="vanp_dbModel1.RequestType" Width="1.5" PointX="12.75" PointY="5.75" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Role" Width="1.5" PointX="3" PointY="3.375" />
         <EntityTypeShape EntityType="vanp_dbModel1.User" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="vanp_dbModel1.UserRole" Width="1.5" PointX="8.25" PointY="10.125" />
-        <EntityTypeShape EntityType="vanp_dbModel1.Vote" Width="1.5" PointX="7.5" PointY="5" />
+        <EntityTypeShape EntityType="vanp_dbModel1.UserRole" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="vanp_dbModel1.Vote" Width="1.5" PointX="13.5" PointY="10" />
         <EntityTypeShape EntityType="vanp_dbModel1.Wishlist" Width="1.5" PointX="10.5" PointY="5.25" />
         <AssociationConnector Association="vanp_dbModel1.FK_BidHistory_Product" />
         <AssociationConnector Association="vanp_dbModel1.FK_BidHistory_User" />
