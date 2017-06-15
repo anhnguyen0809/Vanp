@@ -46,6 +46,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.DateFrom = DateTime.Now;
                 p.DateTo = DateTime.Now.AddDays(7);
                 p.PriceStep = 100000;
+                p.CategoryId = pro.CategoryId;
                 p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 p.ProductName = pro.ProductName;
                 p.ProductDescription = pro.ProductDescription;
@@ -78,7 +79,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult Update(int id)
         {
-            return View(_unitOfWork.ProductRepository.GetById(id););
+            return View(_unitOfWork.ProductRepository.GetById(id));
         }
         
         [HttpPost]
