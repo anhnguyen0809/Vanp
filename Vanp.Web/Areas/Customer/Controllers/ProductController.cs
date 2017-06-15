@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
+using Vanp.Web.Areas.Customer.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
@@ -25,7 +26,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Insert(Product pro, HttpPostedFileBase image1, HttpPostedFileBase image2, HttpPostedFileBase image3)
+        public ActionResult Insert(ProductModel pro, HttpPostedFileBase image1, HttpPostedFileBase image2, HttpPostedFileBase image3)
         {
             if (!_unitOfWork.UserRepository.IsPermissionSeller(CurrentUser.Id ?? 0))
             {
@@ -34,9 +35,9 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             else
             {
+                Product p = new Product();
                 pro.Enable = true;
                 pro.BidCount = 0;
-                pro.Order = 1;
                 pro.ModifiedWhen = DateTime.Now;
                 pro.CreatedWhen = DateTime.Now;
                 pro.CreatedBy = CurrentUser.Id;
