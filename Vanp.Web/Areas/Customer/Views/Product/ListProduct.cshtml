@@ -1,4 +1,5 @@
-﻿
+﻿@using Vanp.DAL.Entites
+@model List<Product>
 @{
     ViewBag.Title = "ListProduct";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
@@ -11,38 +12,48 @@
         }
     </style>
 }
-<div class="table-responsive">
-    <table class="table product-table">
+<div class="table-responsive ">
+    <table class="table product-table col-md-12">
         <thead>
             <tr>
-                <th>Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Giá bán ngay</th>
-                <th>Ngày đăng</th>
-                <th>Ngày hết hạn</th>
-                <th></th>
+                <th class="col-md-1">Hình ảnh</th>
+                <th class="col-md-2">Tên sản phẩm</th>
+                <th class="col-md-2">Giá</th>
+                <th class="col-md-2">Giá bán ngay</th>
+                <th class="col-md-2">Ngày đăng</th>
+                <th class="col-md-2">Ngày hết hạn</th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">
-                    <img src="~/images/products/1/img1.jpg" width="200" height="200">
-                </th>
-                <td>
-                    <h5><strong>Sportswear</strong></h5>
-                    <p class="text-muted">by FifeSteps</p>
-                </td>
-                <td>100000000</td>
-                <td>100000000</td>
-                <td>200 $</td>
-                <td>200 $</td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Remove item">
-                        X
-                    </button>
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        <img src="~/images/products/@item.Id/img1.jpg" width="120" height="120">
+                    </th>
+                    <td>
+                        <h5><strong>@item.ProductName</strong></h5>
+                    </td>
+                    <td>
+                        <h5><strong>@string.Format("{0:0,0}",item.PriceDefault)</strong></h5>
+                    </td>
+                    <td>
+                        <h5><strong>@string.Format("{0:0,0}", item.Price)</strong></h5>
+                    </td>
+                    <td>
+                        <h5><strong>@item.DateFrom</strong></h5>
+                    </td>
+                    <td>
+                        <h5><strong>@item.DateTo</strong></h5>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-primary" title="Edit">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

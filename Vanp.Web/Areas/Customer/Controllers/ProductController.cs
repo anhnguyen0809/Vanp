@@ -72,7 +72,12 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult ListProduct()
         {
-            return View();
+            int userId = Convert.ToInt32(CurrentUser.Id);
+            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId));
+        }
+        public ActionResult Update()
+        {
+            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId));
         }
         #region Bid
         [HttpPost]

@@ -513,6 +513,9 @@
     <Content Include="images\products\1\img1.jpg" />
     <Content Include="images\products\1\img2.jpg" />
     <Content Include="images\products\1\img3.jpg" />
+    <Content Include="images\products\3\img1.jpg" />
+    <Content Include="images\products\3\img2.jpg" />
+    <Content Include="images\products\3\img3.jpg" />
     <Content Include="images\products\product1.jpg" />
     <Content Include="images\products\product10.jpg" />
     <Content Include="images\products\product11.jpg" />
