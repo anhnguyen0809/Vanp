@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -88,7 +89,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
             _unitOfWork.ProductRepository.Update(p);
-            _context.SaveChanges();
+            _unitOfWork.Save();
             return Redirect("/account/product/list");
         }
         #region Bid

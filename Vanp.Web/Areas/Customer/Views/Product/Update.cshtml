@@ -13,6 +13,7 @@
 }
 <form method="post" action="/account/product/update" class="insert-form" enctype="multipart/form-data">
     <div class="row">
+        <input name="Id" value="@Model.Id" type="hidden"/>
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm </label>
             <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" readonly>
