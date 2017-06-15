@@ -45,9 +45,12 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.ModifiedBy = CurrentUser.Id;
                 p.DateFrom = DateTime.Now;
                 p.DateTo = DateTime.Now.AddDays(7);
+                p.Price = pro.Price;
+                p.PriceStep = 100000;
+                p.ProductImagePath = "img1.jpg";
+                p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 p.ProductName = pro.ProductName;
                 p.Price = pro.Price;
-                p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 _unitOfWork.ProductRepository.Insert(p);
                 _unitOfWork.Save();
                 var spDirPath = Server.MapPath("~/images/products");
