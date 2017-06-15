@@ -3,12 +3,19 @@
     ViewBag.Title = "ListProduct";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
 }
-
+@section style{
+    <style type="text/css">
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}
 <div class="table-responsive">
     <table class="table product-table">
         <thead>
             <tr>
-                <th></th>
+                <th>Hình ảnh</th>
                 <th>Tên sản phẩm</th>
                 <th>Giá</th>
                 <th>Giá bán ngay</th>
@@ -20,14 +27,14 @@
         <tbody>
             <tr>
                 <th scope="row">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/shoes.jpg" alt="" class="img-fluid" width="100" height="100">
+                    <img src="~/images/products/1/img1.jpg" width="200" height="200">
                 </th>
                 <td>
                     <h5><strong>Sportswear</strong></h5>
                     <p class="text-muted">by FifeSteps</p>
                 </td>
                 <td>100000000</td>
-                <td>38</td>
+                <td>100000000</td>
                 <td>200 $</td>
                 <td>200 $</td>
                 <td>
