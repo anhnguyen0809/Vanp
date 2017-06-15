@@ -3,9 +3,12 @@
     ViewBag.Title = "_CustomerLayout";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/layout/css/layout.css" rel="stylesheet" />
-<link href="~/Content/layout/themes/light.css" rel="stylesheet" />
-@RenderSection("css",required:false)
+@section style
+{
+    <link href="~/Content/layout/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/layout/themes/light.css" rel="stylesheet" />
+    @RenderSection("style", false);
+}
 <div class="page-container">
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
@@ -52,13 +55,13 @@
             </li>
 
             <li class="nav-item  ">
-                <a href="/customer/listproduct" class="nav-link nav-toggle">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-heart"></i>
                     <span class="title">Quản Lý Sản Phẩm</span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="/product/insert" class="nav-link nav-toggle">
+                <a href="/account/product/insert" class="nav-link nav-toggle">
                     <i class="fa fa-buysellads"></i>
                     <span class="title">Đăng bán</span>
                 </a>
@@ -106,7 +109,6 @@
         </div>
 
     </div>
-</div>
 </div>
 @section Scripts
 {

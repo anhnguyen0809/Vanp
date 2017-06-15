@@ -1,14 +1,26 @@
-﻿@using Vanp.DAL.Entites
-@model Product
+﻿
 @{
     ViewBag.Title = "Trang chi tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="main-container col1-layout">
     <div class="main">
         <div class="container">
             <div class="row">
                 <!-- Breadcrumbs -->
+                <div class="breadcrumbs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul>
+                                    <li class="home"> <a href="assets/index.html" title="Go to Home Page">Home</a> <span>/</span> </li>
+                                    <li class="category1599"> <a href="assets/left_bar.html" title="">Living Room</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Breadcrumbs End -->
                 <div class="col-main">
                     <div class="container">
@@ -20,14 +32,16 @@
                                         <div class="product-img-box col-lg-5 col-sm-6 col-xs-12">
                                             <div class="new-label new-top-left"> New </div>
                                             <div class="product-image">
-                                                <div class="product-full"> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" data-zoom-image="~/images/products/@Model.Id/img1.jpg" alt="product-image" /> </div>
+                                                <div class="product-full"> <img id="product-zoom" src="assets/images/products/product7.jpg" data-zoom-image="assets/images/products/product7.jpg" alt="product-image" /> </div>
                                                 <div class="more-views">
                                                     <div class="slider-items-products">
                                                         <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                                                             <div class="slider-items slider-width-col4 block-content">
-                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="product-image" style="width:125px;height:125px" /> </a></div>
-                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img2.jpg" alt="product-image" style="width:125px;height:125px" /> </a></div>
-                                                                <div class="more-views-items"> <a> <img id="product-zoom" src="~/images/products/@Model.Id/img3.jpg" alt="product-image" style="width:125px;height:125px" /> </a></div>
+                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product7.jpg" data-zoom-image="assets/images/products/product7.jpg"> <img id="product-zoom" src="assets/images/products/product7.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product3.jpg" data-zoom-image="assets/images/products/product3.jpg"> <img id="product-zoom" src="assets/images/products/product3.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product4.jpg" data-zoom-image="assets/images/products/product4.jpg"> <img id="product-zoom" src="assets/images/products/product4.jpg" alt="product-image" /> </a></div>
+                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product5.jpg" data-zoom-image="assets/images/products/product5.jpg"> <img id="product-zoom" src="assets/images/products/product5.jpg" alt="product-image" /> </a> </div>
+                                                                <div class="more-views-items"> <a href="#" data-image="assets/images/products/product6.jpg" data-zoom-image="assets/images/products/product6.jpg"> <img id="product-zoom" src="assets/images/products/product6.jpg" alt="product-image" /> </a></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -36,8 +50,9 @@
                                             <!-- end: more-images -->
                                         </div>
                                         <div class="product-shop col-lg-7 col-sm-6 col-xs-12">
+                                            <div class="product-next-prev"> <a class="product-next" href="#"><span></span></a> <a class="product-prev" href="#"><span></span></a> </div>
                                             <div class="product-name">
-                                                <h1>@Model.ProductName</h1>
+                                                <h1>Chaise Lounge</h1>
                                             </div>
                                             <div class="ratings">
                                                 <div class="rating-box">
@@ -45,68 +60,36 @@
                                                         <div class="rating-box"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
                                                     </div>
                                                 </div>
-                                                <p class="rating-links">
-                                                    <a href="#">Đánh giá</a>
-                                                    <span class="separator">|</span>
-                                                    <a href="">@Model.Category.CategoryName</a>
-                                                </p>
+                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                                             </div>
                                             <div class="price-block">
-                                                <div class="price-box col-md-12">
-                                                    <div class="col-md-6">
-                                                        <p>
-                                                            <span class="price-label">Khá khởi điểm</span><br />
-                                                            <span id="product-price-48" class="price" style="font-size:21px">
-                                                                @string.Format("{0:0,0 đ}", Model.PriceDefault)
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    @if (Model.Price.ToString() == string.Empty)
-                                                    {
-                                                        <div class="col-md-6">
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="col-md-6">
-                                                            <p>
-                                                                <span class="price-label">Giá mua ngay:</span><br />
-                                                                <span class="price" style="font-size:21px">
-                                                                    @string.Format("{0:0,0 đ}", Model.Price)
-                                                                </span>
-                                                            </p>
-                                                        </div>
-
-                                                    }
+                                                <div class="price-box">
+                                                    <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
+                                                    <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> $315.99 </span> </p>
+                                                    <p class="availability in-stock pull-right"><span>In Stock</span></p>
                                                 </div>
                                             </div>
                                             <div class="short-description">
-                                                <h2>Mô tả</h2>
-                                                <p>@Model.ProductDescription</p>
+                                                <h2>Quick Overview</h2>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
                                             </div>
                                             <div class="add-to-box">
                                                 <div class="add-to-cart">
                                                     <div class="pull-left">
                                                         <div class="custom pull-left">
-                                                            <input type="text" class="input-text qty" maxlength="30" style="width:200px" id="qty" name="qty">
+                                                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                                                            <input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
+                                                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                                                         </div>
                                                     </div>
-                                                    <button class="button btn-cart" title="Add to Cart" type="button">Đặt giá</button>
+                                                    <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="button">Add to Cart</button>
                                                 </div>
                                                 <div class="email-addto-box">
                                                     <ul class="add-to-links">
-                                                        <li>
-                                                            <a class="link-wishlist" href="assets/wishlist.html">
-                                                                <span>Add to Wishlist</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            
-                                                            <a class="link-compare" href="assets/compare.html">
-                                                                <i class="fa fa-heartbeat"></i>
-                                                            </a>
-                                                        </li>
+                                                        <li> <a class="link-wishlist" href="assets/wishlist.html"><span>Add to Wishlist</span></a></li>
+                                                        <li><span class="separator">|</span> <a class="link-compare" href="assets/compare.html"><span>Add to Compare</span></a></li>
                                                     </ul>
+                                                    <p class="email-friend"><a href="#" class=""><span>Email to a Friend</span></a></p>
                                                 </div>
                                             </div>
                                             <div class="social">
@@ -131,197 +114,202 @@
                     <div class="product-collateral col-lg-12 col-sm-12 col-xs-12">
                         <div class="add_info">
                             <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                                <li class="active"> <a href="#product_tabs_description" data-toggle="tab"> Mô tả chi tiết </a> </li>
-                                <li><a href="#product_tabs_tags" data-toggle="tab">Thông tin khác</a></li>
-                                @*<li> <a href="#reviews_tabs" data-toggle="tab">Reviews</a> </li>
-                                    <li> <a href="#product_tabs_custom" data-toggle="tab">Custom Tab</a> </li>
-                                    <li> <a href="#product_tabs_custom1" data-toggle="tab">Custom Tab1</a> </li>*@
+                                <li class="active"> <a href="#product_tabs_description" data-toggle="tab"> Product Description </a> </li>
+                                <li><a href="#product_tabs_tags" data-toggle="tab">Tags</a></li>
+                                <li> <a href="#reviews_tabs" data-toggle="tab">Reviews</a> </li>
+                                <li> <a href="#product_tabs_custom" data-toggle="tab">Custom Tab</a> </li>
+                                <li> <a href="#product_tabs_custom1" data-toggle="tab">Custom Tab1</a> </li>
                             </ul>
                             <div id="productTabContent" class="tab-content">
                                 <div class="tab-pane fade in active" id="product_tabs_description">
                                     <div class="std">
-                                        <p>@Html.Raw(Model.ProductText)</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="product_tabs_tags">
                                     <div class="box-collateral box-tags">
                                         <div class="tags">
-                                            <ul>
-                                                <li>Ngày đăng bán: @Model.DateFrom</li>
-                                                <li>Ngày hết hạn: @Model.DateTo</li>
-                                                <li>Số lượt đấu giá: @Model.BidCount</li>
-                                            </ul>
+                                            <form id="addTagForm" action="#" method="get">
+                                                <div class="form-add-tags">
+                                                    <label for="productTagName">Add Tags:</label>
+                                                    <div class="input-box">
+                                                        <input class="input-text" name="productTagName" id="productTagName" type="text">
+                                                        <button type="button" title="Add Tags" class=" button btn-add" onClick="submitTagForm()"> <span>Add Tags</span> </button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-
+                                        <p class="note">Use spaces to separate tags. Use single quotes (') for phrases.</p>
                                     </div>
                                 </div>
-                                @*<div class="tab-pane fade" id="reviews_tabs">
-                                        <div class="box-collateral box-reviews" id="customer-reviews">
-                                            <div class="box-reviews1">
-                                                <div class="form-add">
-                                                    <form id="review-form" method="post" action="http://www.themesmart.net/review/product/post/id/176/">
-                                                        <h3>Write Your Own Review</h3>
-                                                        <fieldset>
-                                                            <h4>How do you rate this product? <em class="required">*</em></h4>
-                                                            <span id="input-message-box"></span>
-                                                            <table id="product-review-table" class="data-table">
-                                                                <colgroup>
-                                                                    <col>
-                                                                    <col width="1">
-                                                                    <col width="1">
-                                                                    <col width="1">
-                                                                    <col width="1">
-                                                                    <col width="1">
-                                                                </colgroup>
-                                                                <thead>
-                                                                    <tr class="first last">
-                                                                        <th>&nbsp;</th>
-                                                                        <th><span class="nobr">1 *</span></th>
-                                                                        <th><span class="nobr">2 *</span></th>
-                                                                        <th><span class="nobr">3 *</span></th>
-                                                                        <th><span class="nobr">4 *</span></th>
-                                                                        <th><span class="nobr">5 *</span></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr class="first odd">
-                                                                        <th>Price</th>
-                                                                        <td class="value"><input type="radio" class="radio" value="11" id="Price_1" name="ratings[3]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="12" id="Price_2" name="ratings[3]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="13" id="Price_3" name="ratings[3]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="14" id="Price_4" name="ratings[3]"></td>
-                                                                        <td class="value last"><input type="radio" class="radio" value="15" id="Price_5" name="ratings[3]"></td>
-                                                                    </tr>
-                                                                    <tr class="even">
-                                                                        <th>Value</th>
-                                                                        <td class="value"><input type="radio" class="radio" value="6" id="Value_1" name="ratings[2]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="7" id="Value_2" name="ratings[2]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="8" id="Value_3" name="ratings[2]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="9" id="Value_4" name="ratings[2]"></td>
-                                                                        <td class="value last"><input type="radio" class="radio" value="10" id="Value_5" name="ratings[2]"></td>
-                                                                    </tr>
-                                                                    <tr class="last odd">
-                                                                        <th>Quality</th>
-                                                                        <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="ratings[1]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="ratings[1]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="ratings[1]"></td>
-                                                                        <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="ratings[1]"></td>
-                                                                        <td class="value last"><input type="radio" class="radio" value="5" id="Quality_5" name="ratings[1]"></td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <input type="hidden" value="" class="validate-rating" name="validate_rating">
-                                                            <div class="review1">
-                                                                <ul class="form-list">
-                                                                    <li>
-                                                                        <label class="required" for="nickname_field">Nickname<em>*</em></label>
-                                                                        <div class="input-box">
-                                                                            <input type="text" class="input-text" id="nickname_field" name="nickname">
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <label class="required" for="summary_field">Summary<em>*</em></label>
-                                                                        <div class="input-box">
-                                                                            <input type="text" class="input-text" id="summary_field" name="title">
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                <div class="tab-pane fade" id="reviews_tabs">
+                                    <div class="box-collateral box-reviews" id="customer-reviews">
+                                        <div class="box-reviews1">
+                                            <div class="form-add">
+                                                <form id="review-form" method="post" action="http://www.themesmart.net/review/product/post/id/176/">
+                                                    <h3>Write Your Own Review</h3>
+                                                    <fieldset>
+                                                        <h4>How do you rate this product? <em class="required">*</em></h4>
+                                                        <span id="input-message-box"></span>
+                                                        <table id="product-review-table" class="data-table">
+                                                            <colgroup>
+                                                                <col>
+                                                                <col width="1">
+                                                                <col width="1">
+                                                                <col width="1">
+                                                                <col width="1">
+                                                                <col width="1">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr class="first last">
+                                                                    <th>&nbsp;</th>
+                                                                    <th><span class="nobr">1 *</span></th>
+                                                                    <th><span class="nobr">2 *</span></th>
+                                                                    <th><span class="nobr">3 *</span></th>
+                                                                    <th><span class="nobr">4 *</span></th>
+                                                                    <th><span class="nobr">5 *</span></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="first odd">
+                                                                    <th>Price</th>
+                                                                    <td class="value"><input type="radio" class="radio" value="11" id="Price_1" name="ratings[3]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="12" id="Price_2" name="ratings[3]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="13" id="Price_3" name="ratings[3]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="14" id="Price_4" name="ratings[3]"></td>
+                                                                    <td class="value last"><input type="radio" class="radio" value="15" id="Price_5" name="ratings[3]"></td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <th>Value</th>
+                                                                    <td class="value"><input type="radio" class="radio" value="6" id="Value_1" name="ratings[2]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="7" id="Value_2" name="ratings[2]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="8" id="Value_3" name="ratings[2]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="9" id="Value_4" name="ratings[2]"></td>
+                                                                    <td class="value last"><input type="radio" class="radio" value="10" id="Value_5" name="ratings[2]"></td>
+                                                                </tr>
+                                                                <tr class="last odd">
+                                                                    <th>Quality</th>
+                                                                    <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="ratings[1]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="ratings[1]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="ratings[1]"></td>
+                                                                    <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="ratings[1]"></td>
+                                                                    <td class="value last"><input type="radio" class="radio" value="5" id="Quality_5" name="ratings[1]"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <input type="hidden" value="" class="validate-rating" name="validate_rating">
+                                                        <div class="review1">
+                                                            <ul class="form-list">
+                                                                <li>
+                                                                    <label class="required" for="nickname_field">Nickname<em>*</em></label>
+                                                                    <div class="input-box">
+                                                                        <input type="text" class="input-text" id="nickname_field" name="nickname">
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="required" for="summary_field">Summary<em>*</em></label>
+                                                                    <div class="input-box">
+                                                                        <input type="text" class="input-text" id="summary_field" name="title">
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="review2">
+                                                            <ul>
+                                                                <li>
+                                                                    <label class="required " for="review_field">Review<em>*</em></label>
+                                                                    <div class="input-box">
+                                                                        <textarea rows="3" cols="5" id="review_field" name="detail"></textarea>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="buttons-set">
+                                                                <button class="button submit" title="Submit Review" type="submit"><span>Submit Review</span></button>
                                                             </div>
-                                                            <div class="review2">
-                                                                <ul>
-                                                                    <li>
-                                                                        <label class="required " for="review_field">Review<em>*</em></label>
-                                                                        <div class="input-box">
-                                                                            <textarea rows="3" cols="5" id="review_field" name="detail"></textarea>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                                <div class="buttons-set">
-                                                                    <button class="button submit" title="Submit Review" type="submit"><span>Submit Review</span></button>
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </form>
-                                                </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
                                             </div>
-                                            <div class="box-reviews2">
-                                                <h3>Customer Reviews</h3>
-                                                <div class="box visible">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="review">
-                                                                <h6><a href="#">Good Product</a></h6>
-                                                                <small>Review by <span>John Doe </span>on 25/8/2016 </small>
-                                                                <div class="rating-box">
-                                                                    <div class="rating" style="width:100%;"></div>
-                                                                </div>
-                                                                <div class="review-txt"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</div>
+                                        </div>
+                                        <div class="box-reviews2">
+                                            <h3>Customer Reviews</h3>
+                                            <div class="box visible">
+                                                <ul>
+                                                    <li>
+                                                        <div class="review">
+                                                            <h6><a href="#">Good Product</a></h6>
+                                                            <small>Review by <span>John Doe </span>on 25/8/2016 </small>
+                                                            <div class="rating-box">
+                                                                <div class="rating" style="width:100%;"></div>
                                                             </div>
-                                                        </li>
-                                                        <li class="even">
-                                                            <div class="review">
-                                                                <h6><a href="#/catalog/product/view/id/60/">Superb!</a></h6>
-                                                                <small>Review by <span>John Doe</span>on 12/3/2015 </small>
-                                                                <div class="rating-box">
-                                                                    <div class="rating" style="width:100%;"></div>
-                                                                </div>
-                                                                <div class="review-txt"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book </div>
+                                                            <div class="review-txt"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="even">
+                                                        <div class="review">
+                                                            <h6><a href="#/catalog/product/view/id/60/">Superb!</a></h6>
+                                                            <small>Review by <span>John Doe</span>on 12/3/2015 </small>
+                                                            <div class="rating-box">
+                                                                <div class="rating" style="width:100%;"></div>
                                                             </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="review">
-                                                                <h6><a href="#/catalog/product/view/id/59/">Awesome Product</a></h6>
-                                                                <small>Review by <span>John Doe</span>on 28/2/2015 </small>
-                                                                <div class="rating-box">
-                                                                    <div class="rating" style="width:100%;"></div>
-                                                                </div>
-                                                                <div class="review-txt last"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book </div>
+                                                            <div class="review-txt"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="review">
+                                                            <h6><a href="#/catalog/product/view/id/59/">Awesome Product</a></h6>
+                                                            <small>Review by <span>John Doe</span>on 28/2/2015 </small>
+                                                            <div class="rating-box">
+                                                                <div class="rating" style="width:100%;"></div>
                                                             </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                            <div class="review-txt last"> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div class="clear"></div>
                                         </div>
+                                        <div class="clear"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="product_tabs_custom">
-                                        <div class="product-tabs-content-inner clearfix">
-                                            <p>
-                                                <strong>Lorem Ipsum</strong><span>
-                                                    &nbsp;is
-                                                    simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                                    has been the industry's standard dummy text ever since the 1500s, when
-                                                    an unknown printer took a galley of type and scrambled it to make a type
-                                                    specimen book. It has survived not only five centuries, but also the
-                                                    leap into electronic typesetting, remaining essentially unchanged. It
-                                                    was popularised in the 1960s with the release of Letraset sheets
-                                                    containing Lorem Ipsum passages, and more recently with desktop
-                                                    publishing software like Aldus PageMaker including versions of Lorem
-                                                    Ipsum.
-                                                </span>
-                                            </p>
-                                        </div>
+                                </div>
+                                <div class="tab-pane fade" id="product_tabs_custom">
+                                    <div class="product-tabs-content-inner clearfix">
+                                        <p>
+                                            <strong>Lorem Ipsum</strong><span>
+                                                &nbsp;is
+                                                simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                                has been the industry's standard dummy text ever since the 1500s, when
+                                                an unknown printer took a galley of type and scrambled it to make a type
+                                                specimen book. It has survived not only five centuries, but also the
+                                                leap into electronic typesetting, remaining essentially unchanged. It
+                                                was popularised in the 1960s with the release of Letraset sheets
+                                                containing Lorem Ipsum passages, and more recently with desktop
+                                                publishing software like Aldus PageMaker including versions of Lorem
+                                                Ipsum.
+                                            </span>
+                                        </p>
                                     </div>
-                                    <div class="tab-pane fade" id="product_tabs_custom1">
-                                        <div class="product-tabs-content-inner clearfix">
-                                            <p>
-                                                <strong> Comfortable </strong><span>
-                                                    &nbsp;preshrunk shirts. Highest Quality Printing.  6.1 oz. 100% preshrunk heavyweight cotton Shoulder-to-shoulder taping Double-needle sleeves and bottom hem
+                                </div>
+                                <div class="tab-pane fade" id="product_tabs_custom1">
+                                    <div class="product-tabs-content-inner clearfix">
+                                        <p>
+                                            <strong> Comfortable </strong><span>
+                                                &nbsp;preshrunk shirts. Highest Quality Printing.  6.1 oz. 100% preshrunk heavyweight cotton Shoulder-to-shoulder taping Double-needle sleeves and bottom hem
 
-                                                    Lorem Ipsumis
-                                                    simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                                    has been the industry's standard dummy text ever since the 1500s, when
-                                                    an unknown printer took a galley of type and scrambled it to make a type
-                                                    specimen book. It has survived not only five centuries, but also the
-                                                    leap into electronic typesetting, remaining essentially unchanged. It
-                                                    was popularised in the 1960s with the release of Letraset sheets
-                                                    containing Lorem Ipsum passages, and more recently with desktop
-                                                    publishing software like Aldus PageMaker including versions of Lorem
-                                                    Ipsum.
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>*@
+                                                Lorem Ipsumis
+                                                simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                                has been the industry's standard dummy text ever since the 1500s, when
+                                                an unknown printer took a galley of type and scrambled it to make a type
+                                                specimen book. It has survived not only five centuries, but also the
+                                                leap into electronic typesetting, remaining essentially unchanged. It
+                                                was popularised in the 1960s with the release of Letraset sheets
+                                                containing Lorem Ipsum passages, and more recently with desktop
+                                                publishing software like Aldus PageMaker including versions of Lorem
+                                                Ipsum.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -337,7 +325,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product10.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product10.jpg"> </a>
                                                                 <div class="new-label new-top-right">new</div>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
@@ -365,13 +353,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- Item -->
                                             <div class="item">
                                                 <div class="item-inner">
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product11.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product11.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -405,7 +394,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="~/images/products/product12.jpg"> </a>
+                                                                <a class="product-image" title="Sample" href="product_detail.html"> <img alt="Sample" src="assets/images/products/product12.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -433,12 +422,13 @@
                                                 </div>
                                             </div>
                                             <!-- End Item -->
+
                                             <div class="item">
                                                 <div class="item-inner">
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Omega J8004 Juicer" href="product_detail.html"> <img alt="sample" src="~/images/products/product8.jpg"> </a>
+                                                                <a class="product-image" title="Omega J8004 Juicer" href="product_detail.html"> <img alt="sample" src="assets/images/products/product8.jpg"> </a>
                                                                 <div class="new-label new-top-right">new</div>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
@@ -466,13 +456,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- Item -->
                                             <div class="item">
                                                 <div class="item-inner">
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="HI114 Dry Iron" href="product_detail.html"> <img alt="HI114 Dry Iron" src="~/images/products/product9.jpg"> </a>
+                                                                <a class="product-image" title="HI114 Dry Iron" href="product_detail.html"> <img alt="HI114 Dry Iron" src="assets/images/products/product9.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -505,7 +496,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="Sample product" href="product_detail.html"> <img alt="Sample product" src="~/images/products/product16.jpg"> </a>
+                                                                <a class="product-image" title="Sample product" href="product_detail.html"> <img alt="Sample product" src="assets/images/products/product16.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"><i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -538,7 +529,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" title="sample" href="product_detail.html"> <img alt="sample" src="~/images/products/product10.jpg"> </a>
+                                                                <a class="product-image" title="sample" href="product_detail.html"> <img alt="sample" src="assets/images/products/product10.jpg"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="assets/quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     <ul class="add-to-links">
@@ -566,6 +557,7 @@
                                                 </div>
                                             </div>
                                             <!-- End Item -->
+
                                         </div>
                                     </div>
                                 </div>
@@ -577,8 +569,4 @@
         </div>
     </div>
 </section>
-<!-- Main Container End -->
-@section scripts{
-    <script src="~/Scripts/apps/validate-addpro.js"></script>
-
-}
+<!-- Main Container End --> 

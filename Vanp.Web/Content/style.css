@@ -8746,13 +8746,13 @@ ol#compare-items li.last {
 	outline: medium none;
 	padding: 5px 15px;
 	position: relative;
-	width: 100px;
+	/* width: 100px; */
 	float: left;
 	color: #333;
 	border: 1px solid #ddd;
 }
 #sort-by li li {
-	width: 100px;
+	width: 100%;
 	margin-top: 0px;
 	border-top: none;
 	border-right: none;
@@ -9492,11 +9492,11 @@ ol#compare-items li.last {
 	padding: 0;
 }
 .product-view .product-shop .old-price .price {
-	font-size: 21px;
+	font-size: 24px;
 	font-weight: 300
 }
 .product-view .product-shop .price {
-	font-size: 21px;
+	font-size: 28px;
 	color: #e33b3f;
 	font-weight: bold;
 }
@@ -27873,13 +27873,13 @@ ol#compare-items li.last {
 	outline: medium none;
 	padding: 5px 15px;
 	position: relative;
-	width: 100px;
+	/* width: 100px; */
 	float: left;
 	color: #333;
 	border: 1px solid #ddd;
 }
 #sort-by li li {
-	width: 100px;
+	/* width: 100px; */
 	margin-top: 0px;
 	border-top: none;
 	border-right: none;

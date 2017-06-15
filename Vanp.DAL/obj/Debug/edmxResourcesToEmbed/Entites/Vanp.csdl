@@ -113,10 +113,10 @@
     <Property Name="ModifiedWhen" Type="DateTime" Precision="3" />
     <Property Name="Order" Type="Int32" />
     <Property Name="Enable" Type="Boolean" />
-    <Property Name="BidPrice" Type="Double" />
     <Property Name="PriceCurrent" Type="Double" />
     <Property Name="PriceMax" Type="Double" />
     <Property Name="ProductId" Type="Int32" />
+    <Property Name="PriceBid" Type="Double" />
     <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="BidHistory" ToRole="Product" />
     <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_BidHistory_User" FromRole="BidHistory" ToRole="User" />
   </EntityType>
@@ -248,6 +248,8 @@
     <Property Name="IsBid" Type="Boolean" />
     <Property Name="IsExtended" Type="Boolean" />
     <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="BidDate" Type="DateTime" Precision="3" />
+    <Property Name="PriceBid" Type="Double" />
     <NavigationProperty Name="BidHistories" Relationship="vanp_dbModel1.FK_BidHistory_Product" FromRole="Product" ToRole="BidHistory" />
     <NavigationProperty Name="Category" Relationship="vanp_dbModel1.FK_Product_Category" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Product_User" FromRole="Product" ToRole="User" />
@@ -290,9 +292,9 @@
     <Property Name="Approved" Type="Boolean" />
     <Property Name="ApprovedBy" Type="Int32" />
     <Property Name="RequestTypeId" Type="Int32" />
-    <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
     <Property Name="DateFrom" Type="DateTime" Precision="3" />
     <Property Name="DateTo" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="vanp_dbModel1.FK_User_Request" FromRole="Request" ToRole="User" />
   </EntityType>
   <EntityType Name="RequestType">
     <Key>

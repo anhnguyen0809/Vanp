@@ -30,13 +30,16 @@
                                 <div class="slider-items-products">
                                     <div id="category-desc-slider" class="product-flexslider hidden-buttons">
                                         <div class="slider-items slider-width-col1 owl-carousel owl-theme">
+
                                             <!-- Item -->
                                             <div class="item"> <a href="#"><img alt="" src="~/images/cat-banner-1.jpg"></a> </div>
                                             <!-- End Item -->
                                             <!-- Item -->
                                             <div class="item">
                                                 <a href="#"><img alt="" src="~/images/cat-banner-2.jpg"></a>
+
                                                 <!-- End Item -->
+
                                             </div>
                                         </div>
                                     </div>
@@ -101,9 +104,7 @@
                                                     <div class="productborder">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product_image image-wrapper" href="@Url.Action("DetailProduct", "Product", new { proID = item.Id })">
-                                                                    <img class="front_image" alt="Pro Image" src="~/images/products/@item.Id/img1.jpg" width="264" height="230">
-                                                                </a>
+                                                                <a class="product_image image-wrapper" href="@Url.Action("DetailProduct", "Product", new { proID = item.Id })"> <img class="front_image" alt="Pro Image" src="~/images/products/@item.ProductImagePath" width="264" height="230"> </a>
                                                                 <div class="quickview top-right"> <a class="link-quickview" href="@Url.Action("DetailProduct","Product", new { proID = item.Id })"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                                                                 <div class="box-hover">
                                                                     @*<ul class="add-to-links">
@@ -174,6 +175,7 @@
                                                 </ul>
                                                 <!--level0-->
                                             </li>
+
                                             <!--level 0-->
                                             <li>
                                                 <a href="left_bar.html">Dinning Room</a> <span class="subDropdown plus"></span>

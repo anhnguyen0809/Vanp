@@ -107,31 +107,32 @@ namespace Vanp.DAL
         {
             return _dbSet.FirstOrDefault(o => o.Email.ToUpper().Equals(email.ToUpper()));
         }
-        /// <summary>
-        /// Kiểm tra người dùng được phép đầu giá sản phẩm 
-        /// </summary>
-        /// <param name="userId">id người dùng</param>
-        /// <param name="productId">id sản phẩm</param>
-        /// <returns></returns>
-        public bool CheckPermisstionBid(int userId, int productId)
+
+        public bool IsPermissionSeller(int userId)
         {
             var user = this.GetById(userId);
             if (user != null)
             {
-                var voteUp = (user.VoteUp ?? 0) + 1;
-                var voteDown = (user.VoteDown ?? 0) + 1;
-                var percentVote = voteUp / voteDown;
-                //Kiểm tra tỉ lệ điểm đánh giá (+/+-) hơn 80% thì mới cho phép ra giá
-                if (percentVote >= 0.8)
+                if (user.RequestId.HasValue)
                 {
-                    //Kiểm tra user này có bị kích khỏi sản phẩm bởi người đăng hay không
-                    var bProductKicked = _context.ProductKickeds.Any(o => o.ProductId == productId && o.UserKickedId == userId);
-                    if (!bProductKicked)
+                    if (user.Request.Approved.HasValue && user.Request.Approved.Value)
                     {
-                        return true;
+                        if (user.Request.DateTo.HasValue && user.Request.DateTo.Value.Date > DateTime.Now.Date)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            var userRole = user.UserRoles.FirstOrDefault(o => o.RoleId == (int)Utils.Role.Seller && o.Enable == true);
+                            if (userRole != null)
+                            {
+                                userRole.ModifiedWhen = DateTime.Now;
+                                userRole.Enable = false;
+                                this.SaveChanges();
+                            }
+                        }
                     }
                 }
-                return false;
             }
             return false;
         }

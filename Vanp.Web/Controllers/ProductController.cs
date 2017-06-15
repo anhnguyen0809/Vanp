@@ -12,15 +12,19 @@ namespace Vanp.Web.Controllers
     [AllowAnonymous]
     public class ProductController : BaseController
     {
-        [AllowAnonymous]
-        // GET: Product
-        public ActionResult ViewListProduct()
+        public ActionResult Products()
         {
-            return View(_unitOfWork.ProductRepository.GetListByProduct());
+            return View();
         }
-        public ActionResult DetailProduct(int proID)
+        public ActionResult ProductsByCategory(int id)
         {
-            return View(_unitOfWork.ProductRepository.GetById(proID));
+            var products = _unitOfWork.ProductRepository.GetListByCategory(id);
+            return View("Products",products);
         }
+        public ActionResult Product(int id)
+        {
+            return View();
+        }
+    
     }
 }

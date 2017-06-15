@@ -32,8 +32,6 @@ public partial class BidHistory
 
     public Nullable<bool> Enable { get; set; }
 
-    public Nullable<double> BidPrice { get; set; }
-
     public Nullable<double> PriceCurrent { get; set; }
 
     public Nullable<double> PriceMax { get; set; }

@@ -42,12 +42,26 @@ namespace Vanp.Web
               url: "forgotpassword",
               defaults: new { controller = "Account", action = "ForgotPassword" }
             );
+
+            #endregion
+            routes.MapRoute(
+               name: "Products",
+               url: "products",
+               defaults: new { controller = "Product", action = "Products" },
+               namespaces: new[] { "Vanp.Web.Controllers" }
+             );
+            routes.MapRoute(
+             name: "Product",
+             url: "products/category/{id}",
+             defaults: new { controller = "Product", action = "ProductsByCategory", id = UrlParameter.Optional },
+             namespaces: new[] { "Vanp.Web.Controllers" }
+           );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Vanp.Web.Controllers" }
             );
-            #endregion
         }
     }
 }

@@ -11,48 +11,45 @@ namespace Vanp.Web.Areas.Customer
                 return "Customer";
             }
         }
-        
+
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                "Profile",
                "account/profile",
                new { action = "UserProfile", controller = "User", area = "Customer" }
-            );
+           );
             context.MapRoute(
               "Doashboard",
               "account",
               new { action = "Index", controller = "User", area = "Customer" }
+          );
+            context.MapRoute(
+                name: "VerifyCode",
+                url: "account/verifycode",
+                defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
             );
             context.MapRoute(
-            name: "VerifyCode",
-            url: "account/verifycode",
-            defaults: new { controller = "User", action = "VerifyCode", area = "Customer" }
-            );
+                  name: "SendRequest",
+                  url: "account/sendrequest",
+                  defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
+              );
             context.MapRoute(
-            name: "SendRequest",
-            url: "account/sendrequest",
-            defaults: new { controller = "User", action = "SendRequest", area = "Customer" }
-            );
+                 name: "InsertProduct",
+                 url: "account/product/insert",
+                 defaults: new { controller = "Product", action = "Insert", area = "Customer" },
+                 namespaces:  new[] { "Vanp.Web.Areas.Customer.Controllers" }
+             );
             context.MapRoute(
-            name: "InsertProduct",
-            url: "product/insert",
-            defaults: new { controller = "CProduct", action = "Insert", area = "Customer" }
-            );
-            context.MapRoute(
-            name: "ListProduct",
-            url: "customer/listproduct",
-            defaults: new { controller = "CProduct", action = "CListProduct", area = "Customer" }
-            );
-            context.MapRoute(
-            name: "update",
-            url: "customer/product/update/{id}",
-            defaults: new { controller = "CProduct", action = "Update", area = "Customer",id=UrlParameter.Optional}
+                name: "BidProduct",
+                url: "product/bid",
+                defaults: new { controller = "Product", action = "Bid", area = "Customer" }
             );
             context.MapRoute(
                 "Customer_default",
                 "Customer/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new [] { "Vanp.Web.Areas.Customer.Controllers" }
             );
 
         }

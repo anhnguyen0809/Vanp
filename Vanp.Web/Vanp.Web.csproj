@@ -206,18 +206,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\Controllers\CProductController.cs" />
+    <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
-    <Compile Include="Areas\Customer\Models\ProductModel.cs" />
     <Compile Include="Code\CaptchaHelper.cs" />
     <Compile Include="Code\CatHelper.cs" />
     <Compile Include="Code\Controllers\AuthController.cs" />
     <Compile Include="Code\Controllers\BaseController.cs" />
     <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\Services\Service.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Category\CategoryModel.cs" />
+    <Compile Include="Models\Product\ProductsModel.cs" />
+    <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Request\RequestModel.cs" />
     <Compile Include="Models\User\SendRequestModel.cs" />
     <Compile Include="Models\User\AccountModel.cs" />
@@ -361,6 +364,9 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\jquery.mobile-menu.css" />
+    <Content Include="Content\layout\css\layout.css" />
+    <Content Include="Content\layout\js\layout.js" />
+    <Content Include="Content\layout\themes\light.css" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\owl.theme.css" />
     <Content Include="Content\revslider.css" />
@@ -504,9 +510,9 @@
     <Content Include="images\portlet-reload-icon.png" />
     <Content Include="images\portlet-remove-icon-white.png" />
     <Content Include="images\portlet-remove-icon.png" />
-    <Content Include="images\products\10\img1.jpg" />
-    <Content Include="images\products\10\img2.jpg" />
-    <Content Include="images\products\10\img3.jpg" />
+    <Content Include="images\products\1\img1.jpg" />
+    <Content Include="images\products\1\img2.jpg" />
+    <Content Include="images\products\1\img3.jpg" />
     <Content Include="images\products\product1.jpg" />
     <Content Include="images\products\product10.jpg" />
     <Content Include="images\products\product11.jpg" />
@@ -565,12 +571,12 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Customer\Views\User\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\_ViewStart.cshtml" />
+    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\User\VerifyCode.cshtml" />
     <Content Include="Areas\Customer\Views\User\UserProfile.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_ProfileLayout.cshtml" />
     <Content Include="Areas\Customer\Views\User\SendRequest.cshtml" />
-    <Content Include="Areas\Customer\Views\CProduct\Insert.cshtml" />
+    <Content Include="Areas\Customer\Views\Product\Insert.cshtml" />
     <Content Include="Content\bootstrap-select\css\bootstrap-select.css.map" />
     <Content Include="Content\bootstrap-select\js\bootstrap-select.js.map" />
     <Content Include="Content\tinymce\langs\readme.md" />
@@ -580,8 +586,6 @@
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Areas\Customer\Views\CProduct\CListProduct.cshtml" />
-    <Content Include="Areas\Customer\Views\CProduct\Update.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
@@ -668,12 +672,16 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Product\DetailProduct.cshtml" />
     <Content Include="Views\Product\ViewListProduct.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Category\_CategoriesLeft.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
     <Folder Include="Views\ShowProduct\" />
   </ItemGroup>
