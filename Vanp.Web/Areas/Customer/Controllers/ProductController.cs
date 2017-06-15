@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
 using Vanp.Web.Areas.Customer.Models;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
@@ -36,15 +37,18 @@ namespace Vanp.Web.Areas.Customer.Controllers
             else
             {
                 Product p = new Product();
-                pro.Enable = true;
-                pro.BidCount = 0;
-                pro.ModifiedWhen = DateTime.Now;
-                pro.CreatedWhen = DateTime.Now;
-                pro.CreatedBy = CurrentUser.Id;
-                pro.ModifiedBy = CurrentUser.Id;
-                pro.DateFrom = DateTime.Now;
-                pro.DateTo = DateTime.Now.AddDays(7);
-                _unitOfWork.ProductRepository.Insert(pro);
+                p.Enable = true;
+                p.BidCount = 0;
+                p.ModifiedWhen = DateTime.Now;
+                p.CreatedWhen = DateTime.Now;
+                p.CreatedBy = CurrentUser.Id;
+                p.ModifiedBy = CurrentUser.Id;
+                p.DateFrom = DateTime.Now;
+                p.DateTo = DateTime.Now.AddDays(7);
+                p.ProductName = pro.ProductName;
+                p.Price = pro.Price;
+                p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
+                _unitOfWork.ProductRepository.Insert(p);
                 _unitOfWork.Save();
                 var spDirPath = Server.MapPath("~/images/products");
                 var targetDirPath = Path.Combine(spDirPath, pro.Id.ToString());
