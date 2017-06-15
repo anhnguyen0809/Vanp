@@ -73,7 +73,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         public ActionResult ListProduct()
         {
             int userId = Convert.ToInt32(CurrentUser.Id);
-            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId));
+            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId).FirstOrDefault());
         }
         public ActionResult Update(int id)
         {
