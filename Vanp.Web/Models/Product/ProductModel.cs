@@ -34,13 +34,20 @@ namespace Vanp.Web.Models
         public bool IsExtended { get; set; }
         public string CreatedByName { get; set; }
         public string BidCurrentByName { get; set; }
+        public string EndTime
+        {
+            get
+            {
+                return DAL.Utils.Helper.Subtract(DateTime.Now ,DateTo ?? new DateTime());
+            }
+        }
         public ProductModel()
         {
 
         }
         public ProductModel(Product product)
         {
-            this.Id = product.Id;   
+            this.Id = product.Id;
             this.ProductName = product.ProductName;
             this.ProductDescription = product.ProductDescription;
             this.ProductText = product.ProductText;

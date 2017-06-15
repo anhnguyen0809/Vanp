@@ -2150,7 +2150,9 @@ ul#cart-sidebar {
     position: absolute;
     bottom: 20px;
 }
-
+.products-list .product-top{
+    padding-bottom: 40px;
+}
 .mini-products-list .product-image {
 	float: left;
 	padding: 0;
@@ -25816,6 +25818,7 @@ li .list {
 	width: 20%;
 }
 .products-list .product-image img {
+	max-height: 140px;
 	width: 100%;
 }
 .products-list .product-shop {

@@ -136,6 +136,7 @@
     <Compile Include="Utils\Mail\SendMail.cs" />
     <Compile Include="Utils\Random\RandomHelper.cs" />
     <Compile Include="Utils\Sercurity\Sercurity.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\Validation.cs" />
   </ItemGroup>
   <ItemGroup>

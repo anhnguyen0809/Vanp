@@ -18,6 +18,7 @@
         this.$endTime = null,
         this.$createdBy = null,
         this.$bidCurrentBy = null,
+        this.$description = null,
         this.$btnWishList = null,
         this.Id = null;
         Product.prototype.init = function (product) {
@@ -32,7 +33,7 @@
             this.$endTime = this.$element.find(".end-time");
             this.$createdBy = this.$element.find(".created-by");
             this.$bidCurrentBy = this.$element.find(".bid-current-by");
-
+            this.$description = this.$element.find(".desc");
             this.Id = product.Id;
             this.$name.html(product.ProductName);
             this.$name.attr("title", product.ProductName);
@@ -47,8 +48,9 @@
             this.$price.html(product.Price);
             this.$bidCount.html(product.BidCount);
             this.$createdBy.html(product.CreatedByName);
-            this.$bidCurrentBy.html(product.bidCurrentByName);
-
+            this.$bidCurrentBy.html(product.BidCurrentByName);
+            this.$endTime.html(product.EndTime);
+            this.$description.html(product.ProductDescription);
         }
     }
     var handleOrder = function () {
@@ -86,7 +88,7 @@
             function (data) {
                 if (data) {
                     if (data.error !== 1) {
-                        $.each(data, function (i, v) {
+                        $.each(data.data, function (i, v) {
                             var product = new Product();
                             product.init(v);
                         });
@@ -104,6 +106,7 @@
             handleOrder();
             handleSort();
             handleLoadMore();
+
         }
 
     };
