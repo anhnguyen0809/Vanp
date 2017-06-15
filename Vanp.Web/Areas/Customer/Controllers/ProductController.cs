@@ -81,13 +81,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Update(ProductModel pro,int Id)
+        public ActionResult Update(ProductModel pro)
         {
             Product p = new Product();
             p.ModifiedWhen = DateTime.Now;
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
             _unitOfWork.ProductRepository.Update(p);
+            _context.SaveChanges();
             return Redirect("/account/product/list");
         }
         #region Bid
