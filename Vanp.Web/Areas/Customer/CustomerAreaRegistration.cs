@@ -46,6 +46,11 @@ namespace Vanp.Web.Areas.Customer
                  defaults: new { controller = "Product", action = "ListProduct", area = "Customer" }
              );
             context.MapRoute(
+                name: "Update",
+                url: "account/product/update/{id}",
+                defaults: new { controller = "Product", action = "Update", area = "Customer",id=UrlParameter.Optional}
+            );
+            context.MapRoute(
                 name: "BidProduct",
                 url: "product/bid",
                 defaults: new { controller = "Product", action = "Bid", area = "Customer" }
