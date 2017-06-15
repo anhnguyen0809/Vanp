@@ -11,6 +11,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
     public class WishlistController : AuthController
     {
         // GET: Customer/WishList
+        [AjaxAuthorize]
         [HttpPost]
         public JsonResult Insert(int productId)
         {
@@ -32,6 +33,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                         ProductId = productId
                     };
                     _unitOfWork.WishlistRepository.Insert(wishList);
+                    _unitOfWork.Save();
                     return JsonSuccess(message: "Thêm vào danh sách Yêu Thích thành công.");
                 }
                 else

@@ -45,7 +45,13 @@
                 data: JSON.stringify(params),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                async: async
+                async: async,
+                success: function (data, textStatus, xhr) {
+                    console.log(xhr.status);
+                },
+                complete: function (xhr, textStatus) {
+                    console.log(xhr.status);
+                }
             });
         },
         handleAjaxGet: function (url, params, async) {
@@ -58,7 +64,10 @@
                 data: params,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                async: async
+                async: async,
+                complete: function (xhr, textStatus) {
+                    console.log(xhr.status);
+                }
             });
         },
         getViewPort: function () {
@@ -226,5 +235,11 @@
 }();
 
 $(function () {
+    $(document).ajaxError(function (e, xhr) {
+        if (xhr.status == 401)
+            window.location = "/Account/Login";
+        else if (xhr.status == 403)
+            alert("You have no enough permissions to request this resource.");
+    });
     Vanp.init();
 })

@@ -74,7 +74,7 @@
             _this.$btnWishList.off("click").on("click", addWishList)
         }
         var addWishList = function () {
-            $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Insert", _this.Id)).done(
+            $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Insert", { productId: _this.Id })).done(
               function (data) {
                   if (data) {
                       if (data.error === 1) {
