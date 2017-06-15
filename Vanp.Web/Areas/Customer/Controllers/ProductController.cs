@@ -86,13 +86,11 @@ namespace Vanp.Web.Areas.Customer.Controllers
         [ValidateInput(false)]
         public ActionResult Update(ProductModel pro,int Id)
         {
-            Product p;
-            //note: còn bị vướng
-            p = _context.Products.Where(s => s.Id == Id).FirstOrDefault();
+            Product p=_unitOfWork.ProductRepository.GetById(Id);
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
-            _context.Entry(p).State = EntityState.Modified;
-            _context.SaveChanges();
+            _unitOfWork.ProductRepository.Update(p);
+            _unitOfWork.Save();
             return Redirect("/account/product/update/"+ Id + "");
         }
         #region Bid
