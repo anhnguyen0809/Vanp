@@ -1,6 +1,6 @@
 ﻿var Products = function () {
     var dataFilter = {
-        pageSize: 10,
+        pageSize: 3,
         pageNo : 1,
         category: null,
         orderBy: "dateto",
@@ -44,15 +44,16 @@
             this.$image.find("img").attr("alt", product.ProductName);
             this.$image.find("img").attr("src", product.ProductImagePath);
 
-            this.$priceCurrent.html(product.PriceCurrent);
-            this.$price.html(product.Price);
-            this.$bidCount.html(product.BidCount);
+            this.$priceCurrent.html(numeral(product.PriceCurrent).format('0,0'));
+            this.$price.html(numeral(product.Price).format('0,0'));
+            this.$bidCount.html(numeral(product.BidCount).format('0,0'));
             this.$createdBy.html(product.CreatedByName);
             this.$bidCurrentBy.html(product.BidCurrentByName);
             this.$endTime.html(product.EndTime);
             this.$description.html(product.ProductDescription);
         }
     }
+    var positionCurrent = $(".toolbar").position();
     var handleOrder = function () {
         $("#sort-by").find(".sort-by-list").on("click", ".sort-by-item", function (e) {
             var eSortByName = $("#sort-by").find(".sort-by-name");
@@ -80,6 +81,7 @@
     var handleLoadMore = function () {
         $(".category-products .btn-load-more").on("click", function () {
             dataFilter.pageNo++;
+            positionCurrent = $(this).position();
             getProducts();
         })
     }
@@ -92,7 +94,7 @@
                             var product = new Product();
                             product.init(v);
                         });
-                        console.log(data);
+                        scrollTo(positionCurrent.left, positionCurrent.top);
                     }
                 } else {
                     alert("Lỗi kết nối!");
