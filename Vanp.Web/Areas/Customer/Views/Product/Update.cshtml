@@ -1,4 +1,5 @@
-﻿@using Vanp.Web.Code
+﻿@using Vanp.DAL.Entites
+@model Product
 @{
     ViewBag.Title = "Update";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
@@ -13,7 +14,7 @@
 }
 <form method="post" action="/account/product/update" class="insert-form" enctype="multipart/form-data">
     <div class="row">
-        <input name="Id" value="@Model.Id" type="hidden"/>
+        <input name="Id" value="@Model.Id" type="hidden" />
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm </label>
             <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" readonly>
@@ -33,31 +34,34 @@
             <input type="text" name="Price" class="form-control" id="price" value="@Model.Price" readonly>
         </div>
     </div>
-    @*<div class="row">
+    <div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="categoryid">Danh mục</label>
-                    <select>
-                        <option>@Model.Category.CategoryName</option>
-                    </select>
-                </div>
-            </div>
+            <select>
+                <option>
+                    @*@if (Model.Category != null)
+                    {
+                        @Model.Category.CategoryName
+                    }*@
+
+                    @Model.CategoryId
+                </option>
+            </select>
+
         </div>
-    </div>*@
+    </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label for="image1">Hình ảnh 1 </label><br />
-            <img src="~/images/products/@Model.Id/img1.jpg" width="200" height="200"/>
+            <img src="~/images/products/@Model.Id/img1.jpg" width="200" height="200" />
         </div>
         <div class="form-group col-md-4">
             <label for="image2">Hình ảnh 2 </label><br />
-            <img src="~/images/products/@Model.Id/img2.jpg" width="200" height="200"/>
+            <img src="~/images/products/@Model.Id/img2.jpg" width="200" height="200" />
         </div>
         <div class="form-group col-md-4">
             <label for="image3">Hình ảnh 3 </label><br />
-            <img src="~/images/products/@Model.Id/img3.jpg" width="200" height="200"/>
+            <img src="~/images/products/@Model.Id/img3.jpg" width="200" height="200" />
         </div>
     </div>
     <div class="form-group">

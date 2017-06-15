@@ -11,6 +11,7 @@ namespace Vanp.DAL
     {
         IEnumerable<Product> GetListByProduct();
         IEnumerable<Product> GetListByProductOfCus(int userId);
+
         bool isExisted(string code);
         IEnumerable<Product> GetListByCategory(int categoryId);
         /// <summary>

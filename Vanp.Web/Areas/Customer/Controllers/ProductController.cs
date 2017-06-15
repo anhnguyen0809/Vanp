@@ -78,7 +78,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult Update(int id)
         {
-            return View(_unitOfWork.ProductRepository.GetById(id));
+            return View(_unitOfWork.ProductRepository.GetById(id););
         }
         
         [HttpPost]
@@ -86,6 +86,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         public ActionResult Update(ProductModel pro,int Id)
         {
             Product p;
+            //note: còn bị vướng
             p = _context.Products.Where(s => s.Id == Id).FirstOrDefault();
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
