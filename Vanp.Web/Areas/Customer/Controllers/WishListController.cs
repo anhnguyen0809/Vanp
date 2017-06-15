@@ -11,7 +11,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
     public class WishlistController : AuthController
     {
         // GET: Customer/WishList
-        [AjaxAuthorize]
         [HttpPost]
         public JsonResult Insert(int productId)
         {

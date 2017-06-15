@@ -26,7 +26,6 @@ namespace Vanp.Web
                 response.SuppressFormsAuthenticationRedirect = true;
                 response.End();
             }
-
             base.HandleUnauthorizedRequest(filterContext);
         }
     }

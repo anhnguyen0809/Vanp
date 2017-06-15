@@ -9,6 +9,7 @@ namespace Vanp.Web
     using DAL.Entites;
     using DAL.Utils;
     using Vanp.DAL;
+
     [Authorize]
     public class AuthController : BaseController
     {
