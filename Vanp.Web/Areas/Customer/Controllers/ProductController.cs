@@ -80,8 +80,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
             return View(_unitOfWork.ProductRepository.GetById(id));
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(ProductModel pro)
         {
+            Product p = new Product();
+            p.ModifiedWhen = DateTime.Now;
+            p.ProductDescription = pro.ProductDescription;
+            p.ProductText = pro.ProductText;
+            _unitOfWork.ProductRepository.Update(p);
             return View();
         }
         #region Bid

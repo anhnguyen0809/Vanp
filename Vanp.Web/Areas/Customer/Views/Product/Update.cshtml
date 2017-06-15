@@ -11,11 +11,11 @@
         }
     </style>
 }
-<form method="post" action="/account/product/insert" class="insert-form" enctype="multipart/form-data">
+<form method="post" action="/account/product/update" class="insert-form" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm </label>
-            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName">
+            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" readonly>
         </div>
         <div class="form-group col-md-4">
             <label for="desription">Mô tả </label>
@@ -25,14 +25,14 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="pricedefault">Giá sản phẩm </label>
-            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" value="@Model.PriceDefault">
+            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" value="@Model.PriceDefault" readonly>
         </div>
         <div class="form-group col-md-4">
             <label for="price">Giá mua ngay </label>
-            <input type="text" name="Price" class="form-control" id="price" value="@Model.Price">
+            <input type="text" name="Price" class="form-control" id="price" value="@Model.Price" readonly>
         </div>
     </div>
-    <div class="row">
+    @*<div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
             <div class="row">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="image1">Hình ảnh 1 </label><br />
