@@ -1,5 +1,4 @@
-﻿@using Vanp.DAL.Entites
-@model Product
+﻿@using Vanp.Web.Code
 @{
     ViewBag.Title = "Update";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
@@ -33,12 +32,19 @@
             <input type="text" name="Price" class="form-control" id="price" value="@Model.Price">
         </div>
     </div>
-    @*<div class="row">
+    <div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
-            <input type="text" name="Price" class="form-control" id="price">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="categoryid">Danh mục</label>
+                    <select>
+                        <option>@Model.Category.CategoryName</option>
+                    </select>
+                </div>
+            </div>
         </div>
-    </div>*@
+    </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label for="image1">Hình ảnh 1 </label><br />
@@ -59,7 +65,7 @@
             @Model.ProductText
         </textarea>
     </div>
-    <button type="submit" class="btn btn-default">Đăng bán</button>
+    <button type="submit" class="btn btn-default">Sửa</button>
 </form>
 @section scripts{
     <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>

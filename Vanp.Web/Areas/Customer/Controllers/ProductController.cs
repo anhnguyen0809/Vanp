@@ -72,12 +72,17 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult ListProduct()
         {
-            int userId = Convert.ToInt32(CurrentUser.Id);
-            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId).FirstOrDefault());
+            int userId = Convert.ToInt16(CurrentUser.Id);
+            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId));
         }
         public ActionResult Update(int id)
         {
             return View(_unitOfWork.ProductRepository.GetById(id));
+        }
+        [HttpPost]
+        public ActionResult Update(ProductModel pro)
+        {
+            return View();
         }
         #region Bid
         [HttpPost]
