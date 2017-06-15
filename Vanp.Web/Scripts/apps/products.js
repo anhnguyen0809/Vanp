@@ -8,7 +8,7 @@
     }
     var Product = function () {
         this.$element = null, 
-        this.$template = $(".product-template"),
+        this.$template = $(".product-template>.item"),
         this.$placeholder = $("#products-list"),
         this.$name = null,
         this.$image = null,
@@ -18,25 +18,37 @@
         this.$endTime = null,
         this.$createdBy = null,
         this.$bidCurrentBy = null,
-        this.$btnWishList = null
-
+        this.$btnWishList = null,
+        this.Id = null;
         Product.prototype.init = function (product) {
             this.$element = this.$template.clone();
             this.$element.appendTo(this.$placeholder);
 
             this.$image = this.$element.find(".product-image");
-            this.$name = this.$element.find(".product-name");
-            this.$price = this.$element.find(".product-price");
+            this.$name = this.$element.find(".product-name>a");
+            this.$price = this.$element.find(".price");
             this.$priceCurrent = this.$element.find(".price-current");
             this.$bidCount = this.$element.find(".bid-count");
             this.$endTime = this.$element.find(".end-time");
             this.$createdBy = this.$element.find(".created-by");
             this.$bidCurrentBy = this.$element.find(".bid-current-by");
 
-            this.$name product.ProductName;
-            this.$name = product.ProductName;
-            this.$name = product.ProductName;
-            this.$name = product.ProductName;
+            this.Id = product.Id;
+            this.$name.html(product.ProductName);
+            this.$name.attr("title", product.ProductName);
+            this.$name.attr("href", "/product/" + product.Id);
+
+            this.$image.find("a").attr("title", product.ProductName);
+            this.$image.find("a").attr("href", "/product/" + product.Id);
+            this.$image.find("img").attr("alt", product.ProductName);
+            this.$image.find("img").attr("src", product.ProductImagePath);
+
+            this.$priceCurrent.html(product.PriceCurrent);
+            this.$price.html(product.Price);
+            this.$bidCount.html(product.BidCount);
+            this.$createdBy.html(product.CreatedByName);
+            this.$bidCurrentBy.html(product.bidCurrentByName);
+
         }
     }
     var handleOrder = function () {
@@ -75,7 +87,8 @@
                 if (data) {
                     if (data.error !== 1) {
                         $.each(data, function (i, v) {
-                           
+                            var product = new Product();
+                            product.init(v);
                         });
                         console.log(data);
                     }
