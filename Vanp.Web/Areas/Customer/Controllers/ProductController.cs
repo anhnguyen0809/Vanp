@@ -85,7 +85,8 @@ namespace Vanp.Web.Areas.Customer.Controllers
         [ValidateInput(false)]
         public ActionResult Update(ProductModel pro,int Id)
         {
-            _context.Products.Where(pi => pi.Id == Id).FirstOrDefault();
+            
+            p = _context.Products.Where(s => s.Id == Id).FirstOrDefault();
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
             _context.Entry(p).State = EntityState.Modified;
