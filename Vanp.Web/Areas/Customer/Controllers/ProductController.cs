@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
-using Vanp.Web.Areas.Customer.Models;
 using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
@@ -45,7 +44,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.ModifiedBy = CurrentUser.Id;
                 p.DateFrom = DateTime.Now;
                 p.DateTo = DateTime.Now.AddDays(7);
-                p.Price = pro.Price;
                 p.PriceStep = 100000;
                 p.ProductImagePath = "img1.jpg";
                 p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
