@@ -78,15 +78,10 @@ namespace Vanp.Web.Models
         }
         private string GetHash(string str)
         {
-            var hash = "";
-            if (str.Length > 1)
+            var hash = "*" ;
+            if (str.Length > 2)
             {
-                hash = "*";
-                str = str.Substring(2;
-            }
-            else if (str.Length > 2)
-            {
-                hash = "*" + str.Substring(2) + ;
+                hash += str.Substring(1, 1);
             }
             return hash;
         }

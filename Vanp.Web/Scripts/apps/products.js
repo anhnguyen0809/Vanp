@@ -39,7 +39,7 @@
             _this.$description = this.$element.find(".desc");
             _this.$categories = this.$element.find(".categories");
             _this.$btnWishList = this.$element.find(".button-wishlist");
-            
+
             _this.Id = product.Id;
             _this.$name.html(product.ProductName);
             _this.$name.attr("title", product.ProductName);
@@ -74,7 +74,18 @@
             _this.$btnWishList.off("click").on("click", addWishList)
         }
         var addWishList = function () {
-            alert(_this.Id);
+            $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Insert", _this.Id)).done(
+              function (data) {
+                  if (data) {
+                      if (data.error === 1) {
+                          alert(data.message);
+                      } else {
+                          alert(data.message);
+                      }
+                  } else {
+                      alert("Lỗi kết nối!");
+                  }
+              });
         }
     }
     var positionCurrent = $(".toolbar").position();

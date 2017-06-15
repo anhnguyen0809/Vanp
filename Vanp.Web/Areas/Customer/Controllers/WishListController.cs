@@ -11,6 +11,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
     public class WishlistController : AuthController
     {
         // GET: Customer/WishList
+        [HttpPost]
         public JsonResult Insert(int productId)
         {
             if (_unitOfWork.WishlistRepository.IsExisted(CurrentUser.Id.Value, productId))
