@@ -28,10 +28,7 @@ namespace Vanp.DAL
         public IEnumerable<Product> GetListByCategory(int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category = null)
         {
             var query = _dbSet.AsQueryable();
-            if (category.HasValue)
-            {
-                query = query.Where(o => o.CategoryId == category);
-            }
+
             if (orderBy.ToLower() == "dateto")
             {
                 query = asc ? query.OrderBy(o => o.DateTo) : query.OrderByDescending(o => o.DateTo);
@@ -40,13 +37,16 @@ namespace Vanp.DAL
             {
                 query = asc ? query.OrderBy(o => o.PriceCurrent) : query.OrderByDescending(o => o.PriceCurrent);
             }
-            else
+
+            query = asc ? query.OrderBy(o => o.Id) : query.OrderByDescending(o => o.Id);
+
+            if (category.HasValue)
             {
-                query = asc ? query.OrderBy(o => o.Id) : query.OrderByDescending(o => o.Id);
+                query = query.Where(o => o.CategoryId == category);
             }
             query = query
-                 .Take(pageSize)
-                 .Skip((pageNo - 1) * pageSize);
+                 .Skip((pageNo - 1) * pageSize)
+                 .Take(pageSize);
 
             return query.ToList();
         }

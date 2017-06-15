@@ -60,6 +60,7 @@
             eSortByName.data("sort-by-name", $(this).find("a").data("sort-by-name"));
             eSortByName.text($(this).find("a").text());
             dataFilter.orderBy = eSortByName.data("sort-by-name");
+            $("#products-list").empty();
             getProducts();
         });
     }
@@ -75,6 +76,7 @@
                 $(this).find("span").attr("class", "bottom_arrow");
             }
             dataFilter.asc = $(this).data("asc");
+            $("#products-list").empty();
             getProducts();
         });
     }
@@ -94,7 +96,7 @@
                             var product = new Product();
                             product.init(v);
                         });
-                        scrollTo(positionCurrent.left, positionCurrent.top);
+                        //scrollTo(positionCurrent.left, positionCurrent.top);
                     }
                 } else {
                     alert("Lỗi kết nối!");
