@@ -11,14 +11,14 @@ namespace Vanp.DAL.Utils
         public static string Subtract(DateTime dateFrom , DateTime dateTo)
         {
             var dateSub = dateTo.Subtract(dateFrom);
-            if (dateSub.TotalDays > 0)
+            if (dateSub.TotalDays >= 1)
             {
                 return (int)dateSub.TotalDays + " ngày";
-            } else if (dateSub.TotalHours > 0)
+            } else if (dateSub.TotalHours >= 1)
             {
                 return (int)dateSub.TotalHours + " giờ";
             }
-            else if (dateSub.TotalMinutes > 0)
+            else if (dateSub.TotalMinutes >= 1)
             {
                 return (int)dateSub.TotalMinutes + " phút";
             }
