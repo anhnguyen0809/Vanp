@@ -209,6 +209,7 @@
     <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\ProductModel.cs" />
     <Compile Include="Code\CaptchaHelper.cs" />
     <Compile Include="Code\CatHelper.cs" />
     <Compile Include="Code\Controllers\AuthController.cs" />
@@ -681,7 +682,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
     <Folder Include="Views\ShowProduct\" />
   </ItemGroup>
