@@ -77,7 +77,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         public ActionResult Update()
         {
-            return View(_unitOfWork.ProductRepository.GetListByProductOfCus(userId));
+            return View();
         }
         #region Bid
         [HttpPost]
