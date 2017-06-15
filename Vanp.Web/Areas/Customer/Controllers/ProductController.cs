@@ -80,13 +80,12 @@ namespace Vanp.Web.Areas.Customer.Controllers
         {
             return View(_unitOfWork.ProductRepository.GetById(id));
         }
+        Product p;
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Update(ProductModel pro,int Id)
         {
-            Product p = new Product();
-            _unitOfWork.ProductRepository.GetById(Id);
-            p.ModifiedWhen = DateTime.Now;
+            _context.Products.Where(pi => pi.Id == Id).FirstOrDefault();
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
             _context.Entry(p).State = EntityState.Modified;
