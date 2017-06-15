@@ -45,14 +45,18 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.DateFrom = DateTime.Now;
                 p.DateTo = DateTime.Now.AddDays(7);
                 p.PriceStep = 100000;
-                p.ProductImagePath = "img1.jpg";
                 p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 p.ProductName = pro.ProductName;
+                p.ProductDescription = pro.ProductDescription;
+                p.ProductText = pro.ProductText;
                 p.Price = pro.Price;
                 _unitOfWork.ProductRepository.Insert(p);
                 _unitOfWork.Save();
+                p.ProductImagePath = "~/images/products/" + p.Id + "/img1.jpg";
+                _unitOfWork.ProductRepository.Update(p);
+                _unitOfWork.Save();
                 var spDirPath = Server.MapPath("~/images/products");
-                var targetDirPath = Path.Combine(spDirPath, pro.Id.ToString());
+                var targetDirPath = Path.Combine(spDirPath, p.Id.ToString());
                 Directory.CreateDirectory(targetDirPath);
 
                 var img1Name = Path.Combine(targetDirPath, "img1.jpg");
@@ -64,7 +68,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 var img3Name = Path.Combine(targetDirPath, "img3.jpg");
                 image3.SaveAs(img3Name);
             }
-            return View();
+            return View(pro);
         }
         #region Bid
         [HttpPost]
