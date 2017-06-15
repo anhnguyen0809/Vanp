@@ -80,18 +80,18 @@ namespace Vanp.Web.Areas.Customer.Controllers
         {
             return View(_unitOfWork.ProductRepository.GetById(id));
         }
-        Product p;
+        
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Update(ProductModel pro,int Id)
         {
-            
+            Product p;
             p = _context.Products.Where(s => s.Id == Id).FirstOrDefault();
             p.ProductDescription = pro.ProductDescription;
             p.ProductText = pro.ProductText;
             _context.Entry(p).State = EntityState.Modified;
             _context.SaveChanges();
-            return Redirect("/account/product/list");
+            return Redirect("/account/product/update/"+ Id + "");
         }
         #region Bid
         [HttpPost]

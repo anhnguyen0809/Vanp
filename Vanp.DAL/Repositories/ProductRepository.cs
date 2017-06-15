@@ -16,10 +16,6 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
-        public Product GetById(int id)
-        {
-            return _dbSet.Where(p=>p.Id==id).FirstOrDefault();
-        }
         public IEnumerable<Product> GetListByProductOfCus(int userId)
         {
             return _dbSet.Where(p => p.CreatedBy == userId).ToList();
