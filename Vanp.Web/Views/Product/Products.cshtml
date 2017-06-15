@@ -58,34 +58,115 @@
                                             <li>
                                                 <a><span class="sort-by-name" style="margin-right:10px" data-sort-by-name="dateto">Thời gian kết thúc</span> <span class="right-arrow"></span></a>
                                                 <ul class="sort-by-list">
-                                                    <li class="sort-by-item"><a  data-sort-by-name="pricecurrent">Giá</a></li>
+                                                    <li class="sort-by-item"><a data-sort-by-name="pricecurrent">Giá</a></li>
                                                     <li class="sort-by-item"><a data-sort-by-name="dateto">Thời gian kết thúc</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                         <a class="button-asc left" data-asc="false" title="Set Descending Direction"><span class="bottom_arrow"></span></a>
                                     </div>
-                     
+
                                 </div>
                                 <div class="category-products">
-                                    <ol class="products-list" id="products-list">
-                                        <li class="item first">
-                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="products-images/product1.jpg" alt="product lapen casen"> </a> </div>
+                                    <ol class="product-template" style="display:none">
+                                        <li class="item">
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="~/images/products/product1.jpg" alt="product lapen casen"> </a> </div>
                                             <div class="product-shop">
-                                                <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
+                                                        <div class="desc std">
+                                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..... </p>
+                                                        </div>
                                                     </div>
-                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                                                    <div class="col-md-2 text-center">
+                                                        <span class="price-current">1.000.000.000</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row text-center">
+                                                            <div class="col-md-6">
+                                                                <span class="price">100.000.000</span>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <span class="bid-count">3</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <span class="end-date"> 5 ngày</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <div class="desc std">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
+                                                <div class="row product-bottom">
+                                                    <div class="col-md-12">
+                                                        <div class="ratings">
+                                                            <p class="rating-links"><b>Người đăng</b> : <a> <span class="created-by">abcxs</span></a> <span class="separator">|</span> <b>Người giữ giá : </b><a><span class="bid-current-by">ạhk</span></a> </p>
+                                                        </div>
+                                                        <div class="categories">
+                                                            <div class="category-links">Danh mục : <a>abcxs</a> <span class="separator">></span> <a>aa</a></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="price-box">
-                                                    <p class="old-price"> <span class="price-label"></span> <span class="price"> $442.99 </span> </p>
-                                                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $222.99 </span> </p>
+                                                <div class="actions">
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <ol class="products-list" id="products-list">
+                                        <li class="item">
+                                            <div class="product-image"></div>
+                                            <div class="product-shop ">
+                                                <div class="row">
+                                                    <div class="col-md-6 text-center"></div>
+                                                    <div class="col-md-2 text-center">Giá hiện tại</div>
+                                                    <div class="col-md-4 text-center">
+                                                        <div class="row">
+                                                            <div class="col-md-6">Giá mua ngay</div>
+                                                            <div class="col-md-2">Lượt đấu giá</div>
+                                                            <div class="col-md-4">Thời gian còn lại</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item first">
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="~/images/products/product1.jpg" alt="product lapen casen"> </a> </div>
+                                            <div class="product-shop">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
+                                                        <div class="desc std">
+                                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..... </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <span class="price-current">1.000.000.000</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row text-center">
+                                                            <div class="col-md-6">
+                                                                <span class="price">100.000.000</span>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <span class="product-bid-count">3</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <span class="product-end-date"> 5 ngày</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row product-bottom">
+                                                    <div class="col-md-12">
+                                                        <div class="ratings">
+                                                            <p class="rating-links">Người đăng : <a> <span class="created-by-name">abcxs</span></a> <span class="separator">|</span> <b>Người giữ giá : </b><a><span>ạhk</span></a> </p>
+                                                        </div>
+                                                        <div class="categories">
+                                                            <div class="category-links">Danh mục : <a>abcxs</a> <span class="separator">></span> <a>aa</a></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="actions">
                                                     <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
@@ -93,48 +174,78 @@
                                             </div>
                                         </li>
                                         <li class="item even">
-                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="products-images/product2.jpg" alt="product lapen casen"> </a> </div>
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="~/images/products/product1.jpg" alt="product lapen casen"> </a> </div>
                                             <div class="product-shop">
-                                                <h2 class="product-name"><a href="product_detail.html" title="product lapen casen">Club Chair</a></h2>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                                                    </div>
-                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
-                                                </div>
-                                                <div class="desc std">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
-                                                </div>
-                                                <div class="price-box"> <span class="regular-price"> <span class="price">$99.99</span> </span> </div>
-                                                <div class="actions">
-                                                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
-                                                    <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
 
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <span class="price-current">1.000.000.000</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row text-center">
+                                                            <div class="col-md-6">
+                                                                <span class="price">100.000.000</span>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <span class="product-bid-count">3</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <span class="product-end-date"> 5 ngày</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row product-bottom">
+                                                    <div class="col-md-12">
+                                                        <div class="ratings">
+                                                            <p class="rating-links"> <a><b>Người đăng</b> : <span>abcxs</span></a> <span class="separator">|</span> <a><b>Người giữ giá: </b><span>ạhk</span></a> </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="actions">
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="item odd">
-                                            <div class="product-image"> <a href="product_detail.html" title="30&quot; Flat-Panel HD Monitor"> <img class="small-image" src="products-images/product3.jpg" alt="30&quot; Flat-Panel HD Monitor"> </a> </div>
+                                            <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="~/images/products/product1.jpg" alt="product lapen casen"> </a> </div>
                                             <div class="product-shop">
-                                                <h2 class="product-name"><a href="product_detail.html" title="30&quot; Flat-Panel HD Monitor">Chaise Lounge</a></h2>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <div style="width:80%" class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                                                    </div>
-                                                    <p class="rating-links"> <a href="#">1 Reviews</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
-                                                </div>
-                                                <div class="desc std">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged... <a class="link-learn" title="" href="product_detail.html">Learn More</a> </p>
-                                                </div>
-                                                <div class="price-box"> <span class="regular-price"> <span class="price">$699.99</span> </span> </div>
-                                                <div class="actions">
-                                                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
-                                                    <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
 
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <span class="price-current">1.000.000.000</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row text-center">
+                                                            <div class="col-md-6">
+                                                                <span class="price">100.000.000</span>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <span class="product-bid-count">3</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <span class="product-end-date"> 5 ngày</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row product-bottom">
+                                                    <div class="col-md-12">
+                                                        <div class="ratings">
+                                                            <p class="rating-links"> <a><b>Người đăng</b> : <span>abcxs</span></a> <span class="separator">|</span> <a><b>Người giữ giá: </b><span>ạhk</span></a> </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="actions">
+                                                    <button type="submit" title="Submit" class="button button-wishlist"><span>Whishlist</span></button>
                                                 </div>
                                             </div>
                                         </li>
@@ -160,7 +271,7 @@
                                         </li>
                                     </ol>
                                     <div class="text-center">
-                                        <button type="button" class="button btn btn-primary btn-load-more margin-15" >Xem thêm</button>
+                                        <button type="button" class="button btn btn-primary btn-load-more margin-15">Xem thêm</button>
                                     </div>
                                 </div>
                             </article>

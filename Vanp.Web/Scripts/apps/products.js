@@ -6,6 +6,39 @@
         orderBy: "dateto",
         asc: false
     }
+    var Product = function () {
+        this.$element = null, 
+        this.$template = $(".product-template"),
+        this.$placeholder = $("#products-list"),
+        this.$name = null,
+        this.$image = null,
+        this.$priceCurrent = null,
+        this.$price = null,
+        this.$bidCount = null,
+        this.$endTime = null,
+        this.$createdBy = null,
+        this.$bidCurrentBy = null,
+        this.$btnWishList = null
+
+        Product.prototype.init = function (product) {
+            this.$element = this.$template.clone();
+            this.$element.appendTo(this.$placeholder);
+
+            this.$image = this.$element.find(".product-image");
+            this.$name = this.$element.find(".product-name");
+            this.$price = this.$element.find(".product-price");
+            this.$priceCurrent = this.$element.find(".price-current");
+            this.$bidCount = this.$element.find(".bid-count");
+            this.$endTime = this.$element.find(".end-time");
+            this.$createdBy = this.$element.find(".created-by");
+            this.$bidCurrentBy = this.$element.find(".bid-current-by");
+
+            this.$name product.ProductName;
+            this.$name = product.ProductName;
+            this.$name = product.ProductName;
+            this.$name = product.ProductName;
+        }
+    }
     var handleOrder = function () {
         $("#sort-by").find(".sort-by-list").on("click", ".sort-by-item", function (e) {
             var eSortByName = $("#sort-by").find(".sort-by-name");
@@ -41,6 +74,9 @@
             function (data) {
                 if (data) {
                     if (data.error !== 1) {
+                        $.each(data, function (i, v) {
+                           
+                        });
                         console.log(data);
                     }
                 } else {
