@@ -1,56 +1,80 @@
 ﻿var Products = function () {
     var dataFilter = {
         pageSize: 3,
-        pageNo : 1,
-        category: null,
+        pageNo: 1,
+        category: $.isNumeric(location.href.split('/').pop()) ? location.href.split('/').pop() : null,
         orderBy: "dateto",
         asc: false
     }
     var Product = function () {
-        this.$element = null, 
-        this.$template = $(".product-template>.item"),
-        this.$placeholder = $("#products-list"),
-        this.$name = null,
-        this.$image = null,
-        this.$priceCurrent = null,
-        this.$price = null,
-        this.$bidCount = null,
-        this.$endTime = null,
-        this.$createdBy = null,
-        this.$bidCurrentBy = null,
-        this.$description = null,
-        this.$btnWishList = null,
-        this.Id = null;
+        var _this = this;
+        _this.$element = null,
+        _this.$template = $(".product-template>.item"),
+        _this.$placeholder = $("#products-list"),
+        _this.$name = null,
+        _this.$image = null,
+        _this.$priceCurrent = null,
+        _this.$price = null,
+        _this.$bidCount = null,
+        _this.$endTime = null,
+        _this.$createdBy = null,
+        _this.$bidCurrentBy = null,
+        _this.$description = null,
+        _this.$categories = null,
+        _this.$btnWishList = null,
+        _this.Id = null;
+
         Product.prototype.init = function (product) {
-            this.$element = this.$template.clone();
-            this.$element.appendTo(this.$placeholder);
+            _this.$element = this.$template.clone();
+            _this.$element.appendTo(this.$placeholder).show('slow');
 
-            this.$image = this.$element.find(".product-image");
-            this.$name = this.$element.find(".product-name>a");
-            this.$price = this.$element.find(".price");
-            this.$priceCurrent = this.$element.find(".price-current");
-            this.$bidCount = this.$element.find(".bid-count");
-            this.$endTime = this.$element.find(".end-time");
-            this.$createdBy = this.$element.find(".created-by");
-            this.$bidCurrentBy = this.$element.find(".bid-current-by");
-            this.$description = this.$element.find(".desc");
-            this.Id = product.Id;
-            this.$name.html(product.ProductName);
-            this.$name.attr("title", product.ProductName);
-            this.$name.attr("href", "/product/" + product.Id);
+            _this.$image = this.$element.find(".product-image");
+            _this.$name = this.$element.find(".product-name>a");
+            _this.$price = this.$element.find(".price");
+            _this.$priceCurrent = this.$element.find(".price-current");
+            _this.$bidCount = this.$element.find(".bid-count");
+            _this.$endTime = this.$element.find(".end-time");
+            _this.$createdBy = this.$element.find(".created-by");
+            _this.$bidCurrentBy = this.$element.find(".bid-current-by");
+            _this.$description = this.$element.find(".desc");
+            _this.$categories = this.$element.find(".categories");
+            _this.$btnWishList = this.$element.find(".button-wishlist");
+            
+            _this.Id = product.Id;
+            _this.$name.html(product.ProductName);
+            _this.$name.attr("title", product.ProductName);
+            _this.$name.attr("href", "/product/" + product.Id);
 
-            this.$image.find("a").attr("title", product.ProductName);
-            this.$image.find("a").attr("href", "/product/" + product.Id);
-            this.$image.find("img").attr("alt", product.ProductName);
-            this.$image.find("img").attr("src", product.ProductImagePath);
+            _this.$image.find("a").attr("title", product.ProductName);
+            _this.$image.find("a").attr("href", "/product/" + product.Id);
+            _this.$image.find("img").attr("alt", product.ProductName);
+            _this.$image.find("img").attr("src", product.ProductImagePath);
 
-            this.$priceCurrent.html(numeral(product.PriceCurrent).format('0,0'));
-            this.$price.html(numeral(product.Price).format('0,0'));
-            this.$bidCount.html(numeral(product.BidCount).format('0,0'));
-            this.$createdBy.html(product.CreatedByName);
-            this.$bidCurrentBy.html(product.BidCurrentByName);
-            this.$endTime.html(product.EndTime);
-            this.$description.html(product.ProductDescription);
+            _this.$priceCurrent.html(numeral(product.PriceCurrent).format('0,0'));
+            _this.$price.html(numeral(product.Price).format('0,0'));
+            _this.$bidCount.html(numeral(product.BidCount).format('0,0'));
+            _this.$createdBy.html(product.CreatedByName);
+            _this.$bidCurrentBy.html(product.BidCurrentByName);
+            _this.$endTime.html(product.EndTime);
+            _this.$description.html(product.ProductDescription);
+            var category = product.Category;
+            var htmlCategory = "";
+            if (category.ParentCategories) {
+                var categories = category.ParentCategories.reverse();
+
+                $.each(categories, function (i, v) {
+                    htmlCategory += '<a href="/products/category/' + v.Id + '">' + v.CategoryName + '</a> <span class="separator">></span> ';
+                });
+            }
+
+            htmlCategory += '<a href="/products/category/' + category.Id + '">' + category.CategoryName + '</a>';
+            _this.$categories.find(".category-links").append(htmlCategory);
+
+            //Event
+            _this.$btnWishList.off("click").on("click", addWishList)
+        }
+        var addWishList = function () {
+            alert(_this.Id);
         }
     }
     var positionCurrent = $(".toolbar").position();
@@ -60,8 +84,7 @@
             eSortByName.data("sort-by-name", $(this).find("a").data("sort-by-name"));
             eSortByName.text($(this).find("a").text());
             dataFilter.orderBy = eSortByName.data("sort-by-name");
-            $("#products-list").empty();
-            getProducts();
+            reset();
         });
     }
     var handleSort = function () {
@@ -76,8 +99,8 @@
                 $(this).find("span").attr("class", "bottom_arrow");
             }
             dataFilter.asc = $(this).data("asc");
-            $("#products-list").empty();
-            getProducts();
+            reset();
+
         });
     }
     var handleLoadMore = function () {
@@ -103,6 +126,11 @@
                 }
             });
     }
+    var reset = function () {
+        dataFilter.pageNo = 1;
+        $("#products-list").empty();
+        getProducts();
+    }
     return {
         //main function to initiate the module
         init: function () {
@@ -110,7 +138,7 @@
             handleOrder();
             handleSort();
             handleLoadMore();
-
+            getProducts();
         }
 
     };

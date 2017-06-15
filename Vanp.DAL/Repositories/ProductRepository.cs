@@ -23,7 +23,7 @@ namespace Vanp.DAL
 
         public IEnumerable<Product> GetListByCategory(int categoryId)
         {
-            return _dbSet.Where(o => o.CategoryId == categoryId);
+            return _dbSet.Where(o => o.CategoryId == categoryId && o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now);
         }
         public IEnumerable<Product> GetListByCategory(int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category = null)
         {
@@ -44,9 +44,11 @@ namespace Vanp.DAL
             {
                 query = query.Where(o => o.CategoryId == category);
             }
+
             query = query
-                 .Skip((pageNo - 1) * pageSize)
-                 .Take(pageSize);
+                    .Where(o => o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now)
+                    .Skip((pageNo - 1) * pageSize)
+                    .Take(pageSize);
 
             return query.ToList();
         }

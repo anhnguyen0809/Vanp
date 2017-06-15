@@ -28,7 +28,7 @@ namespace Vanp.Web.Models
 
         public DateTime? DateTo { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public int BidCount { get; set; }
         public bool IsBid { get; set; }
         public bool IsExtended { get; set; }
@@ -41,6 +41,7 @@ namespace Vanp.Web.Models
                 return DAL.Utils.Helper.Subtract(DateTime.Now ,DateTo ?? new DateTime());
             }
         }
+        public CategoryModel Category { get; set; }
         public ProductModel()
         {
 
@@ -59,6 +60,7 @@ namespace Vanp.Web.Models
             this.Price = product.Price ?? 0;
             this.PriceCurrent = product.PriceCurrent ?? 0;
             this.PriceDefault = product.PriceDefault ?? 0;
+            this.CategoryId = product.CategoryId;
             if (product.User != null)
             {
                 this.CreatedByName = product.User.UserName;
@@ -69,6 +71,24 @@ namespace Vanp.Web.Models
             }
             this.IsBid = product.IsBid ?? false;
             this.IsExtended = product.IsExtended ?? false;
+            if (product.Category != null)
+            {
+                this.Category = new CategoryModel(product.Category);
+            }
+        }
+        private string GetHash(string str)
+        {
+            var hash = "";
+            if (str.Length > 1)
+            {
+                hash = "*";
+                str = str.Substring(2;
+            }
+            else if (str.Length > 2)
+            {
+                hash = "*" + str.Substring(2) + ;
+            }
+            return hash;
         }
     }
 }

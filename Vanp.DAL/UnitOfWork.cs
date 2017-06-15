@@ -18,6 +18,7 @@ namespace Vanp.DAL
             UserRoleRepository = new UserRoleRepository(_context);
             ProductRepository = new ProductRepository(_context);
             RequestRepository = new RequestRepository(_context);
+            WishlistRepository = new WishlistRepository(_context);
         }
         #region Properties
         public readonly IUserRepository UserRepository;
@@ -25,6 +26,7 @@ namespace Vanp.DAL
         public readonly IUserRoleRepository UserRoleRepository;
         public readonly IProductRepository ProductRepository;
         public readonly IRequestRepository RequestRepository;
+        public readonly IWishlistRepository WishlistRepository;
         #endregion
 
         public void Save()
