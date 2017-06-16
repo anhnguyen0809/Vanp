@@ -36,10 +36,22 @@
                         <h5><strong>@item.ProductName</strong></h5>
                     </td>
                     <td>
-                        <h5><strong>@string.Format("{0:0,0}",item.PriceDefault)</strong></h5>
+                        <h5><strong>@string.Format("{0:0,0}", item.PriceDefault)</strong></h5>
                     </td>
                     <td>
-                        <h5><strong>@string.Format("{0:0,0}", item.Price)</strong></h5>
+                        <h5>
+                            @if (item.Price == null|| item.Price==00)
+                            {
+                                <strong></strong>
+                            }
+                            else
+                            {
+                                <strong>
+
+                                    @string.Format("{0:0,0}", item.Price)
+                                </strong>
+                            }
+                        </h5>
                     </td>
                     <td>
                         <h5><strong>@item.DateFrom</strong></h5>

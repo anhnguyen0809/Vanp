@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
@@ -60,6 +61,10 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 var spDirPath = Server.MapPath("~/images/products");
                 var targetDirPath = Path.Combine(spDirPath, p.Id.ToString());
                 Directory.CreateDirectory(targetDirPath);
+
+                var path = "images/products/"+p.Id+ "/"+p.Id+".txt";
+                System.IO.File.Create(path);
+
 
                 var img1Name = Path.Combine(targetDirPath, "img1.jpg");
                 image1.SaveAs(img1Name);
