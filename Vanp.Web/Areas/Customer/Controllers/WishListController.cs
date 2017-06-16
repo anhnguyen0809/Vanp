@@ -41,5 +41,17 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 }
             }
         }
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            _unitOfWork.WishlistRepository.Delete(id);
+            return JsonSuccess("Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
+        }
+        public ActionResult Wishlist()
+        {
+            var wishList = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
+                        .Select(o => new Models.WishlistModel(o));
+            return View(wishList);
+        }
     }
 }

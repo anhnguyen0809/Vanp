@@ -81,7 +81,7 @@ namespace Vanp.DAL
         public bool ValidPriceBid(int productId, double priceBid)
         {
             var product = this.GetById(productId);
-            if (product != null && priceBid > product.PriceCurrent)
+            if (product != null && priceBid >= (product.PriceCurrent ?? 0 + product.PriceStep ?? 0))
             {
                 return true;
             }
@@ -101,7 +101,7 @@ namespace Vanp.DAL
         {
             var product = this.GetById(productId);
 
-            if (product != null && _context.Users.Any(o => o.Id == userId))
+            if (product != null && !(product.IsBid ?? false) && _context.Users.Any(o => o.Id == userId))
             {
                 var priceCurrent = product.PriceCurrent ?? 0;
                 var priceMax = product.PriceMax ?? 0;
@@ -161,7 +161,7 @@ namespace Vanp.DAL
         {
             var product = this.GetById(productId);
 
-            if (product != null && _context.Users.Any(o => o.Id == userId))
+            if (product != null && !(product.IsBid ?? false) && product.Price.HasValue && _context.Users.Any(o => o.Id == userId))
             {
                 if (product.Price <= priceBuy)
                 {

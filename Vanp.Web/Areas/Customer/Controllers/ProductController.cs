@@ -18,7 +18,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 Failure = "Bạn chưa đăng ký hoặc dã hết hạn đăng sản phẩm. Vui lòng gửi yêu cầu cho chúng tôi.";
                 return Redirect("/account/sendrequest");
             }
-            
+
             return View();
         }
         [HttpPost]
@@ -60,14 +60,14 @@ namespace Vanp.Web.Areas.Customer.Controllers
         }
         #region Bid
         [HttpPost]
-        public ActionResult Bid(int id , double priceBid)
+        public ActionResult Bid(int id, double priceBid)
         {
             ViewBag.ProductId = id;
             if (!_unitOfWork.ProductRepository.CheckBidPermisstion(CurrentUser.Id ?? 0, id))
             {
                 Failure = "Bạn không có thể đấu giá cho sản phẩm này. Do điểm đánh giá (+/+-) nhỏ hơn 80% hoặc do người đăng sản phẩm này đã kích bạn ra khỏi sản phẩm này.";
             }
-            else if (!_unitOfWork.ProductRepository.ValidPriceBid(id , priceBid))
+            else if (!_unitOfWork.ProductRepository.ValidPriceBid(id, priceBid))
             {
                 Failure = "Giá bạn đặt ra không hợp lệ. Nó phải lớn hơn giá hiện tại của sản phẩm.";
             }
@@ -80,7 +80,20 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 Failure = "Đấu giá thất bại. ";
             }
             return View();
-        } 
+        }
         #endregion
+        [HttpPost]
+        public ActionResult BuyNow(int id, double priceBid)
+        {
+            if (_unitOfWork.ProductRepository.BuyNow(CurrentUser.Id ?? 0, id, priceBid))
+            {
+                Success = "Sản phẩm đã được bạn mua. Cám ơn bạn đã tham gia hệ thống của chúng tôi.";
+            }
+            else
+            {
+                Failure = "Mua ngay thất bại. ";
+            }
+            return View();
+        }
     }
 }

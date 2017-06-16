@@ -67,7 +67,7 @@ namespace Vanp.Web.Models
             }
             if (product.User2 != null)
             {
-                this.BidCurrentByName = product.User2.UserName;
+                this.BidCurrentByName = GetHash(product.User2.UserName);
             }
             this.IsBid = product.IsBid ?? false;
             this.IsExtended = product.IsExtended ?? false;
@@ -78,10 +78,10 @@ namespace Vanp.Web.Models
         }
         private string GetHash(string str)
         {
-            var hash = "*" ;
-            if (str.Length > 2)
+            var hash = "" ;
+            if (str.Length > 3)
             {
-                hash += str.Substring(1, 1);
+                hash = str.Substring(0, 3) + str.Substring(3, str.Length - 3).Replace("","*");
             }
             return hash;
         }
