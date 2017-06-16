@@ -69,7 +69,9 @@
 
             htmlCategory += '<a href="/products/category/' + category.Id + '">' + category.CategoryName + '</a>';
             _this.$categories.find(".category-links").append(htmlCategory);
-
+            if (product.New) {
+                _this.$element.addClass("new");
+            }
             //Event
             _this.$btnWishList.off("click").on("click", addWishList)
         }

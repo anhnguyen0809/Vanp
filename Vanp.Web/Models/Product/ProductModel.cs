@@ -38,7 +38,14 @@ namespace Vanp.Web.Models
         {
             get
             {
-                return DAL.Utils.Helper.Subtract(DateTime.Now ,DateTo ?? new DateTime());
+                return DAL.Utils.Helper.Subtract(DateTime.Now, DateTo ?? new DateTime());
+            }
+        }
+        public bool New
+        {
+            get
+            {
+                return (DateFrom.HasValue && DateTime.Now.Subtract(this.DateFrom.Value).TotalMinutes > 20) ? true : false;
             }
         }
         public CategoryModel Category { get; set; }
@@ -78,10 +85,11 @@ namespace Vanp.Web.Models
         }
         private string GetHash(string str)
         {
-            var hash = "" ;
+            var hash = "";
             if (str.Length > 3)
             {
-                hash = str.Substring(0, 3) + str.Substring(3, str.Length - 3).Replace("","*");
+                hash = str.Substring(0, 3);
+                for (int i = 3; i <= str.Length - 1; i++, hash += "*") ;
             }
             return hash;
         }
