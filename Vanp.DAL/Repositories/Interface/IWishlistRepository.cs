@@ -10,6 +10,7 @@ namespace Vanp.DAL
     public interface IWishlistRepository : IGeneralRepository<Wishlist>
     {
         bool IsExisted(int userId, int productId);
+        Wishlist GetByUserAndProduct(int userId, int productId);
         IEnumerable<Wishlist> GetListByUser(int userId);
     }
 }

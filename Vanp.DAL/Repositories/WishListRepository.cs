@@ -17,6 +17,10 @@ namespace Vanp.DAL
         {
             return _dbSet.Any(o => o.UserId == userId && o.ProductId == productId);
         }
+        public Wishlist GetByUserAndProduct(int userId, int productId)
+        {
+            return _dbSet.Single(o => o.UserId == userId && o.ProductId == productId);
+        }
         public IEnumerable<Wishlist> GetListByUser(int userId)
         {
             return _dbSet.Where(o => o.UserId == userId);

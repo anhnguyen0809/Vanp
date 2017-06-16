@@ -10,9 +10,10 @@ namespace Vanp.DAL
     public interface IProductRepository : IGeneralRepository<Product>
     {
         IEnumerable<Product> GetListByProduct();
+      //  IEnumerable<Product> GetListByProduct(int[] productIds);
         bool isExisted(string code);
         IEnumerable<Product> GetListByCategory(int categoryId);
-        IEnumerable<Product> GetListByCategory( int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category=null);
+        IEnumerable<Product> GetListByCategory(int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category=null);
         /// <summary>
         /// Kiểm tra người dùng được phép đầu giá sản phẩm 
         /// </summary>

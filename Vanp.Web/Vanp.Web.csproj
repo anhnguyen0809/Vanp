@@ -206,6 +206,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Controllers\BidHistoryController.cs" />
     <Compile Include="Areas\Customer\Controllers\WishlistController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
@@ -540,6 +541,7 @@
     <Content Include="images\syncfusion-icons.png" />
     <Content Include="images\to-top-arrow.png" />
     <Content Include="images\top-bg.gif" />
+    <Content Include="Scripts\apps\obj\product.js" />
     <Content Include="Scripts\apps\products.js" />
     <Content Include="Scripts\apps\request.js" />
     <Content Include="Scripts\apps\login.js" />
@@ -590,6 +592,7 @@
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\Customer\Views\Wishlist\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
@@ -680,6 +683,7 @@
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Category\_CategoriesLeft.cshtml" />
+    <Content Include="Views\Shared\_ProductsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

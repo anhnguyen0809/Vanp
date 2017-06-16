@@ -133,8 +133,8 @@ namespace Vanp.DAL
                 bidHistory.ModifiedWhen = bidHistory.CreatedWhen = DateTime.Now;
                 bidHistory.Enable = true;
                 bidHistory.ProductId = productId;
-                bidHistory.PriceCurrent = priceCurrent;
-                bidHistory.PriceMax = priceMax;
+                bidHistory.PriceCurrent = product.PriceCurrent;
+                bidHistory.PriceMax = product.PriceMax;
                 bidHistory.PriceBid = priceBid;
                 _context.BidHistories.Add(bidHistory);
                 #endregion
@@ -165,6 +165,12 @@ namespace Vanp.DAL
             {
                 if (product.Price <= priceBuy)
                 {
+                    product.IsBid = true;
+                    product.BidDate = DateTime.Now;
+                    product.PriceMax = priceBuy;
+                    product.PriceBid = priceBuy;
+                    product.BidCount = (product.BidCount ?? 0) + 1;
+                    product.BidCurrentBy = userId;
                     #region Lưu lịch sử đấu giá
                     //Lưu lịch sử đấu giá
                     BidHistory bidHistory = new BidHistory();
@@ -177,13 +183,6 @@ namespace Vanp.DAL
                     bidHistory.PriceBid = priceBuy;
                     _context.BidHistories.Add(bidHistory);
                     #endregion
-
-                    product.IsBid = true;
-                    product.BidDate = DateTime.Now;
-                    product.PriceMax = priceBuy;
-                    product.PriceBid = priceBuy;
-                    product.BidCount = (product.BidCount ?? 0) + 1;
-                    product.BidCurrentBy = userId;
                     this.SaveChanges();
                     //Send Mail Giao Dịch Thành công
 

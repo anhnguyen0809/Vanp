@@ -229,7 +229,35 @@
             };
 
             return sizes[size] ? sizes[size] : 0;
-        }
+        },
+        addWishlist: function (productId) {
+            $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Insert", { productId: productId })).done(
+              function (data) {
+                  if (data) {
+                      if (data.error === 1) {
+                          alert(data.message);
+                      } else {
+                          alert(data.message);
+                      }
+                  } else {
+                      alert("Lỗi kết nối!");
+                  }
+              });
+        },
+        deleteWishlist: function (productId) {
+        $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Delete", { productId: productId })).done(
+          function (data) {
+              if (data) {
+                  if (data.error === 1) {
+                      alert(data.message);
+                  } else {
+                      alert(data.message);
+                  }
+              } else {
+                  alert("Lỗi kết nối!");
+              }
+          });
+    }
     };
 
 }();

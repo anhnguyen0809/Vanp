@@ -5,11 +5,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
     public class WishlistController : AuthController
     {
+        public ActionResult Index()
+        {
+            var wishList = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
+                        .Select(o => new ProductModel(o.Product));
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetProducts(int pageNo = 1, int pageSize = 10, string orderBy = "dateto", bool asc = true)
+        {
+            var products = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
+                        .Select(o => new ProductModel(o.Product));
+            return JsonSuccess(products);
+        }
         // GET: Customer/WishList
         [HttpPost]
         public JsonResult Insert(int productId)
@@ -42,16 +56,16 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
         }
         [HttpPost]
-        public JsonResult Delete(int id)
+        public JsonResult Delete(int productId)
         {
-            _unitOfWork.WishlistRepository.Delete(id);
-            return JsonSuccess("Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
+            if (_unitOfWork.WishlistRepository.IsExisted(CurrentUser.Id.Value, productId))
+            {
+                var wishlist = _unitOfWork.WishlistRepository.GetByUserAndProduct(CurrentUser.Id ?? 0, productId);
+                _unitOfWork.WishlistRepository.Delete(wishlist);
+                return JsonSuccess("Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
+            }
+            return JsonError("Không tìm thấy sản phẩm trong danh sách yêu thích của bạn. Vui lòng kiểm tra lại");
         }
-        public ActionResult Wishlist()
-        {
-            var wishList = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
-                        .Select(o => new Models.WishlistModel(o));
-            return View(wishList);
-        }
+
     }
 }

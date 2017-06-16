@@ -45,7 +45,7 @@ namespace Vanp.Web.Models
         {
             get
             {
-                return (DateFrom.HasValue && DateTime.Now.Subtract(this.DateFrom.Value).TotalMinutes > 20) ? true : false;
+                return (DateFrom.HasValue && DateTime.Now.Subtract(this.DateFrom.Value).TotalMinutes <= 20) ? true : false;
             }
         }
         public CategoryModel Category { get; set; }
