@@ -31,7 +31,14 @@ namespace Vanp.Web.Controllers
             var products = _context.Products.Where(o => (!o.IsBid.HasValue || o.IsBid == false) && o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now)
                 .OrderByDescending(o => o.BidCount)
                 .Take(5).ToList().Select(o => new ProductModel(o));
-            return PartialView(products);
+            return PartialView("ProductsTop5Bid", products);
+        }
+
+        public ActionResult ProductsTop5Price()
+        {
+            var products = _context.Products.Where(i => (o.IsBid.HasValue || o.IsBid == false) && o.DateTo.HasValue && o.DateTo.Value => DateTime.Now)
+                .OrderByDescending(o => o.Price)
+                .Take(5);
         }
     }
 }

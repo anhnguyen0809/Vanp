@@ -1,6 +1,6 @@
 ﻿@using Vanp.Web.Models
 
-@model List<ProductModel>
+@model IEnumerable<ProductModel>
 <div id="bestsell-slider" class="product-flexslider hidden-buttons">
     <div class="slider-items slider-width-col4 products-grid block-content">
         @foreach (var p in Model)
@@ -10,7 +10,9 @@
                     <div class="productborder">
                         <div class="item-img">
                             <div class="item-img-info">
-                                <a class="product-image" title="iPhone 6 Plus" href="../product_detail.html"> <img alt="iPhone 6 Plus" src="~/images/products/product10.jpg"> </a>
+                                <a class="product-image" title="iPhone 6 Plus" href="../@p.PriceDefault"> 
+                                <img alt="iPhone 6 Plus" src="@p.ProductImagePath" title="@p.ProductName"> 
+                                </a>    
                                 <div class="new-label new-top-right">new</div>
                                 <div class="quickview top-right"> <a class="link-quickview" href="../quick_view.html"> <i class="fa fa-search" aria-hidden="true"></i></a> </div>
                             </div>
@@ -20,10 +22,10 @@
                                 <div class="info-inner">
                                     <div class="item-title"> <a title="product lapen casen" href="../product_detail.html">@p.ProductName</a> </div>
                                     <div class="item-content">
-                                        <p class="product-manufacturer">casio</p>
+                                        <p class="product-manufacturer">Lượt đấu giá: @p.BidCount</p>                                     
                                     </div>
                                     <div class="item-price">
-                                        <div class="price-box"> <span class="regular-price"> <span class="price">$109.20</span> </span> </div>
+                                        <div class="price-box"> <span class="regular-price"> <span class="price">@p.PriceCurrent.ToString("0,0")</span> </span> </div>
                                     </div>
                                 </div>
                             </div>

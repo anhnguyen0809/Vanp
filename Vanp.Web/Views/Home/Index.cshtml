@@ -1,7 +1,7 @@
-﻿@{
+﻿@using Vanp.Web.Models
+@{
     ViewBag.Title = "Trang chủ";
 }
-
 <div>
     <div id="content">
         <!-- Slider -->
@@ -40,7 +40,6 @@
     </div>
     <!-- end Slider -->
     <!-- Banner Blog -->
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -111,7 +110,6 @@
             </div>
         </div>
     </div>
-
     <!-- End Banner Blog -->
     <div class="container">
         <div class="row">
@@ -121,7 +119,7 @@
                     <div class="slider-items-products">
                         <div class="bestsell-block">
                             <div class="h2 products-section-title">Sản phẩm được ra giá nhiều nhất</div>
-                            @Html.Action("ProductsTop5Bid")
+                            @Html.Action("ProductsTop5Bid", "Home")
                         </div>
                     </div>
                 </div>
@@ -186,7 +184,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Item -->
                         <div class="item col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="item-inner">
@@ -590,7 +587,6 @@
                                                     <div class="ttcomment"><a href="#"><i class="fa fa-comments"></i> Comments</a></div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 blog-box">
                                             <div class="Blog_info1">
@@ -616,7 +612,6 @@
         </div>
     </div>
 </div>
-
 <!--Latest News End-->
 <!-- Brand Logo -->
 <div class="Faq-bar">
@@ -664,7 +659,6 @@
                     </div>
                     <!-- End Item -->
                     <!-- Item -->
-
                 </div>
             </div>
             <div class="faq col-lg-6 col-md-6 col-sm-6 col-xs-12">
