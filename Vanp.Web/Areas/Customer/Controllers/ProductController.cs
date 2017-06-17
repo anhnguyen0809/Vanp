@@ -50,6 +50,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 p.ProductName = pro.ProductName;
                 p.PriceStep = pro.PriceStep;
+                p.IsExtended = pro.IsExtended;
                 p.ProductDescription = pro.ProductDescription;
                 p.ProductText = pro.ProductText;
                 p.Price = pro.Price;
