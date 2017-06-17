@@ -1,0 +1,114 @@
+﻿<div class="toolbar">
+    <div class="sorter">
+        <div class="view-mode"> <a class="button button-grid" title="Grid" href="left_bar.html">&nbsp;</a><span class="button button-active button-list" title="List">&nbsp;</span> </div>
+    </div>
+    <div id="sort-by">
+        <label class="left">Sort By: </label>
+        <ul>
+            <li>
+                <a><span class="sort-by-name" style="margin-right:10px" data-sort-by-name="dateto">Thời gian kết thúc</span> <span class="right-arrow"></span></a>
+                <ul class="sort-by-list">
+                    <li class="sort-by-item"><a data-sort-by-name="pricecurrent">Giá</a></li>
+                    <li class="sort-by-item"><a data-sort-by-name="dateto">Thời gian kết thúc</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a class="button-asc left" data-asc="false" title="Set Descending Direction"><span class="bottom_arrow"></span></a>
+    </div>
+
+</div>
+<p class="text-right">Hiển thị <span class="total"></span> trong <span class="total"></span> sản phẩm</p>
+
+<div class="category-products">
+    <ol class="product-template" style="display:none">
+        <li class="item row">
+            <div class="col-md-12">
+                <div class="product-image"> <a href="product_detail.html" title="product lapen casen"> <img class="small-image" src="~/images/products/product1.jpg" alt="product lapen casen"> </a> </div>
+                <div class="product-shop">
+                    <div class="row product-top">
+                        <div class="col-md-6">
+                            <h2 class="product-name"><a href="product_detail.html" title="HTC Rhyme Sense">Natrina Round</a></h2>
+                            <div class="desc std">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..... </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <span class="price-current">1.000.000.000</span>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row text-center">
+                                <div class="col-md-6">
+                                    <span class="price"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="bid-count">3</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="end-time"> 5 ngày</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row product-bottom">
+                        <div class="col-md-12">
+                            <div class="ratings">
+                                <p class="rating-links"><b>Người đăng</b> : <a> <span class="created-by">abcxs</span></a> <span class="separator">|</span> <b>Người giữ giá : </b><a><span class="bid-current-by">ạhk</span></a> </p>
+                            </div>
+                            <div class="categories">
+                                <div class="category-links">Danh mục : <span> </span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" title="Submit" class="button button-wishlist"><span>Yêu Thích</span></button>
+                    </div>
+                </div>
+            </div>
+            <ul class="commentlist">
+                <li class="comment">
+                    <div class="comment-wrapper" id="post-29">
+                        <div class="comment-author vcard">
+                            <p class="gravatar">
+                                <a href="#"><img width="60" height="60" alt="avatar" src="/images/users/admin.jpg"></a>
+                                <span class="vote">-1</span>
+                            </p>
+
+                            <span class="author">John Doe</span>
+                        </div>
+                        <!--comment-author vcard-->
+                        <div class="comment-meta">
+                            <time datetime="2014-07-10T07:26:28+00:00" class="entry-date">Thu, Jul 10, 2014 07:26:28 am</time>
+                            .
+                        </div>
+                        <!--comment-meta-->
+                        <div class="comment-body"> Curabitur at vestibulum sem. Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque ellentesque id erat sem, ut commodo nulla. Sed a nulla et eros fringilla. Phasellus eget purus nulla. </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol class="products-list products-list-header">
+        <li class="item header">
+            <div class="product-image"></div>
+            <div class="product-shop ">
+                <div class="row">
+                    <div class="col-md-6 text-center"></div>
+                    <div class="col-md-2 text-center">Giá hiện tại</div>
+                    <div class="col-md-4 text-center">
+                        <div class="row">
+                            <div class="col-md-6">Giá mua ngay</div>
+                            <div class="col-md-2">Lượt đấu giá</div>
+                            <div class="col-md-4">Thời gian còn lại</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+    <ol class="products-list" id="products-list">
+    </ol>
+    <div class="text-center">
+        <button type="button" class="button btn btn-primary btn-load-more margin-15">Xem thêm</button>
+    </div>
+</div>

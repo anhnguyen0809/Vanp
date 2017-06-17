@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vanp.DAL.Entites;
 using Vanp.DAL.Utils;
 using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
-    [Authorize]
-    public class UserController : BaseController
+    public class UserController : AuthController
     {
         // GET: Customer/User
         public ActionResult Index()
@@ -18,20 +18,60 @@ namespace Vanp.Web.Areas.Customer.Controllers
             AccountModel model = new AccountModel(user);
             return View(model);
         }
-        [HttpPost]
-        public ActionResult ChangeAccount(AccountModel accountModel)
+        [Authorize]
+        public ActionResult UserProfile(string tab)
         {
+            ViewBag.Tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
+            var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
+            AccountModel model = new AccountModel(user);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult UserProfile(AccountModel accountModel, string tab)
+        {
+            ViewBag.Tab = tab;
             if (accountModel != null)
             {
                 var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
-                user.FullName = accountModel.FullName;
-                user.UserAddress = accountModel.Address;
-                user.UserPhone = accountModel.Phone;
-                user.IsCustomer = true;
-                user.DateOfBirth = accountModel.DateOfBirth;
-                user.Enable = true;
-                user.ModifiedWhen = DateTime.Now;
-                user.ModifiedBy = user.Id;
+                tab = string.IsNullOrEmpty(tab) ? "" : tab.ToLower();
+                switch (tab)
+                {
+                    case "password":
+                        if (!string.IsNullOrEmpty(accountModel.PassWordNew) && !string.IsNullOrEmpty(accountModel.PassWordOld))
+                        {
+                            var result = _unitOfWork.UserRepository.ChangePassWord(CurrentUser.UserName, accountModel.PassWordOld, accountModel.PassWordNew);
+                            if (result)
+                                Success = "Đổi mật khẩu thành công.";
+                            else Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
+                        }
+                        else
+                        {
+                            Failure = "Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ";
+                        }
+                        break;
+                    case "avartar":
+                        Success = "Thay đổi ảnh đại diện thành công";
+                        break;
+                    default:
+                        user.FullName = accountModel.FullName;
+                        user.UserAddress = accountModel.Address;
+                        user.UserPhone = accountModel.Phone;
+                        user.IsCustomer = true;
+                        user.DateOfBirth = accountModel.DateOfBirth;
+                        user.Enable = true;
+                        user.ModifiedWhen = DateTime.Now;
+                        user.ModifiedBy = user.Id;
+                        if (!user.Email.Equals(accountModel.Email.ToLower()))
+                        {
+                            user.Email = accountModel.Email.ToLower();
+                            user.Authorized = false;
+                            _unitOfWork.UserRepository.Update(user);
+                            _unitOfWork.Save();
+                            return Redirect("/sendcode");
+                        }
+                        Success = "Thay đổi thông tin thành công.";
+                        break;
+                }
                 _unitOfWork.UserRepository.Update(user);
                 _unitOfWork.Save();
                 return View(accountModel);
@@ -50,28 +90,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return JsonError("Mật khẩu cũ không trùng khớp hoặc mật khẩu không hợp lệ");
         }
-        #region SendCode
-        public ActionResult SendCode()
-        {
-            try
-            {
-                var user = _unitOfWork.UserRepository.GetById(CurrentUser.Id);
-                user.VerificationCode = RandomHelper.RandomCode(10);
-                user.ModifiedBy = user.Id;
-                user.ModifiedWhen = DateTime.Now;
-                _unitOfWork.UserRepository.Update(user);
-                _unitOfWork.Save();
-                string urlVerifyCode = Url.Action("VerifyCode", "user", new { userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
-                Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
-                Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
-            }
-            catch (Exception ex)
-            {
-                Failure = "Đã xảy ra lỗi trong quá trình gửi mã xác thực.";
-            }
-            return View();
-        }
-        #endregion
+
         public ActionResult VerifyCode(string userName, string code)
         {
             if (!string.IsNullOrEmpty(code))
@@ -82,8 +101,8 @@ namespace Vanp.Web.Areas.Customer.Controllers
                     if (result)
                     {
                         Success = "Tài khoản đã được xác thực.";
-                        RedirectToAction("Index", "User");
-                    };
+                        return RedirectToAction("UserProfile", "User");
+                    }
                 }
                 else
                 {
@@ -96,6 +115,29 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
-
+        public ActionResult SendRequest()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SendRequest(RequestModel requestModel)
+        {
+            if (requestModel != null)
+            {
+                var request = new Request();
+                request.CreatedBy = request.ModifiedBy = CurrentUser.Id;
+                request.CreatedWhen = request.ModifiedWhen = request.DateFrom = DateTime.Now;
+                request.RequestTypeId = (int)DAL.Utils.RequestType.RequestSell;
+                request.RequestContent = requestModel.RequestContent;
+                request.Enable = true;
+                request.DateTo = request.DateFrom.Value.AddDays(7);
+                _unitOfWork.RequestRepository.Insert(request);
+                _unitOfWork.Save();
+                Success = "Gửi yêu cầu thành công! Cám ơn bạn đã gửi yêu cầu cho chúng tôi.";
+                return View();
+            }
+            Failure = "Gửi yêu cầu không thành công! Vui lòng kiểm tra lại thông tin.";
+            return View(requestModel);
+        }
     }
 }

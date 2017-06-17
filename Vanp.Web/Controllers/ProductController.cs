@@ -6,47 +6,31 @@ using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL;
 using Vanp.DAL.Entites;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Controllers
 {
     [AllowAnonymous]
     public class ProductController : BaseController
     {
-        [AllowAnonymous]
-        // GET: Product
-        public ActionResult Add()
+        public ActionResult Products()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Add(Product pro,HttpPostedFileBase productimage)
+        public ActionResult ProductsByCategory(int id)
         {
-            var fileName = Path.GetFileName(productimage.FileName);
-            var duongdan = _context.Products.Select(p => p.Id).FirstOrDefault();
-            var path = Path.Combine(Server.MapPath("~/images/products/"), fileName);
-            if (System.IO.File.Exists(path))
-                ViewBag.ThongBao = "Hình ảnh đã tồn tại";
-            else
-                productimage.SaveAs(path);
-            pro.ModifiedWhen = DateTime.Now;
-            pro.CreatedWhen = DateTime.Now;
-            pro.CreatedBy = CurrentUser.Id;
-            pro.ModifiedBy = CurrentUser.Id;
-            pro.DateFrom = DateTime.Now;
-            pro.DateTo = DateTime.Now.AddDays(7);
-            pro.ProductImagePath = productimage.FileName;
-            _unitOfWork.ProductRepository.Insert(pro);
-            _unitOfWork.Save();
+            var products = _unitOfWork.ProductRepository.GetListByCategory(id);
+            return View("Products",products);
+        }
+        public JsonResult GetProducts(int pageNo = 1 , int pageSize = 10, string orderBy = "dateto" , bool asc =true , int? category = null)
+        {
+            var products = _unitOfWork.ProductRepository.GetListByCategory( pageNo, pageSize, orderBy, asc, category);
+            return JsonSuccess(products.Select(p => new ProductModel(p)));
+        }
+        public ActionResult Product(int id)
+        {
             return View();
         }
-        public ActionResult ViewListProduct()
-        {
-            return View(_unitOfWork.ProductRepository.GetListbyProducts());
-        }
-        public ActionResult DetailProduct(int proID)
-        {
-            var model=_unitOfWork.ProductRepository.DetailProducts(proID).FirstOrDefault();
-            return View(model);
-        }
+    
     }
 }

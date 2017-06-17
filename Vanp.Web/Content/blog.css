@@ -497,6 +497,20 @@
 	float: left;
 	margin-right: 10px;
 }
+.commentlist li .vote{
+	display: block;
+	clear: both;
+	padding: 5px;
+	width: 100%;
+	background: rgba(187, 182, 182, 0);
+	text-align: center;
+	color: #2e2e32;
+}
+.commentlist li .vote.up{
+	background: white;
+	color: #ff0404;
+	/* border: 1px solid #ff0404; */
+}
 .commentlist li .gravatar img {
 	float: left;
 	border: 1px solid #fff;

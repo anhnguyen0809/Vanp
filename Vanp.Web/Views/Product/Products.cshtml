@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Container -->
+<div class="main-container col2-left-layout bounceInUp animated">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumbs">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul>
+                                    <li class="home"> <a href="assets/index.html" title="Go to Home Page">Home</a> <span>/</span> </li>
+                                    <li class="category1599"> <a href="left_bar.html" title="">Living Room</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breadcrumbs End -->
+                <div class="">
+                    <div class="row">
+                        <div class="col-sm-9 col-lg-9 col-sm-push-3">
+                            <div class="category-description std">
+                                <div class="slider-items-products">
+                                    <div id="category-desc-slider" class="product-flexslider hidden-buttons">
+                                        <div class="slider-items slider-width-col1 owl-carousel owl-theme">
+
+                                            <!-- Item -->
+                                            <div class="item"> <a href="#"><img alt="" src="~/images/cat-banner-1.jpg"></a> </div>
+                                            <!-- End Item -->
+                                            <!-- Item -->
+                                            <div class="item">
+                                                <a href="#"><img alt="" src="~/images/cat-banner-2.jpg"></a>
+
+                                                <!-- End Item -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <article class="col-main">
+                                <div class="page-title">
+                                    <h2>Living Room</h2>
+                                </div>
+                                @Html.Partial("~/Views/Shared/_ProductsPartial.cshtml")
+                            </article>
+                            <!--	///*///======    End article  ========= //*/// -->
+                        </div>
+                        <div class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
+                            <aside class="col-left sidebar">
+                                <div class="side-nav-categories">
+                                    <div class="block-title">Categories</div>
+                                    <!--block-title-->
+                                    <!-- BEGIN BOX-CATEGORY -->
+                                    <div class="box-content box-category">
+                                        @Html.Action("GetList", "Category")
+                                    </div>
+                                    <!--box-content box-category-->
+                                </div>
+                                <div class="side-banner">
+                                    <img src="~/images/sidebanner.jpg">
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Container End -->
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/apps/obj/product.js"></script>
+    <script src="~/Scripts/apps/products.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Products.init();
+        });
+    </script>
+}

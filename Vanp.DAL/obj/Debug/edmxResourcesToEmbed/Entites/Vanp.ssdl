@@ -11,10 +11,10 @@
     <Property Name="ModifiedWhen" Type="datetime" />
     <Property Name="Order" Type="int" />
     <Property Name="Enable" Type="bit" />
-    <Property Name="BidPrice" Type="float" />
     <Property Name="PriceCurrent" Type="float" />
     <Property Name="PriceMax" Type="float" />
     <Property Name="ProductId" Type="int" />
+    <Property Name="PriceBid" Type="float" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -137,6 +137,8 @@
     <Property Name="IsBid" Type="bit" />
     <Property Name="IsExtended" Type="bit" />
     <Property Name="ApprovedBy" Type="int" />
+    <Property Name="BidDate" Type="datetime" />
+    <Property Name="PriceBid" Type="float" />
   </EntityType>
   <EntityType Name="ProductKicked">
     <Key>
@@ -152,6 +154,37 @@
     <Property Name="ProductId" Type="int" />
     <Property Name="UserKickedId" Type="int" />
   </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="RequestContent" Type="nvarchar" MaxLength="200" />
+    <Property Name="Approved" Type="bit" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="RequestTypeId" Type="int" />
+    <Property Name="DateFrom" Type="datetime" />
+    <Property Name="DateTo" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="RequestTypeName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -164,6 +197,7 @@
     <Property Name="Order" Type="int" />
     <Property Name="Enable" Type="bit" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+    <Property Name="RoleDisplayName" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -192,6 +226,7 @@
     <Property Name="Authorized" Type="bit" />
     <Property Name="VoteUp" Type="int" />
     <Property Name="VoteDown" Type="int" />
+    <Property Name="RequestId" Type="int" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -222,6 +257,21 @@
     <Property Name="Vote" Type="tinyint" />
     <Property Name="Content" Type="nvarchar(max)" />
     <Property Name="UserVotedId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="VoteBySeller" Type="bit" />
+  </EntityType>
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedWhen" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedWhen" Type="datetime" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Enable" Type="bit" />
+    <Property Name="UserId" Type="int" />
     <Property Name="ProductId" Type="int" />
   </EntityType>
   <Association Name="FK_BidHistory_Product">
@@ -380,6 +430,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Request">
+    <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserRole_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -440,6 +502,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Wishlist_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wishlist_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="vanp_dbModel1StoreContainer">
     <EntitySet Name="BidHistory" EntityType="Self.BidHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -450,10 +536,13 @@
     <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductKicked" EntityType="Self.ProductKicked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_BidHistory_Product" Association="Self.FK_BidHistory_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="BidHistory" EntitySet="BidHistory" />
@@ -506,6 +595,10 @@
       <End Role="User" EntitySet="User" />
       <End Role="ProductKicked" EntitySet="ProductKicked" />
     </AssociationSet>
+    <AssociationSet Name="FK_User_Request" Association="Self.FK_User_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
     <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="UserRole" EntitySet="UserRole" />
@@ -525,6 +618,14 @@
     <AssociationSet Name="FK_Vote_User_Vote" Association="Self.FK_Vote_User_Vote">
       <End Role="User" EntitySet="User" />
       <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wishlist_Product" Association="Self.FK_Wishlist_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Wishlist" EntitySet="Wishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wishlist_User" Association="Self.FK_Wishlist_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Wishlist" EntitySet="Wishlist" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

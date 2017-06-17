@@ -19,6 +19,7 @@ namespace Vanp.DAL
         #region [Get]
         TEntity GetById(object id);
         IEnumerable<TEntity> GetList();
+        IQueryable<TEntity> GetList(string orderBy, bool asc);
         #endregion
 
     }

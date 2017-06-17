@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Security;
 using Vanp.DAL.Entites;
 
@@ -68,7 +67,9 @@ namespace Vanp.Web
         {
             get
             {
-                return Convert.ToUInt16(_userCookie["id"]);
+                if (_userCookie["id"] == null)
+                    return null;
+                return  Convert.ToUInt16(_userCookie["id"]);
             }
         }
         public static string UserName

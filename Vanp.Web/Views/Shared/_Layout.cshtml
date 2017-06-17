@@ -23,10 +23,12 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-    @RenderSection("css", required: false)
+
+
+    @RenderSection("style", required: false)
+
 </head>
 <body>
-    
     <div id="page">
         <!-- Header -->
         <header>
@@ -88,8 +90,8 @@
                         <li class="level0 nav-6 level-top drop-menu">
                             <a class="level-top" href="#"> <span>Pages</span> </a>
                             <ul class="level1">
-                                <li class="level2 first"><a href="@Url.Action("ViewListProduct","Product")"><span>Đấu giá</span></a> </li>
-                                <li class="level2 first"><a href="@Url.Action("Add","Product")"><span>Đăng bán</span></a> </li>
+                                <li class="level2 first"><a href="../left_bar.html"><span>Left Sidebar</span></a> </li>
+                                <li class="level2 first"><a href="../right_bar.html"><span>Right Sidebar</span></a> </li>
                                 <li class="level2 first"><a href="../full_width_bar.html"><span>Full Width</span></a> </li>
                                 <li class="level2 nav-10-2"> <a href="../list.html"> <span>List</span> </a> </li>
                                 <li class="level2 nav-10-3"> <a href="../product_detail.html"> <span>Product Detail</span> </a> </li>
@@ -620,13 +622,12 @@
 
     <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/moment/moment.min.js"></script>
+    <script src="~/Scripts/numeral/numeral.js"></script>
     <script src="~/Scripts/bootstrap/dist/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/revslider.js"></script>
     <script type="text/javascript" src="~/Scripts/common.js"></script>
     <script type="text/javascript" src="~/Scripts/owl.carousel.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.mobile-menu.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/cloud-zoom.js"></script>
-
 
     <script src="~/Scripts/jquery.blockUI.js"></script>
     <script src="~/Scripts/ladda/spin.min.js"></script>
