@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -29,7 +30,7 @@ namespace Vanp.Web.Controllers
         {
             var products = _context.Products.Where(o => (!o.IsBid.HasValue || o.IsBid == false) && o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now)
                 .OrderByDescending(o => o.BidCount)
-                .Take(5).ToList().Select(o => new ProductModel);
+                .Take(5).ToList().Select(o => new ProductModel(o));
             return View(products);
         }
     }
