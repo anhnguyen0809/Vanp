@@ -26,12 +26,12 @@ namespace Vanp.Web.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
-        public ActionResult GetTop5Bid()
+        public ActionResult ProductsTop5Bid()
         {
             var products = _context.Products.Where(o => (!o.IsBid.HasValue || o.IsBid == false) && o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now)
                 .OrderByDescending(o => o.BidCount)
                 .Take(5).ToList().Select(o => new ProductModel(o));
-            return View(products);
+            return PartialView(products);
         }
     }
 }
