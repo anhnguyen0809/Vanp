@@ -208,7 +208,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Customer\Controllers\BidHistoryController.cs" />
     <Compile Include="Areas\Customer\Controllers\VoteController.cs" />
-    <Compile Include="Areas\Customer\Controllers\WishlistController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProductController.cs" />
     <Compile Include="Areas\Customer\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
@@ -594,7 +593,6 @@
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Areas\Customer\Views\Wishlist\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Product\ProductsUserBidding.cshtml" />
     <Content Include="Areas\Customer\Views\Product\ProductsUserSuccessful.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
