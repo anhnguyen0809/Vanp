@@ -261,6 +261,7 @@
     <EntitySetMapping Name="Votes">
       <EntityTypeMapping TypeName="vanp_dbModel1.Vote">
         <MappingFragment StoreEntitySet="Vote">
+          <ScalarProperty Name="VoteBySeller" ColumnName="VoteBySeller" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
           <ScalarProperty Name="Content" ColumnName="Content" />
