@@ -687,6 +687,7 @@
     <Content Include="Views\Category\_CategoriesLeft.cshtml" />
     <Content Include="Views\Shared\_ProductsPartial.cshtml" />
     <Content Include="Views\Home\ProductsTop5Bid.cshtml" />
+    <Content Include="Views\Home\ProductsTop5Price.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
