@@ -1,0 +1,24 @@
+﻿
+
+@model Vanp.Web.Models.RequestModel
+@{
+    ViewBag.Title = "Gửi yêu cầu đăng sản phẩm";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Gửi yêu cầu</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <form method="post" action="/account/sendrequest" name="sendrequest"class="send-request-form"> 
+            <p>Nội dung (*)</p>
+            <p><textarea name="requestContent" id="requestContext" maxlength="200" placeholder="Tối thiểu 20 ký tự"></textarea></p>
+            <p class="form-submit"><input name="btnSubmit" id="submit" class="btn btn-secondary mt-ladda-btn" value="Gửi Yêu Cầu" type="submit">  </p>
+        </form>
+
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/request.js"></script>
+}

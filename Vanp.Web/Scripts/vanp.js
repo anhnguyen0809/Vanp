@@ -24,7 +24,20 @@
             });
         }
     };
-
+    var handleVote = function () {
+        $(".vote-up-on, .vote-down-on").on("click", function () {
+            if ($(this).hasClass("vote-down-on")) {
+                $(this).removeClass("vote-down-on").addClass("vote-down-off");
+                $(this).siblings(".vote-up-off").removeClass("vote-up-off").addClass("vote-up-on");
+                $(this).closest(".vote").find(".vote-count-post").html(-1);
+            } else {
+                $(this).removeClass("vote-up-on").addClass("vote-up-off");
+                $(this).siblings(".vote-down-off").removeClass("vote-down-off").addClass("vote-down-on");
+                $(this).closest(".vote").find(".vote-count-post").html(1);
+            }
+        });
+        $(".vote-up-on").trigger("click");
+    }
     //Begin Validate
     var validateEmail = function (email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -45,7 +58,13 @@
                 data: JSON.stringify(params),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                async: async
+                async: async,
+                success: function (data, textStatus, xhr) {
+                    console.log(xhr.status);
+                },
+                complete: function (xhr, textStatus) {
+                    console.log(xhr.status);
+                }
             });
         },
         handleAjaxGet: function (url, params, async) {
@@ -58,7 +77,10 @@
                 data: params,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                async: async
+                async: async,
+                complete: function (xhr, textStatus) {
+                    console.log(xhr.status);
+                }
             });
         },
         getViewPort: function () {
@@ -220,11 +242,24 @@
             };
 
             return sizes[size] ? sizes[size] : 0;
-        }
+        },
+        handleAddWishlist: function (productId) {
+            return this.handleAjaxPost("/Customer/Wishlist/Insert", { productId: productId });
+        },
+        handleDeleteWishlist: function (productId) {
+            return this.handleAjaxPost("/Customer/Wishlist/Delete", { productId: productId });
+        },
+        handleVote: handleVote
     };
 
 }();
 
 $(function () {
+    $(document).ajaxError(function (e, xhr) {
+        if (xhr.status == 401)
+            window.location = "/Account/Login";
+        else if (xhr.status == 403)
+            alert("You have no enough permissions to request this resource.");
+    });
     Vanp.init();
 })

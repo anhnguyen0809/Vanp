@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Vanp.DAL.Entites;
@@ -63,6 +64,28 @@ namespace Vanp.DAL
         public virtual IEnumerable<TEntity> GetList()
         {
             return _dbSet.ToList();
+        }
+
+        public virtual IQueryable<TEntity> GetList(string orderBy, bool asc)
+        {
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                var propertyInfo = typeof(TEntity).GetProperty(orderBy, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (propertyInfo != null)
+                {
+                    IOrderedQueryable<TEntity> order = null;
+                    if (asc)
+                    {
+                        order = _dbSet.OrderBy(o => propertyInfo.GetValue(o));
+                    }
+                    else
+                    {
+                        order = _dbSet.OrderByDescending(o => propertyInfo.GetValue(o));
+                    }
+                    return order;
+                }
+            }
+            return null;
         }
         #endregion
 

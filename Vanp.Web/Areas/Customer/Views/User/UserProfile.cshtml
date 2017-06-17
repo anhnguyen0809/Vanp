@@ -1,0 +1,111 @@
+﻿@model Vanp.Web.Models.AccountModel
+@{
+    ViewBag.Title = "Thông tin tài khoản";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Thông tin tài khoản</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="@(string.IsNullOrEmpty(ViewBag.Tab)? "active" : ""  )">
+                <a href="/account/profile">Thông Tin Cá Nhân</a>
+            </li>
+            <li class="@(ViewBag.Tab == "avartar" ? "active" : ""  )">
+                <a href="/account/profile?tab=avartar">Đổi Ảnh Đại Diện</a>
+            </li>
+            <li class=" @(ViewBag.Tab == "password" ? "active" : ""  )">
+                <a href="/account/profile?tab=password">Đổi Mật Khẩu</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet-body">
+        <div class="tab-content">
+            <!-- PERSONAL INFO TAB -->
+            <div class="tab-pane @(string.IsNullOrEmpty(ViewBag.Tab) ? "active" : ""  ) " id="tab_1_1">
+                <form class="comment-form change-form" method="post" action="/account/profile">
+                    <div class="alert alert-danger" style="display:none">
+                        <button class="close" data-close="alert"></button>
+                        <span></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Email <span>*</span></p>
+                            <p class="comment-form-email"><input id="email" name="email" placeholder="vanp@gmail.com" value="@Model.Email" size="30" type="text"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Họ Tên <span>*</span></p>
+                            <p class="comment-form-email"><input id="fullname" name="fullname" placeholder="Vanp Website" value="@Model.FullName" size="100" type="text"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Ngày sinh <span>*</span></p>
+                            <p class="comment-form-email">
+                                <input id="dateofbirth" value='@(!Model.DateOfBirth.HasValue ? DateTime.Now : Model.DateOfBirth.Value)' name="dateofbirth" placeholder="dd/MM/yyyy" size="30" type="text">
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Số điện thoại <span>*</span></p>
+                            <p class="comment-form-email"><input id="phone" name="phone" placeholder="+84 966 005 780" value="@Model.Phone" type="text"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Địa chỉ</p>
+                            <p class="comment-form-email"><input id="address" name="address" value="@Model.Address" placeholder="Quận 1, Hồ Chí Minh" type="text"></p>
+                        </div>
+                    </div>
+
+                    <p class="form-submit">
+                        <input name="btnSubmit" class="btn btn-secondary mt-ladda-btn" value="Cập nhập" type="submit">
+                        <input name="btnCancel" class="btn btn-default mt-ladda-btn" value="Hủy" type="submit">
+                    </p>
+
+                </form>
+
+            </div>
+            <!-- END PERSONAL INFO TAB -->
+            <!-- CHANGE AVATAR TAB -->
+            <div class="tab-pane @(ViewBag.Tab == "avartar" ? "active" : ""  )" avartar" id="tab_1_2">
+                <form action="#">
+                    <div class="form-group">
+                        <label class="control-label">Current Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">New Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Re-type New Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="margin-top-10">
+                        <a href="javascript:;" class="btn green"> Change Password </a>
+                        <a href="javascript:;" class="btn default"> Cancel </a>
+                    </div>
+                </form>
+            </div>
+            <!-- END CHANGE AVATAR TAB -->
+            <!-- CHANGE PASSWORD TAB -->
+            <div class="tab-pane  @(ViewBag.Tab == "password" ? "active" : "") password" id="tab_1_3" >
+                <form class="comment-form change-password-form" action="/account/profile?tab=password" method="post">
+                    <p>Mật khẩu Cũ <span>*</span></p>
+                    <p class="comment-form-email"><input id="passwordold" name="passwordold" value="" size="50" type="password"></p>
+
+                    <p>Mật khẩu Mới <span>*</span></p>
+                    <p class="comment-form-email"><input id="passwordnew" name="passwordnew" value="" size="50" type="password"></p>
+
+                    <p>Xác nhận mật khẩu <span>*</span></p>
+                    <p class="comment-form-email"><input id="repassword" name="repassword" value="" size="50" type="password"></p>
+                    <p class="form-submit"><input name="btnSubmit" id="submit" class="btn btn-secondary mt-ladda-btn" value="Cập nhập" type="submit">  </p>
+                </form>
+            </div>
+            <!-- END CHANGE PASSWORD TAB -->
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/login.js"></script>
+}

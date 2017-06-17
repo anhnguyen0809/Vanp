@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "_UserProfileLayout";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Thông tin tài khoản</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="/account/profile" data-toggle="tab" aria-expanded="true">Thông Tin Cá Nhân</a>
+            </li>
+            <li class="">
+                <a href="/account/avartar" data-toggle="tab" aria-expanded="false">Đổi Ảnh Đại Diện</a>
+            </li>
+            <li class="">
+                <a href="/accout/password" data-toggle="tab" aria-expanded="false">Đổi Mật Khẩu</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet-body">
+        <div class="tab-content">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/user.profile.js"></script>
+}

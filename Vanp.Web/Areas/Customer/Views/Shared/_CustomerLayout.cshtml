@@ -3,9 +3,12 @@
     ViewBag.Title = "_CustomerLayout";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/layout/css/layout.css" rel="stylesheet" />
-<link href="~/Content/layout/themes/light.css" rel="stylesheet" />
-
+@section style
+{
+    <link href="~/Content/layout/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/layout/themes/light.css" rel="stylesheet" />
+    @RenderSection("style", false);
+}
 <div class="page-container">
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
@@ -20,14 +23,14 @@
                 <div class="sidebar-user">
                     <img src="~/images/users/admin.jpg" class="avartar img-circle" />
                     <div class="username">
-                        ADMIN
+                        @CurrentUser.FullName
                     </div>
                     <div class="role">
-                        Admin
+                        @CurrentUser.Roles
                     </div>
                     <div class="">
                         <a class="nav-link" href="/"><i class="icon-home"></i></a> <span style="margin : 0 7px">\</span>
-                        <a class="nav-link" href="@Url.Action("Logout","Account")"><i class="icon-logout"></i></a>
+                        <a class="nav-link" href="/logout"><i class="icon-logout"></i></a>
                     </div>
                 </div>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
@@ -36,15 +39,15 @@
                 <h3 class="text-uppercase">Tài khoản</h3>
             </li>
             <li class="nav-item active ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="/account/profile" class="nav-link nav-toggle">
                     <i class="icon-user"></i>
                     <span class="title">Thông Tin Tài Khoản</span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="/account/sendrequest" class="nav-link nav-toggle">
                     <i class="icon-refresh"></i>
-                    <span class="title">Chuyển Đổi Loại Tài Khoản</span>
+                    <span class="title">Gửi Yêu Cầu Đăng Sản Phẩm</span>
                 </a>
             </li>
             <li class="heading">
@@ -57,7 +60,12 @@
                     <span class="title">Quản Lý Sản Phẩm</span>
                 </a>
             </li>
-
+            <li class="nav-item  ">
+                <a href="/account/product/insert" class="nav-link nav-toggle">
+                    <i class="fa fa-buysellads"></i>
+                    <span class="title">Đăng bán</span>
+                </a>
+            </li>
             <li class="heading">
                 <h3 class="uppercase">Pages</h3>
             </li>
@@ -69,17 +77,17 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="layout_blank_page.html" class="nav-link ">
+                        <a href="/account/wishlist" class="nav-link ">
                             <span class="title">Yêu Thích</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="layout_ajax_page.html" class="nav-link ">
+                        <a href="/account/bidding" class="nav-link ">
                             <span class="title">Đang Tham Gia Đấu Giá</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="layout_ajax_page.html" class="nav-link ">
+                        <a href="/account/bidsuccess" class="nav-link ">
                             <span class="title">Đã Thắng</span>
                         </a>
                     </li>
@@ -101,7 +109,6 @@
         </div>
 
     </div>
-</div>
 </div>
 @section Scripts
 {

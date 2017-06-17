@@ -19,7 +19,7 @@ namespace Vanp.DAL
         }
         public string GetRoleNamesByUser(int userId)
         {
-            var roleNames = _dbSet.Where(o => o.UserId == userId).Select(o => o.Role.RoleName);
+            var roleNames = _dbSet.Where(o => o.UserId == userId && o.Enable == true).Select(o => o.Role.RoleName);
             if (roleNames.Count() > 0)
                 return string.Join( ",", roleNames);
             return string.Empty;

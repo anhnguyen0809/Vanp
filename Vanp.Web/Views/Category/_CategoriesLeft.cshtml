@@ -1,0 +1,26 @@
+﻿@using Vanp.DAL.Entites
+
+@model IEnumerable<Category>
+
+@helper ShowTree(IEnumerable<Category> categories, int i = -1)
+{
+    foreach (var category in categories)
+    {
+        <li>
+            <a href="/products/category/@category.Id">@category.CategoryName </a>
+            @if (category.Category1.Any())
+            {
+                i++;
+                var classLevel = "level" + (i == 0 ? (i + "_" + category.Id) : i.ToString());
+                <span class="subDropdown plus"></span>
+                <ul class="@classLevel" style="display:none" )>
+                    @ShowTree(category.Category1, i)
+                </ul>
+            }
+        </li>
+    }
+}
+
+<ul>
+    @ShowTree(Model)
+</ul>

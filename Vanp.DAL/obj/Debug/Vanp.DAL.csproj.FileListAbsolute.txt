@@ -1,3 +1,13 @@
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.dll.config
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.dll
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.pdb
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\EntityFramework.dll
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\EntityFramework.xml
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.dll
+C:\Users\TruongTanPhat\Documents\GitHub\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.pdb
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.dll.config
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\Vanp.DAL.pdb
@@ -5,6 +15,6 @@ D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.xml
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.pdb
-D:\MonHoc\School\2.4\LTW2\Project Final\vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache
