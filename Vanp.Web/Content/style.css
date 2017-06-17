@@ -9510,7 +9510,7 @@ ol#compare-items li.last {
 .add-to-cart .qty {
 	height: 40px;
 	text-align: center;
-	width: 40px;
+	width: 200px;
 	/*	vertical-align: top */
 	margin: 0px;
 	margin-left: 8px;
@@ -35818,7 +35818,7 @@ footer {
 	padding: 7px 10px;
 }
 .add-to-cart .qty {
-	width: 40px;
+	width: 200px;
 	margin: 0px;
 }
 .product-view .product-name h1 {

@@ -9,7 +9,6 @@ using Vanp.DAL.Entites;
 
 namespace Vanp.Web.Controllers
 {
-    [AllowAnonymous]
     public class ProductController : BaseController
     {
         public ActionResult Products()
@@ -25,6 +24,10 @@ namespace Vanp.Web.Controllers
         {
             return View();
         }
-    
+        public ActionResult Detail(int id)
+        {
+            var model = _unitOfWork.ProductRepository.GetById(id);
+            return View(model);
+        }
     }
 }

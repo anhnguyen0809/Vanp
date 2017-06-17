@@ -1,0 +1,163 @@
+﻿@using Vanp.DAL.Entites
+@model Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <style type="text/css">
+        #product-price-48 {
+            font-size: 20px;
+        }
+
+        #price {
+            font-size: 20px;
+        }
+
+        .dat {
+            width: 200px !important;
+        }
+    </style>
+}
+<section class="main-container col1-layout">
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="product-view">
+                                <div class="product-essential">
+                                    <form action="" method="post" id="product_addtocart_form">
+                                        <div class="product-img-box col-lg-5 col-sm-6 col-xs-12">
+                                            <div class="new-label new-top-left"> New </div>
+                                            <div class="product-image">
+                                                <div class="product-full"> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="@Model.ProductName" style="width:457px;height:457px" /> </div>
+                                                <div class="more-views">
+                                                    <div class="slider-items-products">
+                                                        <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
+                                                            <div class="slider-items slider-width-col4 block-content">
+                                                                <div class="more-views-items"> <a><img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="@Model.ProductName" style="width:125px;height:125px" /> </a></div>
+                                                                <div class="more-views-items"> <a><img id="product-zoom" src="~/images/products/@Model.Id/img2.jpg" alt="@Model.ProductName" style="width:125px;height:125px" /> </a></div>
+                                                                <div class="more-views-items"> <a><img id="product-zoom" src="~/images/products/@Model.Id/img3.jpg" alt="@Model.ProductName" style="width:125px;height:125px" /> </a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end: more-images -->
+                                        </div>
+                                        <div class="product-shop col-lg-7 col-sm-6 col-xs-12">
+                                            <div class="product-next-prev"> <a class="product-next" href="#"><span></span></a> <a class="product-prev" href="#"><span></span></a> </div>
+                                            <div class="product-name">
+                                                <h1>@Model.ProductName</h1>
+                                            </div>
+                                            <div class="ratings">
+                                                @*<div class="rating-box">
+                                                        <div style="width:60%" class="rating">
+                                                            <div class="rating-box"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+                                                        </div>
+                                                    </div>*@
+                                                <p><a href="">@Model.Category.CategoryName</a> </p>
+                                            </div>
+                                            <div class="price-block">
+                                                <div class="price-box col-md-12">
+                                                    <div class="col-md-6">
+                                                        <p>
+                                                            <span class="price-label">Giá khởi điểm:</span><br />
+                                                            <span id="product-price-48" class="price">@Model.PriceDefault</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6 row">
+                                                        @if (Model.Price.HasValue)
+                                                        {
+                                                            <p>
+                                                                <span class="price-label">Giá bán ngay:</span><br />
+                                                                <span class="price" id="price">@Model.Price</span>
+                                                            </p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="short-description col-md-12">
+                                                <div class="col-md-5">
+                                                    <h2>Mô tả</h2>
+                                                    <p>@Model.ProductDescription</p>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="col-md-6">
+                                                        <strong>
+                                                            Ngày đăng:<br />
+                                                            @Model.DateFrom
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <strong>
+                                                            Ngày hết hạn:<br />
+                                                            @Model.DateTo
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-box col-md-12">
+                                                <div class="add-to-cart">
+                                                    <div class="pull-left">
+                                                        <div class="custom pull-left">
+                                                            <input type="text" width="500" class="input-text qty dat" title="Qty" id="qty" name="price">
+                                                        </div>
+                                                    </div>
+                                                    <button class="button btn-cart" title="Add to Cart" type="button">Đặt giá</button>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-box col-md-12">
+                                                <strong>Đang giữ giá cao nhất:</strong> @Model.User2.FullName
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="product-collateral col-lg-12 col-sm-12 col-xs-12">
+                        <div class="add_info">
+                            <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+                                <li class="active"> <a href="#product_tabs_description" data-toggle="tab">Mô tả chi tiết</a> </li>
+                                <li><a href="#product_tabs_tags" data-toggle="tab">Thông tin khác</a></li>
+                            </ul>
+                            <div id="productTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="product_tabs_description">
+                                    <div class="std">
+                                        @Html.Raw(Model.ProductText)
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="product_tabs_tags">
+                                    <div class="box-collateral box-tags">
+                                        <div class="tags">
+                                            <ul>
+                                                <li><strong>Ngày đăng:</strong> @Model.DateFrom</li>
+                                                <li><strong>Ngày hết hạn:</strong> @Model.DateTo</li>
+                                                <li><strong>Người đăng:</strong> @Model.User.FullName</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script type="text/javascript">
+        $('#qty').click(function () {
+            $('#check-now')[this.checked ? "hide" : "show"]();
+        });
+    </script>
+}
+
+

@@ -43,12 +43,14 @@ namespace Vanp.Web.Areas.Customer
             context.MapRoute(
                  name: "ListProduct",
                  url: "account/product/list",
-                 defaults: new { controller = "Product", action = "ListProduct", area = "Customer" }
+                 defaults: new { controller = "Product", action = "ListProduct", area = "Customer" },
+                 namespaces: new[] { "Vanp.Web.Areas.Customer.Controllers" }
              );
             context.MapRoute(
                 name: "Update",
                 url: "account/product/update/{id}",
-                defaults: new { controller = "Product", action = "Update", area = "Customer",id=UrlParameter.Optional}
+                defaults: new { controller = "Product", action = "Update", area = "Customer",id=UrlParameter.Optional},
+                namespaces: new[] { "Vanp.Web.Areas.Customer.Controllers" }
             );
             context.MapRoute(
                 name: "Vote",
@@ -58,7 +60,8 @@ namespace Vanp.Web.Areas.Customer
             context.MapRoute(
                 name: "BidProduct",
                 url: "product/bid",
-                defaults: new { controller = "Product", action = "Bid", area = "Customer" }
+                defaults: new { controller = "Product", action = "Bid", area = "Customer" },
+                namespaces: new[] { "Vanp.Web.Areas.Customer.Controllers" }
             );
             context.MapRoute(
                 "Customer_default",

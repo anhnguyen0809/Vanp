@@ -677,11 +677,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Product\DetailProduct.cshtml" />
     <Content Include="Views\Product\ViewListProduct.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Category\_CategoriesLeft.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -690,7 +690,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Home\" />
-    <Folder Include="Views\ShowProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -17,7 +17,7 @@
         <input name="Id" value="@Model.Id" type="hidden" />
         <div class="form-group col-md-4">
             <label for="productname">Tên sản phẩm </label>
-            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" readonly>
+            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" disabled>
         </div>
         <div class="form-group col-md-4">
             <label for="desription">Mô tả </label>
@@ -25,15 +25,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="pricedefault">Giá sản phẩm </label>
             <input type="text" name="PriceDefault" class="form-control" id="pricedefault" value="@Model.PriceDefault" readonly>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="price">Giá mua ngay </label>
             <input type="text" name="Price" class="form-control" id="price" value="@Model.Price" readonly>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="price">Bước giá</label>
             <input type="text" name="Price" class="form-control" id="price" value="@Model.PriceStep" readonly>
         </div>
