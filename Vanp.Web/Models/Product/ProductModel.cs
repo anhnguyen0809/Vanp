@@ -24,6 +24,8 @@ namespace Vanp.Web.Models
 
         public double Price { get; set; }
 
+        public double PriceStep { get; set; }
+
         public double DateFrom { get; set; }
 
         public double DateTo { get; set; }

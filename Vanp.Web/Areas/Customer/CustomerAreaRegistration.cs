@@ -53,8 +53,7 @@ namespace Vanp.Web.Areas.Customer
             context.MapRoute(
                 name: "Vote",
                 url: "account/vote",
-                defaults: new { controller = "InfoVote", action = "Appraise", area = "Customer"},
-                namespaces: new[] {"Vanp.Web.Areas.Customer.Controller"}
+                defaults: new { controller = "InfoVote", action = "Appraise", area = "Customer"}
             );
             context.MapRoute(
                 name: "BidProduct",

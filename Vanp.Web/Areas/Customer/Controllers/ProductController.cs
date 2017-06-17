@@ -46,10 +46,10 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 p.ModifiedBy = CurrentUser.Id;
                 p.DateFrom = DateTime.Now;
                 p.DateTo = DateTime.Now.AddDays(7);
-                p.PriceStep = 100000;
                 p.CategoryId = pro.CategoryId;
                 p.PriceDefault = p.PriceCurrent = p.PriceMax = pro.PriceDefault;
                 p.ProductName = pro.ProductName;
+                p.PriceStep = pro.PriceStep;
                 p.ProductDescription = pro.ProductDescription;
                 p.ProductText = pro.ProductText;
                 p.Price = pro.Price;

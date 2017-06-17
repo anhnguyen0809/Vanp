@@ -1,7 +1,7 @@
 ﻿
 @using Vanp.Web.Code
 @{
-    ViewBag.Title = "Insert";
+    ViewBag.Title = "Đăng bán sản phẩm";
 }
 @section style{
     <style type="text/css">
@@ -22,19 +22,30 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="pricedefault">Giá sản phẩm <span class="lie">*</span></label>
             <input type="text" name="PriceDefault" class="form-control" id="pricedefault" placeholder="2000000">
         </div>
-        <div class="form-group col-md-4">
-            <label for="price">Giá mua ngay <span class="lie">*</span></label>
+        <div class="form-group col-md-3">
+            <label for="price">Giá mua ngay</label>
             <input type="text" name="Price" class="form-control" id="price" placeholder="3000000">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="pricestep">Bước giá <span class="lie">*</span></label>
+            <input type="text" name="PriceStep" class="form-control" id="pricestep" placeholder="100000">
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label for="categoryid">Danh mục</label>
             @Html.DropDownList("CategoryId", Html.GetNameCat(), new { @class = "col-md-4 form-control", @name = "CategoryId" })
+        </div>
+        <div class="form-group col-md-3">
+            <label for="gh">Bạn có muốn gia hạn không?</label>
+            <select class="form-control">
+                <option value="0">Không</option>
+                <option value="1">Có</option>
+            </select>
         </div>
     </div>
     <div class="row">

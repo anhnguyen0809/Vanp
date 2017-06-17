@@ -1,8 +1,72 @@
-﻿
+﻿@using Vanp.DAL.Entites
+@model List<Vote>
 @{
     ViewBag.Title = "Appraise";
     Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h2>Appraise</h2>
+@section style{
+    <style type="text/css">
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+            text-align:center
+        }
+
+        textarea {
+            height: 100px;
+            border:none;
+            resize:none;
+        }
+    </style>
+}
+<div class="table-responsive ">
+    <table class="table product-table col-md-12">
+        <thead>
+            <tr>
+                <th class="col-md-2">Tên người dùng</th>
+                <th class="col-md-1">Tên người dùng</th>
+                <th width="col-md-6">Nội dung</th>
+                <th class="col-md-2">Ngày</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        <h5>
+                            <strong>
+                                @item.User1.FullName
+                            </strong>
+                        </h5>
+                    </th>
+                    <th scope="row">
+                        <h5>
+                            <strong>
+                                @item.Vote1
+                            </strong>
+                        </h5>
+                    </th>
+                    <td>
+                        <h5>
+                            <textarea readonly>
+                                @item.Content
+                            </textarea>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5><strong>@item.CreatedWhen</strong></h5>
+                    </td>
+                    <td>
+                        <a href="/account/vote/@item.ProductId" class="btn btn-primary" title="Xem">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 

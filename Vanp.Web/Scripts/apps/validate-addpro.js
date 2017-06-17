@@ -9,6 +9,10 @@
         Price: {
             number: true
         },
+        PriceStep:{
+            required: true,
+            number:true
+        },
         PriceDefault: {
             required: true,
             number: true
@@ -40,6 +44,10 @@
         },
         ProductDescription: {
             required: "Mô tả không được để trống!!!"
+        },
+        PriceStep: {
+            required: "Bước giá không được để trống",
+            number: "Bước giá không hợp lệ!!!"
         },
         Price: {
             number: "Giá không hợp lệ!!!"
