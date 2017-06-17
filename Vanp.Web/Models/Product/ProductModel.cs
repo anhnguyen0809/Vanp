@@ -68,15 +68,16 @@ namespace Vanp.Web.Models
             this.PriceCurrent = product.PriceCurrent ?? 0;
             this.PriceDefault = product.PriceDefault ?? 0;
             this.CategoryId = product.CategoryId;
+            this.IsBid = product.IsBid ?? false;
             if (product.User != null)
             {
                 this.CreatedByName = product.User.UserName;
             }
             if (product.User2 != null)
             {
-                this.BidCurrentByName = GetHash(product.User2.UserName);
+                if (!this.IsBid) this.BidCurrentByName = GetHash(product.User2.UserName);
+                else this.BidCurrentByName = product.User2.UserName;
             }
-            this.IsBid = product.IsBid ?? false;
             this.IsExtended = product.IsExtended ?? false;
             if (product.Category != null)
             {

@@ -30,10 +30,10 @@
                 $(this).data("asc", false);
                 $(this).find("span").attr("class", "bottom_arrow");
             }
-            if (dataFilter.asc) {
-                dataFilter.asc = $(this).data("asc");
-                reset();
-            }
+
+            dataFilter.asc = $(this).data("asc");
+            reset();
+
 
         });
     }
@@ -42,7 +42,6 @@
             if (dataFilter.pageNo) {
                 dataFilter.pageNo++;
             }
-            positionCurrent = $(this).position();
             getProducts();
         })
     }
@@ -55,7 +54,7 @@
                             var product = new Product();
                             product.init(v);
                         });
-                      
+
                     }
                 } else {
                     alert("Lỗi kết nối!");

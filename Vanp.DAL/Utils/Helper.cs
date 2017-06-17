@@ -23,9 +23,13 @@ namespace Vanp.DAL.Utils
             {
                 return (int)dateSub.TotalMinutes + " phút";
             }
-            else
+            else if (dateSub.TotalSeconds >= 1)
             {
                 return dateSub.TotalSeconds + " giây";
+            }
+            else
+            {
+                return "-";
             }
         }
     }

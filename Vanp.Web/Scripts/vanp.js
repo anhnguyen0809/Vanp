@@ -24,7 +24,20 @@
             });
         }
     };
-
+    var handleVote = function () {
+        $(".vote-up-on, .vote-down-on").on("click", function () {
+            if ($(this).hasClass("vote-down-on")) {
+                $(this).removeClass("vote-down-on").addClass("vote-down-off");
+                $(this).siblings(".vote-up-off").removeClass("vote-up-off").addClass("vote-up-on");
+                $(this).closest(".vote").find(".vote-count-post").html(-1);
+            } else {
+                $(this).removeClass("vote-up-on").addClass("vote-up-off");
+                $(this).siblings(".vote-down-off").removeClass("vote-down-off").addClass("vote-down-on");
+                $(this).closest(".vote").find(".vote-count-post").html(1);
+            }
+        });
+        $(".vote-up-on").trigger("click");
+    }
     //Begin Validate
     var validateEmail = function (email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -230,34 +243,13 @@
 
             return sizes[size] ? sizes[size] : 0;
         },
-        addWishlist: function (productId) {
-            $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Insert", { productId: productId })).done(
-              function (data) {
-                  if (data) {
-                      if (data.error === 1) {
-                          alert(data.message);
-                      } else {
-                          alert(data.message);
-                      }
-                  } else {
-                      alert("Lỗi kết nối!");
-                  }
-              });
+        handleAddWishlist: function (productId) {
+            return this.handleAjaxPost("/Customer/Wishlist/Insert", { productId: productId });
         },
-        deleteWishlist: function (productId) {
-        $.when(Vanp.handleAjaxPost("/Customer/Wishlist/Delete", { productId: productId })).done(
-          function (data) {
-              if (data) {
-                  if (data.error === 1) {
-                      alert(data.message);
-                  } else {
-                      alert(data.message);
-                  }
-              } else {
-                  alert("Lỗi kết nối!");
-              }
-          });
-    }
+        handleDeleteWishlist: function (productId) {
+            return this.handleAjaxPost("/Customer/Wishlist/Delete", { productId: productId });
+        },
+        handleVote: handleVote
     };
 
 }();

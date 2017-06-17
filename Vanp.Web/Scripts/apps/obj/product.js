@@ -1,4 +1,4 @@
-﻿function Product () {
+﻿function Product() {
     var _this = this;
     _this.$element = null,
     _this.$template = $(".product-template>.item"),
@@ -16,7 +16,7 @@
     _this.$btnWishList = null,
     _this.Id = null;
     return {
-        init : function (product) {
+        init: function (product) {
             _this.$element = _this.$template.clone();
             _this.$element.appendTo(_this.$placeholder).show('slow');
 
@@ -64,11 +64,44 @@
             if (product.New === true) {
                 _this.$element.addClass("new");
             }
+
             //Event
-            _this.$btnWishList.off("click").on("click", addWishlist);
-            var addWishlist = function () {
-                Vanp.addWishlist(_this.Id);
+            if (_this.$btnWishList.hasClass("remove")) {
+                _this.$btnWishList.off("click").on("click", function () {
+                    $.when(Vanp.handleDeleteWishlist(_this.Id)).done(function (data) {
+                        if (data) {
+                            if (data.error === 1) {
+                                alert(data.message);
+                            } else {
+                                _this.$element.remove();
+                                alert(data.message);
+                            }
+                        } else {
+                            alert("Lỗi kết nối!");
+                        }
+                    });
+                });
             }
+            else if (_this.$btnWishList.hasClass("disabled")) { }
+            else {
+                _this.$btnWishList.off("click").on("click", function () {
+                    $.when(Vanp.handleAddWishlist(_this.Id)).done(function (data) {
+                        if (data) {
+                            if (data.error === 1) {
+                                alert(data.message);
+                            } else {
+                                _this.$btnWishList.addClass("disabled").text("Đã Yêu Thích").prop("disabled", true);
+                                alert(data.message);
+                            }
+                        } else {
+                            alert("Lỗi kết nối!");
+                        }
+                    });
+
+                });
+            }
+
         }
+
     }
 }

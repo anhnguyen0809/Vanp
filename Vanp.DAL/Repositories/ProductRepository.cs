@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Vanp.DAL;
@@ -20,7 +21,6 @@ namespace Vanp.DAL
         {
             return _dbSet.Any(p => p.ProductCode.ToLower().Equals(code.ToLower()));
         }
-
         public IEnumerable<Product> GetListByCategory(int categoryId)
         {
             return _dbSet.Where(o => o.CategoryId == categoryId && o.DateTo.HasValue && o.DateTo.Value >= DateTime.Now);
@@ -52,7 +52,28 @@ namespace Vanp.DAL
 
             return query.ToList();
         }
+        public IEnumerable<Product> GetListUserBidSuccess(int userId, int pageNo, int pageSize = 10, string orderBy = "", bool asc = true)
+        {
+            var query = _dbSet.AsQueryable();
 
+            if (orderBy.ToLower() == "dateto")
+            {
+                query = asc ? query.OrderBy(o => o.DateTo) : query.OrderByDescending(o => o.DateTo);
+            }
+            else if (orderBy.ToLower() == "pricecurrent")
+            {
+                query = asc ? query.OrderBy(o => o.PriceCurrent) : query.OrderByDescending(o => o.PriceCurrent);
+            }
+
+            query = asc ? query.OrderBy(o => o.Id) : query.OrderByDescending(o => o.Id);
+
+            query = query
+                    .Where(o => o.BidCurrentBy.HasValue && o.BidCurrentBy.Value == userId)
+                    .Skip((pageNo - 1) * pageSize)
+                    .Take(pageSize);
+
+            return query.ToList();
+        }
         #region Đấu giá
         public bool CheckBidPermisstion(int userId, int productId)
         {
@@ -125,7 +146,15 @@ namespace Vanp.DAL
                 product.PriceBid = priceBid;
                 product.BidCount = (product.BidCount ?? 0) + 1;
                 product.BidDate = DateTime.Now;
-
+                //Gia hạn :	Có tự động gia hạn ko? Nếu có, khi có lượt đấu giá mới trước khi kết thúc 5 phút, sản phẩm tự động gia hạn thêm 10p.
+                if (product.IsExtended.HasValue && product.IsExtended.Value)
+                {
+                   var remaindTime =  product.DateTo.Value.Subtract(DateTime.Now).TotalMinutes;
+                    if (remaindTime > 0 && remaindTime <= 5)
+                    {
+                        product.DateTo = product.DateTo.Value.AddMinutes(10);
+                    }
+                }
                 #region Lưu lịch sử đấu giá
                 //Lưu lịch sử đấu giá
                 BidHistory bidHistory = new BidHistory();

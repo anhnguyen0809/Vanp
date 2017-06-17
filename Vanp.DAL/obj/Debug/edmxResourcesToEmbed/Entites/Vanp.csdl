@@ -400,6 +400,7 @@
     <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Vote" ToRole="Product" />
     <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="Vote" ToRole="User" />
     <NavigationProperty Name="User1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="Vote" ToRole="User" />
+    <Property Name="VoteBySeller" Type="Boolean" />
   </EntityType>
   <EntityType Name="Wishlist">
     <Key>

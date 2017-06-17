@@ -35,13 +35,13 @@ namespace Vanp.Web
                     //OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                     //    validateInterval: TimeSpan.FromMinutes(30),
                     //    regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                    OnApplyRedirect = ctx =>
-                    {
-                        if (!IsAjaxRequest(ctx.Request))
-                        {
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                        }
-                    }
+                    //OnApplyRedirect = ctx =>
+                    //{
+                    //    if (!IsAjaxRequest(ctx.Request))
+                    //    {
+                    //        ctx.Response.Redirect(ctx.RedirectUri);
+                    //    }
+                    //}
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

@@ -13,16 +13,29 @@ namespace Vanp.Web.Areas.Customer.Controllers
     {
         public ActionResult Index()
         {
-            var wishList = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
-                        .Select(o => new ProductModel(o.Product));
             return View();
         }
         [HttpGet]
         public JsonResult GetProducts(int pageNo = 1, int pageSize = 10, string orderBy = "dateto", bool asc = true)
         {
-            var products = _unitOfWork.WishlistRepository.GetListByUser(CurrentUser.Id ?? 0)
-                        .Select(o => new ProductModel(o.Product));
-            return JsonSuccess(products);
+            var products = _context.Wishlists
+                .Where(o => o.UserId.HasValue && o.UserId == CurrentUser.Id)
+                .Select(o => o.Product);
+            if (orderBy.ToLower() == "dateto")
+            {
+                products = asc ? products.OrderBy(o => o.DateTo) : products.OrderByDescending(o => o.DateTo);
+            }
+            else if (orderBy.ToLower() == "pricecurrent")
+            {
+                products = asc ? products.OrderBy(o => o.PriceCurrent) : products.OrderByDescending(o => o.PriceCurrent);
+            }
+
+            products = asc ? products.OrderBy(o => o.Id) : products.OrderByDescending(o => o.Id);
+
+            products = products
+                    .Skip((pageNo - 1) * pageSize)
+                    .Take(pageSize);
+            return JsonSuccess(products.ToList().Select(o => new ProductModel(o)));
         }
         // GET: Customer/WishList
         [HttpPost]
@@ -62,7 +75,8 @@ namespace Vanp.Web.Areas.Customer.Controllers
             {
                 var wishlist = _unitOfWork.WishlistRepository.GetByUserAndProduct(CurrentUser.Id ?? 0, productId);
                 _unitOfWork.WishlistRepository.Delete(wishlist);
-                return JsonSuccess("Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
+                _unitOfWork.Save();
+                return JsonSuccess(message:"Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
             }
             return JsonError("Không tìm thấy sản phẩm trong danh sách yêu thích của bạn. Vui lòng kiểm tra lại");
         }

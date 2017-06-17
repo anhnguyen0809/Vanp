@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vanp.DAL.Entites;
+using Vanp.Web.Models;
 
 namespace Vanp.Web.Areas.Customer.Controllers
 {
@@ -95,5 +96,67 @@ namespace Vanp.Web.Areas.Customer.Controllers
             }
             return View();
         }
+
+        #region Danh sách người dùng đang tham gia đấu giá
+        public ActionResult ProductsUserBidding()
+        {
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetProductsUserBidding(int pageNo = 1, int pageSize = 10, string orderBy = "dateto", bool asc = true)
+        {
+            var products = _context.BidHistories
+                .Where(o => o.CreatedBy.HasValue && 
+                            o.CreatedBy == CurrentUser.Id &&
+                            o.ProductId.HasValue && (!o.Product.IsBid.HasValue || o.Product.IsBid == false)  &&
+                            o.Product.DateTo.HasValue && o.Product.DateTo.Value >= DateTime.Now)
+                .GroupBy(o => o.Product)
+                .Select(o => o.FirstOrDefault().Product);
+            if (orderBy.ToLower() == "dateto")
+            {
+                products = asc ? products.OrderBy(o => o.DateTo) : products.OrderByDescending(o => o.DateTo);
+            }
+            else if (orderBy.ToLower() == "pricecurrent")
+            {
+                products = asc ? products.OrderBy(o => o.PriceCurrent) : products.OrderByDescending(o => o.PriceCurrent);
+            }
+
+            products = asc ? products.OrderBy(o => o.Id) : products.OrderByDescending(o => o.Id);
+
+            products = products
+                    .Skip((pageNo - 1) * pageSize)
+                    .Take(pageSize);
+            return JsonSuccess(products.ToList().Select(o => new ProductModel(o)));
+        }
+        #endregion
+        #region Danh sách người dùng đang tham gia đấu giá
+        public ActionResult ProductsUserSuccessful()
+        {
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetProductsUserSuccessful(int pageNo = 1, int pageSize = 10, string orderBy = "dateto", bool asc = true)
+        {
+            var products = _context.Products
+                .Where(o => o.BidCurrentBy.HasValue &&
+                            o.BidCurrentBy == CurrentUser.Id &&
+                            o.IsBid.HasValue && o.IsBid.Value);
+            if (orderBy.ToLower() == "dateto")
+            {
+                products = asc ? products.OrderBy(o => o.DateTo) : products.OrderByDescending(o => o.DateTo);
+            }
+            else if (orderBy.ToLower() == "pricecurrent")
+            {
+                products = asc ? products.OrderBy(o => o.PriceCurrent) : products.OrderByDescending(o => o.PriceCurrent);
+            }
+
+            products = asc ? products.OrderBy(o => o.Id) : products.OrderByDescending(o => o.Id);
+
+            products = products
+                    .Skip((pageNo - 1) * pageSize)
+                    .Take(pageSize);
+            return JsonSuccess(products.ToList().Select(o => new ProductModel(o)));
+        }
+        #endregion
     }
 }

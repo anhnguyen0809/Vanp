@@ -9,7 +9,13 @@ namespace Vanp.Web
 {
     public static class CurrentUser
     {
-        private static HttpCookie _userCookie = null;
+        private static HttpCookie _userCookie
+        {
+            get
+            {
+                return HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            }
+        }
         public static void SetUserCookie(User user = null, int expires = 1)
         {
             if (user != null)
@@ -24,7 +30,6 @@ namespace Vanp.Web
 
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var userCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                _userCookie = userCookie;
                 userCookie["id"] = user.Id.ToString();
                 userCookie["userName"] = user.UserName;
                 userCookie["email"] = user.Email;
@@ -37,7 +42,6 @@ namespace Vanp.Web
             else
             {
                 FormsAuthentication.SignOut();
-                _userCookie = null;
             }
         }
         public static HttpCookie GetUserCookie()
@@ -69,7 +73,7 @@ namespace Vanp.Web
             {
                 if (_userCookie["id"] == null)
                     return null;
-                return  Convert.ToUInt16(_userCookie["id"]);
+                return Convert.ToUInt16(_userCookie["id"]);
             }
         }
         public static string UserName

@@ -25,7 +25,6 @@ namespace Vanp.Web.Controllers
         public JsonResult GetProducts(int pageNo = 1 , int pageSize = 10, string orderBy = "dateto" , bool asc =true , int? category = null)
         {
             var products = _unitOfWork.ProductRepository.GetListByCategory( pageNo, pageSize, orderBy, asc, category);
-
             return JsonSuccess(products.Select(p => new ProductModel(p)));
         }
         public ActionResult Product(int id)

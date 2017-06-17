@@ -21,7 +21,7 @@ namespace Vanp.Web
         protected void Application_PostAuthenticateRequest()
         {
             var authCookie = CurrentUser.GetUserCookie();
-            if (authCookie != null)
+            if (authCookie != null && authCookie.Values[0] != null)
             {
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Values[0]);
                 if (authTicket != null && !authTicket.Expired)

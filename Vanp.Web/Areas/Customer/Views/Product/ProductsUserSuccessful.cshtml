@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Danh sách đã thắng";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Danh sách đã thắng</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+
+        <form method="post" action="/account/sendrequest" name="sendrequest" class="vote-form">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="vote-cell">
+                            <div class="vote">
+                                <input type="hidden" name="productId" value="">
+                                <a class="vote-up-on" title="Up vote">&#9650;</a>
+                                <span itemprop="upvoteCount" class="vote-count-post">1</span>
+                                <a class="vote-down-on" title="Down vote">&#9660;</a>
+                            </div>
+                        </td>
+                        <td class="vote-content-cell">
+                            <p>Nhận xét (*)</p>
+                            <p><textarea name="requestContent" id="requestContext" maxlength="200" placeholder="Tối thiểu 20 ký tự"></textarea></p>
+                            <p class="form-submit"><input name="btnSubmit" id="submit" class="btn btn-secondary mt-ladda-btn" value="Gửi" type="submit">  </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        @Html.Partial("~/Views/Shared/_ProductCommentsPartial.cshtml")
+
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/obj/product.js"></script>
+    <script src="~/Scripts/apps/products.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Vanp.handleVote();
+            Products.setDataFilter({
+                pageSize: 3,
+                pageNo: 1,
+                orderBy: "dateto",
+                asc: false
+            });
+            Products.setUrlAction("/Customer/Product/GetProductsUserSuccessful");
+            Products.init();
+            $(".button-vote").on("click", function () {
+                alert("demo");
+            })
+        });
+    </script>
+}

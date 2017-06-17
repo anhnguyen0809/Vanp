@@ -263,6 +263,7 @@
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="UserVotedId" Type="int" />
           <Property Name="ProductId" Type="int" />
+          <Property Name="VoteBySeller" Type="bit" />
         </EntityType>
         <EntityType Name="Wishlist">
           <Key>
@@ -1036,6 +1037,7 @@
           <NavigationProperty Name="Product" Relationship="vanp_dbModel1.FK_Vote_Product" FromRole="Vote" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="vanp_dbModel1.FK_Vote_User" FromRole="Vote" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="vanp_dbModel1.FK_Vote_User_Vote" FromRole="Vote" ToRole="User" />
+          <Property Name="VoteBySeller" Type="Boolean" />
         </EntityType>
         <EntityType Name="Wishlist">
           <Key>
@@ -1571,6 +1573,7 @@
           <EntitySetMapping Name="Votes">
             <EntityTypeMapping TypeName="vanp_dbModel1.Vote">
               <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="VoteBySeller" ColumnName="VoteBySeller" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="UserVotedId" ColumnName="UserVotedId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

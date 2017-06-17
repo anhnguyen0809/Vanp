@@ -258,6 +258,7 @@
     <Property Name="Content" Type="nvarchar(max)" />
     <Property Name="UserVotedId" Type="int" />
     <Property Name="ProductId" Type="int" />
+    <Property Name="VoteBySeller" Type="bit" />
   </EntityType>
   <EntityType Name="Wishlist">
     <Key>

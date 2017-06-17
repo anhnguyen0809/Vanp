@@ -40,6 +40,8 @@ public partial class Vote
 
     public Nullable<int> ProductId { get; set; }
 
+    public Nullable<bool> VoteBySeller { get; set; }
+
 
 
     public virtual Product Product { get; set; }

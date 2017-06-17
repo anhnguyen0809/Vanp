@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Danh sách yêu thích";
+    ViewBag.Title = "Danh sách đang tham gia ";
 }
 <div class="portlet light ">
     <div class="portlet-title tabbable-line">
         <div class="caption caption-md">
-            <span class="caption-subject text-uppercase ">Danh sách yêu thích</span>
+            <span class="caption-subject text-uppercase ">Danh sách đang tham gia đấu giá</span>
         </div>
     </div>
     <div class="portlet-body">
@@ -16,15 +16,15 @@
     <script src="~/Scripts/apps/products.js"></script>
     <script>
         jQuery(document).ready(function () {
-            //Thêm class remove trong button-wishlist
-            $(".product-template .button-wishlist").addClass("remove").text("Xóa");
+            //Xóa button wishlist trong product-template 
+            $(".product-template .button-wishlist").remove();
             Products.setDataFilter({
                 pageSize: 3,
                 pageNo: 1,
                 orderBy: "dateto",
                 asc: false
             });
-            Products.setUrlAction("/Customer/Wishlist/GetProducts");
+            Products.setUrlAction("/Customer/Product/GetProductsUserBidding");
             Products.init();
         });
     </script>
