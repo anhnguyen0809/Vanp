@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vanp.DAL.Entites;
+using Vanp.DAL.Repositories;
+using Vanp.DAL.Repositories.Interface;
 
 namespace Vanp.DAL
 {
@@ -18,6 +20,7 @@ namespace Vanp.DAL
             UserRoleRepository = new UserRoleRepository(_context);
             ProductRepository = new ProductRepository(_context);
             RequestRepository = new RequestRepository(_context);
+            VoteRepository = new VoteRepository(_context);
         }
         #region Properties
         public readonly IUserRepository UserRepository;
@@ -25,6 +28,7 @@ namespace Vanp.DAL
         public readonly IUserRoleRepository UserRoleRepository;
         public readonly IProductRepository ProductRepository;
         public readonly IRequestRepository RequestRepository;
+        public readonly IVoteRepository VoteRepository;
         #endregion
 
         public void Save()

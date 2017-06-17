@@ -40,7 +40,7 @@
                     </td>
                     <td>
                         <h5>
-                            @if (item.Price == null|| item.Price==00)
+                            @if (item.Price == null || item.Price == 00)
                             {
                                 <strong></strong>
                             }
@@ -54,7 +54,11 @@
                         </h5>
                     </td>
                     <td>
-                        <h5><strong>@item.DateFrom</strong></h5>
+                        <h5>
+                            <strong>
+                                @item.DateFrom
+                            </strong>
+                        </h5>
                     </td>
                     <td>
                         <h5><strong>@item.DateTo</strong></h5>
@@ -69,4 +73,3 @@
         </tbody>
     </table>
 </div>
-

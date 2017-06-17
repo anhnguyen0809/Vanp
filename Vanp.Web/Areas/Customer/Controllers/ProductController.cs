@@ -62,10 +62,6 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 var targetDirPath = Path.Combine(spDirPath, p.Id.ToString());
                 Directory.CreateDirectory(targetDirPath);
 
-                var path = "images/products/"+p.Id+ "/"+p.Id+".txt";
-                System.IO.File.Create(path);
-
-
                 var img1Name = Path.Combine(targetDirPath, "img1.jpg");
                 image1.SaveAs(img1Name);
 

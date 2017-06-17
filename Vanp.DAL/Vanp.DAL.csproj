@@ -88,6 +88,7 @@
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\Interface\IRequestRepository.cs" />
+    <Compile Include="Repositories\Interface\IVoteRepository.cs" />
     <Compile Include="Repositories\RequestRepository.cs" />
     <Compile Include="Repositories\Interface\IProductRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRoleRepository.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Entites\Role.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\VoteRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Entites\User.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
