@@ -1,3 +1,37 @@
 ﻿/.@using Vanp.Web.Models
 
 @model IEnumerable<ProductModel>
+<div class="modal-content">
+    <form class="form-horizontal category-form" novalidate="novalidate">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title">Thông Tin Danh Mục</h4>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name="id" class="id" value="1">
+            <div class="form-group">
+                <label class="control-label col-md-4">
+                    Tên Danh Mục
+                    <span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input type="text" name="name" data-required="1" class="form-control name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">
+                    Danh Mục Cha
+                </label>
+                <div class="col-md-8">
+                    <select name="parent" data-required="1" class="form-control select2 parent select2-hidden-accessible" tabindex="-1" aria-hidden="true"><option>Rỗng</option><option value="2">Sản Phẩm Khác</option><option value="3">Điện thoại</option><option value="4">Laptop</option></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-parent-cw-container"><span class="select2-selection__rendered" id="select2-parent-cw-container" title="Rỗng">Rỗng</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+            <button type="submit" name="btnSubmit" class="btn green btn-submit">Lưu</button>
+        </div>
+    </form>
+</div>
