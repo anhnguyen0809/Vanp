@@ -690,6 +690,7 @@
     <Content Include="Views\Home\ProductsTop5Price.cshtml" />
     <Content Include="Views\Home\ProductsTop5DateTo.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

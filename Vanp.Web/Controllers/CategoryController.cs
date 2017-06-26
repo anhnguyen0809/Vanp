@@ -51,7 +51,6 @@ namespace Vanp.Web.Controllers
                     .FirstOrDefault();
             }
 
-            ViewBag.ID = id;
             return View();
         }
     }
