@@ -28,5 +28,14 @@ namespace Vanp.Web.Controllers
             }
                 return View();
         } 
+
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue == false)
+            {
+                return RedirectToAction("adminpages", "Category");
+            }
+            return View();
+        }
     }
 }
