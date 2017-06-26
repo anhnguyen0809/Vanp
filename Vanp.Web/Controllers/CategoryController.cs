@@ -21,7 +21,12 @@ namespace Vanp.Web.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category model)
         {
-            return View();
+            using (var ctx = new Vanp_Entities())
+            {
+                ctx.Categories.Add(model);
+                ctx.SaveChanges();
+            }
+                return View();
         } 
     }
 }
