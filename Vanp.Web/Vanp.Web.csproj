@@ -689,6 +689,7 @@
     <Content Include="Views\Home\ProductsTop5Bid.cshtml" />
     <Content Include="Views\Home\ProductsTop5Price.cshtml" />
     <Content Include="Views\Home\ProductsTop5DateTo.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
