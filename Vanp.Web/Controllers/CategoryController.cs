@@ -40,6 +40,10 @@ namespace Vanp.Web.Controllers
 
         public ActionResult Edit(int? id)
         {
+            if(id.HasValue == false)
+            {
+                return RedirectToAction("adminpages", "Category");
+            }
             return View();
         }
     }
