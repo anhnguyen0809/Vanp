@@ -3,12 +3,16 @@
 @model IEnumerable<ProductModel>
 
 <div id="featured-slider" class="product-flexslider hidden-buttons">
+
     <div class="slider-items slider-width-col4 products-grid block-content owl-carousel owl-theme" style="opacity: 1; display: block;">
         @foreach (var p in Model)
         {
             <div class="owl-wrapper-outer">
+
                 <div class="owl-wrapper" style="width: 3848px; left: 0px; display: block; transition: all 0ms ease; transform: translate3d(0px, 0px, 0px);">
+
                     <div class="owl-item" style="width: 481px;">
+
                         <div class="item col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="item-inner">
                                 <div class="item-img col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -41,15 +45,15 @@
                                             @if (p.DateFrom.HasValue)
                                             {
                                                 var subDateTime = p.DateTo.Value.Subtract(DateTime.Now);
-             
+
                                                 <div class="box-timer">
-                                                    <div class="countbox_1 timer-grid">
+                                                    <div class="countbox countbox_@p.Id timer-grid" data-dateto="@p.DateTo" data-id="@p.Id">
                                                         <div class="day box-time-date">
-                                                            <span class="time-num time-day">@subDateTime.Days</span>Days
+                                                            <span class="time-num time-day"></span>Days
                                                         </div>
-                                                        <div class="hour box-time-date"><span class="time-num">@subDateTime.Hours</span>Hrs</div>
-                                                        <div class="min box-time-date"><span class="time-num">@subDateTime.Minutes</span>Mins</div>
-                                                        <div class="sec box-time-date"><span class="time-num">@subDateTime.Seconds</span>Secs</div>
+                                                        <div class="hour box-time-date"><span class="time-num"></span>Hrs</div>
+                                                        <div class="min box-time-date"><span class="time-num"></span>Mins</div>
+                                                        <div class="sec box-time-date"><span class="time-num"></span>Secs</div>
                                                     </div>
                                                 </div>
                                             }

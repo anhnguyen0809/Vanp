@@ -11,12 +11,17 @@ namespace Vanp.Web.Controllers
 {
     [AllowAnonymous]
     public class CategoryController : BaseController
-    {
+    {                                  
         // GET: Product
         public ActionResult GetList()
         {
             var categories = _unitOfWork.CategoryRepository.GetListParent().ToList();
             return PartialView( "_CategoriesLeft", categories);
         }
+        [HttpPost]
+        public ActionResult AddCategory(Category model)
+        {
+            return View();
+        } 
     }
 }
