@@ -44,6 +44,14 @@ namespace Vanp.Web.Controllers
             {
                 return RedirectToAction("adminpages", "Category");
             }
+            using (var ctx = new Vanp_Entities())
+            {
+                Category model = ctx.Categories
+                    .Where(o => o.CategoryParentId == id)
+                    .FirstOrDefault();
+            }
+
+            ViewBag.ID = id;
             return View();
         }
     }
