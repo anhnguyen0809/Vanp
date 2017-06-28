@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vanp.DAL;
+using Vanp.DAL.Entites;
 using Vanp.DAL.Utils;
 using Vanp.Web.Models;
 
@@ -10,7 +11,18 @@ namespace Vanp.Web
 {
     public static class AuthService
     {
-        public static UnitOfWork _unitOfWork = new UnitOfWork();
+        static UnitOfWork _unitOfWork = new UnitOfWork();
+        public static UnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _unitOfWork;
+            }
+            set
+            {
+                _unitOfWork = value;
+            }
+        }
         public static bool IsExisted(string userNameOrEmail)
         {
             return _unitOfWork.UserRepository.IsExisted(userNameOrEmail);
@@ -39,6 +51,10 @@ namespace Vanp.Web
         public static bool IsAuthorized(string userNameOrEmail)
         {
             return _unitOfWork.UserRepository.IsAuthorized(userNameOrEmail);
+        }
+        public static User GetUserInfo(int id)
+        {
+            return _unitOfWork.UserRepository.GetById(id);
         }
         public static void Logout()
         {

@@ -1,0 +1,292 @@
+﻿@using Vanp.Web.Models
+@model ProductModel
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <style type="text/css">
+        #product-price-48 {
+            font-size: 20px;
+        }
+
+        #price {
+            font-size: 20px;
+        }
+
+        .dat {
+            width: 200px !important;
+        }
+    </style>
+}
+@{
+    var seller = ViewBag.Seller as Vanp.DAL.Entites.User;
+    bool bidding = true;
+    bool permission = ViewBag.Permission;
+    double priceValid = ViewBag.PriceValid;
+    if (Model.DateTo.HasValue)
+    {
+        if ((Model.IsBid == true) || Model.DateTo.Value.Subtract(DateTime.Now).TotalSeconds <= 0)
+        {
+            bidding = false;
+        }
+    }
+    else { bidding = false; }
+    bool showBtnBid = true;
+    bool showBtnBidSucessful = false;
+    if (Model.Price > 0)
+    {
+        showBtnBidSucessful = true;
+        if (Model.Price <= Model.PriceCurrent)
+        {
+            showBtnBid = false;
+        }
+    }
+}
+<section class="main-container col1-layout">
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="product-view">
+                                <div class="product-essential">
+
+                                    <div class="product-img-box col-lg-5 col-sm-6 col-xs-12">
+                                        <div class="new-label new-top-left"> New </div>
+                                        <div class="product-image">
+                                            <div class="product-full"> <img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="@Model.ProductName" style="width:457px;height:457px" /> </div>
+                                            <div class="more-views">
+                                                <div class="slider-items-products">
+                                                    <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
+                                                        <div class="slider-items slider-width-col4 block-content">
+                                                            <div class="more-views-items"> <a href="#" data-image="/images/products/@Model.Id/img1.jpg" data-zoom-image="/images/products/@Model.Id/img1.jpg"><img id="product-zoom" src="~/images/products/@Model.Id/img1.jpg" alt="@Model.ProductName" /> </a></div>
+                                                            <div class="more-views-items"> <a href="#" data-image="/images/products/@Model.Id/img2.jpg" data-zoom-image="/images/products/@Model.Id/img2.jpg"><img id="product-zoom" src="~/images/products/@Model.Id/img2.jpg" alt="@Model.ProductName" /> </a></div>
+                                                            <div class="more-views-items"> <a href="#" data-image="/images/products/@Model.Id/img3.jpg" data-zoom-image="/images/products/@Model.Id/img3.jpg"><img id="product-zoom" src="~/images/products/@Model.Id/img3.jpg" alt="@Model.ProductName" /> </a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: more-images -->
+                                    </div>
+                                    <div class="product-shop col-lg-7 col-sm-6 col-xs-12">
+                                        <div class="product-next-prev"> <a class="product-next" href="#"><span></span></a> <a class="product-prev" href="#"><span></span></a> </div>
+                                        <div class="product-name">
+                                            <h1>@Model.ProductName</h1>
+                                            <input type="hidden" id="productid" value="@Model.Id" />
+                                        </div>
+                                        <div class="ratings">
+                                            <p class="rating-links">
+                                                Đăng bởi : &nbsp;
+                                                <a href="/info/@Model.CreatedByName">@Model.CreatedByName </a><span class="separator">|</span>
+                                                 Đánh giá (@((seller.VoteUp ?? 0) + (seller.VoteDown??0))) : &nbsp;<a href="#"> <span class="label label-default"><i class="icon-like"></i>@(seller.VoteUp ?? 0)</span>   <span class="label label-danger"><i class="icon-dislike"></i>@(seller.VoteDown??0)</span> </a>
+                                            </p>
+                                        </div>
+
+
+                                        <div class="price-box clearfix">
+                                            <div class="pull-left">
+                                                <p><span class="price-label">Giá hiện tại:</span></p>
+                                                <div>
+                                                    <span id="product-price-48" class="price">@Model.PriceCurrent.ToString("0,0")</span>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right">
+                                                <div class="email-addto-box timer-grid">
+                                                    <ul class="add-to-links">
+                                                        <li>  <a class="link-wishlist @(Model.InWishlist ? "disabled" : "")" title="@(Model.InWishlist ? "Đã Yêu Thích":"Yêu Thích")"><span>Thêm Vào Yêu Thích</span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="timer-grid">
+                                                    <div class="box-time-date bid-count" title="Lượt Đấu Giá">
+                                                        <span>
+                                                            @Model.BidCount
+                                                        </span>
+                                                        BIDS
+                                                    </div>
+                                                </div>
+                                                <div class="countbox_1 timer-grid" title="Thời Gian Còn Lại"></div>
+                                            </div>
+                                        </div>
+                                        <div class="short-description">
+                                            <h2>Mô tả ngắn</h2>
+                                            <p>@Model.ProductDescription</p>
+                                            @if (!bidding)
+                                            {
+                                                <p class="availability out-of-stock pull-right"><span>Đã đấu giá</span></p>
+                                            }
+                                            else
+                                            {
+                                                <p class="availability in-stock pull-right"><span>Đấu giá</span></p>
+                                            }
+                                        </div>
+                                        <!--Đấu giá-->
+
+                                        @if (bidding && permission)
+                                        {
+                                            <div class="add-to-box">
+                                                @if (showBtnBid)
+                                                {
+                                                <div class="bid">
+                                                    <div class="add-to-cart">
+                                                        <form action="/product/bid/@Model.Id" method="post" class="bid-form">
+                                                            <div class="pull-left">
+                                                                <div class="bid">
+                                                                    <input type="number" width="500" class="input-text qty dat" title="Qty" id="qty" name="priceBid">
+                                                                    <div class="price-valid"><small> GIÁ HỢP LỆ :</small>  @priceValid.ToString("0,0")</div>
+                                                                </div>
+                                                            </div>
+                                                            <button class="button btn-cart " title="Add to Cart" type="submit">Đặt giá</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                }
+                                                @if (showBtnBidSucessful)
+                                                {
+                                                <div class="bid-successful">
+                                                    <div class="add-to-cart">
+
+                                                        <form action="/product/bidsuccessful/@Model.Id" method="post" class="buy-form">
+                                                            <div class="pull-right">
+                                                                <div class="clearfix">
+                                                                    <button class="button btn-cart" title="Add to Cart" type="submit">Mua Ngay</button>
+                                                                </div><div class="price-successful">
+                                                                    <small> GIÁ BÁN NGAY:</small> @Model.Price.ToString("0,0")
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                }
+                                            </div>
+                                        }
+                                        <div class="category">
+                                            <i>
+                                                <span>Danh mục:</span>
+                                                @if (Model.Category.ParentCategories != null)
+                                                {
+                                                    foreach (var category in Model.Category.ParentCategories)
+                                                    {
+                                                        <a href="/products/category/@category.Id">@category.CategoryName</a><span class="separator">></span>
+                                                    }
+                                                }
+                                                <a href="/products/category/@Model.CategoryId">@Model.Category.CategoryName</a>
+                                            </i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="product-collateral col-lg-12 col-sm-12 col-xs-12">
+                        <div class="add_info">
+                            <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+                                <li class="active"><a href="#product_tabs_tags" data-toggle="tab">Thông tin khác</a></li>
+                                <li> <a href="#product_tabs_description" data-toggle="tab">Mô tả chi tiết</a> </li>
+                            </ul>
+                            <div id="productTabContent" class="tab-content">
+
+                                <div class="tab-pane fade in active" id="product_tabs_tags">
+                                    <div class="box-collateral box-tags">
+                                        <div class="tags">
+                                            <div class="row bid-info">
+                                                <div class="col-md-4 col-xs-6">
+                                                    <p>
+                                                        <span>Người giữ giá:</span>
+                                                        <span>@Model.BidCurrentByName</span>
+                                                    </p>
+                                                    <p>
+                                                        <span>Ngày đăng:</span>
+                                                        <span> @(Model.DateFrom.HasValue ? Model.DateFrom.Value.ToString("dd/MM/yyyy hh:mm:ss") : "-")</span>
+                                                    </p>
+                                                    <p>
+                                                        <span>Ngày hết hạn:</span>
+                                                        <span> @(Model.DateTo.HasValue ? Model.DateTo.Value.ToString("dd/MM/yyyy hh:mm:ss") : "-")</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4 col-xs-6">
+                                                    <p>
+                                                        <span>Mã sản phẩm:</span>
+                                                        <span>@Model.ProductCode</span>
+                                                    </p>
+                                                    <p>
+                                                        <span>Tự động gia hạn:</span>
+                                                        <span>@(Model.IsExtended ? "Có" : "Không")</span>
+                                                    </p>
+                                                    <p>
+                                                        <span>Giá khởi điểm:</span>
+                                                        <span>@Model.PriceDefault.ToString("0,0")</span>
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade " id="product_tabs_description">
+                                    <div class="std">
+                                        @Html.Raw(Model.ProductText)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script src="~/Scripts/jquery.flexslider.js"></script>
+    <script src="~/Scripts/cloud-zoom.js"></script>
+    <script type="text/javascript">
+        $('#qty').click(function () {
+            $('#check-now')[this.checked ? "hide" : "show"]();
+        });
+        //Begin countdown
+        $(".countbox_1")
+        var dthen1 = new Date("@Model.DateTo");
+        var dnow1 = new Date("@DateTime.Now");
+        if (CountStepper > 0)
+            ddiff = new Date((dnow1) - (dthen1));
+        else
+            ddiff = new Date((dthen1) - (dnow1));
+        gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+
+        var iid1 = "countbox_1";
+        CountBack_slider(gsecs1, "countbox_1", 1);
+        //End countdown
+        $(".link-wishlist:not('.disabled')").on("click", function (e) {
+            var _this = this;
+            $.when(Vanp.handleAddWishlist(@Model.Id, e)).done(function (data) {
+                if (data) {
+                    if (data.error === 1) {
+                        alert(data.message);
+                    } else {
+                        $(_this).addClass("disabled").off("click");
+                        alert(data.message);
+                    }
+                } else {
+                    alert("Lỗi kết nối!");
+                }
+            });
+
+        });
+        //$("form").submit(function () {
+        //    Vanp.loadingButton($(this).find(".button"), true);
+        //    return false;
+        //});
+        $('.bid-form .button,.buy-form .button').on("click", function (e) {
+            Vanp.loadingButton(this, true);
+        })
+    </script>
+}
+
+

@@ -1,0 +1,82 @@
+﻿@using Vanp.Web.Models
+
+@model IEnumerable<ProductModel>
+
+<div id="featured-slider" class="product-flexslider hidden-buttons">
+
+    <div class="slider-items slider-width-col4 products-grid block-content owl-carousel owl-theme" style="opacity: 1; display: block;">
+        @foreach (var p in Model)
+        {
+            <div class="owl-wrapper-outer">
+
+                <div class="owl-wrapper" style="width: 3848px; left: 0px; display: block; transition: all 0ms ease; transform: translate3d(0px, 0px, 0px);">
+
+                    <div class="owl-item" style="width: 481px;">
+
+                        <div class="item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="item-inner">
+                                <div class="item-img col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="item-img-info">
+                                        <a class="product-image" title="Nartina Round" href="../product_detail.html">
+                                            <img alt="iPhone 6 Plus" src="@p.ProductImagePath" title="@p.ProductName">
+                                        </a>
+                                        <div class="new-label new-top-right">new</div>
+                                    </div>
+                                </div>
+                                <div class="item-info col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="info-inner">
+                                        <div class="item-title"> <a title="Sample" href="../product_detail.html"> @p.ProductName </a> </div>
+                                        <div class="rating">
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div style="width:80%" class="rating"></div>
+                                                </div>
+                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                            <div class="item-price">
+                                                <div class="price-box"> <span class="regular-price"> <span class="price">@p.Price</span> </span> </div>
+                                                <p class="product-desc"> @p.ProductDescription</p>
+                                            </div>
+                                            <div class="action">
+                                                <!-- <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>Add to Cart</span> </button>-->
+                                            </div>
+                                            @if (p.DateFrom.HasValue)
+                                            {
+                                                var subDateTime = p.DateTo.Value.Subtract(DateTime.Now);
+
+                                                <div class="box-timer">
+                                                    <div class="countbox countbox_@p.Id timer-grid" data-dateto="@p.DateTo" data-id="@p.Id">
+                                                        <div class="day box-time-date">
+                                                            <span class="time-num time-day"></span>Days
+                                                        </div>
+                                                        <div class="hour box-time-date"><span class="time-num"></span>Hrs</div>
+                                                        <div class="min box-time-date"><span class="time-num"></span>Mins</div>
+                                                        <div class="sec box-time-date"><span class="time-num"></span>Secs</div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <!-- End Item -->
+                        <!-- Item -->
+
+                        <div class="owl-controls clickable">
+                            <div class="owl-buttons">
+                                <div class="owl-prev"><a class="flex-prev"></a></div>
+                                <div class="owl-next">
+                                    <a class="flex-next"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

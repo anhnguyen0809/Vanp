@@ -19,7 +19,7 @@ namespace Vanp.DAL
         }
         public IEnumerable<BidHistory> GetListByProduct(int productId)
         {
-            return _dbSet.Where(o => o.ProductId.HasValue && o.ProductId.Value == productId);
+            return _dbSet.Where(o => o.ProductId.HasValue && o.ProductId.Value == productId && o.Enable.HasValue && o.Enable == true);
         }
     }
 }

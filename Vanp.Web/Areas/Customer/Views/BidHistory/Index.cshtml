@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Lịch sử đấu giá";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+
+
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Lịch sử đấu giá</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="bidhistory-template" style="display:none">
+            <div class="clearfix bidhistory comment">
+                <div class="comment-wrapper">
+                    
+                </div>
+            </div>
+        </div>
+        @Html.Partial("~/Views/Shared/_ProductsPartial.cshtml")
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/obj/product.js"></script>
+    <script src="~/Scripts/apps/productbidhistories.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $(".product-template .button-wishlist").remove();
+            Products.setDataFilter({
+                pageSize: 3,
+                pageNo: 1,
+                orderBy: "dateto",
+                asc: false
+            });
+            Products.setUrlAction("/Customer/Product/GetProductsBid");
+            Products.init();
+        });
+    </script>
+}
+
+

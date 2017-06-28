@@ -8,7 +8,6 @@ namespace Vanp.DAL.Utils
 {
     public class Helper
     {
-
         public static string Subtract(DateTime dateFrom , DateTime dateTo)
         {
             var dateSub = dateTo.Subtract(dateFrom);
@@ -31,6 +30,16 @@ namespace Vanp.DAL.Utils
             {
                 return "-";
             }
+        }
+        public static string GetUserHash(string str)
+        {
+            var hash = "";
+            if (str.Length > 3)
+            {
+                hash = str.Substring(0, 3);
+                for (int i = 3; i <= str.Length - 1; i++, hash += "*") ;
+            }
+            return hash;
         }
     }
 }

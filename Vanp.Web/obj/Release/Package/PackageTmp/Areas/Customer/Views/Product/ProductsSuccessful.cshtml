@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Danh sách đã thắng";
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Danh sách đã thắng</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <form method="post" action="/account/vote/insert" name="vote" class="vote-form" style="display:none">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="vote-cell">
+                            <div class="vote">
+                                <input type="hidden" name="productId" class="productId" value="">
+                                <a class="vote-up-on" title="Up vote">&#9650;</a>
+                                <span itemprop="upvoteCount" class="vote-count-post">1</span>
+                                <a class="vote-down-on" title="Down vote">&#9660;</a>
+                            </div>
+                        </td>
+                        <td class="vote-content-cell">
+                            <p>Nhận xét (*)</p>
+                            <p><textarea name="voteContent" id="voteContent" maxlength="200" placeholder="Tối thiểu 20 ký tự"></textarea></p>
+                            <p class="form-submit text-center"><input name="btnSubmit" id="btnSubmit" class="btn btn-secondary mt-ladda-btn" value="Gửi" type="submit">  </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <div class="comment-template" style="display:none">
+            <div class="clearfix comment">
+                <div class="comment-wrapper">
+                    <div class="comment-author vcard">
+                        <p class="gravatar">
+                            <a href="#"><img width="60" height="60" alt="avatar" src="/images/users/admin.jpg"></a>
+                            <span class="vote">-1</span>
+                        </p>
+
+                        <span class="author">John Doe</span>
+                    </div>
+                    <!--comment-author vcard-->
+                    <div class="comment-meta">
+                        <div class="entry-date"></div>
+                    </div>
+                    <!--comment-meta-->
+                    <div class="comment-body"> Curabitur at vestibulum sem. Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque ellentesque id erat sem, ut commodo nulla. Sed a nulla et eros fringilla. Phasellus eget purus nulla. </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="products">
+            @Html.Partial("~/Views/Shared/_ProductsPartial.cshtml")
+        </div>
+        </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/apps/obj/product.js"></script>
+    <script src="~/Scripts/apps/obj/vote.js"></script>
+    <script src="~/Scripts/apps/productcomments.js"></script>
+    <script src="~/Scripts/apps/vote.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $(".product-template .button-wishlist").removeClass("button-wishlist").addClass("button-vote").text("Đánh Giá");
+            Vanp.handleVoteUpDown();
+            Products.setDataFilter({
+                pageSize: 10,
+                pageNo: 1,
+                orderBy: "dateto",
+                asc: false
+            });
+            Products.setUrlAction("/Customer/Product/GetProductsSuccessful");
+            Products.init();
+        });
+    </script>
+}

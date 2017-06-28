@@ -1,0 +1,75 @@
+﻿@using Vanp.DAL.Entites
+@model List<Product>
+@{
+    ViewBag.Title = "ListProduct";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+@section style{
+    <style type="text/css">
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}
+<div class="table-responsive ">
+    <table class="table product-table col-md-12">
+        <thead>
+            <tr>
+                <th class="col-md-1">Hình ảnh</th>
+                <th class="col-md-2">Tên sản phẩm</th>
+                <th class="col-md-2">Giá hiện tại</th>
+                <th class="col-md-2">Giá bán ngay</th>
+                <th class="col-md-2">Ngày đăng</th>
+                <th class="col-md-2">Ngày hết hạn</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        <img src="@item.ProductImagePath" width="120" height="120">
+                    </th>
+                    <td>
+                        <h5><strong>@item.ProductName</strong></h5>
+                    </td>
+                    <td>
+                        <h5><strong>@string.Format("{0:0,0}", item.PriceDefault)</strong></h5>
+                    </td>
+                    <td>
+                        <h5>
+                            @if (item.Price == null || item.Price == 00)
+                            {
+                                <strong></strong>
+                            }
+                            else
+                            {
+                                <strong>
+
+                                    @string.Format("{0:0,0}", item.Price)
+                                </strong>
+                            }
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            <strong>
+                                @item.DateFrom
+                            </strong>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5><strong>@item.DateTo</strong></h5>
+                    </td>
+                    <td>
+                        <a href="/account/product/update/@item.Id" class="btn btn-primary" title="Edit">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

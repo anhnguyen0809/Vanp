@@ -21,6 +21,7 @@ namespace Vanp.Web.Models
         public double PriceDefault { get; set; }
 
         public double PriceCurrent { get; set; }
+        public double PriceStep { get; set; }
 
         public double Price { get; set; }
 
@@ -34,6 +35,8 @@ namespace Vanp.Web.Models
         public bool IsExtended { get; set; }
         public string CreatedByName { get; set; }
         public string BidCurrentByName { get; set; }
+        public bool IsKicked { get; set; }//Đã bị kích
+        public bool InWishlist { get; set; }//Đã nằm trong danh sách yêu thích
         public string EndTime
         {
             get
@@ -75,7 +78,7 @@ namespace Vanp.Web.Models
             }
             if (product.User2 != null)
             {
-                if (!this.IsBid) this.BidCurrentByName = GetHash(product.User2.UserName);
+                if (!this.IsBid) this.BidCurrentByName = DAL.Utils.Helper.GetUserHash(product.User2.UserName);
                 else this.BidCurrentByName = product.User2.UserName;
             }
             this.IsExtended = product.IsExtended ?? false;
@@ -83,16 +86,12 @@ namespace Vanp.Web.Models
             {
                 this.Category = new CategoryModel(product.Category);
             }
-        }
-        private string GetHash(string str)
-        {
-            var hash = "";
-            if (str.Length > 3)
+            if (CurrentUser.Id.HasValue)
             {
-                hash = str.Substring(0, 3);
-                for (int i = 3; i <= str.Length - 1; i++, hash += "*") ;
+                this.InWishlist = product.Wishlists.Any(o => o.UserId.HasValue && o.UserId.Value == CurrentUser.Id);
+                this.IsKicked = product.ProductKickeds.Any(o => o.UserKickedId.HasValue && o.UserKickedId.Value == CurrentUser.Id);
             }
-            return hash;
         }
+
     }
 }

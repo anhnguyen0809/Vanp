@@ -1,0 +1,12 @@
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\Vanp.DAL.dll.config
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\Vanp.DAL.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\Vanp.DAL.pdb
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\EntityFramework.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\EntityFramework.SqlServer.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\Newtonsoft.Json.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\EntityFramework.xml
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\EntityFramework.SqlServer.xml
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Release\Newtonsoft.Json.xml
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Release\Vanp.DAL.csprojResolveAssemblyReference.cache
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Release\Vanp.DAL.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Release\Vanp.DAL.pdb

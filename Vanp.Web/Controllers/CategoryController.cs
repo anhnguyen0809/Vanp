@@ -15,8 +15,20 @@ namespace Vanp.Web.Controllers
         // GET: Product
         public ActionResult GetList()
         {
-            var categories = _unitOfWork.CategoryRepository.GetListParent().ToList();
-            return PartialView( "_CategoriesLeft", categories);
+            var categories = _unitOfWork.CategoryRepository.GetListParentShow().ToList();
+            return PartialView("_CategoriesLeft", categories);
+        }
+        public ActionResult GetListMenu()
+        {
+            var categories = _unitOfWork.CategoryRepository.GetListParentShow().ToList();
+            return PartialView("_CategoriesMenu", categories);
+        }
+        public ActionResult GetListSearchMenu(string search, string cats)
+        {
+            ViewBag.SearchCategories = cats;
+            ViewBag.Search = search;
+            var categories = _unitOfWork.CategoryRepository.GetListParentShow().ToList();
+            return PartialView("_CategoriesSearchMenu", categories);
         }
     }
 }

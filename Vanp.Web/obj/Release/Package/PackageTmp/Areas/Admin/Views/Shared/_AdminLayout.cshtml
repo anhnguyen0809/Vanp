@@ -1,0 +1,128 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANP - @ViewBag.Title</title>
+    <link href="~/Scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
+    <link href="~/Scripts/jquery-confirm-master/css/jquery-confirm.css" rel="stylesheet" />
+    <link href="~/Scripts/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="~/Scripts/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Scripts/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Scripts/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/layout/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/layout/themes/light.css" rel="stylesheet" />
+    <link href="~/Content/layout/css/components.min.css" rel="stylesheet" />
+    <link href="~/Content/layout/css/plugins.min.css" rel="stylesheet" />
+    <link href="~/Content/layout/css/admin.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    @RenderSection("style", required: false)
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html">
+                        @*<img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default">*@
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="page-container">
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-light " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="sidebar-toggler-wrapper hide">
+                        <div class="sidebar-toggler">
+                            <span></span>
+                        </div>
+                    </li>
+                    <li class="sidebar-search-wrapper">
+                        <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                        <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                        <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                        <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                            <a href="javascript:;" class="remove">
+                                <i class="icon-close"></i>
+                            </a>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <a href="javascript:;" class="btn submit">
+                                        <i class="icon-magnifier"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                    </li>
+                    <li class="heading">
+                        <h3 class="text-uppercase">QUẢN LÝ HỆ THỐNG</h3>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/adminpages/approved" class="nav-link nav-toggle">
+                            <i class="icon-paper-plane"></i>
+                            <span class="title">Duyệt Đăng Bán</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/adminpages/user" class="nav-link nav-toggle">
+                            <i class="icon-user"></i>
+                            <span class="title">Quản Lý Tài Khoản</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/adminpages/category" class="nav-link nav-toggle">
+                            <i class="icon-notebook"></i>
+                            <span class="title">Quản Lý Danh Mục</span>
+                        </a>
+                    </li>
+                    <li class="heading">
+                        <h3 class="text-uppercase">Sản phẩm</h3>
+                    </li>
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/moment/moment.min.js"></script>
+    <script src="~/Scripts/numeral/numeral.js"></script>
+    <script src="~/Scripts/bootstrap/dist/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery-confirm-master/js/jquery-confirm.js"></script>
+    <script src="~/Scripts/bootstrap-notify.min.js"></script>
+    <script src="~/Content/layout/js/datatable.js"></script>
+    <script src="~/Scripts/datatables/datatables.min.js"></script>
+    <script src="~/Scripts/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+    <script src="~/Scripts/select2/js/select2.full.min.js"></script>
+
+    <script src="~/Scripts/vanp.js"></script>
+    <script src="~/Content/layout/js/layout.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

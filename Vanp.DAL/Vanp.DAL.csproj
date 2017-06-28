@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -87,14 +91,17 @@
     <Compile Include="Entites\Wishlist.cs">
       <DependentUpon>Vanp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DescriptionLog.cs" />
     <Compile Include="Repositories\Interface\IRequestRepository.cs" />
     <Compile Include="Repositories\Interface\IBidHistoryRepository.cs" />
+    <Compile Include="Repositories\Interface\IVoteRepository.cs" />
     <Compile Include="Repositories\Interface\IWishlistRepository.cs" />
     <Compile Include="Repositories\BidHistoryRepository.cs" />
     <Compile Include="Repositories\RequestRepository.cs" />
     <Compile Include="Repositories\Interface\IProductRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRoleRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\VoteRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
     <Compile Include="Repositories\UserRoleRepository.cs" />
     <Compile Include="Repositories\Interface\ICategoryRepository.cs" />
@@ -132,6 +139,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vanp.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Constant\PathSystem.cs" />
     <Compile Include="Utils\Enum\Role.cs" />
     <Compile Include="Utils\Enum\RequestType.cs" />
     <Compile Include="Utils\Enum\StatusSystem.cs" />
@@ -141,6 +149,7 @@
     <Compile Include="Utils\Random\RandomHelper.cs" />
     <Compile Include="Utils\Sercurity\Sercurity.cs" />
     <Compile Include="Utils\Helper.cs" />
+    <Compile Include="Utils\Thread\Thread.cs" />
     <Compile Include="Utils\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,8 +181,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Utils\Constant\" />
     <Folder Include="Utils\Paginate\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

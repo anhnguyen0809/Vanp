@@ -34,11 +34,11 @@ namespace Vanp.DAL.Utils
         public static bool ProductBidSuccess(int productId, int userSellerId, int userCurrentId, int? userBeforeId = null)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            var subject = "Thông Báo:  RA GIÁ THÀNH CÔNG!";
+            var subject = $"Thông Báo:  RA GIÁ THÀNH CÔNG! - [{productId}]";
             var product = unitOfWork.ProductRepository.GetById(productId);
             var userSeller = unitOfWork.UserRepository.GetById(userSellerId);
             var userCurrent = unitOfWork.UserRepository.GetById(userCurrentId);
-            
+
             var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} </p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
                                 + $"<p><b>Giá hiện tại: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>";
 
@@ -52,8 +52,8 @@ namespace Vanp.DAL.Utils
             {
                 string htmlCurrent = @"<h3>Chúc mừng bạn đã đặt giá thành công.</h3>"
                                      + htmlProductInfo
-                                     + $"<p><b>Ngày ra giá: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}",product.BidDate)}</p>"
-                                     + $"<p><b>Mức giá: </b>{string.Format("{0:n0}" ,product.PriceBid)}</p>";
+                                     + $"<p><b>Ngày ra giá: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}", product.BidDate)}</p>"
+                                     + $"<p><b>Mức giá: </b>{string.Format("{0:n0}", product.PriceBid)}</p>";
                 Mail.SendMail(GetMailTemplate(htmlCurrent), new string[] { userCurrent.Email }, subject);
 
             }
@@ -69,6 +69,79 @@ namespace Vanp.DAL.Utils
             }
             return true;
         }
+        public static bool ProductKicked(int productId, int userKickedId)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var subject = $"Thông Báo:  BẠN ĐÃ BỊ KÍCH RA KHỎI SẢN PHẨM! - [{productId}]";
+            var product = unitOfWork.ProductRepository.GetById(productId);
+            var userKicked = unitOfWork.UserRepository.GetById(userKickedId);
 
+            var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} </p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
+                                + $"<p><b>Giá hiện tại: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>";
+
+            if (userKicked != null && Validation.IsEmail(userKicked.Email))
+            {
+                string htmlSeller = @"<h3>Bạn đã bị kích ra khỏi sản phẩm và sẽ không thể tham gia đấu giá sản phẩm này được nữa</h3>"
+                                     + htmlProductInfo;
+                Mail.SendMail(GetMailTemplate(htmlSeller), new string[] { userKicked.Email }, subject);
+            }
+            return true;
+        }
+        public static bool ProductBidEndSuccess(int productId, int userSellerId, int userCurrentId)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var subject = $"Thông Báo:  ĐẤU GIÁ KẾT THÚC! - [{productId}]";
+            var product = unitOfWork.ProductRepository.GetById(productId);
+            var userSeller = unitOfWork.UserRepository.GetById(userSellerId);
+            var userCurrent = unitOfWork.UserRepository.GetById(userCurrentId);
+
+            var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} </p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
+                                + $"<p><b>Giá: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>"
+                                + $"<p><b>Ngày kết thúc: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}", product.BidDateEnd)}</p>";
+
+            if (userSeller != null && Validation.IsEmail(userSeller.Email) && userCurrent != null && Validation.IsEmail(userCurrent.Email))
+            {
+                string htmlSeller = @"<h3>Đấu giá kết thúc! Chúc mừng bạn đã có người mua sản phẩm này.</h3>"
+                                     + htmlProductInfo
+                                     + "<h4>THÔNG TIN NGƯỜI MUA</h4>"
+                                     + $"<p><b>Họ Tên:</b> {userCurrent.FullName}</p>"
+                                     + $"<p><b>Tài Khoản:</b> {userCurrent.UserName}</p>"
+                                     + $"<p><b>Điện Thoại:</b> {userCurrent.UserPhone}</p>";
+
+
+                Mail.SendMail(GetMailTemplate(htmlSeller), new string[] { userSeller.Email }, subject);
+
+                string htmlCurrent = @"<h3>Đấu giá kết thúc! Chúc mừng bạn đã mua được sản phẩm này.</h3>"
+                                     + htmlProductInfo
+                                     + $"<p><b>Ngày ra giá: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}", product.BidDate)}</p>"
+                                     + $"<p><b>Mức giá: </b>{string.Format("{0:n0}", product.PriceBid)}</p>"
+                                     + "<h4>THÔNG TIN NGƯỜI BÁN</h4>"
+                                     + $"<p><b>Họ Tên:</b> {userSeller.FullName}</p>"
+                                     + $"<p><b>Tài Khoản:</b> {userSeller.UserName}</p>"
+                                     + $"<p><b>Điện Thoại:</b> {userSeller.UserPhone}</p>";
+                Mail.SendMail(GetMailTemplate(htmlCurrent), new string[] { userCurrent.Email }, subject);
+
+            }
+            return true;
+        }
+        public static bool ProductBidEndFailure(int productId, int userSellerId)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var subject = $"Thông Báo:  ĐẤU GIÁ KẾT THÚC! - [{productId}]";
+            var product = unitOfWork.ProductRepository.GetById(productId);
+            var userSeller = unitOfWork.UserRepository.GetById(userSellerId);
+
+            var htmlProductInfo = $"<p><b>Mã sản phẩm: </b>{ product.ProductCode} </p><p><b>Tên sản phẩm: </b>{ product.ProductName} </p> "
+                                + $"<p><b>Giá: </b>{string.Format("{0:n0}", product.PriceCurrent)} </p>"
+                                + $"<p><b>Ngày kết thúc: </b>{string.Format("{0:dd/MM/yyyy hh:mm:ss}", product.DateTo)}</p>";
+
+            if (userSeller != null && Validation.IsEmail(userSeller.Email))
+            {
+                string htmlSeller = @"<h3>Đấu giá kết thúc! Không có ai tham gia sản phẩm này.</h3>"
+                                     + htmlProductInfo;
+                Mail.SendMail(GetMailTemplate(htmlSeller), new string[] { userSeller.Email }, subject);
+            }
+            return true;
+        }
     }
 }

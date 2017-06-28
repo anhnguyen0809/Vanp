@@ -10,7 +10,7 @@ namespace Vanp.Web
     using DAL.Utils;
     using Vanp.DAL;
 
-    [Authorize]
+    [Authorize(Roles = "Buyer,Seller")]
     public class AuthController : BaseController
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

@@ -1,0 +1,40 @@
+﻿@using Vanp.DAL.Entites
+
+@model IEnumerable<Category>
+
+@helper ShowTree(IEnumerable<Category> categories, int i = 0)
+{
+if (i > 2) { return; }
+i++;
+foreach (var category in categories.Where(o => o.Show.Value))
+{
+        <li class="level3 nav-6-1 parent item">
+            <a href="/products/category/@category.Id">@category.CategoryName </a>
+            @if (category.Category1.Any(o => o.Show.Value))
+            {
+                var classLevel = "level" + i.ToString();
+                <ul class="@classLevel">
+                    @ShowTree(category.Category1, i)
+                </ul>
+            }
+        </li>
+}
+}
+@{
+
+    <li class="mega-menu">
+        <a class="level-top" href="/products"><span>Sản Phẩm</span></a>
+        <div class="level0-wrapper dropdown-6col">
+            <div class="container">
+                <div class="level0-wrapper2">
+                    <div class="nav-block nav-block-center">
+                        <ul class="level0">
+                            @ShowTree(Model)
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}
+

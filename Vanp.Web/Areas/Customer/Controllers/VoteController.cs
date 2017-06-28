@@ -11,6 +11,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
 {
     public class VoteController : AuthController
     {
+        [HttpPost]
         public JsonResult Insert(VoteModel voteModel)
         {
             if (voteModel.ProductId.HasValue)
@@ -27,9 +28,9 @@ namespace Vanp.Web.Areas.Customer.Controllers
                     var point = voteModel.Vote;
                     if (point != 0)
                     {
-                        point = (byte)(point / Math.Abs(point));
+                        point = (short)(point / Math.Abs(point));
                     }
-                    vote.Vote1 = voteModel.Vote;
+                    vote.Vote1 = point;
                     if (product.CreatedBy == CurrentUser.Id) //Đánh giá từ người bán
                     { 
                         vote.UserVotedId = product.BidCurrentBy;
@@ -40,12 +41,21 @@ namespace Vanp.Web.Areas.Customer.Controllers
                         vote.UserVotedId = product.CreatedBy;
                         vote.VoteBySeller = false;
                     }
-                    _context.Votes.Add(vote);
-                    _context.SaveChanges();
-                    return JsonSuccess( message: "Đánh giá người dùng thành công.");
+                    _unitOfWork.VoteRepository.Insert(vote);
+                    _unitOfWork.Save();
+                    return JsonSuccess( vote.Id ,"Đánh giá người dùng thành công.");
                 }
             }
             return JsonError("Không tìm thấy sản phẩm để đánh giá.");
+        }
+        public JsonResult GetById(int id)
+        {
+            var vote = _unitOfWork.VoteRepository.GetById(id);
+            if (vote != null)
+            {
+                return JsonSuccess(new VoteModel(vote));
+            }
+            return JsonError();
         }
     }
 }

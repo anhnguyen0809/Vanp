@@ -21,6 +21,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
             var products = _context.Wishlists
                 .Where(o => o.UserId.HasValue && o.UserId == CurrentUser.Id)
                 .Select(o => o.Product);
+            var totalRows = products.Count();
             if (orderBy.ToLower() == "dateto")
             {
                 products = asc ? products.OrderBy(o => o.DateTo) : products.OrderByDescending(o => o.DateTo);
@@ -35,7 +36,11 @@ namespace Vanp.Web.Areas.Customer.Controllers
             products = products
                     .Skip((pageNo - 1) * pageSize)
                     .Take(pageSize);
-            return JsonSuccess(products.ToList().Select(o => new ProductModel(o)));
+            return JsonSuccess(new
+            {
+                products = products.ToList().Select(o => new ProductModel(o)),
+                totalRows = totalRows
+            });
         }
         // GET: Customer/WishList
         [HttpPost]
@@ -43,7 +48,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
         {
             if (_unitOfWork.WishlistRepository.IsExisted(CurrentUser.Id.Value, productId))
             {
-                return JsonSuccess(message: "Đã tồn tại sản phẩm trong danh sách Yêu Thích");
+                return JsonError("Đã tồn tại sản phẩm trong danh sách Yêu Thích");
             }
             else
             {
@@ -76,7 +81,7 @@ namespace Vanp.Web.Areas.Customer.Controllers
                 var wishlist = _unitOfWork.WishlistRepository.GetByUserAndProduct(CurrentUser.Id ?? 0, productId);
                 _unitOfWork.WishlistRepository.Delete(wishlist);
                 _unitOfWork.Save();
-                return JsonSuccess(message:"Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
+                return JsonSuccess(message: "Đã xóa sản phẩm ra khỏi danh sách yêu thích của bạn.");
             }
             return JsonError("Không tìm thấy sản phẩm trong danh sách yêu thích của bạn. Vui lòng kiểm tra lại");
         }

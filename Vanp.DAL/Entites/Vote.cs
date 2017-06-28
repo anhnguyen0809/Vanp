@@ -32,7 +32,7 @@ public partial class Vote
 
     public Nullable<bool> Enable { get; set; }
 
-    public Nullable<byte> Vote1 { get; set; }
+    public Nullable<short> Vote1 { get; set; }
 
     public string Content { get; set; }
 

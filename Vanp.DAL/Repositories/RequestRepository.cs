@@ -13,12 +13,6 @@ namespace Vanp.DAL
         public RequestRepository(Vanp_Entities context) : base(context)
         {
         }
-        /// <summary>
-        ///  Duyệt yêu cầu đăng bán từ người dùng
-        /// </summary>
-        /// <param name="requestId">Mã yêu cầu</param>
-        /// <param name="approvedBy">Người duyệt yêu cầu</param>
-        /// <returns></returns>
         public bool Approved(int requestId, int approvedBy)
         {
             var request = this.GetById(requestId);
@@ -65,6 +59,10 @@ namespace Vanp.DAL
                 return true;
             }
             return false;
+        }
+        public IEnumerable<Request> GetListNotApproved()
+        {
+            return _dbSet.Where(o => !o.Approved.HasValue || !o.Approved.Value);
         }
     }
 }

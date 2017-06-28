@@ -60,9 +60,9 @@ public partial class Vanp_Entities : DbContext
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
-    public virtual DbSet<Vote> Votes { get; set; }
-
     public virtual DbSet<Wishlist> Wishlists { get; set; }
+
+    public virtual DbSet<Vote> Votes { get; set; }
 
 }
 

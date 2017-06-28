@@ -1,0 +1,42 @@
+﻿@using Vanp.DAL.Entites
+
+@model IEnumerable<BidHistory>
+
+<table style="margin:0 auto" cellpadding="10">
+    <tbody>
+        @{
+            int index = 1;
+            bool isBid = ViewBag.IsBid;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>
+                            <u><b>@index</b></u> :<i>@item.CreatedWhen.Value.ToString("dd/MM/yyyy hh:mm:ss")</i> - @Vanp.DAL.Utils.Helper.GetUserHash(item.User.UserName)
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            : <span class="price-current">@((item.PriceCurrent ?? 0).ToString("0,0"))</span>
+                        </p>
+                    </td>
+                    <td>
+                        @if (!isBid)
+                        {
+                            <form method="post" action="/account/product/kicked/@ViewBag.ProductId">
+                                <input type="hidden" value="@item.CreatedBy" name="userId" />
+                                <p style="margin-left:50px;">
+                                    <button class="button square btn-xs button-kick">Kích</button>
+                                </p>
+                            </form>
+                        }
+                    </td>
+                </tr>
+                index++;
+            }
+
+        }
+    </tbody>
+</table>
+
+

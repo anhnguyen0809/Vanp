@@ -20,7 +20,7 @@ namespace Vanp.Web.Controllers
         [HttpPost]
         public JsonResult IsNotExisted(string userName, bool current = false)
         {
-            return Json(!_unitOfWork.UserRepository.IsExisted(userName, current ? (CurrentUser.Id ?? 0) : 0));
+            return Json(!_unitOfWork.UserRepository.IsExisted( userName, current ? (CurrentUser.Id ?? 0) : 0));
         }
 
         public ActionResult Login(string returnUrl)
@@ -39,6 +39,7 @@ namespace Vanp.Web.Controllers
                     if (!(user.Enable ?? false))
                     {
                         Failure = "Tài khoản đã bị khóa.";
+                        return View(loginModel);
                     }
                     else
                     {
@@ -89,6 +90,18 @@ namespace Vanp.Web.Controllers
                     _unitOfWork.UserRepository.Insert(user);
                     _unitOfWork.Save();
                     user.CreatedBy = user.ModifiedBy = user.Id;
+                    //Thêm role cho user 
+                    UserRole userRole = new UserRole()
+                    {
+                        UserId = user.Id,
+                        CreatedBy = user.Id,
+                        CreatedWhen = DateTime.Now,
+                        ModifiedBy = user.Id,
+                        ModifiedWhen = DateTime.Now,
+                        Enable = true,
+                        RoleId = (int)DAL.Utils.Role.Buyer
+                    };
+                    _unitOfWork.UserRoleRepository.Insert(userRole);
                     AuthService.Login(user);
                     _unitOfWork.Save();
                     return RedirectToAction("SendCode");
@@ -117,7 +130,6 @@ namespace Vanp.Web.Controllers
                     if (!string.IsNullOrEmpty(result))
                     {
                         AuthService.Logout();
-                        Mail.SendMail("Mật khẩu mới của bạn: " + result, new string[] { user.Email }, "Reset Mật Khẩu");
                         return RedirectToAction("ForgotPasswordConfirmation");
                     }
                     else
@@ -152,7 +164,7 @@ namespace Vanp.Web.Controllers
                 _unitOfWork.Save();
                 string urlVerifyCode = Url.Action("VerifyCode", "user", new { area = "Customer", userName = user.Email, code = user.VerificationCode }, this.Request.Url.Scheme);
                 Mail.SendMail(urlVerifyCode, new string[] { user.Email }, "Xác thực tài khoản");
-                Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
+               // Success = "Mã xác thực đã được gửi vào email của bạn! Hãy kiểm tra hòm thư để xác nhận.";
             }
             catch (Exception ex)
             {

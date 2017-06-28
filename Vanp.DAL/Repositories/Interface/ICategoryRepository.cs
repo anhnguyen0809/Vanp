@@ -11,5 +11,9 @@ namespace Vanp.DAL
     {
         IEnumerable<Category> GetListByParent(int categoryId);
         IEnumerable<Category> GetListParent();
+        IEnumerable<Category> GetListParentShow();
+        IEnumerable<Category> GetListAllChildByParent(int categoryId);
+        IEnumerable<Category> GetListAllChildByParent(int[] categoriesId);
+
     }
 }

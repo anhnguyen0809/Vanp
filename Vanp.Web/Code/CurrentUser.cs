@@ -32,8 +32,6 @@ namespace Vanp.Web
                 var userCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                 userCookie["id"] = user.Id.ToString();
                 userCookie["userName"] = user.UserName;
-                userCookie["email"] = user.Email;
-                userCookie["fullName"] = user.FullName;
                 userCookie["customer"] = (user.IsCustomer ?? false).ToString();
                 userCookie["roles"] = roleNames;
 
@@ -60,6 +58,31 @@ namespace Vanp.Web
                 }
             }
         }
+        public static int VoteUp
+        {
+            get
+            {
+                if ((Id ?? 0) == 0)
+                    return 0;
+                else
+                {
+                    return AuthService.GetUserInfo(Id.Value).VoteUp ?? 0;
+                }
+            }
+        }
+        public static int VoteDown
+        {
+            get
+            {
+                if ((Id ?? 0) == 0)
+                    return 0;
+                else
+                {
+                    return AuthService.GetUserInfo(Id.Value).VoteDown ?? 0;
+                }
+            }
+        }
+        public static double VotePercent { get { return ((VoteUp + VoteDown == 0)? 1 : VoteUp / (VoteUp + VoteDown)) * 100; } }
         public static bool IsCustomer
         {
             get
@@ -71,7 +94,7 @@ namespace Vanp.Web
         {
             get
             {
-                if (_userCookie["id"] == null)
+                if (_userCookie == null || _userCookie["id"] == null)
                     return null;
                 return Convert.ToUInt16(_userCookie["id"]);
             }
@@ -87,14 +110,14 @@ namespace Vanp.Web
         {
             get
             {
-                return _userCookie["email"];
+                return (Id ?? 0) == 0 ? "" : AuthService.GetUserInfo(Id.Value).Email;
             }
         }
         public static string FullName
         {
             get
             {
-                return _userCookie["fullName"];
+                return (Id ?? 0) == 0 ? "" : AuthService.GetUserInfo(Id.Value).FullName;
             }
         }
         public static string Roles

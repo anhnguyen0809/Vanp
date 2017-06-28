@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="page-title">
+    Danh Sách Tài Khoản
+    <small>Reset Mật Khẩu, Xóa</small>
+</h1>
+<table class="table table-striped table-bordered table-hover table-checkable order-column" id="table-main">
+    <thead>
+        <tr>
+            <th> </th>
+            <th> </th>
+            <th> Tài Khoản </th>
+            <th> Email</th>
+            <th> VoteUp </th>
+            <th> VoteDown </th>
+            <th> Ngày Tạo </th>
+            <th> Đăng Nhập Cuối</th>
+            <th> Xác thực</th>
+        </tr>
+    </thead>
+</table>
+
+
+@section Scripts {
+    <script src="~/Scripts/apps/admin/user.js"></script>
+}

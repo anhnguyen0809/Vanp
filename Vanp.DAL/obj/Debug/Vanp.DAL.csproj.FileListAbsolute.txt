@@ -15,6 +15,8 @@ D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.xml
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.dll
 D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.pdb
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\Newtonsoft.Json.dll
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\bin\Debug\Newtonsoft.Json.xml
+D:\MonHoc\School\2.4\LTW2\Project Final\Vanp\Vanp.DAL\obj\Debug\Vanp.DAL.csprojResolveAssemblyReference.cache

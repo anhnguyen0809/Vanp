@@ -69,6 +69,7 @@ namespace Vanp.DAL
                 var passwordNew = RandomHelper.RandomString(10, true);
                 user.UserPassword = Sercurity.CreateHashMD5(passwordNew);
                 this.SaveChanges();
+                Mail.SendMail("Mật khẩu mới của bạn: " + passwordNew, new string[] { user.Email }, "Reset Mật Khẩu");
                 return passwordNew;
             }
             return string.Empty;
@@ -135,6 +136,10 @@ namespace Vanp.DAL
                 }
             }
             return false;
+        }
+        public override IEnumerable<User> GetList()
+        {
+            return _context.Users.Where(o => o.Enable == true);
         }
 
     }

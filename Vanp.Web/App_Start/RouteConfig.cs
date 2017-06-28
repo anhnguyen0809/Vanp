@@ -45,11 +45,23 @@ namespace Vanp.Web
 
             #endregion
             routes.MapRoute(
+            name: "DetailProduct",
+            url: "product-detail/{id}",
+            defaults: new { controller = "Product", action = "Product", id = UrlParameter.Optional },
+            namespaces: new[] { "Vanp.Web.Controllers" }
+          );
+            routes.MapRoute(
                name: "Products",
                url: "products",
                defaults: new { controller = "Product", action = "Products" },
                namespaces: new[] { "Vanp.Web.Controllers" }
              );
+            routes.MapRoute(
+                name: "SearchProducts",
+                url: "search",
+                defaults: new { controller = "Product", action = "SearchProducts" },
+                namespaces: new[] { "Vanp.Web.Controllers" }
+              );
             routes.MapRoute(
              name: "Product",
              url: "products/category/{id}",

@@ -1,0 +1,131 @@
+﻿@using Vanp.DAL.Entites
+@model Product
+@{
+    ViewBag.Title = "Sửa thông tin sản phẩm";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@section style{
+    <style type="text/css">
+        .lie {
+            color: red;
+        }
+    </style>
+}
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <span class="caption-subject text-uppercase ">Chi Tiết Sản Phẩm</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="@(string.IsNullOrEmpty(ViewBag.Tab)? "active" : ""  )">
+                <a href="#tab_1_1" data-toggle="tab">Thông Tin Sản Phẩm</a>
+            </li>
+            <li class="@(ViewBag.Tab == "bidhistory" ? "active" : "")">
+                <a href="#tab_1_2"  data-toggle="tab">Lịch Sử Ra Giá</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet-body">
+        <div class="tab-content">
+            <!-- PERSONAL INFO TAB -->
+            <div class="tab-pane @(string.IsNullOrEmpty(ViewBag.Tab)? "active" : ""  ) " id="tab_1_1">
+                <form method="post" action="/account/product/update" class="insert-form" enctype="multipart/form-data">
+                    <div class="row">
+                        <input name="Id" value="@Model.Id" type="hidden" />
+                        <div class="form-group col-md-4">
+                            <label for="productname">Tên sản phẩm </label>
+                            <input type="text" name="ProductName" class="form-control" id="productname" value="@Model.ProductName" disabled>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="desription">Mô tả </label>
+                            <input type="text" name="ProductDescription" class="form-control" id="desription" value="@Model.ProductDescription">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="pricedefault">Giá khởi điểm </label>
+                            <input type="text" name="PriceDefault" class="form-control" id="pricedefault" value="@Model.PriceDefault" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="price">Giá mua ngay </label>
+                            <input type="text" name="Price" class="form-control" id="price" value="@Model.Price" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="price">Bước giá</label>
+                            <input type="text" name="Price" class="form-control" id="price" value="@Model.PriceStep" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="categoryid">Danh mục</label>
+                            <select disabled>
+                                <option>
+                                    @if (Model.Category != null)
+                                    {
+                                    @Model.Category.CategoryName
+                                    }
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="categoryid">Gia hạn</label>
+                            <select disabled>
+                                @if (Convert.ToBoolean(Model.IsExtended))
+                                {
+                                <option>Có</option>
+                                }
+                                else
+                                {
+                                <option>Không </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="image1">Hình ảnh 1 </label><br />
+                            <img src="~/images/products/@Model.Id/img1.jpg" width="200" height="200" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="image2">Hình ảnh 2 </label><br />
+                            <img src="~/images/products/@Model.Id/img2.jpg" width="200" height="200" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="image3">Hình ảnh 3 </label><br />
+                            <img src="~/images/products/@Model.Id/img3.jpg" width="200" height="200" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="producttext">Mô tả chi tiết:</label>
+                        @if (!string.IsNullOrWhiteSpace(Model.ProductTextLogPath))
+                        {
+                            var desLogs = Vanp.DAL.Models.DescriptionLog.GetListByPath(Server.MapPath(Model.ProductTextLogPath));
+                            int index = 1;
+                            foreach (var log in desLogs)
+                            {
+                                <p><u><b>EDIT @index</b></u> :<i>@log.CreatedWhen.ToString("dd/MM/yyyy hh:mm:ss")</i></p>
+                                <div class="desc log">@Html.Raw(log.ProductText)</div>
+                                        index++;
+                            }
+                        }
+                        <p><u><b>HIỆN TẠI</b></u> :<i>@Model.ModifiedWhen.Value.ToString("dd/MM/yyyy hh:mm:ss")</i></p>
+                        <div class="desc log">@Html.Raw(@Model.ProductText)</div>
+                        <p>Mô tả mới:</p>
+                        <textarea name="ProductText"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Sửa</button>
+                </form>
+            </div>
+            <div class="tab-pane  @(ViewBag.Tab == "bidhistory" ? "active" : "")" id="tab_1_2">
+                @Html.Action("BidHistory", "BidHistory", new { productId = Model.Id})
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/apps/validate-addpro.js"></script>
+}
+

@@ -10,9 +10,11 @@ namespace Vanp.Web.Models
     {
         public string CategoryName { get; set; }
         public int? CategoryParentId { get; set; }
+        public int CategoryLevel { get; set; }
         public string CategoryParentName { get; set; }
         public IEnumerable<CategoryModel> SubCategories { get; set; }
         public IEnumerable<CategoryModel> ParentCategories { get; set; }
+        public bool Show { get; set; }
 
         public CategoryModel()
         {
@@ -36,6 +38,9 @@ namespace Vanp.Web.Models
                 CategoryName = o.CategoryName,
                 CategoryParentId = o.CategoryParentId
             });
+            this.Show = category.Show ?? false;
+            this.CategoryLevel = category.CategoryLevel ?? 0;
+            this.ModifiedWhen = category.ModifiedWhen;
         }
         private void GetParentCategories(Category category, List<CategoryModel> categories)
         {

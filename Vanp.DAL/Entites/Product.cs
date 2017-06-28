@@ -26,9 +26,9 @@ public partial class Product
 
         this.ProductKickeds = new HashSet<ProductKicked>();
 
-        this.Votes = new HashSet<Vote>();
-
         this.Wishlists = new HashSet<Wishlist>();
+
+        this.Votes = new HashSet<Vote>();
 
     }
 
@@ -87,6 +87,10 @@ public partial class Product
 
     public Nullable<double> PriceBid { get; set; }
 
+    public string ProductTextLogPath { get; set; }
+
+    public Nullable<System.DateTime> BidDateEnd { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -109,11 +113,11 @@ public partial class Product
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Vote> Votes { get; set; }
+    public virtual ICollection<Wishlist> Wishlists { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Wishlist> Wishlists { get; set; }
+    public virtual ICollection<Vote> Votes { get; set; }
 
 }
 

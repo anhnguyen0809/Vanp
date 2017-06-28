@@ -12,8 +12,10 @@ namespace Vanp.DAL
         IEnumerable<Product> GetListByProduct();
       //  IEnumerable<Product> GetListByProduct(int[] productIds);
         bool isExisted(string code);
+        string GetCode(int productId);
+        IEnumerable<Product> GetListByUser(int userId);
         IEnumerable<Product> GetListByCategory(int categoryId);
-        IEnumerable<Product> GetListByCategory(int pageNo, int pageSize = 10, string orderBy = "", bool asc = true, int? category=null);
+        IEnumerable<Product> GetListByCategory(string search = "",int[] categories = null, int? pageNo = null, int? pageSize = null, string orderBy = "", bool asc = true);
         /// <summary>
         /// Kiểm tra người dùng được phép đầu giá sản phẩm 
         /// </summary>
@@ -45,6 +47,18 @@ namespace Vanp.DAL
         /// <param name="productId">id sản phẩm</param>
         /// <param name="priceBuy">giá mua ngay</param>
         /// <returns></returns>
-        bool BuyNow(int userId, int productId, double priceBuy);
+        bool BidSuccessful(int userId, int productId);
+        /// <summary>
+        /// Kích người mua ra khỏi sản phẩm đấu giá
+        /// </summary>
+        /// <param name="productId">id sản phẩm</param>
+        /// <param name="userId">id người bán</param>
+        /// <param name="userKickedId">Người bị kích</param>
+        /// <returns></returns>
+        bool Kicked(int productId, int userId, int userKickedId);
+        /// <summary>
+        /// Những sản phẩm kết thúc đấu giá theo thời gian
+        /// </summary>
+        void ProductBiEndByTime();
     }
 }

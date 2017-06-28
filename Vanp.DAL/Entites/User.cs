@@ -38,11 +38,13 @@ public partial class User
 
         this.UserRoles = new HashSet<UserRole>();
 
+        this.Wishlists = new HashSet<Wishlist>();
+
         this.Votes = new HashSet<Vote>();
 
         this.Votes1 = new HashSet<Vote>();
 
-        this.Wishlists = new HashSet<Wishlist>();
+        this.Requests = new HashSet<Request>();
 
     }
 
@@ -133,6 +135,10 @@ public partial class User
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
+    public virtual ICollection<Wishlist> Wishlists { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
     public virtual ICollection<Vote> Votes { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -141,7 +147,7 @@ public partial class User
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Wishlist> Wishlists { get; set; }
+    public virtual ICollection<Request> Requests { get; set; }
 
 }
 
