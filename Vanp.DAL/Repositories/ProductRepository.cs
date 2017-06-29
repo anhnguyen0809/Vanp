@@ -16,9 +16,17 @@ namespace Vanp.DAL
         {
             return _dbSet.ToList();
         }
+<<<<<<< HEAD
         public bool isExisted(string productcode)
+=======
+        public bool isExisted(string code)
         {
-            return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(productcode.ToLower()));
+            return _dbSet.Any(p=>p.ProductCode.ToLower().Equals(code.ToLower()));
+        }
+        public IEnumerable<Product> GetTopNNew(int n)              //Lấy n cái đầu tiên dựa vào id giảm dần
+>>>>>>> 88275256eb0a67d56c2c86f95e3d486443945314
+        {
+            return _dbSet.OrderByDescending(o => o.Id).Take(n);
         }
     }
 }
